@@ -1,0 +1,465 @@
+
+/***############### General Styling Reset and Setup: reset, grid, typography, general classes and divs.  Mobile-first styling setup. ***/
+/***########## Reset the styles, add box-sizing: border-box. ***/
+html, body, div, span, p, img, a, br, ul, li, ol, header, nav, footer, table, button, label, input, textarea, select, tr, td, th, h1, h2, h3, h4, h5, h6 {
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+/*For ease of development and maintainability, combine an element's width, padding, margin, and border into a final value, and enable this on all elements. */
+html { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+
+/***########## Grid Column layout available.  Desktop and mobile settings.  Automatically make columns full width below a certain width. Very-small (vsm) 
+columns display at their designated widths at all device sizes, small (sma) above the first breakpoint, large (lar) above the next breakpoint. ***/
+.content { width: 100%; padding: 20px 10px 20px 10px; }
+.content-row { width: 100%; padding: 0; }
+.content-row:after { content: ""; display: block; clear: both; }
+.content-row.no-content-row-padding { padding: 0; }
+ 
+.col-sma-1, .col-sma-2, .col-sma-3, .col-sma-4, .col-sma-5, .col-sma-6, .col-sma-7, .col-sma-8, .col-sma-9, .col-sma-10, .col-sma-11, .col-sma-12,
+.col-lar-1, .col-lar-2, .col-lar-3, .col-lar-4, .col-lar-5, .col-lar-6, .col-lar-7, .col-lar-8, .col-lar-9, .col-lar-10, .col-lar-11, .col-lar-12 {
+    float: none;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.col-vsm-1, .col-vsm-2, .col-vsm-3, .col-vsm-4, .col-vsm-5, .col-vsm-6, .col-vsm-7, .col-vsm-8, .col-vsm-9, .col-vsm-10, .col-vsm-11, .col-vsm-12 {
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.col-vsm-1 { width: 8.333333%; }
+.col-vsm-2 { width: 16.666667%; }
+.col-vsm-3 { width: 25%; }
+.col-vsm-4 { width: 33.333333%; }
+.col-vsm-5 { width: 41.666667%; }
+.col-vsm-6 { width: 50%; }
+.col-vsm-7 { width: 58.33333%; }
+.col-vsm-8 { width: 66.666667%; }
+.col-vsm-9 { width: 75%; }
+.col-vsm-10 { width: 83.333333%; }
+.col-vsm-11 { width: 91.666667%; }
+.col-vsm-12 { width: 100%; }  
+
+/* Switch to 12 columns at 700px for small columns and 1200px for large columns. */
+@media only screen and (min-width: 700px){
+    .content-row { padding: 10px 0 10px 0; }
+    .content-row:first-of-type { padding-top: 0; }
+    .content-row:last-of-type { padding-bottom: 0; }
+    
+    .col-sma-1, .col-sma-2, .col-sma-3, .col-sma-4, .col-sma-5, .col-sma-6, .col-sma-7, .col-sma-8, .col-sma-9, .col-sma-10, .col-sma-11, .col-sma-12 {
+        float: left;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .col-sma-1 { width: 8.333333%; }
+    .col-sma-2 { width: 16.666667%; }
+    .col-sma-3 { width: 25%; }
+    .col-sma-4 { width: 33.333333%; }
+    .col-sma-5 { width: 41.666667%; }
+    .col-sma-6 { width: 50%; }
+    .col-sma-7 { width: 58.33333%; }
+    .col-sma-8 { width: 66.666667%; }
+    .col-sma-9 { width: 75%; }
+    .col-sma-10 { width: 83.333333%; }
+    .col-sma-11 { width: 91.666667%; }
+    .col-sma-12 { width: 100%; }    
+}
+
+@media only screen and (min-width: 1200px){
+    .content-row { padding: 25px 0 25px 0; }
+    .content-row:first-of-type { padding-top: 0; }
+    .content-row:last-of-type { padding-bottom: 0; }
+       
+    .col-lar-1, .col-lar-2, .col-lar-3, .col-lar-4, .col-lar-5, .col-lar-6, .col-lar-7, .col-lar-8, .col-lar-9, .col-lar-10, .col-lar-11, .col-lar-12 {
+        float: left;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .col-lar-1 { width: 8.333333%; }
+    .col-lar-2 { width: 16.666667%; }
+    .col-lar-3 { width: 25%; }
+    .col-lar-4 { width: 33.333333%; }
+    .col-lar-5 { width: 41.666667%; }
+    .col-lar-6 { width: 50%; }
+    .col-lar-7 { width: 58.33333%; }
+    .col-lar-8 { width: 66.666667%; }
+    .col-lar-9 { width: 75%; }
+    .col-lar-10 { width: 83.333333%; }
+    .col-lar-11 { width: 91.666667%; }
+    .col-lar-12 { width: 100%; }
+}
+
+/***########## General Styling and Typography settings. ***/
+body { background-color: #f3f3f3; }
+h1 { font-size: 24px; }
+h2 { font-size: 20px; }
+h3 { font-size: 18px; }
+h4 { font-size: 18px; }
+ul { list-style-type: none; }
+p { padding-bottom: 16px; line-height: 22.4px; }
+a { text-decoration: none; }
+img { max-width: 100%; font-size: 0px; } /*Don't allow images to go offscreen horizontally */
+a:link, a:visited { color: #000000; }
+a:hover { color: #0000cc; }
+input, textarea, select { outline: 0; transition: 0.2s; }
+input:focus, textarea:focus, select:focus { box-shadow: 0px 0px 3px 3px rgba(0, 102, 204, 0.6); transition: 0.2s; }
+
+.body-wrapper { position: relative; width: 100%; min-width: 300px; padding: 0; border: 0; margin-left: auto; margin-right: auto;
+                background-color: #ffffff; }
+
+@media only screen and (min-width: 500px){
+}
+
+@media only screen and (min-width: 700px){
+    h1 { font-size: 32px; }
+    h2 { font-size: 26px; }
+    h3 { font-size: 20px; }
+    h4 { font-size: 18px; }  
+}
+
+@media only screen and (min-width: 1200px){      
+    h1 { font-size: 36px; }   
+    h2 { font-size: 26px; }  
+    h3 { font-size: 24px; }  
+    h4 { font-size: 18px; }
+}
+
+@media only screen and (min-width: 1600px){
+}
+
+/***########## General layout settings and general classes. ***/
+.justify-content > div { display: flex; flex-wrap: wrap; justify-content: center; }
+
+/* General Resuable Classes */
+.sr-only { display: block; width: 0; height: 0; opacity: 0; }
+.width-100-percent { width: 100%; }
+.clear-both { clear: both; }
+
+/* Use .inner-wrapper for layouts where you want to have backgrounds go out of the site 'border' provided by .body-wrapper '*/
+.inner-wrapper { position: relative; padding: 0; margin-left: auto; margin-right: auto; }
+
+@media only screen and (min-width: 700px){
+    .float-right-above-a-breakpoint { float: right; }
+}
+
+/* Form Validation classes */
+.javascript-validation-results-contact-us { display: none; font-weight: bold; }
+.javascript-validation-results-contact-us.show { display: block; }
+.required-field-needed { box-shadow: 0px 0px 3px 3px rgba(204, 0, 0, 1); }
+/***########## End of General Styling Reset and Setup ****/
+
+
+
+
+/***############### Beginning of Website-specific style sheet. ****/
+
+/*
+Monochromatic color scheme.
+1:     #ac8949   mid light-brown   (172, 137, 73)
+2:     #64460e;  mid dark brown    (100, 74, 14)
+3:     #fbe3b7;  light brown       (251, 227, 183)
+*/
+
+html, body, div, span, p, img, a, br, ul, li, ol, header, nav, footer, table, button, label, input, textarea, tr, td, th, h1, h2, h3, h4, h5, h6 {
+   font-family: 'Lato', sans-serif; 
+}
+h1, h2, h3, h4 { font-weight: bold; }
+input, textarea { width: 100%; padding: 10px; border: 1px solid #000000; border-radius: 15px; }
+a:link, a:visited { color: #64460e; }
+a:hover { color: #ac8949; }
+h1 { font-size: 30px; }
+h2 { font-size: 24px; }
+h3 { padding: 0 0 15px 0; color: #64460e; text-align: center; }
+h4 { padding: 0 0 12px 0; color: #64460e; }
+input:focus, textarea:focus { box-shadow: 0px 0px 3px 3px rgba(172, 137, 73, 0.6); transition: 0.2s;}
+input::placeholder, textarea::placeholder { color: #64460e; opacity: 0.8; }
+
+/* Header styles */
+header { min-height: 200px; background: linear-gradient(#fbe3b7, #f3f3f3); }
+.main-title { padding-top: 20px; text-align: center; }
+.main-title .main-title__title { font-size: inherit; font-weight: inherit; color: #ac8949; font-family: 'Pacifico', cursive; }
+.header__subtitle { text-align: center; color: #64460e; font-family: 'Noto Serif', serif; }
+.logo { position: relative; width: 40px; top: 20px; left: 15px; }
+
+/* Nav styles */
+.mobile-nav { display: block; }
+.desktop-nav { display: none; }
+.nav { background-color: #64460e; }
+.nav__nav-item { display: block; text-align: center; }
+.nav .nav__nav-link { color: #f9f9f9; }
+.nav .nav__nav-link:hover { color: #fbe3b7; }
+
+#dropdownButton { position: absolute; top: 25px; right: 20px; width: 30px; height: 30px;
+                  background: url('../images/hamburger-nav.png') 50% 0%/cover no-repeat; cursor: pointer; }
+#dropdownContent { padding: 0; background: none; transition: 0.8s all ease-in; }    
+#dropdownContent li { display: block; height: 0; padding-bottom: 0px; opacity: 0; transition: 0.8s all ease-in; }
+#dropdownContent.show { padding: 15px; background-color: #eeee99; background-image: linear-gradient(#64460e, #ac8949, #64460e);
+                        transition: 0.8s all ease-in; }
+#dropdownContent.show li { height: 21px; margin-bottom: 20px; opacity: 1; transition: 0.8s all ease-in; }
+#dropdownContent.show li:last-of-type { margin-bottom: 0; } 
+
+
+/*Message styles*/
+.message { padding: 25px 10px; text-align: center; background-color: #ac8949; transition: 0.4s ease-in; }
+.message__text { font-size: 24px; font-weight: bold; color: #f9f9f9; padding-bottom: 0; cursor: pointer; }
+
+
+/*Footer Styles*/
+footer { padding: 50px 10px; background-color: #fbe3b7; }
+.footer__subheader { padding-bottom: 15px; color: #64460e; }
+
+.footer__social, .footer__location, .footer__hours { padding-top: 20px; padding-bottom: 20px; } 
+
+/* (Footer Subscribe button) */
+.footer__subscribe { padding-bottom: 30px; }
+
+.footer__subscribe-button { position: relative; width: auto; text-align: center; cursor: pointer; transition: 0.4s ease-in; }
+.footer__subscribe-button, .footer__subscribe-button__bg, .footer__subscribe-button__bg--hover { margin-left: auto; margin-right: auto; border-radius: 15px; }
+.footer__subscribe-button__bg, .footer__subscribe-button__bg--hover { width: 280px; padding: 15px 10px; }
+ 
+.footer__subscribe-button__text { font-size: 22px; color: #fbe3b7; z-index: 10; }
+
+.footer__subscribe-button__bg { opacity: 1; background: #64460e; transition: 0.4s ease-in;  z-index: 9; }
+.footer__subscribe-button__bg:hover { opacity: 0; transition: 0.4s ease-in; }
+.footer__subscribe-button__bg:hover .footer__subscribe-button__text { opacity: 0; }
+
+.footer__subscribe-button__bg--hover { opacity: 0; margin-top: -84px; transition: 0.4s ease-in; }
+.footer__subscribe-button__bg--hover:hover { opacity: 1; background: radial-gradient(#ac8949, #64460e); transition: 0.4s ease-in; }
+.footer__subscribe-button__bg--hover .footer__subscribe-button__text { opacity: 0; }
+.footer__subscribe-button__bg--hover:hover .footer__subscribe-button__text { opacity: 1; }
+/*End of footer subscribe button */
+
+.footer__copyright { padding-bottom: 30px; text-align: center; }
+.footer__social { text-align: center; }
+.footer__social a { color: #64460e; }
+.footer__social a:hover { color: #ac8949; }
+.footer__location { text-align: center; }
+.footer__hours { text-align: center; }
+.footer__hours__day { padding-bottom: 15px; }
+.footer__hours__day:last-of-type { padding-bottom: 0; }
+
+.footer__social { } 
+.footer__social-logo { display: inline-block; padding: 0 15px; }
+.footer__social-icon { transition: 0.4s all; }
+.footer__social-icon:hover { transition: 0.4s all; }
+
+
+/*Modal styles*/
+.subscribe-modal {}
+.subscribe-modal .input-container__contact-button { }
+.subscribe-modal .input-container__contact-button:hover { }
+
+.modal__mask { display: table; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; background-color: rgba(0,0,0,0.5); }
+.modal__wrapper { display: table-cell; vertical-align: middle; }
+.modal__container { position: relative; width: 80%; padding: 10px; margin: 0 auto; border-radius: 20px; background-color: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); }
+.modal__close-button { position: absolute; top: 10px; right: 10px; padding: 10px; border-radius: 10px; background-color: #ac8949; color: #fbe3b7; cursor: pointer; transition: 0.6s ease-in; }
+.modal__close-button:hover { background-color: #64460e; transition: 0.6s ease-in; }
+.modal__header { margin-right: 50px; padding-bottom: 10px; }
+.modal__body { padding-bottom: 20px; }
+
+
+/*General site-specific classes*/
+.item-container__background { height: 240px; }
+.no-padding-bottom { padding-bottom: 0; } /* Put on the last of a group of paragraphs where no padding bottom is desired. */
+.current-page { text-decoration: underline; }
+
+/*Index page*/
+.item-container__background.one { background: url('../images/bakery-shelf-cakes.jpg') 0% 0%/cover no-repeat;}
+
+.index-content__baked-items-list { margin-left: 30px; list-style-type: disc; }
+.index-content__baked-items-list__list-item { padding-bottom: 10px; }
+
+
+/*About Us*/
+.about-us-container__background { height: 240px; background: url('../images/bakery-shelf.jpg') 0% 0%/cover no-repeat;}
+
+
+/*Location */
+.location-container__background { height: 240px; padding-top: 20px; background: url('../images/location.png') 0% 0%/cover no-repeat;}
+.location-container__header { }
+
+
+/*Products*/
+.products-header { padding-bottom: 20px; }
+.product-container { margin-bottom: 50px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); border-radius: 20px; }
+.product__title { padding: 15px; font-size: 24px; border-radius: 20px 20px 0 0; font-weight: bold; text-align: center; background: linear-gradient(#64460e 20%, #ac8949 100%); color: #ffffff; }
+.product__price { padding: 15px 20px; background-color: #eeeeee; }
+.product__description { padding: 15px 20px; background-color: #fbe3b7; border-radius: 0 0 20px 20px; }
+.product__background-container { overflow: hidden; }
+.product__background { height: 240px; transition: transform 0.6s ease-in; cursor: pointer; }
+.product__background:hover { transform: scale(1.12); transition: transform 0.6s ease-in; }
+
+.product-container.one .product__background { background: url('../images/products/whole-wheat-bread.jpg') 0% 0%/cover no-repeat; }
+.product-container.two .product__background { background: url('../images/products/white-bread.jpg') 0% 0%/cover no-repeat; }
+.product-container.three .product__background { background: url('../images/products/scone.jpg') 0% 0%/cover no-repeat; }
+.product-container.four .product__background { background: url('../images/products/chocolate-cake.jpg') 0% 0%/cover no-repeat; }
+.product-container.five .product__background { background: url('../images/products/cherry-pie.jpg') 0% 0%/cover no-repeat; }
+.product-container.six .product__background { background: url('../images/products/blueberry-muffin.jpg') 0% 0%/cover no-repeat; }
+
+.product-container.six { margin-bottom: 0; }
+
+/*Recipes*/
+.recipies-header { padding-bottom: 20px; }
+.recipe-container { margin-bottom: 40px; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6);}
+.recipe__title, .recipe__image, .recipe__description {  padding: 15px; }
+.recipe__title { border-radius: 15px 15px 0 0; background: radial-gradient(#64460e, #64460e, #ac8949); color: #fbe3b7; font-size: 20px; font-weight: bold; text-align: center; }
+.recipe__description { border-radius: 0 0 15px 15px; background-color: #eeeeee; }
+.recipe__background-container { position: relative; }
+
+.recipe-container.four { margin-bottom: 0; }
+
+.recipe__background { width: 100%; height: 200px; }
+.recipe-container.one .recipe__background { background: url('../images/recipes/chocolate-cupcakes.jpg') 0% 0%/cover no-repeat; }
+.recipe-container.two .recipe__background { background: url('../images/recipes/chocolate-brownies.jpg') 0% 0%/cover no-repeat; }
+.recipe-container.three .recipe__background { background: url('../images/recipes/cinnamon-roll.jpeg') 0% 0%/cover no-repeat; }
+.recipe-container.four .recipe__background { background: url('../images/recipes/angel-food-cake.jpg') 0% 0%/cover no-repeat; }
+
+.recipe__background-text { opacity: 0; position: absolute; top: 40px; padding: 20px; width: 100%; font-size: 28px; font-weight: bold; color: #64460e; }
+.recipe__background, .recipe__background-text { transition: 1s; }
+
+/* (Recipe more info) */
+.recipeShowMoreInfo-enter-active, .recipeShowMoreInfo-leave-active { transition: opacity 0.8s ease-in; }
+.recipeShowMoreInfo-enter, .recipeShowMoreInfo-leave-to { opacity: 0; }
+.recipe-more-info__button { width: 102px; padding: 10px; margin-top: 10px; margin-bottom: 10px; font-size: 18px; font-weight: bold; border-radius: 15px; 
+                            color: #ffffff; background-color: #64460e; cursor: pointer; }
+
+
+/*News amd Events*/
+.news-events-items { padding-top: 20px; }
+.events-container__background { height: 350px; background: url('../images/swede-cake.jpg') 0% 0%/cover no-repeat; }
+
+.event-container { padding: 15px; margin-bottom: 40px; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); }
+.event-container__title { padding-bottom: 15px; font-size: 20px; font-weight: bold; text-align: center; color: #64460e; }
+.event-container__date { padding-bottom: 8px; font-weight: bold; text-align: center; color: #64460e; }
+
+
+/*Careers*/
+.careers-container { padding-top: 30px; }
+.careers-container__position { padding: 15px; margin-bottom: 40px; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); }
+.careers-container__posititon__title { padding-bottom: 15px; font-size: 20px; font-weight: bold; color: #64460e; text-align: center; }
+.careers-container__background { height: 300px; background: url('../images/bakery-shelf.jpg') 0% 0%/cover no-repeat; }
+
+
+/*Contact*/
+.input-container { padding: 10px 10px 20px 10px; }
+.input-container__label { display: inline-block; padding-bottom: 10px; color: #64460e; }
+.input-container__input { }
+.input-container__contact-button { padding: 15px 10px; color: #fbe3b7; background-color: #64460e; border: 1px solid #64460e; border-radius: 15px; cursor: pointer; transition: 0.4s; }
+.input-container__contact-button:hover { color: #64460e; background-color:#fbe3b7; transition: 0.4s; }
+
+.contact-us-container__background { height: 240px; background: url('../images/dough-and-roller.jpg') 0% 0%/cover no-repeat; }
+
+.contact-container { padding-top: 30px; }
+.contact-container__title { color: #64460e; }
+.contact-container__response { padding-top: 15px; padding-bottom: 30px; }
+.contact-container__response-message { font-size: 18px; font-weight: bold; }
+
+
+/* Clearing variable width columns */
+@media only screen and (min-width: 700px) and (max-width: 1199px){   
+    .recipes > div:nth-child(2n+1){ content: ""; display: block; clear: both; }
+}
+@media only screen and (min-width: 700px) {
+    .products > div:nth-child(odd){ content: ""; display: block; clear: both; }
+}
+
+@media only screen and (min-width: 1200px){   
+     .recipes > div:nth-child(3n+1){ content: ""; display: block; clear: both; }   
+}
+
+
+
+@media only screen and (min-width: 500px){   
+    .product__background { height: 360px; }
+
+    .recipe__background { height: 360px; } 
+}
+
+
+
+@media only screen and (min-width: 700px){ 
+
+    .footer__social, .footer__location, .footer__hours { padding-top: 0px; padding-bottom: 0px; } 
+    
+    .modal__container { width: 500px; padding: 30px; }
+    .modal__header { margin-right: 0; }
+    .modal__close-button { top: 15px; right: 15px; }
+    
+    /*Index*/
+    .item-container__background { height: 300px; }
+    
+    /*About*/
+    .about-us-container__background { height: 320px; }
+    
+    /*Products*/
+    .products-header { padding-bottom: 10px; }
+    .product__background { height: 280px; }
+    
+    .product-container.five, .product-container.six { margin-bottom: 0; }
+      
+    /*Recipes*/
+    .recipies-header { padding-bottom: 10px; }
+    .recipe__background { height: 280px; }
+    
+    .recipe-container.three, .recipe-container.four { margin-bottom: 0; }
+    
+    /*News/Events*/
+    .event-container__title, .event-container__date { text-align: left; }
+    
+    /*Careers*/
+    .careers-container__posititon__title { text-align: left; }
+    
+    /*Contact*/
+    .contact-us-container__background { height: 300px; }
+}
+
+@media only screen and (min-width: 1200px){ 
+    h1 { font-size: 48px; }
+    h2 { font-size: 28px; }
+    h3 { text-align: left; }
+
+    .inner-wrapper { width: 1200px; }
+
+    .logo { position: absolute; top: 40px; left: 20px; width: 80px; }
+    header { min-height: 200px; }
+    .mobile-nav { display: none; }
+    .desktop-nav { display: block; }
+
+    .nav__nav-item { display: inline-block; padding: 15px 30px 15px 15px; text-align: left; }
+
+    .main-title { padding-top: 50px; text-align: right; margin-right: 180px; }
+    .header__subtitle { text-align: right; margin-right: 220px; }
+
+    /*Index*/
+    .item-container__background { height: 360px; }
+    
+    /*About*/
+    
+    /*Location*/
+    .location-container__background { height: 400px; }
+
+    /*Products*/
+    .products-header { padding-bottom: 0px; }
+    .product-container { margin-bottom: 60px; }
+    .product__background { height: 360px; }
+    
+    /*Recipes*/
+    .recipies-header { padding-bottom: 0px; }
+    
+    /* News/Events */
+    .event-container__title { font-size: 22px; }
+    .event-container__date { font-size: 17px; }
+    
+    /*Contact Us*/
+    .contact-us-container__background { height: 400px; }
+    .contact-container__response-message { font-size: 20px; }
+  
+}
