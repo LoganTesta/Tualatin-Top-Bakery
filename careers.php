@@ -50,11 +50,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $Body .= "User Name: " . $UserName . "\n";
         $Body .= "Position Applying for: " . $PositionApplyingFor . "\n";      
         $Body .= "User Email: " . $UserEmail . "\n";
+        $Body .= "\n";
         $Body .= "Resume: " . $UserResume . "\n";
+        $Body .= "\n";
         $Body .= "Cover Letter: " . $CoverLetter . "\n";
 
         /* Send the e-mail. */
-        $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: Application for" . $PositionApplyingFor, $Body, "From: <$UserEmail>");
+        $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: Application for " . $PositionApplyingFor, $Body, "From: <$UserEmail>");
         if ($SuccessfulSubmission) {
             $transmitResponse .= $UserName . ", your application was successfully submitted for the " . $PositionApplyingFor .  " position.  "
                     . "Thanks for applying, we look forward to reviewing your application!";
