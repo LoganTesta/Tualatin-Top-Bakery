@@ -3,7 +3,7 @@
 $transmitResponse = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST['contactButton'])) {
+    if (isset($_POST['applyButton'])) {
         if (isset($_POST['userName'])) {
             $UserName = htmlspecialchars(strip_tags(trim($_POST['userName'])));
         }
@@ -147,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <textarea id="coverLetter" name="coverLetter" rows="8" placeholder="Please write your cover letter here.  Thanks."></textarea>                          
                                 </div>                           
                                 <div class="input-container">
-                                    <button class="input-container__contact-button" id="contactButton" name="contactButton" type="submit">Contact Us!</button>                          
+                                    <button class="input-container__contact-button" id="applyButton" name="applyButton" type="submit">Send Application!</button>                          
                                 </div>
                             </form>
                             <?php if(!empty($transmitResponse)) { echo "<div class=\"contact-container__response-message\">$transmitResponse</div>"; } ?>
