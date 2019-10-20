@@ -94,9 +94,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <p>We are the best local bakery for all your baked goods.</p>
                         <div class="contact-container" id="contactContainer">
                             <h4 class="contact-container__title">Write Us Here</h4>
-                            <form class="contact-container__form" id="contactOurCoffeeShop" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                            <form class="contact-container__form" id="contactOurCoffeeShop" @submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                 <div class="contact-container__response">
-                                    Thank you <strong>{{writeResponse}}</strong> for writing to us!
+                                    <p>Thank you <strong>{{writeResponse}}</strong> for writing to us!</p>
+                                    <div v-if="errors.length">
+                                        <strong>Review the following fields:</strong>
+                                        <ul>
+                                        <li v-for="error in errors">{{error}}</li>
+                                        </ul>
+                                    </div>    
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userFirstName"><strong>First Name *</strong></label>
@@ -108,15 +114,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userEmail"><strong>Email *</strong></label>
-                                    <input type="email" id="userEmail" name="userEmail" placeholder="Enter Email Here" required="required"> 
+                                    <input type="text" id="userEmail" name="userEmail" placeholder="Enter Email Here" required="required" v-model="userEmail"> 
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userSubject"><strong>Subject</strong></label>
-                                    <input type="text" id="userSubject" name="userSubject" placeholder="Enter Subject Here" v-model="userSubject">    
+                                    <input type="text" id="userSubject" name="userSubject" placeholder="Enter Subject Here">    
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userComments"><strong>Message *</strong></label>
-                                    <textarea id="userComments" name="userComments" rows="6" placeholder="Please write your message here.  Thanks." required="required"></textarea>                          
+                                    <textarea id="userComments" name="userComments" rows="6" placeholder="Please write your message here.  Thanks." required="required" v-model="userComments" ></textarea>                          
                                 </div>                           
                                 <div class="input-container">
                                     <button class="input-container__contact-button" id="contactButton" name="contactButton" type="submit">Contact Us!</button>                          

@@ -8,7 +8,7 @@ var messageTextApp = new Vue({
         message2: "Coooookies!",
         showMessage: false,
         message: {
-               backgroundColor:""     
+            backgroundColor: ""
         }
     },
     methods: {
@@ -17,10 +17,10 @@ var messageTextApp = new Vue({
             this.showMessage = !this.showMessage;
             if (this.showMessage) {
                 this.messageText = this.message2;
-                this.message.backgroundColor="#64460e";
+                this.message.backgroundColor = "#64460e";
             } else {
                 this.messageText = this.message1;
-                this.message.backgroundColor="#ac8949";
+                this.message.backgroundColor = "#ac8949";
             }
         }
     }
@@ -29,38 +29,82 @@ var messageTextApp = new Vue({
 
 
 
-/*Contact form live response*/
-var contactUpdatedResponseApp =new Vue ({
+/*Contact form live response, and client-side validation.*/
+var contactUpdatedResponseApp = new Vue({
     el: '#contactContainer',
     data: {
         userFirstName: "",
-        userLastName:"",
-        userSubject: ""      
+        userLastName: "",
+        userEmail: "",
+        userComments: "",
+        errors: []
     },
-    computed : {
-       writeResponse : function(){
-           var response=this.userFirstName+" " + this.userLastName;
-           return response;
-       }
-    }
+    methods: {
+        validateForm: function (e) {
+            this.errors = [];
+            if (!this.userFirstName) {
+                this.errors.push("Please enter a first name.");
+            }
+            if (!this.userLastName) {
+                this.errors.push("Please enter a last name.");
+            }
+
+
+            var atPosition = this.userEmail.indexOf("@");
+            var dotPosition = this.userEmail.lastIndexOf(".");
+            var lastEmailCharacter = this.userEmail.length - 1;
+            var validEmail = true;
+            var emailValidationText = "";
+            if (!this.userEmail) {
+                validEmail = false;
+                emailValidationText += "Please enter a valid email.";
+            }
+
+            if (atPosition <= 0) {
+                validEmail = false;
+                emailValidationText += " Email does not have an @ symbol.";
+            } else if (atPosition + 1 >= dotPosition) {
+                validEmail = false;
+                 emailValidationText += " The email @ symbol is not in a correct location.";
+            } else if (dotPosition + 1 >= lastEmailCharacter) {
+                validEmail = false;
+                 emailValidationText += " The dot position is not in a correct location.";
+            }
+            if (validEmail === false) {
+                this.errors.push(""+emailValidationText);
+            }
             
+            
+            if (!this.userComments) {
+                this.errors.push("Please input your message.");
+            }
+            e.preventDefault();
+        }
+    },
+    computed: {
+        writeResponse: function () {
+            var response = this.userFirstName + " " + this.userLastName;
+            return response;
+        }
+    }
+
 });
 /*End of section.*/
 
 
 
 /*Careers form live response*/
-var careersUpdatedResponseApp =new Vue ({
+var careersUpdatedResponseApp = new Vue({
     el: '#careersContainer',
     data: {
         userName: ""
     },
-    computed : {
-       writeResponse : function(){
-           var response=this.userName;
-           return response;
-       }
-    }         
+    computed: {
+        writeResponse: function () {
+            var response = this.userName;
+            return response;
+        }
+    }
 });
 /*End of section.*/
 
@@ -72,29 +116,29 @@ Vue.component('recipe-component', {
 <div class="recipe__background" :style="recipe__background"></div><div class="recipe__background-text" :style="recipe__backgroundtext">\n\
 Flaky and full of flavor!</div></div>',
 // props: ['recipe__background', 'recipe__backgroundtext'], 
-    data: function(){
-      return {
-          zoomedIn: false,
-          recipe__background : {
-              opacity: 1
-          },
-          recipe__backgroundtext : {
-              opacity: 0
-          }
-      }  
+    data: function () {
+        return {
+            zoomedIn: false,
+            recipe__background: {
+                opacity: 1
+            },
+            recipe__backgroundtext: {
+                opacity: 0
+            }
+        }
     },
     methods: {
         zoomIntoImage: function () {
             this.zoomedIn = !this.zoomedIn;
-         // alert("zoomedin" + this.zoomedIn);
+            // alert("zoomedin" + this.zoomedIn);
             if (this.zoomedIn) {
                 this.recipe__background.opacity = "0.25";
                 this.recipe__backgroundtext.opacity = "1";
-                this.recipe__backgroundtext.fontStyle="italic";
+                this.recipe__backgroundtext.fontStyle = "italic";
             } else {
                 this.recipe__background.opacity = "1";
                 this.recipe__backgroundtext.opacity = "0";
-                this.recipe__backgroundtext.fontStyle="normal";
+                this.recipe__backgroundtext.fontStyle = "normal";
             }
         }
     }
