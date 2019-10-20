@@ -78,13 +78,12 @@ var contactUpdatedResponseApp = new Vue({
             return response;
         }
     }
-
 });
 /*End of section.*/
 
 
 
-/*Careers form live response*/
+/*Careers form live response and client-side validation.*/
 var careersUpdatedResponseApp = new Vue({
     el: '#careersContainer',
     data: {
@@ -134,6 +133,50 @@ var careersUpdatedResponseApp = new Vue({
             return response;
         }
     }
+});
+/*End of section.*/
+
+
+
+/*Used sitewide in the footer: subscribe button/modal. */
+Vue.component('modal', {
+    template: '#modal-template'
+});
+
+var subscribeApp = new Vue({
+    el: '.footer__subscribe',
+    data: {
+        showModal: false,
+        userNameSubscribe: "",
+        userEmailSubscribe: "",
+        errors: []
+    },
+    methods: {
+        validateSubscribeForm: function (e) {
+            this.errors = [];
+            if (!this.userNameSubscribe) {
+                this.errors.push("Please enter a name.");
+            }
+
+            var atPosition = this.userEmailSubscribe.indexOf("@");
+            var dotPosition = this.userEmailSubscribe.lastIndexOf(".");
+            var lastEmailCharacter = this.userEmailSubscribe.length - 1;
+            var validEmail = true;
+            if (!this.userEmailSubscribe) {
+                validEmail = false;
+            } else if (atPosition <= 0) {
+                validEmail = false;
+            } else if (atPosition + 1 >= dotPosition) {
+                validEmail = false;
+            } else if (dotPosition + 1 >= lastEmailCharacter) {
+                validEmail = false;
+            }
+            if (validEmail === false) {
+                this.errors.push("Please enter a valid email.");
+            }
+            e.preventDefault();
+        }
+    }  
 });
 /*End of section.*/
 
@@ -215,19 +258,3 @@ new Vue({
     }
 });
 /*End of Section*/
-
-
-
-/*Used sitewide in the footer: subscribe button/modal. */
-Vue.component('modal', {
-    template: '#modal-template'
-});
-
-new Vue({
-    el: '.footer__subscribe',
-    data: {
-        showModal: false
-    }
-});
-/*End of section.*/
-

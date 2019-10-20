@@ -98,14 +98,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div slot="body">
                         <p>Get news on upcoming events and sweet discounts on bakery products!  All new subscribers get a free cookie coupon 
                             in their inbox!</p>
-                        <form class="contact-container__form" id="subscribeToOurCoffeeShop" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                        <div v-if="errors.length">
+                            <strong>Review the following fields:</strong>
+                            <ul>
+                                <li v-for="error in errors">{{error}}</li>
+                            </ul>
+                        </div>  
+                        <form class="contact-container__form" id="subscribeToOurCoffeeShop" @submit="validateSubscribeForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                             <div class="input-container">
                                 <label class="input-container__label" for="userNameSubscribe"><strong>Name *</strong></label>
-                                <input type="text" id="userNameSubscribe" name="userNameSubscribe" placeholder="Enter Name Here" required="required">    
+                                <input type="text" id="userNameSubscribe" name="userNameSubscribe" placeholder="Enter Name Here" required="required" v-model="userNameSubscribe">    
                             </div>
                             <div class="input-container">
                                 <label class="input-container__label" for="userEmailSubscribe"><strong>Email *</strong></label>
-                                <input type="email" id="userEmailSubscribe" name="userEmailSubscribe" placeholder="Enter Email Here" required="required"> 
+                                <input type="email" id="userEmailSubscribe" name="userEmailSubscribe" placeholder="Enter Email Here" required="required" v-model="userEmailSubscribe"> 
                             </div>
                             <div class="input-container">
                                 <button class="input-container__contact-button" id="subscribeButton" name="subscribeButton" type="submit">Subscribe!</button>                          
