@@ -69,6 +69,12 @@ var contactUpdatedResponseApp = new Vue({
             if (!this.userComments) {
                 this.errors.push("Please input your message.");
             }
+            
+            if(this.errors.length === 0){
+                return true;
+            } else {
+                return false;
+            }
             e.preventDefault();
         }
     },
@@ -123,6 +129,12 @@ var careersUpdatedResponseApp = new Vue({
 
             if (!this.userResume) {
                 this.errors.push("Please copy and paste your resume in resume textarea.");
+            }            
+            
+            if(this.errors.length === 0){
+                return true;
+            } else {
+                return false;
             }
             e.preventDefault();
         }
@@ -146,7 +158,42 @@ Vue.component('modal', {
 var subscribeApp = new Vue({
     el: '.footer__subscribe',
     data: {
-        showModal: false
+        showModal: false,
+        userNameSubscribe: "",
+        userEmailSubscribe: "",
+        errors: []
+    },
+    methods: {
+        validateSubscribeForm: function (e) {
+            this.errors = [];
+            if (!this.userNameSubscribe) {
+                this.errors.push("Please enter a name.");
+            }
+
+            var atPosition = this.userEmailSubscribe.indexOf("@");
+            var dotPosition = this.userEmailSubscribe.lastIndexOf(".");
+            var lastEmailCharacter = this.userEmailSubscribe.length - 1;
+            var validEmail = true;
+            if (!this.userEmailSubscribe) {
+                validEmail = false;
+            } else if (atPosition <= 0) {
+                validEmail = false;
+            } else if (atPosition + 1 >= dotPosition) {
+                validEmail = false;
+            } else if (dotPosition + 1 >= lastEmailCharacter) {
+                validEmail = false;
+            }
+            if (validEmail === false) {
+                this.errors.push("Please enter a valid email.");
+            }
+            
+            if(this.errors.length === 0){
+                return true;
+            } else {
+                return false;
+            }
+            e.preventDefault();
+        }
     }  
 });
 /*End of section.*/

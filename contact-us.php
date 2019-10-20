@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <button class="input-container__contact-button" id="contactButton" name="contactButton" type="submit">Contact Us!</button>                          
                                 </div>
                             </form>
-                            <?php if(!empty($ValidationResponse)) { echo "<div class=\"contact-container__response-message\">$transmitResponse</div>"; } ?>
+                            <?php if(!empty($transmitResponse)) { echo "<div class=\"contact-container__response-message\">$transmitResponse</div>"; } ?>
                         </div>
                     </div>
                     <div class="col-sma-7">
