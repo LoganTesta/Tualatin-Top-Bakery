@@ -146,36 +146,7 @@ Vue.component('modal', {
 var subscribeApp = new Vue({
     el: '.footer__subscribe',
     data: {
-        showModal: false,
-        userNameSubscribe: "",
-        userEmailSubscribe: "",
-        errors: []
-    },
-    methods: {
-        validateSubscribeForm: function (e) {
-            this.errors = [];
-            if (!this.userNameSubscribe) {
-                this.errors.push("Please enter a name.");
-            }
-
-            var atPosition = this.userEmailSubscribe.indexOf("@");
-            var dotPosition = this.userEmailSubscribe.lastIndexOf(".");
-            var lastEmailCharacter = this.userEmailSubscribe.length - 1;
-            var validEmail = true;
-            if (!this.userEmailSubscribe) {
-                validEmail = false;
-            } else if (atPosition <= 0) {
-                validEmail = false;
-            } else if (atPosition + 1 >= dotPosition) {
-                validEmail = false;
-            } else if (dotPosition + 1 >= lastEmailCharacter) {
-                validEmail = false;
-            }
-            if (validEmail === false) {
-                this.errors.push("Please enter a valid email.");
-            }
-            e.preventDefault();
-        }
+        showModal: false
     }  
 });
 /*End of section.*/
