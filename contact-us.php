@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userComments"><strong>Message *</strong></label>
-                                    <textarea id="userComments" name="userComments" rows="6" placeholder="Please write your message here.  Thanks." required="required" v-model="userComments" ></textarea>                          
+                                    <textarea id="userComments" name="userComments" rows="6" placeholder="Please write your message here.  Thanks." required="required" v-model="userComments"></textarea>                          
                                 </div>                           
                                 <div class="input-container">
                                     <button class="input-container__contact-button" id="contactButton" name="contactButton" type="submit">Contact Us!</button>                          

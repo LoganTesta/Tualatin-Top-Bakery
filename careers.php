@@ -120,27 +120,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         </div>
                         <div class="careers-container" id="careersContainer">
                             <h4 class="contact-container__title">Send Your Application Here!</h4>
-                            <form class="contact-container__form" id="careersForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                            <form class="contact-container__form" id="careersForm" @submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                 <div class="contact-container__response">
                                     <p>Thank you <strong>{{writeResponse}}</strong> for applying, we look forward to reviewing you application!</p>
-                                    <p>We are an Equal Opportunity Employer!</p>                                 
+                                    <p><strong>We are an Equal Opportunity Employer!</strong></p>     
+                                    <div v-if="errors.length">
+                                        <strong>Review the following fields:</strong>
+                                        <ul>
+                                        <li v-for="error in errors">{{error}}</li>
+                                        </ul>
+                                    </div>   
                                 </div>
-                             
                                 <div class="input-container">
                                     <label class="input-container__label" for="userName"><strong>Name *</strong></label>
                                     <input type="text" id="userName" name="userName" placeholder="Enter Full Name Here" required="required" v-model="userName"> 
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userEmail"><strong>Email *</strong></label>
-                                    <input type="email" id="userEmail" name="userEmail" placeholder="Enter Email Here" required="required"> 
+                                    <input type="email" id="userEmail" name="userEmail" placeholder="Enter Email Here" required="required" v-model="userEmail"> 
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="positionApplyingFor"><strong>Position Applying for *</strong></label>
-                                    <input type="text" id="positionApplyingFor" name="positionApplyingFor" placeholder="Enter The Position You are Applying for" required="required">    
+                                    <input type="text" id="positionApplyingFor" name="positionApplyingFor" placeholder="Enter The Position You are Applying for" required="required" v-model="positionApplyingFor">    
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userResume"><strong>Resume (paste here) *</strong></label>
-                                    <textarea id="userResume" name="userResume" rows="8" placeholder="Paste Resume Here" required="required"></textarea>  
+                                    <textarea id="userResume" name="userResume" rows="8" placeholder="Paste Resume Here" required="required" v-model="userResume"></textarea>  
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="coverLetter"><strong>Cover Letter</strong></label>

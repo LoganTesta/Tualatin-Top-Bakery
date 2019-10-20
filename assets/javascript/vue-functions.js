@@ -49,32 +49,23 @@ var contactUpdatedResponseApp = new Vue({
                 this.errors.push("Please enter a last name.");
             }
 
-
             var atPosition = this.userEmail.indexOf("@");
             var dotPosition = this.userEmail.lastIndexOf(".");
             var lastEmailCharacter = this.userEmail.length - 1;
             var validEmail = true;
-            var emailValidationText = "";
             if (!this.userEmail) {
                 validEmail = false;
-                emailValidationText += "Please enter a valid email.";
-            }
-
-            if (atPosition <= 0) {
+            } else if (atPosition <= 0) {
                 validEmail = false;
-                emailValidationText += " Email does not have an @ symbol.";
             } else if (atPosition + 1 >= dotPosition) {
                 validEmail = false;
-                 emailValidationText += " The email @ symbol is not in a correct location.";
             } else if (dotPosition + 1 >= lastEmailCharacter) {
                 validEmail = false;
-                 emailValidationText += " The dot position is not in a correct location.";
             }
             if (validEmail === false) {
-                this.errors.push(""+emailValidationText);
+                this.errors.push("Please enter a valid email.");
             }
-            
-            
+
             if (!this.userComments) {
                 this.errors.push("Please input your message.");
             }
@@ -97,7 +88,45 @@ var contactUpdatedResponseApp = new Vue({
 var careersUpdatedResponseApp = new Vue({
     el: '#careersContainer',
     data: {
-        userName: ""
+        userName: "",
+        userEmail: "",
+        positionApplyingFor: "",
+        userResume: "",
+        errors: []
+    },
+    methods: {
+        validateForm: function (e) {
+            this.errors = [];
+            if (!this.userName) {
+                this.errors.push("Please enter a name.");
+            }
+
+            var atPosition = this.userEmail.indexOf("@");
+            var dotPosition = this.userEmail.lastIndexOf(".");
+            var lastEmailCharacter = this.userEmail.length - 1;
+            var validEmail = true;
+            if (!this.userEmail) {
+                validEmail = false;
+            } else if (atPosition <= 0) {
+                validEmail = false;
+            } else if (atPosition + 1 >= dotPosition) {
+                validEmail = false;
+            } else if (dotPosition + 1 >= lastEmailCharacter) {
+                validEmail = false;
+            }
+            if (validEmail === false) {
+                this.errors.push("Please enter a valid email.");
+            }
+
+            if (!this.positionApplyingFor) {
+                this.errors.push("Please enter the position you are applying for.");
+            }
+
+            if (!this.userResume) {
+                this.errors.push("Please copy and paste your resume in resume textarea.");
+            }
+            e.preventDefault();
+        }
     },
     computed: {
         writeResponse: function () {
