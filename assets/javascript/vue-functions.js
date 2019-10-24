@@ -89,6 +89,84 @@ var contactUpdatedResponseApp = new Vue({
 
 
 
+/*Estimate form live response and client-side validation.*/
+var estimateUpdatedResponseApp = new Vue({
+    el: '#estimateContainer',
+    data: {
+        userName: "",
+        userEmail: "",
+        userPhone: "",
+        userStreetAddress: "",
+        userCity: "",
+        userState: "",
+        userZipCode: "",
+        additionalNotes: "",
+        errors: []
+    },
+    methods: {
+        validateForm: function (e) {
+            this.errors = [];
+            if (!this.userName) {
+                this.errors.push("Please enter a name.");
+            }
+
+            var atPosition = this.userEmail.indexOf("@");
+            var dotPosition = this.userEmail.lastIndexOf(".");
+            var lastEmailCharacter = this.userEmail.length - 1;
+            var validEmail = true;
+            if (!this.userEmail) {
+                validEmail = false;
+            } else if (atPosition <= 0) {
+                validEmail = false;
+            } else if (atPosition + 1 >= dotPosition) {
+                validEmail = false;
+            } else if (dotPosition + 1 >= lastEmailCharacter) {
+                validEmail = false;
+            }
+            if (validEmail === false) {
+                this.errors.push("Please enter a valid email.");
+            }
+
+            if (!this.userPhone) {
+                this.errors.push("Please enter phone number we can contact if needed.");
+            }
+
+            if (!this.userStreetAddress) {
+                this.errors.push("Please enter the street address.");
+            }       
+            
+            if (!this.userCity) {
+                this.errors.push("Please provide the city.");
+            }   
+
+            if (!this.userState) {
+                this.errors.push("Please provide the state.");
+            }
+
+            if (!this.userZipCode) {
+                this.errors.push("Please provide the ZIP Code.");
+            }  
+
+            
+            if(this.errors.length === 0){
+                return true;
+            } else {
+                return false;
+            }
+            e.preventDefault();
+        }
+    },
+    computed: {
+        writeResponse: function () {
+            var response = this.userName;
+            return response;
+        }
+    }
+});
+/*End of section.*/
+
+
+
 /*Careers form live response and client-side validation.*/
 var careersUpdatedResponseApp = new Vue({
     el: '#careersContainer',
