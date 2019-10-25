@@ -16,10 +16,12 @@ $products = array($WholeWheatLoaf, $WhiteBreadLoaf, $BlueberryScone, $ChocolateC
 $quantities = array();
 $itemSubtotal = array();
 
+
 //Initialize the cart.
 if(isset($_SESSION["estimateCart"]) === false){
     $_SESSION["estimateCart"] = "not empty";
     for($i = 0; $i < count($products); $i++){
+        $_SESSION["products"][$i] = $products[$i];   //We need to store this for the reset function since that logic is in a separate function.
         $_SESSION["quantity"][$i] = 0;
         $_SESSION["itemSubtotal"][$i] = 0;
         $_SESSION["totalCost"] = 0;
@@ -68,7 +70,7 @@ if (isset($_SESSION["estimateCart"])) {
 function resetEstimateCart() {
     unset($_SESSION["estimateCart"]);
     $_SESSION["totalCost"] = 0;
-    for ($i = 0; $i < 6; $i++) {
+    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
         $_SESSION["quantity"][$i] = 0;
         $_SESSION["itemSubtotal"][$i] = 0;
     }
@@ -180,6 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $transmitResponse .= "<br />";
             $transmitResponse .= "We will respond back within 2 business days! <br />";
             $transmitResponse .= "Thank you for shopping with Tualatin Top Bakery!";
+            resetEstimateCart();
         } else if ($SuccessfulSubmission === false) {
             $transmitResponse .= " Submission failed. Please try again.";
         }
@@ -477,7 +480,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     }
                 };
                 
-                xhttp.open("GET", "products.php?" + actionString + operatorString + itemID, false);
+                xhttp.open("GET", "products.php?" + actionString + operatorString + itemID, true);
                 xhttp.send(); 
             }
             
@@ -500,7 +503,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     }
                 };
                 
-                xhttp.open("GET", "products.php?" + actionString + operatorString, false);
+                xhttp.open("GET", "products.php?" + actionString + operatorString, true);
                 xhttp.send(); 
             }
         </script>
