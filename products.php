@@ -4,12 +4,12 @@ session_start();
 //Estimate cart code.
 include("assets/include/product.php");
 
-$WholeWheatLoaf = new Product("Whole Wheat Loaf", "3.00", "", "");
-$WhiteBreadLoaf = new Product("White Bread Loaf", "2.00", "", "");
-$BlueberryScone = new Product("Blueberry Scone", "2.25", "", "");
-$ChocolateCake = new Product("Chocolate Cake", "15.00", "", "");
-$CherryPie = new Product("Cherry Pie", "12.00", "", "");
-$BlueberryMuffin = new Product("Blueberry Muffin", "2.25", "", "");
+$WholeWheatLoaf = new Product("Whole Wheat Loaf", 3.00, "", "");
+$WhiteBreadLoaf = new Product("White Bread Loaf", 2.00, "", "");
+$BlueberryScone = new Product("Blueberry Scone", 2.25, "", "");
+$ChocolateCake = new Product("Chocolate Cake", 15.00, "", "");
+$CherryPie = new Product("Cherry Pie", 12.00, "", "");
+$BlueberryMuffin = new Product("Blueberry Muffin", 2.25, "", "");
 
 
 $products = array($WholeWheatLoaf, $WhiteBreadLoaf, $BlueberryScone, $ChocolateCake, $CherryPie, $BlueberryMuffin);
@@ -61,16 +61,18 @@ if (isset($_SESSION["estimateCart"])) {
 //Reset cart.
 if (isset($_SESSION["estimateCart"])) {
     if(isset($_GET["resetCart"])){
-        unset($_SESSION["estimateCart"]);
-        $_SESSION["totalCost"] = 0;
-        for($i = 0; $i < count($products); $i++){
-            $_SESSION["quantity"][$i] = 0;
-            $_SESSION["itemSubtotal"][$i] = 0;
-        }
+        resetEstimateCart();
     }
 }
 
-
+function resetEstimateCart() {
+    unset($_SESSION["estimateCart"]);
+    $_SESSION["totalCost"] = 0;
+    for ($i = 0; $i < 6; $i++) {
+        $_SESSION["quantity"][$i] = 0;
+        $_SESSION["itemSubtotal"][$i] = 0;
+    }
+}
 
 //Process the estimate request and validate the user input.
 $transmitResponse = "";

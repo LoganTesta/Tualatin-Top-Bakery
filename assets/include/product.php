@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 class Product {
 
@@ -9,7 +7,7 @@ class Product {
     public $image;
     public $description;
 
-    function __construct($input_name, $input_price, $input_image, $input_description) {
+    function __construct(string $input_name, float $input_price, string $input_image, string $input_description) {
         $this->name = $input_name;
         $this->price = $input_price;
         $this->image = $input_image;
