@@ -42,7 +42,6 @@
             <script type="text/javascript" src="assets/javascript/vue-functions.js"></script>
             <script>
                 document.addEventListener("DOMContentLoaded", function () {
-                    setCurrentPage(0);
                 });
             </script>
         </div>

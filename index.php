@@ -49,8 +49,7 @@
             <script type="text/javascript" src="assets/javascript/javascript-functions.js"></script>
             <script type="text/javascript" src="assets/javascript/vue-functions.js"></script>
             <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                  
+                document.addEventListener("DOMContentLoaded", function () {     
                 });
             </script>
         </div>
