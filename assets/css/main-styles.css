@@ -309,22 +309,22 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .estimate-section { padding-top: 30px; }
 
 .estimate-table { padding-top: 15px; }
-.estimate-table th, .estimate-table td { display: inline-block; }
+.estimate-table th, .estimate-table td { display: inline-block; width: 100%; }
 .estimate-table th { width: 100%; padding: 10px 5px; text-align: center; font-size: 19px; font-weight: bold; }
 .estimate-table td { text-align: center; } 
 
-.estimate-table__item-title { width: 100%; padding: 10px 5px; font-weight: bold; }
+.estimate-table__item-title { width: 100%; padding: 50px 5px 10px 5px; font-weight: bold; }
 .estimate-table__item-photo { width: 100%; padding: 10px 5px; }
 .estimate-table__item-cost { width: 100%; padding: 10px 5px; }
 .estimate-table__item-quantity { width: 100%; padding: 10px 5px;  } 
 .estimate-table__item-subtotal { width: 100%; padding: 10px 5px; }
 .estimate-table__add { width: 100%; padding: 10px 5px; }
-.estimate-table__minus { width: 100%; padding: 10px 5px 50px 5px; }
+.estimate-table__minus { width: 100%; padding: 10px 5px 10px 5px; }
         
 .estimate-table__add__item { width: 40px; padding: 5px; margin-left: auto; margin-right: auto; border-radius: 15px; background-color: #009900; color: #ffffff; font-size: 24px; font-weight: bold; text-align: center; cursor: pointer; }
 .estimate-table__minus__item { width: 40px; padding: 5px; margin-left: auto; margin-right: auto; border-radius: 15px; background-color: #cc0000; color: #ffffff; font-size: 24px; font-weight: bold; text-align: center; cursor: pointer; }
 
-.estimate-table__cart-summary { margin-top: 15px; }
+.estimate-table__cart-summary { margin-top: 60px; }
 .cart-total { padding-bottom: 15px; font-size: 18px; font-weight: bold; text-align: center; }
 .reset-cart { width: 112px; padding: 10px; margin-left: auto; margin-right: auto; border-radius: 15px; background-color: #999; color: #ffffff; font-size: 18px; font-weight: bold; cursor: pointer; }
 
@@ -439,26 +439,6 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     
     .product-container.four, .product-container.five { margin-bottom: 0; }    
     
-    .estimate-cart__title { text-align: center; }
-    .estimate-table { }
-    .estimate-table th, .estimate-table td { display: table-cell; }
-    .estimate-table th { width: auto; text-align: left; }
-    .estimate-table td { text-align: left;}
-    
-    .estimate-container { padding-top: 0; }
-    .estimate-container__title { text-align: center; }
-    .estimate-table__item-photo { }
-    .estimate-table__item-title { }
-    .estimate-table__item-cost { padding-left: 10px; padding-right: 25px; }
-    .estimate-table__item-quantity { } 
-    .estimate-table__item-subtotal {  }
-    .estimate-table__add { width: 70px; }
-    .estimate-table__minus { width: 70px; padding: 10px 5px; }
-    
-    .estimate-table__cart-summary { }
-    .cart-total { padding-top: 10px; padding-bottom: 0; text-align: left; }
-    .reset-cart {}
-    
     /*Recipes*/
     .recipies-header { padding-bottom: 10px; }
     .recipe__background { height: 280px; }
@@ -504,6 +484,26 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     .products-header { padding-bottom: 0px; }
     .product-container { margin-bottom: 60px; }
     .product__background { height: 360px; }
+    
+    .estimate-cart__title { text-align: center; }
+    .estimate-table { }
+    .estimate-table th, .estimate-table td { display: table-cell; }
+    .estimate-table th { width: auto; text-align: left; }
+    .estimate-table td { text-align: left; }
+    
+    .estimate-container { padding-top: 0; }
+    .estimate-container__title { text-align: center; }
+    .estimate-table__item-photo { }
+    .estimate-table__item-title { padding: 10px 5px; }
+    .estimate-table__item-cost { padding-left: 10px; padding-right: 25px; }
+    .estimate-table__item-quantity { } 
+    .estimate-table__item-subtotal {  }
+    .estimate-table__add { width: 70px; }
+    .estimate-table__minus { width: 70px; }
+    
+    .estimate-table__cart-summary { margin-top: 15px; }
+    .cart-total { padding-top: 10px; padding-bottom: 0; text-align: left; }
+    .reset-cart {}
     
     /*Recipes*/
     .recipies-header { padding-bottom: 0px; }
