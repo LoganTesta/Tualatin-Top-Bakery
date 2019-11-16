@@ -221,7 +221,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 /* (Footer Subscribe button) */
 .footer__subscribe { padding-bottom: 30px; }
 
-.footer__subscribe-button { position: relative; width: auto; text-align: center; cursor: pointer; transition: 0.4s ease-in; }
+.footer__subscribe-button { position: relative; width: 280px; text-align: center; cursor: pointer; transition: 0.4s ease-in; }
 .footer__subscribe-button, .footer__subscribe-button__bg, .footer__subscribe-button__bg--hover { margin-left: auto; margin-right: auto; border-radius: 15px; }
 .footer__subscribe-button__bg, .footer__subscribe-button__bg--hover { width: 280px; padding: 15px 10px; }
  
