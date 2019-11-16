@@ -297,14 +297,14 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .product__background { height: 240px; transition: transform 0.6s ease-in; cursor: pointer; }
 .product__background:hover { transform: scale(1.12); transition: transform 0.6s ease-in; }
 
-.product-container.one .product__background { background: url('../images/products/whole-wheat-bread.jpg') 0% 0%/cover no-repeat; }
-.product-container.two .product__background { background: url('../images/products/white-bread.jpg') 0% 0%/cover no-repeat; }
-.product-container.three .product__background { background: url('../images/products/scone.jpg') 0% 0%/cover no-repeat; }
-.product-container.four .product__background { background: url('../images/products/chocolate-cake.jpg') 0% 0%/cover no-repeat; }
-.product-container.five .product__background { background: url('../images/products/cherry-pie.jpg') 0% 0%/cover no-repeat; }
-.product-container.six .product__background { background: url('../images/products/blueberry-muffin.jpg') 0% 0%/cover no-repeat; }
+.product-container.zero .product__background { background: url('../images/products/whole-wheat-bread.jpg') 0% 0%/cover no-repeat; }
+.product-container.one .product__background { background: url('../images/products/white-bread.jpg') 0% 0%/cover no-repeat; }
+.product-container.two .product__background { background: url('../images/products/scone.jpg') 0% 0%/cover no-repeat; }
+.product-container.three .product__background { background: url('../images/products/chocolate-cake.jpg') 0% 0%/cover no-repeat; }
+.product-container.four .product__background { background: url('../images/products/cherry-pie.jpg') 0% 0%/cover no-repeat; }
+.product-container.five .product__background { background: url('../images/products/blueberry-muffin.jpg') 0% 0%/cover no-repeat; }
 
-.product-container.six { margin-bottom: 0; }
+.product-container.five { margin-bottom: 0; }
 
 .estimate-section { padding-top: 30px; }
 
@@ -314,6 +314,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .estimate-table td { text-align: center; } 
 
 .estimate-table__item-title { width: 100%; padding: 10px 5px; font-weight: bold; }
+.estimate-table__item-photo { width: 100%; padding: 10px 5px; }
 .estimate-table__item-cost { width: 100%; padding: 10px 5px; }
 .estimate-table__item-quantity { width: 100%; padding: 10px 5px;  } 
 .estimate-table__item-subtotal { width: 100%; padding: 10px 5px; }
@@ -328,6 +329,16 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .reset-cart { width: 112px; padding: 10px; margin-left: auto; margin-right: auto; border-radius: 15px; background-color: #999; color: #ffffff; font-size: 18px; font-weight: bold; cursor: pointer; }
 
 .estimate-container { padding-top: 30px; }
+
+.estimate-table__item-image__photo { width: 100px; height: 70px; margin-left: auto; margin-right: auto; }
+.estimate-table__item-zero .estimate-table__item-image__photo{ background: url('../images/products/whole-wheat-bread.jpg') 0% 0%/cover no-repeat; }
+.estimate-table__item-one .estimate-table__item-image__photo { background: url('../images/products/white-bread.jpg') 0% 0%/cover no-repeat; }
+.estimate-table__item-two .estimate-table__item-image__photo { background: url('../images/products/scone.jpg') 0% 0%/cover no-repeat; }
+.estimate-table__item-three .estimate-table__item-image__photo { background: url('../images/products/chocolate-cake.jpg') 0% 0%/cover no-repeat; }
+.estimate-table__item-four .estimate-table__item-image__photo { background: url('../images/products/cherry-pie.jpg') 0% 0%/cover no-repeat; }
+.estimate-table__item-five .estimate-table__item-image__photo { background: url('../images/products/blueberry-muffin.jpg') 0% 0%/cover no-repeat; }
+
+
 
 /*Recipes*/
 .recipies-header { padding-bottom: 20px; }
@@ -426,7 +437,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     .products-header { padding-bottom: 10px; }
     .product__background { height: 280px; }
     
-    .product-container.five, .product-container.six { margin-bottom: 0; }    
+    .product-container.four, .product-container.five { margin-bottom: 0; }    
     
     .estimate-cart__title { text-align: center; }
     .estimate-table { }
@@ -436,10 +447,11 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     
     .estimate-container { padding-top: 0; }
     .estimate-container__title { text-align: center; }
-    .estimate-table__item-title { width: 180px; }
-    .estimate-table__item-cost { width: 90px; padding-right: 25px; }
-    .estimate-table__item-quantity { width: 90px; } 
-    .estimate-table__item-subtotal { width: 90px; }
+    .estimate-table__item-photo { }
+    .estimate-table__item-title { }
+    .estimate-table__item-cost { padding-left: 10px; padding-right: 25px; }
+    .estimate-table__item-quantity { } 
+    .estimate-table__item-subtotal {  }
     .estimate-table__add { width: 70px; }
     .estimate-table__minus { width: 70px; padding: 10px 5px; }
     
