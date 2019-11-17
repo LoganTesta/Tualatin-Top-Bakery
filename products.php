@@ -384,7 +384,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div class="col-sma-5">
                         <div class="estimate-container" id="estimateContainer">
                             <h3 class="estimate-container__title">Request Estimate</h3>
-                            <form class="contact-container__form" id="estimateForm" @submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                            <form class="contact-container__form" id="estimateForm" v-on:submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                 <div class="contact-container__response">
                                     <p>We appreciate your business <strong>{{writeResponse}}</strong> at Tualatin Top Bakery! 
                                         We will look over your estimate, and respond 
@@ -429,7 +429,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <textarea id="additionalNotes" name="additionalNotes" rows="8" placeholder="Please write any additional order notes here."></textarea>                          
                                 </div>                           
                                 <div class="input-container">
-                                    <button class="input-container__contact-button" id="estimateButton" name="estimateButton" type="submit">Request Estimate!</button>                          
+                                    <button class="input-container__contact-button" id="estimateButton" name="estimateButton" type="submit" v-on:click="setClickedSubmitTrue">Request Estimate!</button>                          
                                 </div>
                             </form>
                             <?php if (!empty($transmitResponse)) {

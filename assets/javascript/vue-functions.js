@@ -92,16 +92,13 @@ var contactUpdatedResponseApp = new Vue({
                 return false;
             }       
         },
-       
         setClickedSubmitTrue: function (){
             this.clickedSubmit = true;
         }
     },
-    computed: {
-        
+    computed: {       
         writeResponse: function () {
-            var response = this.userFirstName + " " + this.userLastName;
-            
+            var response = this.userFirstName + " " + this.userLastName;          
             if (this.clickedSubmit) {
                 this.validateForm(event);
             }         
@@ -125,13 +122,17 @@ var estimateUpdatedResponseApp = new Vue({
         userState: "",
         userZipCode: "",
         additionalNotes: "",
-        errors: []
+        errors: [],
+        clickedSubmit: false
     },
     methods: {
-        validateForm: function (e) {
+        validateForm: function (event) {
             this.errors = [];
             if (!this.userName) {
                 this.errors.push("Please enter a name.");
+                 document.forms["estimateForm"]["userName"].classList.add("required-field-needed");
+            } else {
+                document.forms["estimateForm"]["userName"].classList.remove("required-field-needed");
             }
 
             var atPosition = this.userEmail.indexOf("@");
@@ -149,40 +150,65 @@ var estimateUpdatedResponseApp = new Vue({
             }
             if (validEmail === false) {
                 this.errors.push("Please enter a valid email.");
+                document.forms["estimateForm"]["userEmail"].classList.add("required-field-needed");
+            } else {
+                document.forms["estimateForm"]["userEmail"].classList.remove("required-field-needed");
             }
 
             if (!this.userPhone) {
                 this.errors.push("Please enter phone number we can contact if needed.");
+                document.forms["estimateForm"]["userPhone"].classList.add("required-field-needed");
+            } else {
+                document.forms["estimateForm"]["userPhone"].classList.remove("required-field-needed");
             }
 
             if (!this.userStreetAddress) {
                 this.errors.push("Please enter the street address.");
+                document.forms["estimateForm"]["userStreetAddress"].classList.add("required-field-needed");
+            } else {
+                document.forms["estimateForm"]["userStreetAddress"].classList.remove("required-field-needed");
             }       
             
             if (!this.userCity) {
                 this.errors.push("Please provide the city.");
-            }   
+                document.forms["estimateForm"]["userCity"].classList.add("required-field-needed");
+            } else {
+                document.forms["estimateForm"]["userCity"].classList.remove("required-field-needed");
+            }
 
             if (!this.userState) {
                 this.errors.push("Please provide the state.");
+                document.forms["estimateForm"]["userState"].classList.add("required-field-needed");
+            } else {
+                document.forms["estimateForm"]["userState"].classList.remove("required-field-needed");
             }
 
             if (!this.userZipCode) {
                 this.errors.push("Please provide the ZIP Code.");
-            }  
+                document.forms["estimateForm"]["userZipCode"].classList.add("required-field-needed");
+            } else {
+                document.forms["estimateForm"]["userZipCode"].classList.remove("required-field-needed");
+            }
 
             
             if(this.errors.length === 0){
                 return true;
             } else {
+                event.preventDefault();
                 return false;
             }
-            e.preventDefault();
+            
+        },
+        setClickedSubmitTrue: function (){
+            this.clickedSubmit = true;
         }
     },
     computed: {
         writeResponse: function () {
-            var response = this.userName;
+            var response = this.userName;     
+            if (this.clickedSubmit) {
+                this.validateForm(event);
+            }         
             return response;
         }
     }
