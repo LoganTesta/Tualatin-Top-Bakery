@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types = 1);
 session_start();
 
 //Estimate cart code.
@@ -18,9 +19,9 @@ $itemSubtotal = array();
 
 
 //Initialize the cart.
-if(isset($_SESSION["estimateCart"]) === false){
+if (isset($_SESSION["estimateCart"]) === false) {
     $_SESSION["estimateCart"] = "not empty";
-    for($i = 0; $i < count($products); $i++){
+    for ($i = 0; $i < count($products); $i++) {
         $_SESSION["products"][$i] = $products[$i];   //We need to store this for the reset function since that logic is in a separate function.
         $_SESSION["quantity"][$i] = 0;
         $_SESSION["itemSubtotal"][$i] = number_format(0.00, 2);
@@ -29,15 +30,15 @@ if(isset($_SESSION["estimateCart"]) === false){
 }
 
 //Add items to cart.
-if(isset($_SESSION["estimateCart"])){
-    if(isset($_GET["item"])){
+if (isset($_SESSION["estimateCart"])) {
+    if (isset($_GET["item"])) {
         $itemNumber = $_GET["item"];
         $_SESSION["quantity"][$itemNumber] = $_SESSION["quantity"][$itemNumber] + 1;
-        $_SESSION["itemSubtotal"][$itemNumber] = number_format($products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);       
+        $_SESSION["itemSubtotal"][$itemNumber] = number_format($products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
     }
-    
+
     $_SESSION["totalCost"] = number_format(0.00, 2);
-    for($i = 0; $i < count($products); $i++){
+    for ($i = 0; $i < count($products); $i++) {
         $_SESSION["totalCost"] = number_format($_SESSION["totalCost"] + $_SESSION["itemSubtotal"][$i], 2);
     }
 }
@@ -62,7 +63,7 @@ if (isset($_SESSION["estimateCart"])) {
 
 //Reset cart.
 if (isset($_SESSION["estimateCart"])) {
-    if(isset($_GET["resetCart"])){
+    if (isset($_GET["resetCart"])) {
         resetEstimateCart();
     }
 }
@@ -113,34 +114,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (Trim($UserName) === "") {
             $PassedValidation = false;
         }
-        
+
         if (Trim($UserEmail) === "") {
             $PassedValidation = false;
         }
-        
+
         if (Trim($UserPhone) === "") {
             $PassedValidation = false;
         }
-        if(strlen($UserPhone) !== 10){
+        if (strlen($UserPhone) !== 10) {
             $PassedValidation = false;
         }
 
         if (Trim($UserState) === "") {
             $PassedValidation = false;
         }
-        
+
         if (Trim($UserCity) === "") {
             $PassedValidation = false;
         }
-        
+
         if (Trim($UserZipCode) === "") {
             $PassedValidation = false;
         }
-        if(strlen($UserZipCode) !== 5){
-             $PassedValidation = false;
+        if (strlen($UserZipCode) !== 5) {
+            $PassedValidation = false;
         }
-        
-        
+
+
         /* More advanced e-mail validation */
         if (!filter_var($UserEmail, FILTER_VALIDATE_EMAIL)) {
             $PassedValidation = false;
@@ -149,42 +150,44 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $transmitResponse .= "Sorry validation failed.  Please check all fields again.";
         }
 
-        /* Create the e-mail body. */
-        $Body = "";
-        $Body .= "User Name: " . $UserName . "\n";
-        $Body .= "Email: " . $UserEmail . "\n";      
-        $Body .= "Phone: " . $UserPhone . "\n";
-        $Body .= "Address: " . $UserStreetAddress . "\n";
-        $Body .= "" . $UserCity . ", " . $UserState . " " . $UserZipCode .  " " . "\n";
-        $Body .= "\n";
-        $Body .= "Estimate Items: \n";
-        for ($i = 0; $i < count($products); $i++) {
-            $Body .= "Product: " . $products[$i]->get_name() . ": " . $_SESSION["quantity"][$i] . " (Subtotal): $" . $_SESSION["itemSubtotal"][$i] . " \n";
-        }
-        $Body .= "\n";
-        $Body .= "Estimate Cart Total: $" . $_SESSION["totalCost"] . ". \n";
-        $Body .= "\n";
-        $Body .= "Additional Notes: " . $AdditionalNotes . "\n";
-        $Body .= "\n";
-
-        /* Send the e-mail. */
-        $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: Estimate Order Request for " . $UserName, $Body, "From: <$UserEmail>");
-       
-        if ($SuccessfulSubmission) {
-            $transmitResponse .= $UserName . ", your estimate request was successfully submitted. <br />";
-            $transmitResponse .= "<br />";
-            $transmitResponse .= "Estimate Items: <br />";
-            for($i = 0; $i < count($products); $i++){
-                 $transmitResponse .= "Product: " . $products[$i]->get_name() . ": " . $_SESSION["quantity"][$i] . " (Subtotal): $" . $_SESSION["itemSubtotal"][$i] . " <br />";
+        if ($PassedValidation) {
+            /* Create the e-mail body. */
+            $Body = "";
+            $Body .= "User Name: " . $UserName . "\n";
+            $Body .= "Email: " . $UserEmail . "\n";
+            $Body .= "Phone: " . $UserPhone . "\n";
+            $Body .= "Address: " . $UserStreetAddress . "\n";
+            $Body .= "" . $UserCity . ", " . $UserState . " " . $UserZipCode . " " . "\n";
+            $Body .= "\n";
+            $Body .= "Estimate Items: \n";
+            for ($i = 0; $i < count($products); $i++) {
+                $Body .= "Product: " . $products[$i]->get_name() . ": " . $_SESSION["quantity"][$i] . " (Subtotal): $" . $_SESSION["itemSubtotal"][$i] . " \n";
             }
-            $transmitResponse .= "<br />";
-            $transmitResponse .= "Estimate Cart Total: $" . $_SESSION["totalCost"] . ". <br />";
-            $transmitResponse .= "<br />";
-            $transmitResponse .= "We will respond back within 2 business days! <br />";
-            $transmitResponse .= "Thank you for shopping with Tualatin Top Bakery!";
-            resetEstimateCart();
-        } else if ($SuccessfulSubmission === false) {
-            $transmitResponse .= " Submission failed. Please try again.";
+            $Body .= "\n";
+            $Body .= "Estimate Cart Total: $" . $_SESSION["totalCost"] . ". \n";
+            $Body .= "\n";
+            $Body .= "Additional Notes: " . $AdditionalNotes . "\n";
+            $Body .= "\n";
+
+            /* Send the e-mail. */
+            $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: Estimate Order Request for " . $UserName, $Body, "From: <$UserEmail>");
+
+            if ($SuccessfulSubmission) {
+                $transmitResponse .= $UserName . ", your estimate request was successfully submitted. <br />";
+                $transmitResponse .= "<br />";
+                $transmitResponse .= "Estimate Items: <br />";
+                for ($i = 0; $i < count($products); $i++) {
+                    $transmitResponse .= "Product: " . $products[$i]->get_name() . ": " . $_SESSION["quantity"][$i] . " (Subtotal): $" . $_SESSION["itemSubtotal"][$i] . " <br />";
+                }
+                $transmitResponse .= "<br />";
+                $transmitResponse .= "Estimate Cart Total: $" . $_SESSION["totalCost"] . ". <br />";
+                $transmitResponse .= "<br />";
+                $transmitResponse .= "We will respond back within 2 business days! <br />";
+                $transmitResponse .= "Thank you for shopping with Tualatin Top Bakery!";
+                resetEstimateCart();
+            } else if ($SuccessfulSubmission === false) {
+                $transmitResponse .= " Submission failed. Please try again.";
+            }
         }
     }
 }

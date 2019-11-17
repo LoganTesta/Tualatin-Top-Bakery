@@ -155,7 +155,7 @@ var estimateUpdatedResponseApp = new Vue({
                 document.forms["estimateForm"]["userEmail"].classList.remove("required-field-needed");
             }
 
-            if (!this.userPhone) {
+            if (!this.userPhone || this.userPhone.length !== 10) {
                 this.errors.push("Please enter phone number we can contact if needed.");
                 document.forms["estimateForm"]["userPhone"].classList.add("required-field-needed");
             } else {
@@ -183,7 +183,7 @@ var estimateUpdatedResponseApp = new Vue({
                 document.forms["estimateForm"]["userState"].classList.remove("required-field-needed");
             }
 
-            if (!this.userZipCode) {
+            if (!this.userZipCode || this.userZipCode.length < 5) {
                 this.errors.push("Please provide the ZIP Code.");
                 document.forms["estimateForm"]["userZipCode"].classList.add("required-field-needed");
             } else {
