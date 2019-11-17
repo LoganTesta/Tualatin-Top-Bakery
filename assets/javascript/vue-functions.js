@@ -308,13 +308,17 @@ var subscribeApp = new Vue({
         showModal: false,
         userNameSubscribe: "",
         userEmailSubscribe: "",
-        errors: []
+        errors: [],
+        clickedSubmit: false
     },
     methods: {
-        validateSubscribeForm: function (e) {
+        validateSubscribeForm: function (event) {
             this.errors = [];
             if (!this.userNameSubscribe) {
                 this.errors.push("Please enter a name.");
+                document.forms["subscribeForm"]["userNameSubscribe"].classList.add("required-field-needed");
+            } else {
+                document.forms["subscribeForm"]["userNameSubscribe"].classList.remove("required-field-needed");
             }
 
             var atPosition = this.userEmailSubscribe.indexOf("@");
@@ -332,16 +336,31 @@ var subscribeApp = new Vue({
             }
             if (validEmail === false) {
                 this.errors.push("Please enter a valid email.");
+                document.forms["subscribeForm"]["userEmailSubscribe"].classList.add("required-field-needed");
+            } else {
+                document.forms["subscribeForm"]["userEmailSubscribe"].classList.remove("required-field-needed");
             }
             
             if(this.errors.length === 0){
                 return true;
             } else {
+                event.preventDefault();
                 return false;
             }
-            e.preventDefault();
+        },
+        setClickedSubmitTrue: function (){
+            this.clickedSubmit = true;
         }
-    }  
+    },
+    computed: {
+        writeResponse: function () {
+            var response = "";     
+            if (this.clickedSubmit) {
+                this.validateSubscribeForm(event);
+            }         
+            return response;
+        }
+    } 
 });
 /*End of section.*/
 
