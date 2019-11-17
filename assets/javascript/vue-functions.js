@@ -37,16 +37,25 @@ var contactUpdatedResponseApp = new Vue({
         userLastName: "",
         userEmail: "",
         userComments: "",
-        errors: []
+        errors: [],
+        clickedSubmit: false
     },
     methods: {
-        validateForm: function (e) {
+        validateForm: function (event) {
             this.errors = [];
+            
             if (!this.userFirstName) {
                 this.errors.push("Please enter a first name.");
+                document.forms["contactOurCoffeeShop"]["userFirstName"].classList.add("required-field-needed");
+            } else {
+                document.forms["contactOurCoffeeShop"]["userFirstName"].classList.remove("required-field-needed");
             }
+            
             if (!this.userLastName) {
                 this.errors.push("Please enter a last name.");
+                document.forms["contactOurCoffeeShop"]["userLastName"].classList.add("required-field-needed");
+            } else {
+                document.forms["contactOurCoffeeShop"]["userLastName"].classList.remove("required-field-needed");
             }
 
             var atPosition = this.userEmail.indexOf("@");
@@ -64,23 +73,38 @@ var contactUpdatedResponseApp = new Vue({
             }
             if (validEmail === false) {
                 this.errors.push("Please enter a valid email.");
+                document.forms["contactOurCoffeeShop"]["userEmail"].classList.add("required-field-needed");
+            } else {
+                document.forms["contactOurCoffeeShop"]["userEmail"].classList.remove("required-field-needed");
             }
 
             if (!this.userComments) {
                 this.errors.push("Please input your message.");
+                document.forms["contactOurCoffeeShop"]["userComments"].classList.add("required-field-needed");
+            } else {
+                document.forms["contactOurCoffeeShop"]["userComments"].classList.remove("required-field-needed");
             }
-            
+
             if(this.errors.length === 0){
                 return true;
             } else {
+                event.preventDefault();
                 return false;
-            }
-            e.preventDefault();
+            }       
+        },
+       
+        setClickedSubmitTrue: function (){
+            this.clickedSubmit = true;
         }
     },
     computed: {
+        
         writeResponse: function () {
             var response = this.userFirstName + " " + this.userLastName;
+            
+            if (this.clickedSubmit) {
+                this.validateForm(event);
+            }         
             return response;
         }
     }

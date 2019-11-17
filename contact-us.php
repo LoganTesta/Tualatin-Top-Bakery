@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <p>We are the best local bakery for all your baked goods.</p>
                         <div class="contact-container" id="contactContainer">
                             <h4 class="contact-container__title">Write Us Here</h4>
-                            <form class="contact-container__form" id="contactOurCoffeeShop" @submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                            <form class="contact-container__form" id="contactOurCoffeeShop" v-on:submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                 <div class="contact-container__response">
                                     <p>Thank you <strong>{{writeResponse}}</strong> for writing to us!</p>
                                     <div v-if="errors.length">
@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <textarea id="userComments" name="userComments" rows="6" placeholder="Please write your message here.  Thanks." required="required" v-model="userComments"></textarea>                          
                                 </div>                           
                                 <div class="input-container">
-                                    <button class="input-container__contact-button" id="contactButton" name="contactButton" type="submit">Contact Us!</button>                          
+                                    <button class="input-container__contact-button" id="contactButton" name="contactButton" type="submit" v-on:click="setClickedSubmitTrue">Contact Us!</button>                          
                                 </div>
                             </form>
                             <?php if(!empty($transmitResponse)) { echo "<div class=\"contact-container__response-message\">$transmitResponse</div>"; } ?>
