@@ -151,7 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <textarea id="coverLetter" name="coverLetter" rows="8" placeholder="Please write your cover letter here."></textarea>                          
                                 </div>                           
                                 <div class="input-container">
-                                    <button class="input-container__contact-button" id="applyButton" name="applyButton" type="submit">Send Application!</button>                          
+                                    <button class="input-container__contact-button" id="applyButton" name="applyButton" type="submit" @click="setClickedSubmitTrue">Send Application!</button>                          
                                 </div>
                             </form>
                             <?php if(!empty($transmitResponse)) { echo "<div class=\"contact-container__response-message\">$transmitResponse</div>"; } ?>

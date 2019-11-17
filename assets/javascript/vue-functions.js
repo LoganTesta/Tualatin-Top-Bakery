@@ -225,13 +225,17 @@ var careersUpdatedResponseApp = new Vue({
         userEmail: "",
         positionApplyingFor: "",
         userResume: "",
-        errors: []
+        errors: [],
+        clickedSubmit: false
     },
     methods: {
-        validateForm: function (e) {
+        validateForm: function (event) {
             this.errors = [];
             if (!this.userName) {
                 this.errors.push("Please enter a name.");
+                document.forms["careersForm"]["userName"].classList.add("required-field-needed");
+            } else {
+                document.forms["careersForm"]["userName"].classList.remove("required-field-needed");
             }
 
             var atPosition = this.userEmail.indexOf("@");
@@ -249,27 +253,42 @@ var careersUpdatedResponseApp = new Vue({
             }
             if (validEmail === false) {
                 this.errors.push("Please enter a valid email.");
+                document.forms["careersForm"]["userEmail"].classList.add("required-field-needed");
+            } else {
+                document.forms["careersForm"]["userEmail"].classList.remove("required-field-needed");
             }
 
             if (!this.positionApplyingFor) {
                 this.errors.push("Please enter the position you are applying for.");
+                document.forms["careersForm"]["positionApplyingFor"].classList.add("required-field-needed");
+            } else {
+                document.forms["careersForm"]["positionApplyingFor"].classList.remove("required-field-needed");
             }
 
             if (!this.userResume) {
                 this.errors.push("Please copy and paste your resume in resume textarea.");
-            }            
+                document.forms["careersForm"]["userResume"].classList.add("required-field-needed");
+            } else {
+                document.forms["careersForm"]["userResume"].classList.remove("required-field-needed");
+            }           
             
             if(this.errors.length === 0){
                 return true;
             } else {
+                event.preventDefault();
                 return false;
             }
-            e.preventDefault();
+        },
+        setClickedSubmitTrue: function (){
+            this.clickedSubmit = true;
         }
     },
     computed: {
         writeResponse: function () {
-            var response = this.userName;
+            var response = this.userName;     
+            if (this.clickedSubmit) {
+                this.validateForm(event);
+            }         
             return response;
         }
     }
