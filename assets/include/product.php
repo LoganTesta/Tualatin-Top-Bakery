@@ -9,7 +9,7 @@ class Product {
 
     function __construct(string $input_name, float $input_price, string $input_image, string $input_description) {
         $this->name = $input_name;
-        $this->price = $input_price;
+        $this->price = number_format($input_price, 2);
         $this->image = $input_image;
         $this->description = $input_description;
     }

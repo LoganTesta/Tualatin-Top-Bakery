@@ -4,8 +4,8 @@ session_start();
 //Estimate cart code.
 include("assets/include/product.php");
 
-$WholeWheatLoaf = new Product("Whole Wheat Loaf", 3.00, "", "");
-$WhiteBreadLoaf = new Product("White Bread Loaf", 2.00, "", "");
+$WholeWheatLoaf = new Product("Whole Wheat Loaf", 2.95, "", "");
+$WhiteBreadLoaf = new Product("White Bread Loaf", 1.99, "", "");
 $BlueberryScone = new Product("Blueberry Scone", 2.25, "", "");
 $ChocolateCake = new Product("Chocolate Cake", 15.00, "", "");
 $CherryPie = new Product("Cherry Pie", 12.00, "", "");
@@ -23,8 +23,8 @@ if(isset($_SESSION["estimateCart"]) === false){
     for($i = 0; $i < count($products); $i++){
         $_SESSION["products"][$i] = $products[$i];   //We need to store this for the reset function since that logic is in a separate function.
         $_SESSION["quantity"][$i] = 0;
-        $_SESSION["itemSubtotal"][$i] = 0;
-        $_SESSION["totalCost"] = 0;
+        $_SESSION["itemSubtotal"][$i] = number_format(0.00, 2);
+        $_SESSION["totalCost"] = number_format(0.00, 2);
     }
 }
 
@@ -33,12 +33,12 @@ if(isset($_SESSION["estimateCart"])){
     if(isset($_GET["item"])){
         $itemNumber = $_GET["item"];
         $_SESSION["quantity"][$itemNumber] = $_SESSION["quantity"][$itemNumber] + 1;
-        $_SESSION["itemSubtotal"][$itemNumber] = $products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber];       
+        $_SESSION["itemSubtotal"][$itemNumber] = number_format($products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);       
     }
     
-    $_SESSION["totalCost"] = 0;
+    $_SESSION["totalCost"] = number_format(0.00, 2);
     for($i = 0; $i < count($products); $i++){
-        $_SESSION["totalCost"] = $_SESSION["totalCost"] + $_SESSION["itemSubtotal"][$i];
+        $_SESSION["totalCost"] = number_format($_SESSION["totalCost"] + $_SESSION["itemSubtotal"][$i], 2);
     }
 }
 
@@ -50,11 +50,11 @@ if (isset($_SESSION["estimateCart"])) {
 
         if ($newQuantity >= 0) {
             $_SESSION["quantity"][$itemNumber] = $newQuantity;
-            $_SESSION["itemSubtotal"][$itemNumber] = $products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber];
+            $_SESSION["itemSubtotal"][$itemNumber] = number_format($products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
 
-            $_SESSION["totalCost"] = 0;
+            $_SESSION["totalCost"] = number_format(0.00, 2);
             for ($i = 0; $i < count($products); $i++) {
-                $_SESSION["totalCost"] = $_SESSION["totalCost"] + $_SESSION["itemSubtotal"][$i];
+                $_SESSION["totalCost"] = number_format($_SESSION["totalCost"] + $_SESSION["itemSubtotal"][$i], 2);
             }
         }
     }
@@ -69,10 +69,10 @@ if (isset($_SESSION["estimateCart"])) {
 
 function resetEstimateCart() {
     unset($_SESSION["estimateCart"]);
-    $_SESSION["totalCost"] = 0;
+    $_SESSION["totalCost"] = number_format(0.00, 2);
     for ($i = 0; $i < count($_SESSION["products"]); $i++) {
         $_SESSION["quantity"][$i] = 0;
-        $_SESSION["itemSubtotal"][$i] = 0;
+        $_SESSION["itemSubtotal"][$i] = number_format(0.00, 2);
     }
 }
 
