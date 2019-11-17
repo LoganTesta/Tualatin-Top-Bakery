@@ -1,6 +1,5 @@
 <?php
 
-
 $transmitResponseSubscribe = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -32,17 +31,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $transmitResponseSubscribe .= "Sorry validation failed.  Please check all fields again.";
         }
 
-        /* Create the e-mail body. */
-        $BodySubscribe = "This user has requested subscription to our bakery customer emails.\n";
-        $BodySubscribe .= "User Name: " . $UserNameSubscribe . "\n";
-        $BodySubscribe .= "User Email: " . $UserEmailSubscribe . "\n";
+        if ($PassedValidation) {
+            /* Create the e-mail body. */
+            $BodySubscribe = "This user has requested subscription to our bakery customer emails.\n";
+            $BodySubscribe .= "User Name: " . $UserNameSubscribe . "\n";
+            $BodySubscribe .= "User Email: " . $UserEmailSubscribe . "\n";
 
-        /* Send the e-mail. */
-        $SuccessfulSubmission = mail($SendEmailToSubscribe, $UserSubjectSubscribe, $BodySubscribe, "From: <$UserEmailSubscribe>");
-        if ($SuccessfulSubmission) {
-            $transmitResponseSubscribe .= $UserNameSubscribe . ", your form was successfully submitted.  You are now subscribed to our specials and updates!";
-        } else if ($SuccessfulSubmission === false) {
-            $transmitResponseSubscribe .= " Submission failed. Please try again.";
+            /* Send the e-mail. */
+            $SuccessfulSubmission = mail($SendEmailToSubscribe, $UserSubjectSubscribe, $BodySubscribe, "From: <$UserEmailSubscribe>");
+            if ($SuccessfulSubmission) {
+                $transmitResponseSubscribe .= $UserNameSubscribe . ", your form was successfully submitted.  You are now subscribed to our specials and updates!";
+            } else if ($SuccessfulSubmission === false) {
+                $transmitResponseSubscribe .= " Submission failed. Please try again.";
+            }
         }
     }
 }

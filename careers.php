@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 $transmitResponse = "";
 
@@ -45,23 +45,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $transmitResponse .= "Sorry validation failed.  Please check all fields again.";
         }
 
-        /* Create the e-mail body. */
-        $Body = "";
-        $Body .= "User Name: " . $UserName . "\n";
-        $Body .= "Position Applying for: " . $PositionApplyingFor . "\n";      
-        $Body .= "User Email: " . $UserEmail . "\n";
-        $Body .= "\n";
-        $Body .= "Resume: " . $UserResume . "\n";
-        $Body .= "\n";
-        $Body .= "Cover Letter: " . $CoverLetter . "\n";
+        if ($PassedValidaton) {
+            /* Create the e-mail body. */
+            $Body = "";
+            $Body .= "User Name: " . $UserName . "\n";
+            $Body .= "Position Applying for: " . $PositionApplyingFor . "\n";
+            $Body .= "User Email: " . $UserEmail . "\n";
+            $Body .= "\n";
+            $Body .= "Resume: " . $UserResume . "\n";
+            $Body .= "\n";
+            $Body .= "Cover Letter: " . $CoverLetter . "\n";
 
-        /* Send the e-mail. */
-        $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: Application for " . $PositionApplyingFor, $Body, "From: <$UserEmail>");
-        if ($SuccessfulSubmission) {
-            $transmitResponse .= $UserName . ", your application was successfully submitted for the " . $PositionApplyingFor .  " position.  "
-                    . "Thanks for applying, we look forward to reviewing your application!";
-        } else if ($SuccessfulSubmission === false) {
-            $transmitResponse .= " Submission failed. Please try again.";
+            /* Send the e-mail. */
+            $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: Application for " . $PositionApplyingFor, $Body, "From: <$UserEmail>");
+            if ($SuccessfulSubmission) {
+                $transmitResponse .= $UserName . ", your application was successfully submitted for the " . $PositionApplyingFor . " position.  "
+                        . "Thanks for applying, we look forward to reviewing your application!";
+            } else if ($SuccessfulSubmission === false) {
+                $transmitResponse .= " Submission failed. Please try again.";
+            }
         }
     }
 }

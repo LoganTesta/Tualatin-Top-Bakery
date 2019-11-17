@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 $transmitResponse = "";
 
@@ -45,19 +45,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $transmitResponse .= "Sorry validation failed.  Please check all fields again.";
         }
 
-        /* Create the e-mail body. */
-        $Body = "";
-        $Body .= "User Name: " . $UserFirstName . " " . $UserLastName . "\n";
-        $Body .= "User Email: " . $UserEmail . "\n";
-        $Body .= "Subject: " . $UserSubject . "\n";
-        $Body .= "User Comments: " . $UserComments . "\n";
+        if ($PassedValidation) {
+            /* Create the e-mail body. */
+            $Body = "";
+            $Body .= "User Name: " . $UserFirstName . " " . $UserLastName . "\n";
+            $Body .= "User Email: " . $UserEmail . "\n";
+            $Body .= "Subject: " . $UserSubject . "\n";
+            $Body .= "User Comments: " . $UserComments . "\n";
 
-        /* Send the e-mail. */
-        $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: " . $UserSubject, $Body, "From: <$UserEmail>");
-        if ($SuccessfulSubmission) {
-            $transmitResponse .= $UserFirstName . ", your form was successfully submitted.  Thanks for contacting us!";
-        } else if ($SuccessfulSubmission === false) {
-            $transmitResponse .= " Submission failed. Please try again.";
+            /* Send the e-mail. */
+            $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: " . $UserSubject, $Body, "From: <$UserEmail>");
+            if ($SuccessfulSubmission) {
+                $transmitResponse .= $UserFirstName . ", your form was successfully submitted.  Thanks for contacting us!";
+            } else if ($SuccessfulSubmission === false) {
+                $transmitResponse .= " Submission failed. Please try again.";
+            }
         }
     }
 }
