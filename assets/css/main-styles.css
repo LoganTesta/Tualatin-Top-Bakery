@@ -326,7 +326,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 
 .estimate-table__cart-summary { margin-top: 60px; }
 .cart-total { padding-bottom: 15px; font-size: 18px; font-weight: bold; text-align: center; }
-.reset-cart { width: 112px; padding: 10px; margin-left: auto; margin-right: auto; border-radius: 15px; background-color: #999; color: #ffffff; font-size: 18px; font-weight: bold; cursor: pointer; }
+.reset-cart { width: 112px; padding: 10px; margin-left: auto; margin-right: auto; border-radius: 15px; background-color: #64460e; color: #ffffff; font-size: 18px; font-weight: bold; cursor: pointer; }
 
 .estimate-container { padding-top: 30px; }
 
