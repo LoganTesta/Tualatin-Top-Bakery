@@ -314,7 +314,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .estimate-table td { text-align: center; } 
 
 .estimate-table__item-title { width: 100%; padding: 50px 5px 10px 5px; font-weight: bold; }
-.estimate-table__item-photo { width: 100%; padding: 10px 5px; }
+.estimate-table__item-image { width: 100%; padding: 10px 5px; }
 .estimate-table__item-cost { width: 100%; padding: 10px 5px; }
 .estimate-table__item-quantity { width: 100%; padding: 10px 5px;  } 
 .estimate-table__item-subtotal { width: 100%; padding: 10px 5px; }
@@ -493,7 +493,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     
     .estimate-container { padding-top: 0; }
     .estimate-container__title { text-align: center; }
-    .estimate-table__item-photo { }
+    .estimate-table__item-image { }
     .estimate-table__item-title { padding: 10px 5px; }
     .estimate-table__item-cost { padding-left: 10px; padding-right: 25px; }
     .estimate-table__item-quantity { } 
