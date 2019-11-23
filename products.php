@@ -117,14 +117,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (Trim($UserEmail) === "") {
             $PassedValidation = false;
         }
-
+        /* More advanced e-mail validation */
+        if (!filter_var($UserEmail, FILTER_VALIDATE_EMAIL)) {
+            $PassedValidation = false;
+        }
+        
         if (Trim($UserPhone) === "") {
             $PassedValidation = false;
         }
         if (strlen($UserPhone) !== 10) {
             $PassedValidation = false;
+            $transmitResponse .= " Phone must be exacttly 10 digits. Phone number given was " . $UserPhone . ". ";
         }
-
+        if(ctype_digit($UserPhone) === false) {
+            $PassedValidation = false;
+            $transmitResponse .= " Phone must be a 10 digit integer. Phone number given was " . $UserPhone . ". ";
+        }
+        
+        
         if (Trim($UserState) === "") {
             $PassedValidation = false;
         }
@@ -146,10 +156,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
 
-        /* More advanced e-mail validation */
-        if (!filter_var($UserEmail, FILTER_VALIDATE_EMAIL)) {
-            $PassedValidation = false;
-        }
         if ($PassedValidation === false) {
             $transmitResponse .= "Sorry validation failed.  Please check all fields again.";
         }
