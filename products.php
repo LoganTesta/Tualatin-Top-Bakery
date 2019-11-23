@@ -138,6 +138,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
         if (strlen($UserZipCode) !== 5) {
             $PassedValidation = false;
+            $transmitResponse .= "ZIP Code must be exactly 5 digits. ZIP Code provided was " . $UserZipCode . ". ";
+        }
+        if(ctype_digit($UserZipCode) === false){
+            $PassedValidation = false;
+            $transmitResponse .= "ZIP Code must be an integer of exactly 5 digits. ZIP Code provided was " . $UserZipCode . ". ";
         }
 
 
@@ -424,7 +429,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userZipCode"><strong>ZIP Code *</strong></label>
-                                    <input id="userZipCode" name="userZipCode" placeholder="ZIP Code" required="required" v-model="userZipCode" />  
+                                    <input id="userZipCode" name="userZipCode" type="text" placeholder="ZIP Code" required="required" v-model="userZipCode" />  
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="additionalNotes"><strong>Additional Notes</strong></label>

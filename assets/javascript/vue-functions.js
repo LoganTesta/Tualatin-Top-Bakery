@@ -183,7 +183,7 @@ var estimateUpdatedResponseApp = new Vue({
                 document.forms["estimateForm"]["userState"].classList.remove("required-field-needed");
             }
 
-            if (!this.userZipCode || this.userZipCode.length < 5) {
+            if (!this.userZipCode || this.userZipCode.length != 5) {
                 this.errors.push("Please provide the ZIP Code.");
                 document.forms["estimateForm"]["userZipCode"].classList.add("required-field-needed");
             } else {
