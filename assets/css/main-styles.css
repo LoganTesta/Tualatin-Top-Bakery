@@ -270,6 +270,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .item-container__background { height: 240px; }
 .no-padding-bottom { padding-bottom: 0; } /* Put on the last of a group of paragraphs where no padding bottom is desired. */
 .current-page { text-decoration: underline; }
+.validation-message { padding-bottom: 15px; font-size: inherit; font-weight: bold; }
 
 /*Index page*/
 .item-container__background.one { background: url('../images/bakery-shelf-cakes.jpg') 0% 0%/cover no-repeat;}

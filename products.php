@@ -127,11 +127,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
         if (strlen($UserPhone) !== 10) {
             $PassedValidation = false;
-            $transmitResponse .= " Phone must be exacttly 10 digits. Phone number given was " . $UserPhone . ". ";
+            $transmitResponse .= "<div class='validation-message'>Phone must be exactly 10 digits. Phone number given was " . $UserPhone . ".</div>";
         }
         if(ctype_digit($UserPhone) === false) {
             $PassedValidation = false;
-            $transmitResponse .= " Phone must be a 10 digit integer. Phone number given was " . $UserPhone . ". ";
+            $transmitResponse .= "<div class='validation-message'>Phone must be a 10 digit integer. Phone number given was " . $UserPhone . ".</div>";
         }
         
         
@@ -148,16 +148,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
         if (strlen($UserZipCode) !== 5) {
             $PassedValidation = false;
-            $transmitResponse .= "ZIP Code must be exactly 5 digits. ZIP Code provided was " . $UserZipCode . ". ";
+            $transmitResponse .= "<div class='validation-message'>ZIP Code must be exactly 5 digits. ZIP Code provided was " . $UserZipCode . ".</div>";
         }
         if(ctype_digit($UserZipCode) === false){
             $PassedValidation = false;
-            $transmitResponse .= "ZIP Code must be an integer of exactly 5 digits. ZIP Code provided was " . $UserZipCode . ". ";
+            $transmitResponse .= "<div class='validation-message'>ZIP Code must be an integer of exactly 5 digits. ZIP Code provided was " . $UserZipCode . ".</div>";
         }
 
 
         if ($PassedValidation === false) {
-            $transmitResponse .= "Sorry validation failed.  Please check all fields again.";
+            $transmitResponse .= "<div class='validation-message'>Sorry validation failed.  Please check all fields again.</div>";
         }
 
         if ($PassedValidation) {
@@ -171,10 +171,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $Body .= "\n";
             $Body .= "Estimate Items: \n";
             for ($i = 0; $i < count($products); $i++) {
-                $Body .= "Product: " . $products[$i]->get_name() . ": " . $_SESSION["quantity"][$i] . " (Subtotal): $" . $_SESSION["itemSubtotal"][$i] . " \n";
+                if($_SESSION["itemSubtotal"][$i] > 0) {
+                    $Body .= "" . $products[$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . " \n";
+                }
             }
             $Body .= "\n";
-            $Body .= "Estimate Cart Total: $" . $_SESSION["totalCost"] . ". \n";
+            $Body .= "Estimate Total: $" . $_SESSION["totalCost"] . ". \n";
             $Body .= "\n";
             $Body .= "Additional Notes: " . $AdditionalNotes . "\n";
             $Body .= "\n";
@@ -183,20 +185,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: Estimate Order Request for " . $UserName, $Body, "From: <$UserEmail>");
 
             if ($SuccessfulSubmission) {
-                $transmitResponse .= $UserName . ", your estimate request was successfully submitted. <br />";
-                $transmitResponse .= "<br />";
-                $transmitResponse .= "Estimate Items: <br />";
+                $transmitResponse .= "<div class='validation-message'>" . $UserName . ", your estimate request was successfully submitted.</div>";
+                $transmitResponse .= "<div class='validation-message'>Estimate Items:</div>";
                 for ($i = 0; $i < count($products); $i++) {
-                    $transmitResponse .= "Product: " . $products[$i]->get_name() . ": " . $_SESSION["quantity"][$i] . " (Subtotal): $" . $_SESSION["itemSubtotal"][$i] . " <br />";
+                    if($_SESSION["itemSubtotal"][$i] > 0) {
+                        $transmitResponse .= "" . $products[$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . "<br />";
+                    }
                 }
-                $transmitResponse .= "<br />";
-                $transmitResponse .= "Estimate Cart Total: $" . $_SESSION["totalCost"] . ". <br />";
-                $transmitResponse .= "<br />";
-                $transmitResponse .= "We will respond back within 2 business days! <br />";
-                $transmitResponse .= "Thank you for shopping with Tualatin Top Bakery!";
+                $transmitResponse .= "<div class='validation-message'>Estimate Total: $" . $_SESSION["totalCost"] . ".</div>";
+                $transmitResponse .= "<div class='validation-message'>We will respond back within 2 business days!</div>";
+                $transmitResponse .= "<div class='validation-message'>Thank you for shopping with Tualatin Top Bakery!</div>";
                 resetEstimateCart();
             } else if ($SuccessfulSubmission === false) {
-                $transmitResponse .= " Submission failed. Please try again.";
+                $transmitResponse .= "<div class='validation-message'>Submission failed. Please try again.</div>";
             }
         }
     }
