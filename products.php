@@ -120,6 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         /* More advanced e-mail validation */
         if (!filter_var($UserEmail, FILTER_VALIDATE_EMAIL)) {
             $PassedValidation = false;
+            $transmitResponse .= "<div class='validation-message'>Please enter a valid email.</div>";
         }
         
         if (Trim($UserPhone) === "") {
@@ -127,11 +128,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
         if (strlen($UserPhone) !== 10) {
             $PassedValidation = false;
-            $transmitResponse .= "<div class='validation-message'>Phone must be exactly 10 digits. Phone number given was " . $UserPhone . ".</div>";
+            $transmitResponse .= "<div class='validation-message'>Phone must be exactly 10 digits.</div>";
         }
         if(ctype_digit($UserPhone) === false) {
             $PassedValidation = false;
-            $transmitResponse .= "<div class='validation-message'>Phone must be a 10 digit integer. Phone number given was " . $UserPhone . ".</div>";
+            $transmitResponse .= "<div class='validation-message'>Phone must be a 10 digit integer.</div>";
         }
         
         

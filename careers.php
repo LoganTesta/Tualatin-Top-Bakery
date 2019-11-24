@@ -40,9 +40,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         /* More advanced e-mail validation */
         if (!filter_var($UserEmail, FILTER_VALIDATE_EMAIL)) {
             $PassedValidation = false;
+            $transmitResponse .= "<div class='validation-message'>Please enter a valid email.</div>";
+            
         }
         if ($PassedValidation === false) {
-            $transmitResponse .= "Sorry validation failed.  Please check all fields again.";
+            $transmitResponse .= "<div class='validation-message'>Sorry validation failed.  Please check all fields again.</div>";
         }
 
         if ($PassedValidaton) {
@@ -59,10 +61,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             /* Send the e-mail. */
             $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: Application for " . $PositionApplyingFor, $Body, "From: <$UserEmail>");
             if ($SuccessfulSubmission) {
-                $transmitResponse .= $UserName . ", your application was successfully submitted for the " . $PositionApplyingFor . " position.  "
-                        . "Thanks for applying, we look forward to reviewing your application!";
+                $transmitResponse .= "<div class='validation-message'>" . $UserName . ", your application was successfully submitted for the " . $PositionApplyingFor . " position.  "
+                        . "Thanks for applying, we look forward to reviewing your application!</div>";
             } else if ($SuccessfulSubmission === false) {
-                $transmitResponse .= " Submission failed. Please try again.";
+                $transmitResponse .= "<div class='validation-message'>Submission failed. Please try again.</div>";
             }
         }
     }
