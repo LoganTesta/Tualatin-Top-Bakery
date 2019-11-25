@@ -110,55 +110,86 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         /* Validation Time */
         $PassedValidation = true;
+        
+        
+        $ValidUserName = true;
         if (Trim($UserName) === "") {
-            $PassedValidation = false;
+            $ValidUserName = false;
         }
-
-        if (Trim($UserEmail) === "") {
+        if ($ValidUserName === false){
             $PassedValidation = false;
+            $transmitResponse .= "<p>Please enter a valid name.</p>";
+        }
+        
+        
+        $ValidUserEmail = true;
+        if (Trim($UserEmail) === "") {
+            $ValidUserEmail = false;
         }
         /* More advanced e-mail validation */
         if (!filter_var($UserEmail, FILTER_VALIDATE_EMAIL)) {
+            $ValidUserEmail = false;
+        }
+        if ($ValidUserEmail === false){
             $PassedValidation = false;
-            $transmitResponse .= "<div class='validation-message'>Please enter a valid email.</div>";
+            $transmitResponse .= "<p>Please enter a valid email.</p>";
         }
         
+        
+        $ValidUserPhone = true;
         if (Trim($UserPhone) === "") {
-            $PassedValidation = false;
+            $ValidUserPhone = false;
         }
         if (strlen($UserPhone) !== 10) {
-            $PassedValidation = false;
-            $transmitResponse .= "<div class='validation-message'>Phone must be exactly 10 digits.</div>";
+            $ValidUserPhone = false;
         }
-        if(ctype_digit($UserPhone) === false) {
-            $PassedValidation = false;
-            $transmitResponse .= "<div class='validation-message'>Phone must be a 10 digit integer.</div>";
+        if (ctype_digit($UserPhone) === false) {
+            $ValidUserPhone = false;
         }
+        if ($ValidUserPhone === false){
+            $PassedValidation = false;
+            $transmitResponse .= "<p>Please enter a 10 digit phone number, no dashes.</p>";
+        }
+
         
-        
+        $ValidUserState = true;
         if (Trim($UserState) === "") {
-            $PassedValidation = false;
+            $ValidUserState = false;
         }
-
+        if ($ValidUserState === false){
+            $PassedValidation = false;
+            $transmitResponse .= "<p>Please enter a state.</p>";
+        }
+        
+        
+        $ValidUserCity = true;
         if (Trim($UserCity) === "") {
+            $ValidUserCity = false;
+        }
+        if ($ValidUserCity === false){
             $PassedValidation = false;
+            $transmitResponse .= "<p>Please enter a city.</p>";
         }
 
+
+        $ValidUserZipCode = true;
         if (Trim($UserZipCode) === "") {
-            $PassedValidation = false;
+            $ValidUserZipCode = false;
         }
         if (strlen($UserZipCode) !== 5) {
-            $PassedValidation = false;
-            $transmitResponse .= "<div class='validation-message'>ZIP Code must be exactly 5 digits. ZIP Code provided was " . $UserZipCode . ".</div>";
+            $ValidUserZipCode = false;
         }
-        if(ctype_digit($UserZipCode) === false){
+        if (ctype_digit($UserZipCode) === false) {
+            $ValidUserZipCode = false;
+        }
+        if ($ValidUserZipCode === false){
             $PassedValidation = false;
-            $transmitResponse .= "<div class='validation-message'>ZIP Code must be an integer of exactly 5 digits. ZIP Code provided was " . $UserZipCode . ".</div>";
+            $transmitResponse .= "<p>ZIP Code must be exactly 5 digits.</p>";
         }
 
 
         if ($PassedValidation === false) {
-            $transmitResponse .= "<div class='validation-message'>Sorry validation failed.  Please check all fields again.</div>";
+            $transmitResponse .= "<p>Sorry, validation failed.  Please check all fields again.</p>";
         }
 
         if ($PassedValidation) {
@@ -186,19 +217,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: Estimate Order Request for " . $UserName, $Body, "From: <$UserEmail>");
 
             if ($SuccessfulSubmission) {
-                $transmitResponse .= "<div class='validation-message'>" . $UserName . ", your estimate request was successfully submitted.</div>";
-                $transmitResponse .= "<div class='validation-message'>Estimate Items:</div>";
+                $transmitResponse .= "<p>" . $UserName . ", your estimate request was successfully submitted.</p>";
+                $transmitResponse .= "<p>Estimate Items:</p>";
                 for ($i = 0; $i < count($products); $i++) {
                     if($_SESSION["itemSubtotal"][$i] > 0) {
                         $transmitResponse .= "" . $products[$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . "<br />";
                     }
                 }
-                $transmitResponse .= "<div class='validation-message'>Estimate Total: $" . $_SESSION["totalCost"] . ".</div>";
-                $transmitResponse .= "<div class='validation-message'>We will respond back within 2 business days!</div>";
-                $transmitResponse .= "<div class='validation-message'>Thank you for shopping with Tualatin Top Bakery!</div>";
+                $transmitResponse .= "<p>Estimate Total: $" . $_SESSION["totalCost"] . ".</p>";
+                $transmitResponse .= "<p>We will respond back within 2 business days!</p>";
+                $transmitResponse .= "<p>Thank you for shopping with Tualatin Top Bakery!</p>";
                 resetEstimateCart();
             } else if ($SuccessfulSubmission === false) {
-                $transmitResponse .= "<div class='validation-message'>Submission failed. Please try again.</div>";
+                $transmitResponse .= "<p>Submission failed. Please try again.</p>";
             }
         }
     }
@@ -413,31 +444,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userName"><strong>Name *</strong></label>
-                                    <input type="text" id="userName" name="userName" placeholder="Enter Full Name Here" required="required" v-model="userName"> 
+                                    <input type="text" id="userName" name="userName" placeholder="Enter Full Name Here"  v-model="userName"> 
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userEmail"><strong>Email *</strong></label>
-                                    <input type="email" id="userEmail" name="userEmail" placeholder="Enter Email Here" required="required" v-model="userEmail"> 
+                                    <input type="email" id="userEmail" name="userEmail" placeholder="Enter Email Here"  v-model="userEmail"> 
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userPhone"><strong>Phone (10 numbers, no dashes)*</strong></label>
-                                    <input type="text" id="userPhone" name="userPhone" placeholder="Phone Number Here" required="required" v-model="userPhone">    
+                                    <input type="text" id="userPhone" name="userPhone" placeholder="Phone Number Here"  v-model="userPhone">    
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userStreetAddress"><strong>Street Address *</strong></label>
-                                    <input id="userStreetAddress" name="userStreetAddress" placeholder="Street Address" required="required" v-model="userStreetAddress" />  
+                                    <input id="userStreetAddress" name="userStreetAddress" placeholder="Street Address"  v-model="userStreetAddress" />  
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userCity"><strong>City *</strong></label>
-                                    <input id="userCity" name="userCity" placeholder="City" required="required" v-model="userCity" />  
+                                    <input id="userCity" name="userCity" placeholder="City"  v-model="userCity" />  
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userState"><strong>State *</strong></label>
-                                    <input id="userState" name="userState" placeholder="State" required="required" v-model="userState" />  
+                                    <input id="userState" name="userState" placeholder="State"  v-model="userState" />  
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userZipCode"><strong>ZIP Code *</strong></label>
-                                    <input id="userZipCode" name="userZipCode" type="text" placeholder="ZIP Code" required="required" v-model="userZipCode" />  
+                                    <input id="userZipCode" name="userZipCode" type="text" placeholder="ZIP Code"  v-model="userZipCode" />  
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="additionalNotes"><strong>Additional Notes</strong></label>

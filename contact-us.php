@@ -40,10 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         /* More advanced e-mail validation */
         if (!filter_var($UserEmail, FILTER_VALIDATE_EMAIL)) {
             $PassedValidation = false;
-            $transmitResponse .= "<div class='validation-message'>Please enter a valid email.</div>";
+            $transmitResponse .= "<p>Please enter a valid email.</p>";
         }
         if ($PassedValidation === false) {
-            $transmitResponse .= "<div class='validation-message'>Sorry validation failed.  Please check all fields again.</div>";
+            $transmitResponse .= "<p>Sorry validation failed.  Please check all fields again.</p>";
         }
 
         if ($PassedValidation) {
@@ -57,9 +57,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             /* Send the e-mail. */
             $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: " . $UserSubject, $Body, "From: <$UserEmail>");
             if ($SuccessfulSubmission) {
-                $transmitResponse .= "<div class='validation-message'>" . $UserFirstName . ", your form was successfully submitted.  Thanks for contacting us!</div>";
+                $transmitResponse .= "<p>" . $UserFirstName . ", your form was successfully submitted.  Thanks for contacting us!</p>";
             } else if ($SuccessfulSubmission === false) {
-                $transmitResponse .= "<div class='validation-message'>Submission failed. Please try again.</div>";
+                $transmitResponse .= "<p>Submission failed. Please try again.</p>";
             }
         }
     }

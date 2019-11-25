@@ -26,10 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         /* More advanced e-mail validation */
         if (!filter_var($UserEmailSubscribe, FILTER_VALIDATE_EMAIL)) {
             $PassedValidation = false;
-            $transmitResponseSubscribe .= "<div class='validation-message'>Please enter a valid email.</div>";
+            $transmitResponseSubscribe .= "<p>Please enter a valid email.</p>";
         }
         if ($PassedValidation === false) {
-            $transmitResponseSubscribe .= "<div class='validation-message'>Sorry validation failed.  Please check all fields again.</div>";
+            $transmitResponseSubscribe .= "<p>Sorry validation failed.  Please check all fields again.</p>";
         }
 
         if ($PassedValidation) {
@@ -41,10 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             /* Send the e-mail. */
             $SuccessfulSubmission = mail($SendEmailToSubscribe, $UserSubjectSubscribe, $BodySubscribe, "From: <$UserEmailSubscribe>");
             if ($SuccessfulSubmission) {
-                $transmitResponseSubscribe .= "<div class='validation-message'>" . $UserNameSubscribe . ", your form was successfully submitted.  You are "
-                        . "now subscribed to our specials and updates!</div>";
+                $transmitResponseSubscribe .= "<p>" . $UserNameSubscribe . ", your form was successfully submitted.  You are "
+                        . "now subscribed to our specials and updates!</p>";
             } else if ($SuccessfulSubmission === false) {
-                $transmitResponseSubscribe .= "<div class='validation-message'>Submission failed. Please try again.</div>";
+                $transmitResponseSubscribe .= "<p>Submission failed. Please try again.</p>";
             }
         }
     }

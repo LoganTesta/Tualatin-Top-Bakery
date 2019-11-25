@@ -270,7 +270,6 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .item-container__background { height: 240px; }
 .no-padding-bottom { padding-bottom: 0; } /* Put on the last of a group of paragraphs where no padding bottom is desired. */
 .current-page { text-decoration: underline; }
-.validation-message { padding-bottom: 15px; font-size: inherit; font-weight: bold; }
 
 /*Index page*/
 .item-container__background.one { background: url('../images/bakery-shelf-cakes.jpg') 0% 0%/cover no-repeat;}
@@ -395,7 +394,8 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .contact-container { padding-top: 30px; }
 .contact-container__title { color: #64460e; }
 .contact-container__response { padding-top: 15px; padding-bottom: 15px; }
-.contact-container__response-message { font-size: 18px; font-weight: bold; }
+.contact-container__response-message { font-size: 16px; font-weight: bold; }
+.contact-container__response-message p { padding-bottom: 12px; font-size: inherit; font-weight: bold; }
 
 
 /* Clearing variable width columns */
@@ -515,6 +515,6 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     
     /*Contact Us*/
     .contact-us-container__background { height: 400px; }
-    .contact-container__response-message { font-size: 20px; }
+    .contact-container__response-message { font-size: 18px; }
   
 }
