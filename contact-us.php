@@ -24,26 +24,54 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         /* Validation Time */
         $PassedValidation = true;
+        
+           
+        $ValidUserFirstName = true;
         if (Trim($UserFirstName) === "") {
-            $PassedValidation = false;
+            $ValidUserFirstName = false;
         }
+        if ($ValidUserFirstName === false){
+            $PassedValidation = false;
+            $transmitResponse .= "<p>Please enter a first name.</p>";
+        }
+        
+        
+        $ValidUserLastName = true;
         if (Trim($UserLastName) === "") {
-            $PassedValidation = false;
+            $ValidUserLastName = false;
         }
+        if ($ValidUserLastName === false){
+            $PassedValidation = false;
+            $transmitResponse .= "<p>Please enter a last name.</p>";
+        }
+        
+        
+        $ValidUserEmail = true;
         if (Trim($UserEmail) === "") {
-            $PassedValidation = false;
+            $ValidUserEmail = false;
         }
-        if (Trim($UserComments) === "") {
-            $PassedValidation = false;
-        }
-
         /* More advanced e-mail validation */
         if (!filter_var($UserEmail, FILTER_VALIDATE_EMAIL)) {
+            $ValidUserEmail = false;
+        }
+        if ($ValidUserEmail === false){
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter a valid email.</p>";
         }
+        
+          
+        $ValidUserComments = true;
+        if (Trim($UserComments) === "") {
+            $ValidUserComments = false;
+        }
+        if ($ValidUserComments === false){
+            $PassedValidation = false;
+            $transmitResponse .= "<p>Please provide your message in the textarea.</p>";
+        }
+
+
         if ($PassedValidation === false) {
-            $transmitResponse .= "<p>Sorry validation failed.  Please check all fields again.</p>";
+            $transmitResponse .= "<p>Sorry, validation failed.  Please check all fields again.</p>";
         }
 
         if ($PassedValidation) {

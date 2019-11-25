@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
 
         if ($PassedValidation === false) {
-            $transmitResponseSubscribe .= "<p>Sorry validation failed.  Please check all fields again.</p>";
+            $transmitResponseSubscribe .= "<p>Sorry, validation failed.  Please check all fields again.</p>";
         }
 
         if ($PassedValidation) {
