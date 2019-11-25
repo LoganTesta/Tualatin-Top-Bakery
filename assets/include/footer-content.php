@@ -16,18 +16,33 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         /* Validation Time */
         $PassedValidation = true;
+        
+        
+        
+        $ValidUserNameSubscribe = true;
         if (Trim($UserNameSubscribe) === "") {
-            $PassedValidation = false;
+            $ValidUserNameSubscribe = false;
         }
+        if ($ValidUserNameSubscribe === false){
+            $PassedValidation = false;
+            $transmitResponseSubscribe .= "<p>Please enter a name.</p>";
+        }
+        
+        
+        $ValidUserEmailSubscribe = true;
         if (Trim($UserEmailSubscribe) === "") {
-            $PassedValidation = false;
+            $ValidUserEmailSubscribe = false;
         }
-
         /* More advanced e-mail validation */
         if (!filter_var($UserEmailSubscribe, FILTER_VALIDATE_EMAIL)) {
+            $ValidUserEmailSubscribe = false;
+        }
+        if ($ValidUserEmailSubscribe === false){
             $PassedValidation = false;
             $transmitResponseSubscribe .= "<p>Please enter a valid email.</p>";
         }
+        
+
         if ($PassedValidation === false) {
             $transmitResponseSubscribe .= "<p>Sorry validation failed.  Please check all fields again.</p>";
         }
@@ -50,8 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
-
-
 
 
 <footer>
@@ -123,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <button class="input-container__contact-button" id="subscribeButton" name="subscribeButton" type="submit" @click="setClickedSubmitTrue">Subscribe!</button>                          
                             </div>                              
                         </form>
-                        <?php if(!empty($transmitResponseSubscribe)) { echo "<div class=\"transmit-response-subscribe\">$transmitResponseSubscribe</div>"; } ?>
+                        <?php if(!empty($transmitResponseSubscribe)) { echo "<div class=\"contact-container__response-message\">$transmitResponseSubscribe</div>"; } ?>
                     </div>
                     <div slot="footer">
                         <span>Enjoy!</span>

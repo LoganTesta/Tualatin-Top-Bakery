@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
         if ($ValidUserName === false){
             $PassedValidation = false;
-            $transmitResponse .= "<p>Please enter a valid name.</p>";
+            $transmitResponse .= "<p>Please enter a name.</p>";
         }
         
         
@@ -430,7 +430,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div class="col-sma-5">
                         <div class="estimate-container" id="estimateContainer">
                             <h3 class="estimate-container__title">Request Estimate</h3>
-                            <form class="contact-container__form" id="estimateForm" v-on:submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                                        <form class="contact-container__form" id="estimateForm" v-on:submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                 <div class="contact-container__response">
                                     <p>We appreciate your business <strong>{{writeResponse}}</strong> at Tualatin Top Bakery! 
                                         We will look over your estimate, and respond 
@@ -444,31 +444,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userName"><strong>Name *</strong></label>
-                                    <input type="text" id="userName" name="userName" placeholder="Enter Full Name Here"  v-model="userName"> 
+                                    <input type="text" id="userName" name="userName" placeholder="Enter Full Name Here" required="required" v-model="userName"> 
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userEmail"><strong>Email *</strong></label>
-                                    <input type="email" id="userEmail" name="userEmail" placeholder="Enter Email Here"  v-model="userEmail"> 
+                                    <input type="email" id="userEmail" name="userEmail" placeholder="Enter Email Here" required="required" v-model="userEmail"> 
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userPhone"><strong>Phone (10 numbers, no dashes)*</strong></label>
-                                    <input type="text" id="userPhone" name="userPhone" placeholder="Phone Number Here"  v-model="userPhone">    
+                                    <input type="text" id="userPhone" name="userPhone" placeholder="Phone Number Here" required="required" v-model="userPhone">    
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userStreetAddress"><strong>Street Address *</strong></label>
-                                    <input id="userStreetAddress" name="userStreetAddress" placeholder="Street Address"  v-model="userStreetAddress" />  
+                                    <input id="userStreetAddress" name="userStreetAddress" placeholder="Street Address" required="required" v-model="userStreetAddress" />  
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userCity"><strong>City *</strong></label>
-                                    <input id="userCity" name="userCity" placeholder="City"  v-model="userCity" />  
+                                    <input id="userCity" name="userCity" placeholder="City" required="required" v-model="userCity" />  
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userState"><strong>State *</strong></label>
-                                    <input id="userState" name="userState" placeholder="State"  v-model="userState" />  
+                                    <input id="userState" name="userState" placeholder="State" required="required" v-model="userState" />  
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="userZipCode"><strong>ZIP Code *</strong></label>
-                                    <input id="userZipCode" name="userZipCode" type="text" placeholder="ZIP Code"  v-model="userZipCode" />  
+                                    <input id="userZipCode" name="userZipCode" type="text" placeholder="ZIP Code" required="required" v-model="userZipCode" />  
                                 </div>
                                 <div class="input-container">
                                     <label class="input-container__label" for="additionalNotes"><strong>Additional Notes</strong></label>
