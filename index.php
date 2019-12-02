@@ -34,7 +34,7 @@
                             <li class="index-content__baked-items-list__list-item">Scones</li>
                             <li class="index-content__baked-items-list__list-item">Muffins</li>
                         </ul>
-                        <p>Got a special order?  Need catering for an event?  Fill out our <a href="contact-us.php">contact form here</a> or give us a 
+                        <p>Got a special order?  Need catering for an event?  Fill out our <a href="/TualatinTopBakery/contact-us.php">contact form here</a> or give us a 
                             call at 503-224-4444.  Note: we need 3+ days advance notice for catering events to ensure customer satisfaction.</p>
                     </div>
                     <div class="col-sma-7">

@@ -30,7 +30,7 @@
                         <p>We are the best local bakery for all your baked goods.</p>
                         <p>We were founded in 2012 with a mission to provide delicious, healthy, affordable, and healthy products for our local customers!</p>
                         <p>All of our goods are baked in house with fresh ingredients.  We love working with local farmers and many of our ingredients
-                            are from local suppliers!  Please feel free to <a href="contact-us.php">contact our bakery if you have product to sell!</a>
+                            are from local suppliers!  Please feel free to <a href="/TualatinTopBakery/contact-us.php">contact our bakery if you have product to sell!</a>
                         <p>We are located in Tualatin, Oregon.</p>
                     </div>
                     <div class="col-sma-7">

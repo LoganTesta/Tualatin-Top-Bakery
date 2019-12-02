@@ -1,1 +1,1 @@
-<h1 class="main-title"><a class="main-title__title" href="index.php">Tualatin Top Bakery</a></h1>
+<h1 class="main-title"><a class="main-title__title" href="/TualatinTopBakery/index.php">Tualatin Top Bakery</a></h1>
