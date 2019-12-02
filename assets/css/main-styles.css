@@ -385,6 +385,12 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 /*Blog*/
 .blog-container__background { height: 300px; background: url('../images/pumpkin-pie.jpg') 0% 0%/cover no-repeat; }
 
+.blog-posts { padding-top: 20px; }
+
+.blog-post { padding-bottom: 40px; }
+.blog-post:last-of-type { padding-bottom: 0; }
+.blog__date { font-weight: bold; padding-bottom: 10px; }
+
 
 /*Contact*/
 .input-container { padding: 10px 10px 20px 10px; }

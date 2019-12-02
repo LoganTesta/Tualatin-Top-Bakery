@@ -35,6 +35,20 @@ require('./wp-blog-header.php');
                     <div class="col-sma-5">
                         <h3>Blog</h3>
                         <p>Read our comments and news from time to time.</p>
+                        <div class="blog-posts">
+                            <?php
+                            global $post;
+                            $args = array('posts_per_page' => 10);
+                            $postsToDisplay = get_posts($args);
+                            foreach ($postsToDisplay as $post) : setup_postdata($post);
+                                ?>                                                       
+                                <div class="blog-post">
+                                    <h4 class="blog-post__title"><?php the_title(); ?></h4>
+                                    <div class="blog__date"><?php the_date(); ?></div>
+                                    <div class="blog-post__content"><?php the_content(); ?></div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                     <div class="col-sma-7">
                         <div class="blog-image-container">
