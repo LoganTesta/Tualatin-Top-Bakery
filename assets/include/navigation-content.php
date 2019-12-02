@@ -8,6 +8,7 @@
                 <li class="nav__nav-item"><a class="nav__nav-link" href="recipes.php">Recipes</a></li>
                 <li class="nav__nav-item"><a class="nav__nav-link" href="news-and-events.php">News/Events</a></li>
                 <li class="nav__nav-item"><a class="nav__nav-link" href="careers.php">Careers</a></li>
+                <li class="nav__nav-item"><a class="nav__nav-link" href="blog.php">Blog</a></li>
                 <li class="nav__nav-item"><a class="nav__nav-link" href="contact-us.php">Contact Us</a></li>
             </li>
         </ul>
@@ -23,6 +24,7 @@
                 <li class="nav__nav-item"><a class="nav__nav-link" href="recipes.php">Recipes</a></li>
                 <li class="nav__nav-item"><a class="nav__nav-link" href="news-and-events.php">News/Events</a></li>
                 <li class="nav__nav-item"><a class="nav__nav-link" href="careers.php">Careers</a></li>
+                <li class="nav__nav-item"><a class="nav__nav-link" href="blog.php">Blog</a></li>
                 <li class="nav__nav-item"><a class="nav__nav-link" href="contact-us.php">Contact Us</a></li>
         </ul>
     </div>

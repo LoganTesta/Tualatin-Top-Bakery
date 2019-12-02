@@ -30,7 +30,7 @@
                         <p>We're sorry, that page doesn't seem to exist.  Please follow the links in the navbar to get to another page on our site!</p>
                     </div>
                     <div class="col-sma-7">
-                        <div class="about-us-image-container">
+                        <div class="404-image-container">
                             <div class="about-us-container__background"></div>
                         </div>
                     </div>
