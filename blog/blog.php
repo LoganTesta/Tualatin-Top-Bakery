@@ -32,7 +32,7 @@ require('./wp-blog-header.php');
 
             <div class="content">
                 <div class="content-row inner-wrapper">
-                    <div class="col-sma-5">
+                    <div class="col-sma-6">
                         <h3>Blog</h3>
                         <p>Read our comments and news from time to time.</p>
                         <div class="blog-posts">
@@ -45,12 +45,14 @@ require('./wp-blog-header.php');
                                 <div class="blog-post">
                                     <h4 class="blog-post__title"><?php the_title(); ?></h4>
                                     <div class="blog__date"><?php the_date(); ?></div>
+                                    <div class="blog__image"><?php the_post_thumbnail(); ?></div>
                                     <div class="blog-post__content"><?php the_content(); ?></div>
+                                    <div class="clear-both"></div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
-                    <div class="col-sma-7">
+                    <div class="col-sma-6">
                         <div class="blog-image-container">
                             <div class="blog-container__background"></div>
                         </div>
