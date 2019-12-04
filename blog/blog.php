@@ -78,7 +78,7 @@ require('./wp-blog-header.php');
             <div class="content">
                 <div class="content-row inner-wrapper">
                     <div class="col-sma-6">
-                        <div class="blog-container" id="blogContainer">
+                        <div class="blog-posts-container" id="blogPostsContainer">
                             <h3>Blog</h3>
                             <p>Read our comments and news from time to time.</p>
 
