@@ -8,7 +8,16 @@
  * Author URI: https://www.tualatintopbakery.com
  */
 
+
+
+
+//function toggle_settings(){
+//   wp_enqueue_script('toggle-blog-settings-javascript', plugin_dir_url(__FILE__) . 'toggle-blog-settings-javascript.js');
+//}
+//add_action('wp_enqueue_scripts', 'toggle_settings');
+
 ?>
+
 
 
 <script text="text/javascript">
@@ -19,7 +28,7 @@
             let blogPostsDiv = document.getElementById("blogPosts");
             let orderBlogsDiv = document.createElement('div');   
             orderBlogsDiv.innerHTML = "Show/hide blogs' body text";
-             orderBlogsDiv.className = "order-blogs";
+            orderBlogsDiv.className = "order-blogs";
         
         
             blogPostsContainer.insertBefore(orderBlogsDiv, blogPostsDiv);
