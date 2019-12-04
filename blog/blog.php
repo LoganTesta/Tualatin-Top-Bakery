@@ -78,24 +78,26 @@ require('./wp-blog-header.php');
             <div class="content">
                 <div class="content-row inner-wrapper">
                     <div class="col-sma-6">
-                        <h3>Blog</h3>
-                        <p>Read our comments and news from time to time.</p>
-                        <a class="nav__nav-link" href="../about.php">About US</a>
-                        <div class="blog-posts">
-                            <?php
-                            global $post;
-                            $args = array('posts_per_page' => 10);
-                            $postsToDisplay = get_posts($args);
-                            foreach ($postsToDisplay as $post) : setup_postdata($post);
-                                ?>                                                       
-                                <div class="blog-post">
-                                    <h4 class="blog-post__title"><?php the_title(); ?></h4>
-                                    <div class="blog__date"><?php the_date(); ?></div>
-                                    <div class="blog__image"><?php the_post_thumbnail(); ?></div>
-                                    <div class="blog-post__content"><?php the_content(); ?></div>
-                                    <div class="clear-both"></div>
-                                </div>
-                            <?php endforeach; ?>
+                        <div class="blog-container" id="blogContainer">
+                            <h3>Blog</h3>
+                            <p>Read our comments and news from time to time.</p>
+
+                            <div class="blog-posts" id="blogPosts">
+                                <?php
+                                global $post;
+                                $args = array('posts_per_page' => 10);
+                                $postsToDisplay = get_posts($args);
+                                foreach ($postsToDisplay as $post) : setup_postdata($post);
+                                    ?>                                                       
+                                    <div class="blog-post">
+                                        <h4 class="blog-post__title"><?php the_title(); ?></h4>
+                                        <div class="blog__date"><?php the_date(); ?></div>
+                                        <div class="blog__image"><?php the_post_thumbnail(); ?></div>
+                                        <div class="blog__content"><?php the_content(); ?></div>
+                                        <div class="clear-both"></div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
                     <div class="col-sma-6">

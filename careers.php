@@ -194,7 +194,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <?php include 'assets/include/message-content.php'; ?>
             <?php include 'assets/include/footer-content.php'; ?>
             <script type="text/javascript" src="assets/javascript/javascript-functions.js"></script>
-            <script type="text/javascript" src="assets/javascript/careers-form-validation.js"></script>
             <script type="text/javascript" src="assets/javascript/vue-functions.js"></script>
             <script>
                 document.addEventListener("DOMContentLoaded", function () {
