@@ -91,6 +91,29 @@ require('./wp-blog-header.php');
                                     ?>                                                       
                                     <div class="blog-post">
                                         <h4 class="blog-post__title"><?php the_title(); ?></h4>
+                                        <div class="blog__categories"><?php                                       
+
+                                        $categories = get_the_category();
+                                        $h = 0;
+                                        foreach ($categories as $category) {   
+                                            $h++;
+                                        }
+                                        $h = $h - 1;
+
+                                        $i = 0;                                
+                                        foreach ($categories as $category) {
+                                           $result = "";    
+                                           if($i < $h) {
+                                               $result .= $category->name . ", ";
+                                           } else {
+                                               $result .= $category->name;
+                                           }
+                                           echo $result;
+                                           $i++;
+                                        }
+
+                                         ?>
+                                        </div>
                                         <div class="blog__date"><?php the_date(); ?></div>
                                         <div class="blog__image"><?php the_post_thumbnail(); ?></div>
                                         <div class="blog__content"><?php the_content(); ?></div>

@@ -395,6 +395,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .blog-post:last-of-type { padding-bottom: 0; }
 
 .blog__title { }
+.blog__categories { padding-bottom: 10px; font-size: 18px; }
 .blog__date { width: 50%; float: left; font-weight: bold; padding-bottom: 10px; }
 .blog__image { width: 50%; float: right; height: auto; padding-left: 15px; padding-bottom: 5px; }
 .blog__image img { width: 100%; height: auto; } 
