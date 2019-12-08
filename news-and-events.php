@@ -45,7 +45,7 @@
                             <div class="event-container three">
                                 <div class="event-container__title">Learn How to Make Cherry Pie.</div>
                                 <div class="event-container__image"></div>
-                                <div class="event-container__date">June 10, 2019</div>
+                                <div class="event-container__date">June 8, 2019</div>
                                 <div class="event-container__body-text">Free ingredients and 1-hour lesson!</div>
                             </div>
                             <div class="event-container four">

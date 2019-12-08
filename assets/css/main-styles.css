@@ -274,6 +274,8 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 /*Index page*/
 .item-container__background.one { background: url('../images/bakery-shelf-cakes.jpg') 0% 0%/cover no-repeat;}
 
+.index-content__h3 { text-align: center; }
+
 .index-content__baked-items-list { margin-left: 30px; list-style-type: disc; }
 .index-content__baked-items-list__list-item { padding-bottom: 10px; }
 

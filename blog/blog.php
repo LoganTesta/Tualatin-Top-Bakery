@@ -85,7 +85,7 @@ require('./wp-blog-header.php');
                             <div class="blog-posts" id="blogPosts">
                                 <?php
                                 global $post;
-                                $args = array('posts_per_page' => 10);
+                                $args = array('posts_per_page' => 1000);
                                 $postsToDisplay = get_posts($args);
                                 foreach ($postsToDisplay as $post) : setup_postdata($post);
                                     ?>                                                       
@@ -112,7 +112,7 @@ require('./wp-blog-header.php');
                                            $i++;
                                         }
 
-                                         ?>
+                                        ?>
                                         </div>
                                         <div class="blog__date"><?php the_date(); ?></div>
                                         <div class="blog__image"><?php the_post_thumbnail(); ?></div>
