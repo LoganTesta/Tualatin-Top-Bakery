@@ -63,7 +63,7 @@ require('./blog/wp-blog-header.php');
                                 ?>      
                                 <div class="col-sma-4">
                                     <div class="blog-post">
-                                        <h4 class="blog-post__title"><?php the_title(); ?></h4>
+                                        <a href="blog/blog.php"><h4 class="blog-post__title"><?php the_title(); ?></h4></a>
                                         <div class="blog__categories"><?php
                                             $categories = get_the_category();
                                             $h = 0;
@@ -86,7 +86,7 @@ require('./blog/wp-blog-header.php');
                                             ?>
                                         </div>
                                         <div class="blog__date"><?php the_date(); ?></div>
-                                        <div class="blog__image"><?php the_post_thumbnail(); ?></div>
+                                        <div class="blog__image"><a href="blog/blog.php"><?php the_post_thumbnail(); ?></a></div>
                                         <div class="blog__content"><?php the_excerpt(); ?></div>
                                         <div class="clear-both"></div>
                                     </div>
