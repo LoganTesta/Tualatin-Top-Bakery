@@ -10,10 +10,6 @@ RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /TualatinTopBakery/index.php [L]
-#Remove trailing slash in URL
-RewriteRule ^(.*)/$ /$1 [L,R=301]
-#Add a trailing backslash for wp-admin files
-RewriteRule ^([_0-9a-zA-Z-]+/)?wp-admin$ $1wp-admin/ [R=301,L]
 </IfModule>
 
 # END WordPress
