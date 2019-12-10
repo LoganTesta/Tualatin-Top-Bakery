@@ -1,19 +1,39 @@
 
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Remove trailing slashes
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+Redirect 302 https://tualatintopbakery.com https://tualatintopbakery.com/home.php
+</IfModule>
+
+
+
+
+
 # BEGIN WordPress
 # The directives (lines) between `BEGIN WordPress` and `END WordPress` are
 # dynamically generated, and should only be modified via WordPress filters.
 # Any changes to the directives between these markers will be overwritten.
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /TualatinTopBakery/
+RewriteBase /
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /TualatinTopBakery/index.php [L]
-#Remove trailing slash in URL
-RewriteRule ^(.*)/$ /$1 [L,R=301]
-#Add a trailing backslash for wp-admin files
-RewriteRule ^([_0-9a-zA-Z-]+/)?wp-admin$ $1wp-admin/ [R=301,L]
+RewriteRule . /home.php [L]
 </IfModule>
 
-# END WordPress
+
+
+
+
+
+
+
+
+

@@ -86,7 +86,7 @@ require('./wp-blog-header.php');
                                             ?>
                                         </div>
                                         <div class="blog__date"><?php the_date(); ?></div>
-                                        <div class="blog__image"><a href="blog/blog.php"><?php the_post_thumbnail(); ?></a></div>
+                                        <div class="blog__image"><a href="blog.php"><?php the_post_thumbnail(); ?></a></div>
                                         <div class="blog__content"><?php the_excerpt(); ?></div>
                                         <div class="clear-both"></div>
                                     </div>
