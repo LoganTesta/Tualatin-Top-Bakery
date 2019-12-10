@@ -1,3 +1,10 @@
+<?php
+declare(strict_types=1);
+define('WP_USE_THEMES', false);
+require('./wp-blog-header.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +23,7 @@
                 <div class="inner-wrapper">
                     <?php include 'assets/include/logo.php'; ?>
                     <?php include 'assets/include/header-content.php'; ?>
-                    <h2 class="header__subtitle">Recipes</h2>
+                    <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(37)->post_title); ?></h2>
                 </div>
             </header>
             <?php include 'assets/include/navigation-content.php'; ?>
@@ -24,8 +31,12 @@
                 <div class="content-row inner-wrapper">
                     <div class="col-sma-12">
                         <div class="recipies-header">
-                            <h3>Our Recipes</h3>
-                            <p>Here are a few of our favorite house recipes for you to try and share.</p>
+                            <?php
+                            $id = 37;
+                            $page = get_post($id);
+                            $content = "&nbsp;" . apply_filters('the_content', $page->post_content);
+                            echo $content;
+                            ?>
                         </div>
                         <div class="recipes content-row">
                             <div class="col-sma-6 col-lar-4">

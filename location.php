@@ -1,3 +1,10 @@
+<?php
+declare(strict_types=1);
+define('WP_USE_THEMES', false);
+require('./wp-blog-header.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,12 +23,11 @@
                 <div class="inner-wrapper">
                     <?php include 'assets/include/logo.php'; ?>
                     <?php include 'assets/include/header-content.php'; ?>
-                    <h2 class="header__subtitle">Location/Hours</h2>
+                    <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(33)->post_title); ?></h2>
                 </div>
             </header>
 
             <?php include 'assets/include/navigation-content.php'; ?>
-
 
             <div class="content">
                 <div class="content-row inner-wrapper">
@@ -34,12 +40,12 @@
                     </div>
          
                     <div class="col-sma-5">
-                        <h3>Hours</h3>
-                        <p>We are the best local bakery for all your baked goods.</p>
-
-                        <p>Monday-Friday 7:00 AM-8:00 PM</p>
-                        <p>Saturday 8:00 AM-8:00 PM</p>
-                        <p>Sunday 8:00 AM-5:00 PM</p>
+                        <?php
+                        $id = 33;
+                        $page = get_post($id);
+                        $content = "&nbsp;" . apply_filters('the_content', $page->post_content);
+                        echo $content;
+                        ?>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,10 @@
+<?php
+declare(strict_types=1);
+define('WP_USE_THEMES', false);
+require('./wp-blog-header.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,18 +23,21 @@
                 <div class="inner-wrapper">
                     <?php include 'assets/include/logo.php'; ?>
                     <?php include 'assets/include/header-content.php'; ?>
-                    <h2 class="header__subtitle">News and Events</h2>
+                    <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(39)->post_title); ?></h2>
                 </div>
             </header>
 
             <?php include 'assets/include/navigation-content.php'; ?>
 
-
             <div class="content">
                 <div class="content-row inner-wrapper">
                     <div class="col-sma-5">
-                        <h3>News and Events</h3>
-                        <p>We are the best local bakery for all your baked goods.</p>
+                        <?php
+                        $id = 39;
+                        $page = get_post($id);
+                        $content = "&nbsp;" . apply_filters('the_content', $page->post_content);
+                        echo $content;
+                        ?>
                         <div class="news-events-items">
                             <div class="event-container one">
                                 <div class="event-container__title">3 Hour Discount Buffet</div>
