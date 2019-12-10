@@ -15,3 +15,7 @@ define( 'WP_USE_THEMES', true );
 
 /** Loads the WordPress Environment and Template */
 require( dirname( __FILE__ ) . '/wp-blog-header.php' );
+
+//Redirect to the home page.
+header("Location: https://www.tualatintopbakery.com/home.php");
+exit();
