@@ -1,3 +1,10 @@
+<?php
+declare(strict_types=1);
+define('WP_USE_THEMES', false);
+require('./wp-blog-header.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,18 +23,21 @@
                 <div class="inner-wrapper">
                     <?php include 'assets/include/logo.php'; ?>
                     <?php include 'assets/include/header-content.php'; ?>
-                    <h2 class="header__subtitle">404 Error</h2>
+                    <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(47)->post_title); ?></h2>
                 </div>
             </header>
 
             <?php include 'assets/include/navigation-content.php'; ?>
 
-
             <div class="content">
                 <div class="content-row inner-wrapper">
                     <div class="col-sma-5">
-                        <h3>404</h3>
-                        <p>We're sorry, that page doesn't seem to exist.  Please follow the links in the navbar to get to another page on our site!</p>
+                        <?php
+                        $id = 47;
+                        $page = get_post($id);
+                        $content = "&nbsp;" . apply_filters('the_content', $page->post_content);
+                        echo $content;
+                        ?>
                     </div>
                     <div class="col-sma-7">
                         <div class="404-image-container">

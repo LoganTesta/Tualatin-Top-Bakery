@@ -1,5 +1,8 @@
 <?php declare(strict_types = 1);
 
+define('WP_USE_THEMES', false);
+require('./wp-blog-header.php');
+
 $transmitResponse = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -117,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <div class="inner-wrapper">
                     <?php include 'assets/include/logo.php'; ?>
                     <?php include 'assets/include/header-content.php'; ?>
-                    <h2 class="header__subtitle">Careers</h2>
+                    <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(41)->post_title); ?></h2>
                 </div>
             </header>
 
@@ -126,10 +129,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="content">
                 <div class="content-row inner-wrapper">
                     <div class="col-sma-5">
-                        <h3>Bake with Us!</h3>
-                        <p>Want to come work for the best local bakery for all your baked goods?</p>
-                        <p>We are looking for several part and full time store associates.</p>
-                        <p><strong>To apply: either fill out the application form on this page, or come on in and pick up an application!</strong></p>
+                        <?php
+                        $id = 41;
+                        $page = get_post($id);
+                        $content = "&nbsp;" . apply_filters('the_content', $page->post_content);
+                        echo $content;
+                        ?>
                         <div class="careers-container">
                             <div class="careers-container__position">
                                 <div class="careers-container__posititon__title">Cashier/Store Supply Associate</div>

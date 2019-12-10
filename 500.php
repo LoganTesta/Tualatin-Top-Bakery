@@ -1,3 +1,11 @@
+<?php
+declare(strict_types=1);
+define('WP_USE_THEMES', false);
+require('./wp-blog-header.php');
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,19 +24,21 @@
                 <div class="inner-wrapper">
                     <?php include 'assets/include/logo.php'; ?>
                     <?php include 'assets/include/header-content.php'; ?>
-                    <h2 class="header__subtitle">500 Server Error</h2>
+                    <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(51)->post_title); ?></h2>
                 </div>
             </header>
 
             <?php include 'assets/include/navigation-content.php'; ?>
 
-
             <div class="content">
                 <div class="content-row inner-wrapper">
                     <div class="col-sma-5">
-                        <h3>500 Server Error</h3>
-                        <p>We're sorry, there seems to be an internal server error.  
-                            Please follow the links in the navbar to get to another page on our site!</p>
+                        <?php
+                        $id = 51;
+                        $page = get_post($id);
+                        $content = "&nbsp;" . apply_filters('the_content', $page->post_content);
+                        echo $content;
+                        ?>
                     </div>
                     <div class="col-sma-7">
                         <div class="500-image-container">

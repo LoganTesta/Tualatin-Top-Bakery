@@ -1,5 +1,8 @@
 <?php declare(strict_types = 1);
 
+define('WP_USE_THEMES', false);
+require('./wp-blog-header.php');
+
 $transmitResponse = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -95,7 +98,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,15 +116,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <div class="inner-wrapper">
                     <?php include 'assets/include/logo.php'; ?>
                     <?php include 'assets/include/header-content.php'; ?>
-                    <h2 class="header__subtitle">Contact Us</h2>
+                    <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(45)->post_title); ?></h2>
                 </div>
             </header>
             <?php include 'assets/include/navigation-content.php'; ?>
             <div class="content">
                 <div class="content-row inner-wrapper">
                     <div class="col-sma-5">
-                        <h3>Contact Us</h3>
-                        <p>We are the best local bakery for all your baked goods.</p>
+                        <?php
+                        $id = 45;
+                        $page = get_post($id);
+                        $content = "&nbsp;" . apply_filters('the_content', $page->post_content);
+                        echo $content;
+                        ?>
                         <div class="contact-container" id="contactContainer">
                             <h4 class="contact-container__title">Write Us Here</h4>
                             <form class="contact-container__form" id="contactOurCoffeeShop" v-on:submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">

@@ -1,5 +1,6 @@
 <?php declare(strict_types = 1);
 session_start();
+
 define('WP_USE_THEMES', false);
 require('./wp-blog-header.php');
 

@@ -23,7 +23,7 @@ require('./wp-blog-header.php');
                 <div class="inner-wrapper">
                     <?php include 'assets/include/logo.php'; ?>
                     <?php include 'assets/include/header-content.php'; ?>
-                    <h2 class="header__subtitle">Blog</h2>
+                    <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(43)->post_title); ?></h2>
                 </div>
             </header>
 
@@ -33,8 +33,12 @@ require('./wp-blog-header.php');
                 <div class="content-row inner-wrapper">
                     <div class="col-sma-6">
                         <div class="blog-posts-container" id="blogPostsContainer">
-                            <h3>Blog</h3>
-                            <p>Read our comments and news from time to time.</p>
+                            <?php
+                            $id = 43;
+                            $page = get_post($id);
+                            $content = "&nbsp;" . apply_filters('the_content', $page->post_content);
+                            echo $content;
+                            ?>
 
                             <div class="blog-posts" id="blogPosts">
                                 <?php
