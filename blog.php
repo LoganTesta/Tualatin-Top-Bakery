@@ -14,66 +14,20 @@ require('./wp-blog-header.php');
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="bakery, bread, whole wheat, cookies, scones, pastries, cupcakes, cakes, pies, Oregon" />
         <title>Blog | Tualatin Top Bakery</title>	   
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <![endif]-->
-        <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet"> 
-        <link href="https://fonts.googleapis.com/css?family=Noto+Serif&display=swap" rel="stylesheet"> 
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet"> 
-        <link rel="stylesheet" type="text/css" href="../assets/css/main-styles.css?mod=12022019V3" />
-        <link rel="stylesheet" type="text/css" href="assets/css/print-styles.css?mod=07052019" media="print" />
-        <script src="https://cdn.jsdelivr.net/npm/vue"></script>  <!--Vuejs -->
-        <script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script> <!-- Vue.js router capabilities. -->
+        <?php include 'assets/include/document-head-components.php'; ?>
     </head>
 
     <body class="page-blog">
         <div class="body-wrapper">
             <header>
                 <div class="inner-wrapper">
-                    <div class="inner-wrapper">
-                        <div class="logo">
-                            <a href="../index.php"><img src="../assets/images/logo.png" alt="Tualatin Top Bakery Logo."></a>
-                        </div>
-                    </div>
-                    <h1 class="main-title"><a class="main-title__title" href="../index.php">Tualatin Top Bakery</a></h1>
+                    <?php include 'assets/include/logo.php'; ?>
+                    <?php include 'assets/include/header-content.php'; ?>
                     <h2 class="header__subtitle">Blog</h2>
                 </div>
             </header>
 
-            <nav class="nav desktop-nav" id="desktop-nav">
-                <div class="inner-wrapper">
-                    <ul>
-                        <li>
-                        <li class="nav__nav-item"><a class="nav__nav-link" href="../about.php">About</a></li>
-                        <li class="nav__nav-item"><a class="nav__nav-link" href="../location.php">Location</a></li>
-                        <li class="nav__nav-item"><a class="nav__nav-link" href="../products.php">Products</a></li>
-                        <li class="nav__nav-item"><a class="nav__nav-link" href="../recipes.php">Recipes</a></li>
-                        <li class="nav__nav-item"><a class="nav__nav-link" href="../news-and-events.php">News/Events</a></li>
-                        <li class="nav__nav-item"><a class="nav__nav-link" href="../careers.php">Careers</a></li>
-                        <li class="nav__nav-item"><a class="nav__nav-link" href="../blog/blog.php">Blog</a></li>
-                        <li class="nav__nav-item"><a class="nav__nav-link" href="../contact-us.php">Contact Us</a></li>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <nav class="nav mobile-nav">
-                <div id="dropdownButton"></div>
-                <div id="dropdownContent">
-                    <ul>
-                        <li class="nav__nav-item"><a class="nav__nav-link" href="../about.php">About</a></li>
-                        <li class="nav__nav-item"><a class="nav__nav-link" href="../location.php">Location</a></li>
-                        <li class="nav__nav-item"><a class="nav__nav-link" href="../products.php">Products</a></li>
-                        <li class="nav__nav-item"><a class="nav__nav-link" href="../recipes.php">Recipes</a></li>
-                        <li class="nav__nav-item"><a class="nav__nav-link" href="../news-and-events.php">News/Events</a></li>
-                        <li class="nav__nav-item"><a class="nav__nav-link" href="../careers.php">Careers</a></li>
-                        <li class="nav__nav-item"><a class="nav__nav-link" href="../blog/blog.php">Blog</a></li>
-                        <li class="nav__nav-item"><a class="nav__nav-link" href="../contact-us.php">Contact Us</a></li>
-                    </ul>
-                </div>
-            </nav>
+            <?php include 'assets/include/navigation-content.php'; ?>
 
             <div class="content">
                 <div class="content-row inner-wrapper">
@@ -130,10 +84,10 @@ require('./wp-blog-header.php');
                     </div>
                 </div>
             </div>
-            <?php include '../assets/include/message-content.php'; ?>
-            <?php include '../assets/include/footer-content.php'; ?>
-            <script type="text/javascript" src="../assets/javascript/javascript-functions.js"></script>
-            <script type="text/javascript" src="../assets/javascript/vue-functions.js"></script>
+            <?php include 'assets/include/message-content.php'; ?>
+            <?php include 'assets/include/footer-content.php'; ?>
+            <script type="text/javascript" src="assets/javascript/javascript-functions.js"></script>
+            <script type="text/javascript" src="assets/javascript/vue-functions.js"></script>
             <script>
                 document.addEventListener("DOMContentLoaded", function () {
                     setCurrentPage(6);
