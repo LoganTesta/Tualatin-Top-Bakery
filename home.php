@@ -63,7 +63,7 @@ require('./wp-blog-header.php');
                                 ?>      
                                 <div class="col-sma-4">
                                     <div class="blog-post">
-                                        <a href="blog/blog.php"><h4 class="blog-post__title"><?php the_title(); ?></h4></a>
+                                        <a href="blog.php"><h4 class="blog-post__title"><?php the_title(); ?></h4></a>
                                         <div class="blog__categories"><?php
                                             $categories = get_the_category();
                                             $h = 0;
