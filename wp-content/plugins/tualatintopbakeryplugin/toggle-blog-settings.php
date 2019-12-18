@@ -10,38 +10,7 @@
 
 
 
-
-//function toggle_settings(){
-//   wp_enqueue_script('toggle-blog-settings-javascript', plugin_dir_url(__FILE__) . 'toggle-blog-settings-javascript.js');
-//}
-//add_action('wp_enqueue_scripts', 'toggle_settings');
-
-?>
-
-
-
-<script text="text/javascript">
+add_action('wp_enqueue_scripts', function(){
+   wp_enqueue_script('toggle-blog-settings-javascript', plugin_dir_url(__FILE__) . 'toggle-blog-settings-javascript.js');
     
-    window.addEventListener("load", function(){
-        if(document.getElementsByTagName('body')[0].className === "page-blog"){
-            let blogPostsContainer = document.getElementById("blogPostsContainer");
-            let blogPostsDiv = document.getElementById("blogPosts");
-            let orderBlogsDiv = document.createElement('div');   
-            orderBlogsDiv.innerHTML = "Show/hide blogs' body text";
-            orderBlogsDiv.className = "order-blogs";
-        
-        
-            blogPostsContainer.insertBefore(orderBlogsDiv, blogPostsDiv);
-        
-            document.getElementsByClassName("order-blogs")[0].className +=" show";
-        
-             document.getElementsByClassName("order-blogs")[0].addEventListener("click", function () {
-                let blogContentList = document.getElementsByClassName("blog__content");
-                for (let i = 0; i < blogContentList.length; i++) {
-                    blogContentList[i].classList.toggle("hide");
-                }
-            }, "false");
-        }
-    }, "false");
-
-</script>
+});

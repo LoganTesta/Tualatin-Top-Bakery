@@ -1,7 +1,5 @@
 
 
-
-
 window.addEventListener("load", function () {
     if (document.getElementsByTagName('body')[0].className === "page-blog") {
         let blogPostsContainer = document.getElementById("blogPostsContainer");
