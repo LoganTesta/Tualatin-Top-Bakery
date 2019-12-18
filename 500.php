@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 define('WP_USE_THEMES', false);
-require('./wp-blog-header.php');
+require('./wordpress/wp-blog-header.php');
 ?>
 
 

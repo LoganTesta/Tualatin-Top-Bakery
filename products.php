@@ -2,7 +2,7 @@
 session_start();
 
 define('WP_USE_THEMES', false);
-require('./wp-load.php');
+require('./wordpress/wp-load.php');
 
 
 //Estimate cart code.
