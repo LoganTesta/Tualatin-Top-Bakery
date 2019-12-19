@@ -13,9 +13,9 @@ require('./wordpress/wp-blog-header.php');
         <meta name="description" content="Delicius baked goods featured including bread, cookies, pastries, pies, cakes, and more." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="bakery, bread, whole wheat, cookies, scones, pastries, cupcakes, cakes, pies, Oregon" />
-        <title>Blog | Tualatin Top Bakery</title>	   
-        <?php include 'assets/include/document-head-components.php'; ?>
+        <title>Blog | Tualatin Top Bakery</title>	
         <?php wp_head(); ?><!-- Allow WordPress plugins to use CSS and JavaScript. -->
+        <?php include 'assets/include/document-head-components.php'; ?>
     </head>
 
     <body class="page-blog">
