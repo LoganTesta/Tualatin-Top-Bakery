@@ -15,6 +15,7 @@ require('./wordpress/wp-blog-header.php');
         <meta name="keywords" content="bakery, bread, whole wheat, cookies, scones, pastries, cupcakes, cakes, pies, Oregon" />
         <title>Blog | Tualatin Top Bakery</title>	   
         <?php include 'assets/include/document-head-components.php'; ?>
+        <?php wp_head(); ?><!-- Allow WordPress plugins to use CSS and JavaScript. -->
     </head>
 
     <body class="page-blog">
@@ -98,6 +99,7 @@ require('./wordpress/wp-blog-header.php');
                 });
             </script>
         </div>
+        <?php wp_footer(); ?><!-- Allow WordPress plugins to use CSS and JavaScript. -->
     </body>
 
 </html>
