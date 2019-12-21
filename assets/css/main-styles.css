@@ -381,7 +381,11 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .careers-container { padding-top: 30px; }
 .careers-container__position { padding: 15px; margin-bottom: 40px; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); }
 .careers-container__posititon__title { padding-bottom: 15px; font-size: 20px; font-weight: bold; color: #64460e; text-align: center; }
+.careers-container__position__image { float: right; width: 200px; height: 150px; margin-left: 8px; margin-bottom: 8px; }
 .careers-container__background { height: 300px; background: url('../images/bakery-shelf.jpg') 0% 0%/cover no-repeat; }
+
+.careers-container__position.zero .careers-container__position__image { background: url('../images/bakery-shelf-cakes.jpg') 0% 0%/cover no-repeat; }
+.careers-container__position.one .careers-container__position__image { background: url('../images/dough-roller-close-up.jpg') 0% 0%/cover no-repeat; }
 
 
 /*Blog*/

@@ -136,17 +136,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         echo $content;
                         ?>
                         <div class="careers-container">
-                            <div class="careers-container__position">
+                            <div class="careers-container__position zero">
                                 <div class="careers-container__posititon__title">Cashier/Store Supply Associate</div>
+                                <div class="careers-container__position__image"></div>
                                 <p>Duties range from cashiering, taking custom orders, and stocking to baking both in batches
                                     and from scratch.  Make sure every customer is satisfied and eager to come back again soon!</p>
                                 <p>Bonus points for baking enthusiasm, skills, and previous experience working in a bakery.</p>
+                                <div class="clear-both"></div>
                             </div>
-                            <div class="careers-container__position">
+                            <div class="careers-container__position one">
                                 <div class="careers-container__posititon__title">Baker</div>
+                                <div class="careers-container__position__image"></div>
                                 <p>Love baking, especially from scratch?  Come help us make top-notch health and tasty baked goods.  We 
                                     produce everything from cookies, bread, cakes, pies, pastries, and more!  Opportunity to customize recipes too.</p>
                                 <p>Bonus points for baking enthusiasm, skills, and previous experience working in a bakery.</p>
+                                <div class="clear-both"></div>
                             </div>
                         </div>
                     </div>
