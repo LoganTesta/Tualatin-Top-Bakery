@@ -374,7 +374,13 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 
 .event-container { padding: 15px; margin-bottom: 40px; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); }
 .event-container__title { padding-bottom: 15px; font-size: 20px; font-weight: bold; text-align: center; color: #64460e; }
+.event-container__image { float: right; width: 200px; height: 150px; margin-left: 8px; margin-bottom: 8px; }
 .event-container__date { padding-bottom: 8px; font-weight: bold; text-align: center; color: #64460e; }
+
+.event-container.zero .event-container__image { background: url('../images/bakery-shelf-cakes.jpg') 0% 0%/cover no-repeat; }
+.event-container.one .event-container__image { background: url('../images/recipes/chocolate-cupcakes.jpg') 0% 0%/cover no-repeat; }
+.event-container.two .event-container__image { background: url('../images/products/cherry-pie.jpg') 0% 0%/cover no-repeat; }
+.event-container.three .event-container__image { background: url('../images/bakery-buffet.jpg') 0% 0%/cover no-repeat; }
 
 
 /*Careers*/
