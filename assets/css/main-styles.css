@@ -293,11 +293,11 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 /*Products*/
 .products-header { padding-bottom: 20px; }
 .product-container { margin-bottom: 50px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); border-radius: 20px; }
-.product__title { padding: 15px; font-size: 24px; border-radius: 20px 20px 0 0; font-weight: bold; text-align: center; background: linear-gradient(#64460e 20%, #ac8949 100%); color: #ffffff; }
+.product__title { padding: 8px; font-size: 19px; border-radius: 20px 20px 0 0; font-weight: bold; text-align: center; background: linear-gradient(#64460e 20%, #ac8949 100%); color: #ffffff; }
 .product__price { padding: 15px 20px; background-color: #eeeeee; }
-.product__description { padding: 15px 20px; background-color: #fbe3b7; border-radius: 0 0 20px 20px; }
+.product__description { padding: 5px 8px; background-color: #fbe3b7; border-radius: 0 0 20px 20px; }
 .product__background-container { overflow: hidden; }
-.product__background { height: 240px; transition: transform 0.6s ease-in; cursor: pointer; }
+.product__background { height: 100px; transition: transform 0.6s ease-in; cursor: pointer; }
 .product__background:hover { transform: scale(1.12); transition: transform 0.6s ease-in; }
 
 .product-container.zero .product__background { background: url('../images/products/whole-wheat-bread.jpg') 0% 0%/cover no-repeat; }
@@ -437,21 +437,28 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 
 
 /* Clearing variable width columns */
+@media only screen and (max-width: 699px) {
+    .products > div:nth-child(2n+1){ content: ""; display: block; clear: both; }
+}
+
 @media only screen and (min-width: 700px) and (max-width: 1199px){   
     .recipes > div:nth-child(2n+1){ content: ""; display: block; clear: both; }
 }
-@media only screen and (min-width: 700px) {
-    .products > div:nth-child(odd){ content: ""; display: block; clear: both; }
+@media only screen and (min-width: 700px) and (max-width: 1199px){
+    .products > div:nth-child(3n+1){ content: ""; display: block; clear: both; }
 }
 
 @media only screen and (min-width: 1200px){   
+    
+     .products > div:nth-child(4n+1){ content: ""; display: block; clear: both; }
+     
      .recipes > div:nth-child(3n+1){ content: ""; display: block; clear: both; }   
 }
 
 
 
 @media only screen and (min-width: 500px){   
-    .product__background { height: 360px; }
+    .product__background { height: 150px; }
 
     .recipe__background { height: 360px; } 
 }
@@ -474,7 +481,9 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     
     /*Products*/
     .products-header { padding-bottom: 10px; }
-    .product__background { height: 280px; }
+    .product__title { padding: 15px; font-size: 24px; }
+    .product__background { height: 170px; }
+    .product__description { padding: 15px 20px; }
     
     .product-container.four, .product-container.five { margin-bottom: 0; }    
     
@@ -525,7 +534,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     /*Products*/
     .products-header { padding-bottom: 0px; }
     .product-container { margin-bottom: 60px; }
-    .product__background { height: 360px; }
+    .product__background { height: 200px; }
     
     .estimate-cart__title { text-align: center; }
     .estimate-table { }

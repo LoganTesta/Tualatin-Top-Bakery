@@ -276,7 +276,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             ?>
                         </div>
                         <div class="products content-row">
-                            <div class="col-sma-6">
+                            <div class="col-vsm-6 col-sma-4 col-lar-3">
                                 <div class="product-container zero">
                                     <div class="product__title"><?php echo $WholeWheatLoaf->get_name(); ?></div>
                                     <div class="product__background-container">
@@ -288,7 +288,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             bread, baked fresh daily.  One of our staples and customer favorites!</p></div>
                                 </div>
                             </div>
-                            <div class="col-sma-6">
+                            <div class="col-vsm-6 col-sma-4 col-lar-3">
                                 <div class="product-container one">
                                     <div class="product__title"><?php echo $WhiteBreadLoaf->get_name(); ?></div>
                                     <div class="product__background-container">
@@ -300,7 +300,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             fresh daily.  One of our staples and customer favorites!</p></div>
                                 </div>
                             </div>
-                            <div class="col-sma-6">
+                            <div class="col-vsm-6 col-sma-4 col-lar-3">
                                 <div class="product-container two">
                                     <div class="product__title"><?php echo $BlueberryScone->get_name(); ?></div>
                                     <div class="product__background-container">
@@ -313,7 +313,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             and many more, so come on in and see what we're baking this week!</p></div>
                                 </div>
                             </div>
-                            <div class="col-sma-6">
+                            <div class="col-vsm-6 col-sma-4 col-lar-3">
                                 <div class="product-container three">
                                     <div class="product__title"><?php echo $ChocolateCake->get_name(); ?></div>
                                     <div class="product__background-container">
@@ -325,7 +325,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             layer of house-made chocolate fudge on top!  Yum!</p></div>
                                 </div>
                             </div>
-                            <div class="col-sma-6">
+                            <div class="col-vsm-6 col-sma-4 col-lar-3">
                                 <div class="product-container four">
                                     <div class="product__title"><?php echo $CherryPie->get_name(); ?> (and assorted pies)</div>
                                     <div class="product__background-container">
@@ -338,7 +338,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             on the season include blueberry, pumpkin, banana cream pie, chocolate cream pie, and more!</p></div>
                                 </div>
                             </div>
-                            <div class="col-sma-6">
+                            <div class="col-vsm-6 col-sma-4 col-lar-3">
                                 <div class="product-container five">
                                     <div class="product__title"><?php echo $BlueberryMuffin->get_name(); ?></div>
                                     <div class="product__background-container">
