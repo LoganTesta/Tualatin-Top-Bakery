@@ -163,9 +163,12 @@ input:focus, textarea:focus, select:focus { box-shadow: 0px 0px 3px 3px rgba(0, 
 
 /*
 Monochromatic color scheme.
-1:     #ac8949   mid light-brown   (172, 137, 73)
-2:     #64460e;  mid dark brown    (100, 74, 14)
-3:     #fbe3b7;  light brown       (251, 227, 183)
+1:     #ac8949   mid light-brown    (172, 137, 73)
+2:     #64460e   mid dark brown     (100, 74, 14)
+3:     #fbe3b7   light brown        (251, 227, 183)
+
+4:     #d0b177   mid-light brown    (208, 177, 119)
+5:     #fff2d9   very light brown   (255, 242, 217)
 */
 
 html, body, div, span, p, img, a, br, ul, li, ol, header, nav, footer, table, button, label, input, textarea, tr, td, th, h1, h2, h3, h4, h5, h6 {
@@ -294,7 +297,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .products-header { padding-bottom: 20px; }
 .product-container { margin-bottom: 50px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); border-radius: 20px; }
 .product__title { padding: 8px; font-size: 19px; border-radius: 20px 20px 0 0; font-weight: bold; text-align: center; background: linear-gradient(#64460e 20%, #ac8949 100%); color: #ffffff; }
-.product__price-and-request { padding: 5px 10px; background-color: #eeeeee; }
+.product__price-and-request { padding: 5px 5px; background-color: #eeeeee; }
 .product__description { padding: 5px 8px; background-color: #fbe3b7; border-radius: 0 0 20px 20px; }
 .product__background-container { overflow: hidden; }
 .product__background { height: 100px; transition: transform 0.6s ease-in; cursor: pointer; }
@@ -303,7 +306,8 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .product__price { padding: 0 0; text-align: center; }
 .product__quantity { padding-left: 4px; font-weight: bold; }
 .product__request-item { padding: 10px 0; }
-.product__request-item__add {  width: 103px; padding: 10px; border-radius: 5px; text-align: center; font-weight: bold; background-color: #008800; color: #ffffff; cursor: pointer; }
+.product__request-item__add { width: 107px; padding: 10px; border: 2px solid #64460e; margin-left: auto; margin-right: auto; border-radius: 5px; text-align: center; font-weight: bold; background-color: #008800; color: #f9f9f9; cursor: pointer; transition: 0.4s ease-in; }
+.product__request-item__add:hover { background-color: #22aa22; color: #ffffff; border: 2px solid #64460e; transition: 0.4s ease-in; }
 
 .product-container.zero .product__background { background: url('../images/products/whole-wheat-bread.jpg') 0% 0%/cover no-repeat; }
 .product-container.one .product__background { background: url('../images/products/white-bread.jpg') 0% 0%/cover no-repeat; }
@@ -486,12 +490,13 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     /*Products*/
     .products-header { padding-bottom: 10px; }
     .product__title { padding: 15px; font-size: 24px; }
-     .product__price-and-request { padding: 15px 20px; background-color: #eeeeee; }
+    .product__price-and-request { padding: 15px 15px; background-color: #eeeeee; }
     .product__background { height: 170px; }
     .product__description { padding: 15px 20px; }
     
-    .product__price { padding: 10px 0; float: left; text-align: left; }
-    .product__request-item { float: right; padding: 0px 15px; }
+    .product__price { padding: 10px 15px 10px 0; float: left; text-align: left; }
+    .product__request-item { float: right; padding: 0 0; }
+    .product__request-item__add { margin-left: 0; margin-right: 0; }
     
     .product-container.four, .product-container.five { margin-bottom: 0; }    
     
