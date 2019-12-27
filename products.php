@@ -258,7 +258,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <div class="inner-wrapper">
                     <?php include 'assets/include/logo.php'; ?>
                     <?php include 'assets/include/header-content.php'; ?>
-                    <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(31)->post_title); ?></h2>
+                    <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(35)->post_title); ?></h2>
                 </div>
             </header>
 
