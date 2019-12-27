@@ -17,6 +17,11 @@ window.addEventListener("load", function () {
             for (let i = 0; i < blogContentList.length; i++) {
                 blogContentList[i].classList.toggle("hide");
             }
+            
+            let blogImageList = document.getElementsByClassName("blog__image");
+            for (let i = 0; i < blogImageList.length; i++) {
+                blogImageList[i].classList.toggle("smaller");
+            }
         }, "false");
         
 }, "false");
