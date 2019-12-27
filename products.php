@@ -282,7 +282,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <div class="product__background-container">
                                         <div class="product__background"></div>
                                     </div>
-                                    <div class="product__price">$<?php echo $WholeWheatLoaf->get_price(); ?></div>   
+                                    <div class="product__price-and-request">
+                                        <div class="product__price">$<?php echo $WholeWheatLoaf->get_price(); ?></div>   
+                                        <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                        <div class="clear-both"></div>
+                                    </div>
                                     <div class="product__description">
                                         <p class="no-padding-bottom">Our delicious and wholesome house-made whole wheat 
                                             bread, baked fresh daily.  One of our staples and customer favorites!</p></div>
@@ -294,7 +298,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <div class="product__background-container">
                                         <div class="product__background"></div>
                                     </div>
-                                    <div class="product__price">$<?php echo $WhiteBreadLoaf->get_price(); ?></div>   
+                                    <div class="product__price-and-request">
+                                        <div class="product__price">$<?php echo $WhiteBreadLoaf->get_price(); ?></div>   
+                                        <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                        <div class="clear-both"></div>
+                                    </div>
                                     <div class="product__description">
                                         <p class="no-padding-bottom">Our delicious and fluffy house-made white bread, baked 
                                             fresh daily.  One of our staples and customer favorites!</p></div>
@@ -306,7 +314,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <div class="product__background-container">
                                         <div class="product__background"></div>
                                     </div>
-                                    <div class="product__price">$<?php echo $BlueberryScone->get_price(); ?>/each</div>   
+                                    <div class="product__price-and-request">
+                                        <div class="product__price">$<?php echo $BlueberryScone->get_price(); ?></div>   
+                                        <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                        <div class="clear-both"></div>
+                                    </div>
                                     <div class="product__description">
                                         <p class="no-padding-bottom">Light and fluffy and flaky.  We are always trying new 
                                             varieties of scones including some seasonal.  We often have blueberry, vanilla, chocolate scones, 
@@ -319,7 +331,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <div class="product__background-container">
                                         <div class="product__background"></div>
                                     </div>
-                                    <div class="product__price">$<?php echo $ChocolateCake->get_price(); ?> or $2.50/slice</div>  
+                                    <div class="product__price-and-request">
+                                        <div class="product__price">$<?php echo $ChocolateCake->get_price(); ?></div>   
+                                        <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                        <div class="clear-both"></div>
+                                    </div>
                                     <div class="product__description">
                                         <p class="no-padding-bottom">Our signature crisp, fluffy chocolate cake with a light 
                                             layer of house-made chocolate fudge on top!  Yum!</p></div>
@@ -331,7 +347,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <div class="product__background-container">
                                         <div class="product__background"></div>
                                     </div>
-                                    <div class="product__price">$<?php echo $CherryPie->get_price(); ?> or $2.50/slice</div> 
+                                    <div class="product__price-and-request">
+                                        <div class="product__price">$<?php echo $CherryPie->get_price(); ?> or $2.50/slice</div>   
+                                        <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                        <div class="clear-both"></div>
+                                    </div>
                                     <div class="product__description">
                                         <p>Assorted wide variety of pies here at Tualatin Top Bakery!</p>
                                         <p class="no-padding-bottom">We sell cherry pie year round and other pies we sell depending
@@ -344,7 +364,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <div class="product__background-container">
                                         <div class="product__background"></div>
                                     </div>
-                                    <div class="product__price">$<?php echo $BlueberryMuffin->get_price(); ?>/each</div> 
+                                    <div class="product__price-and-request">
+                                        <div class="product__price">$<?php echo $BlueberryMuffin->get_price(); ?></div>   
+                                        <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                        <div class="clear-both"></div>
+                                    </div>
                                     <div class="product__description">
                                         <p class="no-padding-bottom">Made with lots of blueberries and a hint of sugar.</p></div>
                                 </div>
@@ -506,6 +530,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <script type="text/javascript">
             
             //Use AJAX to update the cart without reloading the page.
+            document.getElementsByClassName("product__request-item__add")[0].addEventListener("click", function() { updateCart("item", "=", 0); }, false);
+            document.getElementsByClassName("product__request-item__add")[1].addEventListener("click", function() { updateCart("item", "=", 1); }, false);
+            document.getElementsByClassName("product__request-item__add")[2].addEventListener("click", function() { updateCart("item", "=", 2); }, false);
+            document.getElementsByClassName("product__request-item__add")[3].addEventListener("click", function() { updateCart("item", "=", 3); }, false);
+            document.getElementsByClassName("product__request-item__add")[4].addEventListener("click", function() { updateCart("item", "=", 4); }, false);
+            document.getElementsByClassName("product__request-item__add")[5].addEventListener("click", function() { updateCart("item", "=", 5); }, false);
+            
             document.getElementsByClassName("estimate-table__add__item")[0].addEventListener("click", function() { updateCart("item", "=", 0); }, false);
             document.getElementsByClassName("estimate-table__add__item")[1].addEventListener("click", function() { updateCart("item", "=", 1); }, false);
             document.getElementsByClassName("estimate-table__add__item")[2].addEventListener("click", function() { updateCart("item", "=", 2); }, false);

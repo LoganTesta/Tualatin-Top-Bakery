@@ -294,11 +294,15 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .products-header { padding-bottom: 20px; }
 .product-container { margin-bottom: 50px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); border-radius: 20px; }
 .product__title { padding: 8px; font-size: 19px; border-radius: 20px 20px 0 0; font-weight: bold; text-align: center; background: linear-gradient(#64460e 20%, #ac8949 100%); color: #ffffff; }
-.product__price { padding: 15px 20px; background-color: #eeeeee; }
+.product__price-and-request { padding: 5px 10px; background-color: #eeeeee; }
 .product__description { padding: 5px 8px; background-color: #fbe3b7; border-radius: 0 0 20px 20px; }
 .product__background-container { overflow: hidden; }
 .product__background { height: 100px; transition: transform 0.6s ease-in; cursor: pointer; }
 .product__background:hover { transform: scale(1.12); transition: transform 0.6s ease-in; }
+
+.product__price { padding: 0 0; text-align: center; }
+.product__request-item { padding: 10px 0; }
+.product__request-item__add {  width: 103px; padding: 10px; border-radius: 5px; text-align: center; font-weight: bold; background-color: #008800; color: #ffffff; cursor: pointer; }
 
 .product-container.zero .product__background { background: url('../images/products/whole-wheat-bread.jpg') 0% 0%/cover no-repeat; }
 .product-container.one .product__background { background: url('../images/products/white-bread.jpg') 0% 0%/cover no-repeat; }
@@ -481,8 +485,12 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     /*Products*/
     .products-header { padding-bottom: 10px; }
     .product__title { padding: 15px; font-size: 24px; }
+     .product__price-and-request { padding: 15px 20px; background-color: #eeeeee; }
     .product__background { height: 170px; }
     .product__description { padding: 15px 20px; }
+    
+    .product__price { padding: 10px 0; float: left; text-align: left; }
+    .product__request-item { float: right; padding: 0px 15px; }
     
     .product-container.four, .product-container.five { margin-bottom: 0; }    
     
