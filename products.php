@@ -283,7 +283,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         <div class="product__background"></div>
                                     </div>
                                     <div class="product__price-and-request">
-                                        <div class="product__price">$<?php echo $WholeWheatLoaf->get_price(); ?></div>   
+                                        <div class="product__price">$<?php echo $WholeWheatLoaf->get_price(); ?>
+                                            <span class="product__quantity"><?php if($_SESSION["quantity"][0] > 0) { echo "(" . $_SESSION["quantity"][0] . ")"; } ?></span>
+                                        </div>   
                                         <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                         <div class="clear-both"></div>
                                     </div>
@@ -299,7 +301,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         <div class="product__background"></div>
                                     </div>
                                     <div class="product__price-and-request">
-                                        <div class="product__price">$<?php echo $WhiteBreadLoaf->get_price(); ?></div>   
+                                        <div class="product__price">$<?php echo $WhiteBreadLoaf->get_price(); ?>
+                                            <span class="product__quantity"><?php if($_SESSION["quantity"][1] > 0) { echo "(" . $_SESSION["quantity"][1] . ")"; } ?></span>
+                                        </div>   
                                         <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                         <div class="clear-both"></div>
                                     </div>
@@ -315,7 +319,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         <div class="product__background"></div>
                                     </div>
                                     <div class="product__price-and-request">
-                                        <div class="product__price">$<?php echo $BlueberryScone->get_price(); ?></div>   
+                                        <div class="product__price">$<?php echo $BlueberryScone->get_price(); ?>
+                                            <span class="product__quantity"><?php if($_SESSION["quantity"][2] > 0) { echo "(" . $_SESSION["quantity"][2] . ")"; } ?></span>
+                                        </div>   
                                         <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                         <div class="clear-both"></div>
                                     </div>
@@ -332,7 +338,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         <div class="product__background"></div>
                                     </div>
                                     <div class="product__price-and-request">
-                                        <div class="product__price">$<?php echo $ChocolateCake->get_price(); ?></div>   
+                                        <div class="product__price">$<?php echo $ChocolateCake->get_price(); ?>
+                                            <span class="product__quantity"><?php if($_SESSION["quantity"][3] > 0) { echo "(" . $_SESSION["quantity"][3] . ")"; } ?></span>
+                                        </div>   
                                         <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                         <div class="clear-both"></div>
                                     </div>
@@ -348,7 +356,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         <div class="product__background"></div>
                                     </div>
                                     <div class="product__price-and-request">
-                                        <div class="product__price">$<?php echo $CherryPie->get_price(); ?> or $2.50/slice</div>   
+                                        <div class="product__price">$<?php echo $CherryPie->get_price(); ?> or $2.50/slice
+                                            <span class="product__quantity"><?php if($_SESSION["quantity"][4] > 0) { echo "(" . $_SESSION["quantity"][4] . ")"; } ?></span>
+                                        </div>   
                                         <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                         <div class="clear-both"></div>
                                     </div>
@@ -365,7 +375,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         <div class="product__background"></div>
                                     </div>
                                     <div class="product__price-and-request">
-                                        <div class="product__price">$<?php echo $BlueberryMuffin->get_price(); ?></div>   
+                                        <div class="product__price">$<?php echo $BlueberryMuffin->get_price(); ?>
+                                            <span class="product__quantity"><?php if($_SESSION["quantity"][5] > 0) { echo "(" . $_SESSION["quantity"][5] . ")"; } ?></span>
+                                        </div>   
                                         <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                         <div class="clear-both"></div>
                                     </div>
@@ -462,7 +474,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div class="col-sma-5">
                         <div class="estimate-container" id="estimateContainer">
                             <h3 class="estimate-container__title">Request Estimate</h3>
-                                                        <form class="contact-container__form" id="estimateForm" v-on:submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                <form class="contact-container__form" id="estimateForm" v-on:submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                 <div class="contact-container__response">
                                     <p>We appreciate your business <strong>{{writeResponse}}</strong> at Tualatin Top Bakery! 
                                         We will look over your estimate, and respond 
@@ -566,6 +578,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         var productSubtotal = ajaxDocument.getElementsByClassName("estimate-table__item-subtotal")[itemID];
                         var cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
                         
+                        document.getElementsByClassName("product__quantity")[itemID].innerHTML = "(" + product.innerHTML + ")";
+                        
                         document.getElementsByClassName("estimate-table__item-quantity")[itemID].innerHTML = product.innerHTML;
                         document.getElementsByClassName("estimate-table__item-subtotal")[itemID].innerHTML = productSubtotal.innerHTML;
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;   
@@ -588,6 +602,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         var cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
                         
                         for(let i = 0; i < products.length; i++){
+                            document.getElementsByClassName("product__quantity")[i].innerHTML = "";
+                            
                             document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML = products[i].innerHTML;
                             document.getElementsByClassName("estimate-table__item-subtotal")[i].innerHTML = productSubtotals[i].innerHTML;
                         }

@@ -301,6 +301,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .product__background:hover { transform: scale(1.12); transition: transform 0.6s ease-in; }
 
 .product__price { padding: 0 0; text-align: center; }
+.product__quantity { padding-left: 4px; font-weight: bold; }
 .product__request-item { padding: 10px 0; }
 .product__request-item__add {  width: 103px; padding: 10px; border-radius: 5px; text-align: center; font-weight: bold; background-color: #008800; color: #ffffff; cursor: pointer; }
 
