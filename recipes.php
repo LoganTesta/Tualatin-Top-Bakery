@@ -49,7 +49,32 @@ require('./wordpress/wp-blog-header.php');
                                         <div class="recipe-more-info--one">
                                             <div class="recipe-more-info__button" v-on:click="show=!show">More Info</div>
                                             <transition name="recipeShowMoreInfo">
-                                                <div class="recipe-more-info-text" v-if="show">The Chocolate Cupcakes recipe is super easy.  Makes 1 dozen.</div>
+                                                <div class="recipe-more-info-text" v-if="show">
+                                                    <h3 class="recipe__subheading">Ingredients</h3>
+                                                    <ul class="bulleted-list">
+                                                        <li>flour</li>
+                                                        <li>water</li> 
+                                                        <li>butter</li>
+                                                        <li>salt</li>
+                                                        <li>eggs</li>
+                                                        <li>sugar</li>
+                                                        <li>cocoa</li>
+                                                        <li>... and more</li>
+                                                    </ul>
+                                                    <h3 class="recipe__subheading">Items</h3>
+                                                    <ul class="bulleted-list">
+                                                        <li>Cupcake platter</li>
+                                                        <li>Large Bowl</li>
+                                                        <li>... and more</li>
+                                                    </ul>
+                                                    <h3 class="recipe__subheading">Steps</h3>
+                                                    <p>Preheat the oven.</p>
+                                                    <p>Mix the ingredients</p>
+                                                    <p>Pour mix into cupcake containers</p>
+                                                    <p>Bake in oven</p>
+                                                    <p>Carefully remove from oven and let sit for a while to cool.</p>
+                                                    <p>Makes 1 dozen.  Enjoy!</p>
+                                                </div>
                                             </transition>
                                         </div>
                                     </div>
@@ -65,8 +90,34 @@ require('./wordpress/wp-blog-header.php');
                                         <div class="recipe-more-info--two">
                                             <div class="recipe-more-info__button" v-on:click="show=!show">More Info</div>
                                             <transition name="recipeShowMoreInfo">
-                                                <div class="recipe-more-info-text" v-if="show">The Chocolate Fudge Brownies recipe is super easy.
-                                                    Makes 2 dozen.</div>
+                                                <div class="recipe-more-info-text" v-if="show">     
+                                                    <h3 class="recipe__subheading">Ingredients</h3>
+                                                    <ul class="bulleted-list">
+                                                        <li>flour</li>
+                                                        <li>water</li> 
+                                                        <li>butter</li>
+                                                        <li>salt</li>
+                                                        <li>eggs</li>
+                                                        <li>sugar</li>
+                                                        <li>cocoa</li>
+                                                        <li>vanilla</li>
+                                                        <li>... and more</li>
+                                                    </ul>
+                                                    <h3 class="recipe__subheading">Items</h3>
+                                                    <ul class="bulleted-list">
+                                                        <li>Baking pan</li>
+                                                        <li>Large Bowl</li>
+                                                        <li>spatula</li>
+                                                        <li>... and more</li>
+                                                    </ul>
+                                                    <h3 class="recipe__subheading">Steps</h3>
+                                                    <p>Preheat the oven.</p>
+                                                    <p>Mix the ingredients</p>
+                                                    <p>Pour mix onto the baking pan</p>
+                                                    <p>Bake in oven</p>
+                                                    <p>Carefully remove from oven and let sit for a while to cool.</p>
+                                                    <p>Makes 1 dozen.  Enjoy!</p>
+                                                </div>
                                             </transition>
                                         </div>
                                     </div>
@@ -82,7 +133,33 @@ require('./wordpress/wp-blog-header.php');
                                         <div class="recipe-more-info--three">
                                             <div class="recipe-more-info__button" v-on:click="show=!show">More Info</div>
                                             <transition name="recipeShowMoreInfo">
-                                                <div class="recipe-more-info-text" v-if="show">The Cinnamon Swirl Bread recipe is super easy.  Makes 1 dozen.</div>
+                                                <div class="recipe-more-info-text" v-if="show">
+                                                    <h3 class="recipe__subheading">Ingredients</h3>
+                                                    <ul class="bulleted-list">
+                                                        <li>flour</li>
+                                                        <li>water</li> 
+                                                        <li>butter</li>
+                                                        <li>salt</li>
+                                                        <li>eggs</li>
+                                                        <li>sugar</li>
+                                                        <li>cinnamon</li>
+                                                        <li>milk</li>
+                                                        <li>... and more</li>
+                                                    </ul>
+                                                    <h3 class="recipe__subheading">Items</h3>
+                                                    <ul class="bulleted-list">
+                                                        <li>Baking platter</li>
+                                                        <li>Large Bowl</li>
+                                                        <li>... and more</li>
+                                                    </ul>
+                                                    <h3 class="recipe__subheading">Steps</h3>
+                                                    <p>Preheat the oven.</p>
+                                                    <p>Mix the ingredients</p>
+                                                    <p>Pour mix onto the baking pan</p>
+                                                    <p>Bake in oven</p>
+                                                    <p>Carefully remove from oven and let sit for a while to cool.</p>
+                                                    <p>Makes 1 loaf.  Enjoy!</p>
+                                                </div>
                                             </transition>
                                         </div>
                                     </div>
@@ -98,7 +175,31 @@ require('./wordpress/wp-blog-header.php');
                                         <div class="recipe-more-info--four">
                                             <div class="recipe-more-info__button" v-on:click="show=!show">More Info</div>
                                             <transition name="recipeShowMoreInfo">
-                                                <div class="recipe-more-info-text" v-if="show">The Angel Cake recipe is super easy.</div>
+                                                <div class="recipe-more-info-text" v-if="show">                                                                                      
+                                                    <h3 class="recipe__subheading">Ingredients</h3>
+                                                    <ul class="bulleted-list">
+                                                        <li>flour</li>
+                                                        <li>water</li>
+                                                        <li>salt</li>
+                                                        <li>egg whites</li>
+                                                        <li>sugar</li>
+                                                        <li>vanilla</li>
+                                                        <li>... and more</li>
+                                                    </ul>
+                                                    <h3 class="recipe__subheading">Items</h3>
+                                                    <ul class="bulleted-list">
+                                                        <li>tube pan</li>
+                                                        <li>large bowl</li>
+                                                        <li>... and more</li>
+                                                    </ul>
+                                                    <h3 class="recipe__subheading">Steps</h3>
+                                                    <p>Preheat the oven.</p>
+                                                    <p>Mix the ingredients</p>
+                                                    <p>Pour mix into the tube pan</p>
+                                                    <p>Bake in oven</p>
+                                                    <p>Carefully remove from oven and let sit for a while to cool.</p>
+                                                    <p>Makes 1 cake.  Enjoy!</p>
+                                                </div>
                                             </transition>
                                         </div>
                                     </div>

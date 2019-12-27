@@ -270,6 +270,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .item-container__background { height: 240px; }
 .no-padding-bottom { padding-bottom: 0; } /* Put on the last of a group of paragraphs where no padding bottom is desired. */
 .current-page { text-decoration: underline; }
+.bulleted-list { padding-left: 25px; list-style-type: disc; }
 
 /*Index page*/
 .item-container__background.one { background: url('../images/bakery-shelf-cakes.jpg') 0% 0%/cover no-repeat;}
@@ -348,7 +349,9 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .recipe__title, .recipe__image, .recipe__description {  padding: 15px; }
 .recipe__title { border-radius: 15px 15px 0 0; background: radial-gradient(#64460e, #64460e, #ac8949); color: #fbe3b7; font-size: 20px; font-weight: bold; text-align: center; }
 .recipe__description { border-radius: 0 0 15px 15px; background-color: #eeeeee; }
+.recipe__section { padding-bottom: 15px; }
 .recipe__background-container { position: relative; }
+.recipe__subheading { padding-top: 15px; }
 
 .recipe-container.four { margin-bottom: 0; }
 
