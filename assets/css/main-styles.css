@@ -421,8 +421,6 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 
 
 /*Blog*/
-.blog-container__background { height: 300px; background: url('../images/bakery-shelf.jpg') 0% 0%/cover no-repeat; }
-
 .order-blogs { display: none; }
 .order-blogs.show { display: block; width: 213px; padding: 15px 10px; border-radius: 5px; font-weight: bold; background-color: #ac8949; color: #ffffff; cursor: pointer; }
 

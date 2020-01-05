@@ -32,7 +32,7 @@ require('./wordpress/wp-blog-header.php');
 
             <div class="content">
                 <div class="content-row inner-wrapper">
-                    <div class="col-sma-6">
+                    <div class="col-sma-12">
                         <div class="blog-posts-container" id="blogPostsContainer">
                             <?php
                             $id = 43;
@@ -82,11 +82,7 @@ require('./wordpress/wp-blog-header.php');
                             </div>
                         </div>
                     </div>
-                    <div class="col-sma-6">
-                        <div class="blog-image-container">
-                            <div class="blog-container__background"></div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <?php include 'assets/include/message-content.php'; ?>
