@@ -513,7 +513,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     
     /*Products*/
     .products-header { padding-bottom: 10px; }
-    .product__title { padding: 15px; font-size: 24px; }
+    .product__title { padding: 15px; font-size: 22px; }
     .product__price-and-request { padding: 15px 15px; background-color: #eeeeee; }
     .product__background { height: 170px; }
     .product__description { padding: 15px 20px; }
@@ -528,6 +528,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     /*Recipes*/
     .recipies-header { padding-bottom: 10px; }
     .recipe__background { height: 280px; }
+    .recipe__title { font-size: 22px; }
     
     .recipe-container.three, .recipe-container.four { margin-bottom: 0; }
     
