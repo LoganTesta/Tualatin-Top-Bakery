@@ -54,7 +54,7 @@ require('./wordpress/wp-blog-header.php');
                     <div class="content-row inner-wrapper">
                         <div class="col-sma-12">&nbsp;</div>
                         <h3 class="index-content__h3">Recent Blog Posts</h3>
-                        <div class="content-row blog-posts" id="blogPosts">
+                        <div class="content-row index-blog-posts" id="indexBlogPosts">
                             <?php
                             global $post;
                             $args = array('posts_per_page' => 3);
@@ -62,9 +62,9 @@ require('./wordpress/wp-blog-header.php');
                             foreach ($postsToDisplay as $post) : setup_postdata($post);
                                 ?>      
                                 <div class="col-sma-4">
-                                    <div class="blog-post">
+                                    <div class="index-blog-post">
                                         <a href="blog.php"><h4 class="blog-post__title"><?php the_title(); ?></h4></a>
-                                        <div class="blog__categories"><?php
+                                        <div class="index-blog__categories"><?php
                                             $categories = get_the_category();
                                             $h = 0;
                                             foreach ($categories as $category) {
@@ -85,9 +85,9 @@ require('./wordpress/wp-blog-header.php');
                                             }
                                             ?>
                                         </div>
-                                        <div class="blog__date"><?php the_date(); ?></div>
-                                        <div class="blog__image"><a href="blog.php"><?php the_post_thumbnail( 'thumbnail' ); ?></a></div>
-                                        <div class="blog__content"><?php the_excerpt(); ?></div>
+                                        <div class="index-blog__date"><?php the_date(); ?></div>
+                                        <div class="index-blog__image"><a href="blog.php"><?php the_post_thumbnail( 'thumbnail' ); ?></a></div>
+                                        <div class="index-blog__content"><?php the_excerpt(); ?></div>
                                         <div class="clear-both"></div>
                                     </div>
                                 </div>
