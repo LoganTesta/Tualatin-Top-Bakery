@@ -533,7 +533,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <?php include 'assets/include/footer-content.php'; ?>
             <script type="text/javascript" src="assets/javascript/javascript-functions.js"></script>
             <script type="text/javascript" src="assets/javascript/vue-functions.js"></script>
-            <script>
+            <script type="text/javascript">
                 document.addEventListener("DOMContentLoaded", function () {
                     setCurrentPage(2);
                 });
@@ -613,6 +613,50 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 
                 xhttp.open("GET", "products.php?" + actionString + operatorString, true);
                 xhttp.send(); 
+            }
+        </script>
+        <script type="text/javascript">
+            //Use AJAX to update the cart without reloading the page.
+            document.getElementById("estimateForm").addEventListener("submit", function (event) {
+               updateServerResponse(event); 
+            }, false);
+
+            function updateServerResponse(event){
+                event.preventDefault();
+                let xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4) {
+                        let parser = new DOMParser();
+                        let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
+
+                        let message = ajaxDocument.getElementsByClassName("contact-container__response-message")[0];    
+
+                        document.getElementsByClassName("contact-container__response-message")[0].innerHTML = "" + message.innerHTML + "";    
+                        document.getElementsByClassName("contact-container__response-message")[0].classList.add("show");
+                    }
+                };
+
+                let userName = document.getElementById("userName").value;  
+                let userEmail = document.getElementById("userEmail").value;  
+                let userPhone = document.getElementById("userPhone").value;  
+                let userStreetAddress = document.getElementById("userStreetAddress").value; 
+
+                let userCity = document.getElementById("userCity").value;  
+                let userState = document.getElementById("userState").value;  
+                let userZipCode = document.getElementById("userZipCode").value;  
+
+                let additionalNotes = document.getElementById("additionalNotes").value;  
+                let estimateButton = document.getElementById("estimateButton").value;  
+
+                let formInfo = "userName=" + userName + "&userEmail=" + userEmail + "&userPhone=" + userPhone + "&userStreetAddress=" + userStreetAddress + 
+                        "&userCity=" + userCity + "&userState=" + userState + "&userZipCode=" + userZipCode +
+                        "&additionalNotes=" + additionalNotes + "&estimateButton=" + estimateButton;
+
+
+                xhttp.open("POST", "products.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send(formInfo); 
             }
         </script>
     </body>
