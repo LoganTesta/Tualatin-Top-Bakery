@@ -185,7 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 });
             </script>
             <script type="text/javascript">
-                //Use AJAX to update the cart without reloading the page.
+                //Use AJAX to update part of the page without reloading the whole page.
                 document.getElementById("contactOurBakery").addEventListener("submit", function (event) {
                    updateServerResponse(event); 
                }, false);
