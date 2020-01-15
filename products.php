@@ -522,9 +522,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <button class="input-container__contact-button" id="estimateButton" name="estimateButton" type="submit" v-on:click="setClickedSubmitTrue">Request Estimate!</button>                          
                                 </div>
                             </form>
-                            <?php if (!empty($transmitResponse)) {
-                                echo "<div class=\"contact-container__response-message\">$transmitResponse</div>";
-                            } ?>
+                            <?php echo "<div class=\"contact-container__response-message\">$transmitResponse</div>"; ?>
                         </div>
                     </div>
                 </div>
