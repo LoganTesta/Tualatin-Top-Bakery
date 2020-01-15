@@ -46,16 +46,16 @@ var contactUpdatedResponseApp = new Vue({
             
             if (!this.userFirstName) {
                 this.errors.push("Please enter a first name.");
-                document.forms["contactOurCoffeeShop"]["userFirstName"].classList.add("required-field-needed");
+                document.forms["contactOurBakery"]["userFirstName"].classList.add("required-field-needed");
             } else {
-                document.forms["contactOurCoffeeShop"]["userFirstName"].classList.remove("required-field-needed");
+                document.forms["contactOurBakery"]["userFirstName"].classList.remove("required-field-needed");
             }
             
             if (!this.userLastName) {
                 this.errors.push("Please enter a last name.");
-                document.forms["contactOurCoffeeShop"]["userLastName"].classList.add("required-field-needed");
+                document.forms["contactOurBakery"]["userLastName"].classList.add("required-field-needed");
             } else {
-                document.forms["contactOurCoffeeShop"]["userLastName"].classList.remove("required-field-needed");
+                document.forms["contactOurBakery"]["userLastName"].classList.remove("required-field-needed");
             }
 
             var atPosition = this.userEmail.indexOf("@");
@@ -73,16 +73,16 @@ var contactUpdatedResponseApp = new Vue({
             }
             if (validEmail === false) {
                 this.errors.push("Please enter a valid email.");
-                document.forms["contactOurCoffeeShop"]["userEmail"].classList.add("required-field-needed");
+                document.forms["contactOurBakery"]["userEmail"].classList.add("required-field-needed");
             } else {
-                document.forms["contactOurCoffeeShop"]["userEmail"].classList.remove("required-field-needed");
+                document.forms["contactOurBakery"]["userEmail"].classList.remove("required-field-needed");
             }
 
             if (!this.userComments) {
                 this.errors.push("Please input your message.");
-                document.forms["contactOurCoffeeShop"]["userComments"].classList.add("required-field-needed");
+                document.forms["contactOurBakery"]["userComments"].classList.add("required-field-needed");
             } else {
-                document.forms["contactOurCoffeeShop"]["userComments"].classList.remove("required-field-needed");
+                document.forms["contactOurBakery"]["userComments"].classList.remove("required-field-needed");
             }
 
             if(this.errors.length === 0){
