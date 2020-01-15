@@ -10,11 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (isset($_POST['userName'])) {
             $UserName = htmlspecialchars(strip_tags(trim($_POST['userName'])));
         }
-        if (isset($_POST['positionApplyingFor'])) {
-            $PositionApplyingFor = htmlspecialchars(strip_tags(trim($_POST['positionApplyingFor'])));
-        }
         if (isset($_POST['userEmail'])) {
             $UserEmail = htmlspecialchars(strip_tags(trim($_POST['userEmail'])));
+        }
+        if (isset($_POST['positionApplyingFor'])) {
+            $PositionApplyingFor = htmlspecialchars(strip_tags(trim($_POST['positionApplyingFor'])));
         }
         if (isset($_POST['userResume'])) {
             $UserResume = htmlspecialchars(strip_tags(trim($_POST['userResume'])));
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $transmitResponse .= "<p>Sorry, validation failed.  Please check all fields again.</p>";
         }
 
-        if ($PassedValidaton) {
+        if ($PassedValidation) {
             /* Create the e-mail body. */
             $Body = "";
             $Body .= "User Name: " . $UserName . "\n";
@@ -195,7 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <button class="input-container__contact-button" id="applyButton" name="applyButton" type="submit" @click="setClickedSubmitTrue">Send Application!</button>                          
                                 </div>
                             </form>
-                            <?php if(!empty($transmitResponse)) { echo "<div class=\"contact-container__response-message\">$transmitResponse</div>"; } ?>
+                            <?php echo "<div class=\"contact-container__response-message\">$transmitResponse</div>"; ?>
                         </div>
                     </div>
                 </div>
@@ -208,6 +208,44 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 document.addEventListener("DOMContentLoaded", function () {
                     setCurrentPage(5);
                 });
+            </script>
+            <script type="text/javascript">
+                //Use AJAX to update the cart without reloading the page.
+                document.getElementById("careersForm").addEventListener("submit", function (event) {
+                   updateServerResponse(event); 
+                }, false);
+
+                function updateServerResponse(event){
+                    event.preventDefault();
+                    let xhttp = new XMLHttpRequest();
+
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState === 4 && this.status === 200) {
+                            let parser = new DOMParser();
+                            let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
+
+                            let message = ajaxDocument.getElementsByClassName("contact-container__response-message")[0];    
+
+                            document.getElementsByClassName("contact-container__response-message")[0].innerHTML = "" + message.innerHTML + "";    
+                            document.getElementsByClassName("contact-container__response-message")[0].classList.add("show");
+                        }
+                    };
+
+                    let userName = document.getElementById("userName").value; 
+                    let userEmail = document.getElementById("userEmail").value;  
+                    let positionApplyingFor = document.getElementById("positionApplyingFor").value;  
+                    let userResume = document.getElementById("userResume").value;   
+                    let coverLetter = document.getElementById("coverLetter").value;  
+                    let applyButton = document.getElementById("applyButton").value;  
+
+                    let formInfo = "userName=" + userName + "&userEmail=" + userEmail + "&positionApplyingFor=" + positionApplyingFor + "&userResume=" + 
+                            userResume + "&coverLetter=" + coverLetter + "&applyButton=" + applyButton;
+
+
+                    xhttp.open("POST", "careers.php", true);
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhttp.send(formInfo); 
+                }
             </script>
         </div>
     </body>
