@@ -522,7 +522,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <button class="input-container__contact-button" id="estimateButton" name="estimateButton" type="submit" v-on:click="setClickedSubmitTrue">Request Estimate!</button>                          
                                 </div>
                             </form>
-                            <?php echo "<div class=\"contact-container__response-message\">$transmitResponse</div>"; ?>
+                            <?php if(!empty($transmitResponse)) { echo "<div class=\"contact-container__response-message\">$transmitResponse</div>"; } ?>
                         </div>
                     </div>
                 </div>
@@ -611,50 +611,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 
                 xhttp.open("GET", "products.php?" + actionString + operatorString, true);
                 xhttp.send(); 
-            }
-        </script>
-        <script type="text/javascript">
-            //Use AJAX to update part of the page without reloading the whole page.
-            document.getElementById("estimateForm").addEventListener("submit", function (event) {
-               updateServerResponse(event); 
-            }, false);
-
-            function updateServerResponse(event){
-                event.preventDefault();
-                let xhttp = new XMLHttpRequest();
-
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState === 4 && this.status === 200) {
-                        let parser = new DOMParser();
-                        let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
-
-                        let message = ajaxDocument.getElementsByClassName("contact-container__response-message")[0];    
-
-                        document.getElementsByClassName("contact-container__response-message")[0].innerHTML = "" + message.innerHTML + "";    
-                        document.getElementsByClassName("contact-container__response-message")[0].classList.add("show");
-                    }
-                };
-
-                let userName = document.getElementById("userName").value;  
-                let userEmail = document.getElementById("userEmail").value;  
-                let userPhone = document.getElementById("userPhone").value;  
-                let userStreetAddress = document.getElementById("userStreetAddress").value; 
-
-                let userCity = document.getElementById("userCity").value;  
-                let userState = document.getElementById("userState").value;  
-                let userZipCode = document.getElementById("userZipCode").value;  
-
-                let additionalNotes = document.getElementById("additionalNotes").value;  
-                let estimateButton = document.getElementById("estimateButton").value;  
-
-                let formInfo = "userName=" + userName + "&userEmail=" + userEmail + "&userPhone=" + userPhone + "&userStreetAddress=" + userStreetAddress + 
-                        "&userCity=" + userCity + "&userState=" + userState + "&userZipCode=" + userZipCode +
-                        "&additionalNotes=" + additionalNotes + "&estimateButton=" + estimateButton;
-
-
-                xhttp.open("POST", "products.php", true);
-                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send(formInfo); 
             }
         </script>
     </body>

@@ -165,7 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <button class="input-container__contact-button" id="contactButton" name="contactButton" type="submit" v-on:click="setClickedSubmitTrue">Contact Us!</button>                          
                                 </div>
                             </form>
-                            <?php echo "<div class=\"contact-container__response-message\">$transmitResponse</div>"; ?>
+                            <?php if(!empty($transmitResponse)) { echo "<div class=\"contact-container__response-message\">$transmitResponse</div>"; } ?>
                         </div>
                     </div>
                     <div class="col-sma-7">
@@ -183,43 +183,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 document.addEventListener("DOMContentLoaded", function () {
                     setCurrentPage(7);
                 });
-            </script>
-            <script type="text/javascript">
-                //Use AJAX to update part of the page without reloading the whole page.
-                document.getElementById("contactOurBakery").addEventListener("submit", function (event) {
-                   updateServerResponse(event); 
-               }, false);
-
-                function updateServerResponse(event){
-                    event.preventDefault();
-                    let xhttp = new XMLHttpRequest();
-
-                    xhttp.onreadystatechange = function () {
-                        if (this.readyState === 4 && this.status === 200) {
-                            let parser = new DOMParser();
-                            let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
-
-                            let message = ajaxDocument.getElementsByClassName("contact-container__response-message")[0];    
-
-                            document.getElementsByClassName("contact-container__response-message")[0].innerHTML = "" + message.innerHTML + "";    
-                            document.getElementsByClassName("contact-container__response-message")[0].classList.add("show");
-                        }
-                    };
-
-                    let userFirstName = document.getElementById("userFirstName").value;  
-                    let userLastName = document.getElementById("userLastName").value;  
-                    let userEmail = document.getElementById("userEmail").value;  
-                    let userSubject = document.getElementById("userSubject").value;   
-                    let userComments = document.getElementById("userComments").value;  
-                    let contactButton = document.getElementById("contactButton").value;  
-
-                    let formInfo = "userFirstName=" + userFirstName + "&userLastName=" + userLastName + "&userEmail=" + userEmail + "&userSubject=" + userSubject + "&userComments=" + userComments + "&contactButton=" + contactButton;
-
-
-                    xhttp.open("POST", "contact-us.php", true);
-                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    xhttp.send(formInfo); 
-                }
             </script>
         </div>
     </body>

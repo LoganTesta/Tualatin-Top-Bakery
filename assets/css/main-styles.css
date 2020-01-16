@@ -456,8 +456,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .contact-container { padding-top: 30px; }
 .contact-container__title { color: #64460e; }
 .contact-container__response { padding-top: 15px; padding-bottom: 15px; }
-.contact-container__response-message { display: none; font-size: 16px; font-weight: bold; }
-.contact-container__response-message.show { display: block; }
+.contact-container__response-message { font-size: 16px; font-weight: bold; }
 .contact-container__response-message p { padding-bottom: 12px; font-size: inherit; font-weight: bold; }
 
 
