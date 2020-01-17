@@ -1,11 +1,5 @@
 
 
-
-
-
-
-
-
 # BEGIN WordPress
 # The directives (lines) between `BEGIN WordPress` and `END WordPress` are
 # dynamically generated, and should only be modified via WordPress filters.
@@ -18,11 +12,6 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /home.php [L]
 </IfModule>
-
-
-
-
-
 
 
 <IfModule mod_rewrite.c>
@@ -38,5 +27,3 @@ RewriteRule ^(.+)/$ /$1 [R=301]
 Redirect 301 https://tualatintopbakery.com https://tualatintopbakery.com/home.php
 Redirect 301 https://tualatintopbakery.com/ https://tualatintopbakery.com/home.php
 </IfModule>
-
-

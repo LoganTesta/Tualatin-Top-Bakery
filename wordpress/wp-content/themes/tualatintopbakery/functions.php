@@ -8,3 +8,5 @@ if(false === get_option( "medium_crop" )) {
 } else {
     update_option( "medium_crop", "1" );
 }
+
+add_image_size( "medium_rect_crop", 460, 320, true );

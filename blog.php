@@ -74,7 +74,7 @@ require('./wordpress/wp-load.php');
                                         ?>
                                         </div>
                                         <div class="blog__date"><?php the_date(); ?></div>
-                                        <div class="blog__image"><?php the_post_thumbnail( 'medium' ); ?></div>
+                                        <div class="blog__image"><?php the_post_thumbnail( 'medium_rect_crop' ); ?></div>
                                         <div class="blog__content"><?php the_content(); ?></div>
                                         <div class="clear-both"></div>
                                     </div>

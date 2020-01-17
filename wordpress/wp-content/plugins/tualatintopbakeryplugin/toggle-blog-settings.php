@@ -9,10 +9,10 @@
  */
 
 
-add_action('wp_enqueue_scripts', function(){ 
-    wp_register_script('toggle-blog-settings-javascript', plugin_dir_url(__FILE__) . 'toggle-blog-settings-javascript.js');
-    wp_enqueue_script('toggle-blog-settings-javascript', plugin_dir_url(__FILE__) . 'toggle-blog-settings-javascript.js');  
-    wp_enqueue_style('toggle-blog-settings-styling', plugin_dir_url(__FILE__) . 'toggle-blog-settings.css');  
+add_action( 'wp_enqueue_scripts', function(){ 
+    wp_register_script( 'toggle-blog-settings-javascript', plugin_dir_url(__FILE__) . 'toggle-blog-settings-javascript.js' );
+    wp_enqueue_script( 'toggle-blog-settings-javascript', plugin_dir_url(__FILE__) . 'toggle-blog-settings-javascript.js' );  
+    wp_enqueue_style( 'toggle-blog-settings-styling', plugin_dir_url(__FILE__) . 'toggle-blog-settings.css' );  
 });
 
 
