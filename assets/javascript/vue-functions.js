@@ -88,7 +88,6 @@ var contactUpdatedResponseApp = new Vue({
             if(this.errors.length === 0){
                 return true;
             } else {
-                event.preventDefault();
                 return false;
             }       
         },
@@ -205,7 +204,6 @@ var estimateUpdatedResponseApp = new Vue({
             if(this.errors.length === 0){
                 return true;
             } else {
-                event.preventDefault();
                 return false;
             }
             
@@ -286,7 +284,6 @@ var careersUpdatedResponseApp = new Vue({
             if(this.errors.length === 0){
                 return true;
             } else {
-                event.preventDefault();
                 return false;
             }
         },
@@ -355,7 +352,6 @@ var subscribeApp = new Vue({
             if(this.errors.length === 0){
                 return true;
             } else {
-                event.preventDefault();
                 return false;
             }
         },

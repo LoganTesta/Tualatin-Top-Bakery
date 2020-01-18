@@ -1,16 +1,16 @@
 
 
 function setCurrentPage(linkNumber) {
-    var navBarDesktop = document.getElementById("desktop-nav");
-    var navBarDesktopItems = navBarDesktop.getElementsByClassName("nav__nav-link");
-    for (var i = 0; i < navBarDesktopItems.length; i++) {
+    let navBarDesktop = document.getElementById("desktop-nav");
+    let navBarDesktopItems = navBarDesktop.getElementsByClassName("nav__nav-link");
+    for (let i = 0; i < navBarDesktopItems.length; i++) {
         navBarDesktopItems[i].className.replace(" current-page", "");
     }
     navBarDesktopItems[linkNumber].className += " current-page";
 }
 
 
-var dropdownButton=document.getElementById("dropdownButton");
+let dropdownButton=document.getElementById("dropdownButton");
 dropdownButton.addEventListener("click", toggleHamburgerMenu, "false");
 
 function toggleHamburgerMenu (){
