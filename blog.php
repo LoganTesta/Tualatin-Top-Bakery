@@ -2,8 +2,27 @@
 declare(strict_types=1);
 define('WP_USE_THEMES', false);
 require('./wordpress/wp-load.php');
-?>
 
+$specialQuery = false;
+$blogPostQuery = "";
+
+$orderBy = "";
+$order = "";
+if ($_GET["orderby"] != null) {
+    $specialQuery = true;
+    $orderBy = htmlspecialchars($_GET["orderby"]);
+}
+if ($_GET["order"] != null) {
+    $specialQuery = true;
+    $order = htmlspecialchars($_GET["order"]);
+}
+
+if ($specialQuery) {
+    $blogPostQuery = '?orderby=' . $orderBy . '&order=' . $order;
+} else {
+    $blogPostQuery = "";
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,39 +61,39 @@ require('./wordpress/wp-load.php');
                             ?>
 
                             <div class="blog-posts" id="blogPosts">
+                                <div class="blog-controls">
+                                    <a class="blog-controls__control" href="?orderby=title&order=asc">Order By Oldest</a>
+                                    <a class="blog-controls__control" href="?orderby=title&order=desc">Order By Newest</a>
+                                </div>
                                 <?php
-                                global $post;
-                                $args = array('posts_per_page' => 1000);
-                                $postsToDisplay = get_posts($args);
+                                $postsToDisplay = get_posts($args . '' . $blogPostQuery);
                                 foreach ($postsToDisplay as $post) : setup_postdata($post);
                                     ?>                                                       
                                     <div class="blog-post">
                                         <h4 class="blog-post__title"><?php the_title(); ?></h4>
-                                        <div class="blog__categories"><?php                                       
+                                        <div class="blog__categories"><?php
+                                            $categories = get_the_category();
+                                            $h = 0;
+                                            foreach ($categories as $category) {
+                                                $h++;
+                                            }
+                                            $h = $h - 1;
 
-                                        $categories = get_the_category();
-                                        $h = 0;
-                                        foreach ($categories as $category) {   
-                                            $h++;
-                                        }
-                                        $h = $h - 1;
-
-                                        $i = 0;                                
-                                        foreach ($categories as $category) {
-                                           $result = "";    
-                                           if($i < $h) {
-                                               $result .= $category->name . ", ";
-                                           } else {
-                                               $result .= $category->name;
-                                           }
-                                           echo $result;
-                                           $i++;
-                                        }
-
-                                        ?>
+                                            $i = 0;
+                                            foreach ($categories as $category) {
+                                                $result = "";
+                                                if ($i < $h) {
+                                                    $result .= $category->name . ", ";
+                                                } else {
+                                                    $result .= $category->name;
+                                                }
+                                                echo $result;
+                                                $i++;
+                                            }
+                                            ?>
                                         </div>
                                         <div class="blog__date"><?php the_date(); ?></div>
-                                        <div class="blog__image"><?php the_post_thumbnail( 'medium_rect_crop' ); ?></div>
+                                        <div class="blog__image"><?php the_post_thumbnail('medium_rect_crop'); ?></div>
                                         <div class="blog__content"><?php the_content(); ?></div>
                                         <div class="clear-both"></div>
                                     </div>
@@ -82,7 +101,6 @@ require('./wordpress/wp-load.php');
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <?php include 'assets/include/message-content.php'; ?>

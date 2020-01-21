@@ -428,6 +428,10 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .order-blogs.show { display: block; width: 213px; padding: 15px 10px; border-radius: 5px; font-weight: bold; background-color: #ac8949; color: #ffffff; cursor: pointer; }
 
 .blog-posts-container { padding-bottom: 20px; }
+.blog-controls { padding-bottom: 20px; }
+.blog-controls__control:link, .blog-controls__control:visited { display: inline-block; margin-right: 15px; padding: 15px 10px; margin-bottom: 15px; border-radius: 5px; font-weight: bold;
+          background-color: #ac8949; color: #ffffff; }
+
 
 .blog-posts { padding-top: 20px; }
 
@@ -617,6 +621,10 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     /* News/Events */
     .event-container__title { font-size: 22px; }
     .event-container__date { font-size: 17px; }
+    
+    /*Blog*/
+    .blog-controls { position: absolute; top: 19px; right: 15px; padding-bottom: 0px; }
+    .blog-controls__control:link, .blog-controls__control:visited { margin-bottom: 0; }
     
     
     /*Contact Us*/
