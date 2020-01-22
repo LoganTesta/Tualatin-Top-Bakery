@@ -2,26 +2,29 @@
 declare(strict_types=1);
 define('WP_USE_THEMES', false);
 require('./wordpress/wp-load.php');
+session_start();
 
-$specialQuery = false;
-$blogPostQuery = "";
 
-$orderBy = "";
-$order = "";
-if ($_GET["orderby"] != null) {
-    $specialQuery = true;
-    $orderBy = htmlspecialchars($_GET["orderby"]);
+if (isset($_SESSION["orderBy"]) === false) {
+    $_SESSION["orderBy"] = "date";
 }
-if ($_GET["order"] != null) {
-    $specialQuery = true;
-    $order = htmlspecialchars($_GET["order"]);
+if (isset($_SESSION["order"]) === false) {
+    $_SESSION["order"] = "desc";
 }
 
-if ($specialQuery) {
-    $blogPostQuery = '?orderby=' . $orderBy . '&order=' . $order;
-} else {
-    $blogPostQuery = "";
+
+if (isset($_GET["orderby"])) {
+    $_SESSION["orderBy"] = htmlspecialchars($_GET["orderby"]);
 }
+
+if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
+    if($_SESSION["order"] === "desc"){
+        $_SESSION["order"] = "asc";
+    } else if ($_SESSION["order"] === "asc"){
+        $_SESSION["order"] = "desc";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -62,11 +65,12 @@ if ($specialQuery) {
 
                             <div class="blog-posts" id="blogPosts">
                                 <div class="blog-controls">
-                                    <a class="blog-controls__control" href="?orderby=title&order=asc">Order By Oldest</a>
-                                    <a class="blog-controls__control" href="?orderby=title&order=desc">Order By Newest</a>
+                                    <a class="blog-controls__control" href="?orderby=date&order=toggle">Order By Date</a>
+                                    <a class="blog-controls__control" href="?orderby=title&order=toggle">Order By Title</a>
                                 </div>
                                 <?php
-                                $postsToDisplay = get_posts($args . '' . $blogPostQuery);
+                                $args = array('posts_per_page' => -1, 'orderby' => $_SESSION["orderBy"], 'order' => $_SESSION["order"]);
+                                $postsToDisplay = get_posts($args);
                                 foreach ($postsToDisplay as $post) : setup_postdata($post);
                                     ?>                                                       
                                     <div class="blog-post">
