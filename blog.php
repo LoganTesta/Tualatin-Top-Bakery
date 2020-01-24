@@ -54,6 +54,12 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
             <div class="content">
                 <div class="content-row inner-wrapper">
                     <div class="col-sma-12">
+                        <?php
+                        $id = 43;
+                        $page = get_post($id);
+                        $content = "" . apply_filters('the_content', $page->post_content);
+                        echo $content;
+                        ?>
                         <div class="blog-controls">
                             <form class="blog-controls__control" id="blogControlForm0" method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                 <div class="input-container">
@@ -68,12 +74,6 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                             <?php echo "<div class='blog-posts__message'>Order by " . $_SESSION["orderBy"] . ", " . $_SESSION["order"] . "</div>"; ?>
                         </div>
                         <div class="blog-posts-container" id="blogPostsContainer">
-                            <?php
-                            $id = 43;
-                            $page = get_post($id);
-                            $content = "&nbsp;" . apply_filters('the_content', $page->post_content);
-                            echo $content;
-                            ?>
                             <div class="blog-posts" id="blogPosts">
                                 <?php
                                 $args = array('posts_per_page' => -1, 'orderby' => $_SESSION["orderBy"], 'order' => $_SESSION["order"]);

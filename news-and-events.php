@@ -35,7 +35,7 @@ require('./wordpress/wp-load.php');
                         <?php
                         $id = 39;
                         $page = get_post($id);
-                        $content = "&nbsp;" . apply_filters('the_content', $page->post_content);
+                        $content = "" . apply_filters('the_content', $page->post_content);
                         echo $content;
                         ?>
                         <div class="news-events-items">

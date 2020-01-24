@@ -126,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <?php
                         $id = 45;
                         $page = get_post($id);
-                        $content = "&nbsp;" . apply_filters('the_content', $page->post_content);
+                        $content = "" . apply_filters('the_content', $page->post_content);
                         echo $content;
                         ?>
                         <div class="contact-container" id="contactContainer">
