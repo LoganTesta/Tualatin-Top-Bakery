@@ -428,10 +428,12 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .order-blogs.show { display: block; width: 213px; padding: 15px 10px; border-radius: 5px; font-weight: bold; background-color: #ac8949; color: #ffffff; cursor: pointer; }
 
 .blog-posts-container { padding-bottom: 20px; }
+.blog-controls__control .input-container:nth-of-type(1) { padding-left: 0; }
 .blog-controls { padding-bottom: 20px; }
-.blog-controls__control { display: inline-block; margin-bottom: 15px; border-radius: 5px; font-weight: bold; }
+.blog-controls__control { display: inline-block; border-radius: 5px; font-weight: bold; }
+.blog-controls__button { padding: 15px 10px; border-radius: 5px; font-weight: bold; background-color: #ac8949; color: #ffffff; cursor: pointer; }
 
-.blog-posts__message { width: 270px; padding-top: 10px; padding-bottom: 20px; color: #64460e; font-size: 20px; font-weight: bold; }
+.blog-posts__message { width: 270px; color: #64460e; font-size: 20px; font-weight: bold; }
 .blog-posts { padding-top: 20px; }
 
 .blog-post { padding-bottom: 40px; }
@@ -624,7 +626,6 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     
     /*Blog*/
     .blog-controls { position: absolute; top: 47px; right: 15px; padding-bottom: 0px; }
-    .blog-controls__control:link, .blog-controls__control:visited { margin-bottom: 0; }
     .blog-posts__message { margin-left: auto; margin-right: 10px; }
     
      

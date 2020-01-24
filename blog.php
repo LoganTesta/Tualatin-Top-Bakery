@@ -57,14 +57,15 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                         <div class="blog-controls">
                             <form class="blog-controls__control" id="blogControlForm0" method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                 <div class="input-container">
-                                    <button class="input-container__contact-button" id="blogControlButton0" name="blogControlButton0" type="submit">Order By Date</button>                          
+                                    <button class="blog-controls__button" id="blogControlButton0" name="blogControlButton0" type="submit">Order By Date</button>                          
                                 </div>
                             </form>
                             <form class="blog-controls__control" id="blogControlForm1" method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                 <div class="input-container">
-                                    <button class="input-container__contact-button" id="blogControlButton1" name="blogControlButton1" type="submit">Order By Title</button>                          
+                                    <button class="blog-controls__button" id="blogControlButton1" name="blogControlButton1" type="submit">Order By Title</button>                          
                                 </div>
-                            </form>   
+                            </form>  
+                            <?php echo "<div class='blog-posts__message'>Order by " . $_SESSION["orderBy"] . ", " . $_SESSION["order"] . "</div>"; ?>
                         </div>
                         <div class="blog-posts-container" id="blogPostsContainer">
                             <?php
@@ -73,10 +74,7 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                             $content = "&nbsp;" . apply_filters('the_content', $page->post_content);
                             echo $content;
                             ?>
-
                             <div class="blog-posts" id="blogPosts">
-                                <?php echo "<div class='blog-posts__message'>Order by " . $_SESSION["orderBy"] . ", " . $_SESSION["order"] . "</div>"; ?>
-
                                 <?php
                                 $args = array('posts_per_page' => -1, 'orderby' => $_SESSION["orderBy"], 'order' => $_SESSION["order"]);
                                 $postsToDisplay = get_posts($args);
@@ -146,7 +144,10 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                             let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
 
                             let blogPostsContainer = ajaxDocument.getElementsByClassName("blog-posts")[0];
+                            let blogPostsMessage =ajaxDocument.getElementsByClassName("blog-posts__message")[0];
+                            
                             document.getElementsByClassName("blog-posts")[0].innerHTML = " " + blogPostsContainer.innerHTML;
+                            document.getElementsByClassName("blog-posts__message")[0].innerHTML = " " + blogPostsMessage.innerHTML;
                         }
                     };
 
