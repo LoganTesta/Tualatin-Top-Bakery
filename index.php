@@ -85,7 +85,10 @@ require('./wordpress/wp-load.php');
                                             }
                                             ?>
                                         </div>
-                                        <div class="index-blog__date"><?php the_date(); ?></div>
+                                            <div class="index-blog__author-and-name">
+                                                <div class="index-blog__author">By <?php the_author(); ?><span class="index-blog__author__extra-text">, </span></div>
+                                                <div class="index-blog__date"><?php the_date(); ?></div>
+                                            </div>
                                         <div class="index-blog__image"><a href="blog.php"><?php the_post_thumbnail( 'thumbnail' ); ?></a></div>
                                         <div class="index-blog__content"><?php the_excerpt(); ?></div>
                                         <div class="clear-both"></div>
