@@ -18,13 +18,12 @@ if (isset($_GET["orderby"])) {
 }
 
 if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
-    if($_SESSION["order"] === "desc"){
+    if ($_SESSION["order"] === "desc") {
         $_SESSION["order"] = "asc";
-    } else if ($_SESSION["order"] === "asc"){
+    } else if ($_SESSION["order"] === "asc") {
         $_SESSION["order"] = "desc";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +54,18 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
             <div class="content">
                 <div class="content-row inner-wrapper">
                     <div class="col-sma-12">
+                        <div class="blog-controls">
+                            <form class="blog-controls__control" id="blogControlForm0" method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                <div class="input-container">
+                                    <button class="input-container__contact-button" id="blogControlButton0" name="blogControlButton0" type="submit">Order By Date</button>                          
+                                </div>
+                            </form>
+                            <form class="blog-controls__control" id="blogControlForm1" method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                <div class="input-container">
+                                    <button class="input-container__contact-button" id="blogControlButton1" name="blogControlButton1" type="submit">Order By Title</button>                          
+                                </div>
+                            </form>   
+                        </div>
                         <div class="blog-posts-container" id="blogPostsContainer">
                             <?php
                             $id = 43;
@@ -64,10 +75,8 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                             ?>
 
                             <div class="blog-posts" id="blogPosts">
-                                <div class="blog-controls">
-                                    <a class="blog-controls__control" href="?orderby=date&order=toggle">Order By Date</a>
-                                    <a class="blog-controls__control" href="?orderby=title&order=toggle">Order By Title</a>
-                                </div>
+                                <?php echo "<div class='blog-posts__message'>Order by " . $_SESSION["orderBy"] . ", " . $_SESSION["order"] . "</div>"; ?>
+
                                 <?php
                                 $args = array('posts_per_page' => -1, 'orderby' => $_SESSION["orderBy"], 'order' => $_SESSION["order"]);
                                 $postsToDisplay = get_posts($args);
@@ -115,6 +124,36 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                 document.addEventListener("DOMContentLoaded", function () {
                     setCurrentPage(6);
                 });
+            </script>
+            <script type="text/javascript">
+                
+                //Use AJAX to update the page without reloading the page.
+                document.getElementById("blogControlForm0").addEventListener("submit", function (event) {
+                    updateServerResponse(event, "orderby=date&order=toggle");
+                }, false);
+
+                document.getElementById("blogControlForm1").addEventListener("submit", function (event) {
+                    updateServerResponse(event, "orderby=title&order=toggle");
+                }, false);
+
+                function updateServerResponse(event, actionString) {
+                    event.preventDefault();
+                    let xhttp = new XMLHttpRequest();
+
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState === 4 && this.status === 200) {
+                            let parser = new DOMParser();
+                            let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
+
+                            let blogPostsContainer = ajaxDocument.getElementsByClassName("blog-posts")[0];
+                            document.getElementsByClassName("blog-posts")[0].innerHTML = " " + blogPostsContainer.innerHTML;
+                        }
+                    };
+
+                    xhttp.open("GET", "blog.php?" + actionString, true);
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhttp.send();
+                }
             </script>
         </div>
         <?php wp_footer(); ?><!-- Allow WordPress plugins to use CSS and JavaScript. -->
