@@ -424,9 +424,6 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 
 
 /*Blog*/
-.order-blogs { display: none; }
-.order-blogs.show { display: block; width: 213px; padding: 15px 10px; border-radius: 5px; font-weight: bold; background-color: #ac8949; color: #ffffff; cursor: pointer; }
-
 .blog-posts-container { padding-bottom: 20px; }
 .blog-controls__control .input-container:nth-of-type(1) { padding-left: 0; }
 .blog-controls { padding-bottom: 20px; }
