@@ -81,7 +81,7 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                                 foreach ($postsToDisplay as $post) : setup_postdata($post);
                                     ?>                                                       
                                     <div class="blog-post">
-                                        <h4 class="blog-post__title"><?php the_title(); ?></h4>
+                                        <h4 class="blog__title"><?php the_title(); ?></h4>
                                         <div class="blog__categories"><?php
                                             $categories = get_the_category();
                                             $h = 0;
@@ -103,6 +103,7 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                                             }
                                             ?>
                                         </div>
+                                        <div class="blog__author">By: <?php the_author(); ?></div>
                                         <div class="blog__date"><?php the_date(); ?></div>
                                         <div class="blog__image"><?php the_post_thumbnail('medium_rect_crop'); ?></div>
                                         <div class="blog__content"><?php the_content(); ?></div>

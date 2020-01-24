@@ -63,7 +63,7 @@ require('./wordpress/wp-load.php');
                                 ?>      
                                 <div class="col-sma-4">
                                     <div class="index-blog-post">
-                                        <a href="blog.php"><h4 class="blog-post__title"><?php the_title(); ?></h4></a>
+                                        <a href="blog.php"><h4 class="index-blog__title"><?php the_title(); ?></h4></a>
                                         <div class="index-blog__categories"><?php
                                             $categories = get_the_category();
                                             $h = 0;
