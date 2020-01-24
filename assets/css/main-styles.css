@@ -293,7 +293,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .index-blog-post:last-of-type { }
 
 .index-blog__title { padding-bottom: 10px; }
-.index-blog__categories { padding-bottom: 10px; font-size: 18px; }
+.index-blog__categories { padding-bottom: 10px; font-size: 18px; color: #64460e; }
 .index-blog__author-and-name { padding-bottom: 10px; }
 .index-blog__image { float: right; height: auto; padding-left: 15px; padding-bottom: 5px; }
 .index-blog__image a { display: block; width: 150px; overflow: hidden; margin-left: auto; margin-right: auto; }
@@ -441,7 +441,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .blog-post:last-of-type { }
 
 .blog__title { font-size: 20px; }
-.blog__categories { padding-bottom: 10px; font-size: 18px; }
+.blog__categories { padding-bottom: 10px; font-size: 18px; color: #64460e; }
 .blog__author { width: 100%; padding-bottom: 10px; font-weight: bold; color: #64460e; }
 .blog__date { width: 100%; padding-bottom: 10px; font-weight: bold; font-style: italic; color: #64460e; }
 .blog__image { float: none; width: auto; height: auto; padding-bottom: 10px;}
