@@ -428,7 +428,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 
 
 /*Blog*/
-.blog-posts-container { padding-bottom: 20px; }
+.blog-posts-container { padding-top: 15px; padding-bottom: 20px; }
 .blog-controls__control .input-container:nth-of-type(1) { padding-left: 0; }
 .blog-controls { padding-bottom: 20px; }
 .blog-controls__control { display: inline-block; border-radius: 5px; font-weight: bold; }
@@ -628,7 +628,8 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     
     
     /*Blog*/
-    .blog-controls { position: absolute; top: 47px; right: 15px; padding-bottom: 0px; }
+    .blog-page__content-text { float: left; }
+    .blog-controls { float: right;  padding-bottom: 0px; }
     .blog-posts__message { margin-left: auto; margin-right: 10px; }
     
     .blog__title { font-size: 22px; }

@@ -54,13 +54,15 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
             <div class="content">
                 <div class="content-row inner-wrapper">
                     <div class="col-sma-12">
+                        <div class="blog-page__content-text">
                         <?php
                         $id = 43;
                         $page = get_post($id);
                         $content = "" . apply_filters('the_content', $page->post_content);
                         echo $content;
                         ?>
-                        <div class="blog-controls">
+                        </div>
+                        <div id="blogControls" class="blog-controls">
                             <form class="blog-controls__control" id="blogControlForm0" method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                 <div class="input-container">
                                     <button class="blog-controls__button" id="blogControlButton0" name="blogControlButton0" type="submit">Order By Date</button>                          
@@ -73,6 +75,9 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                             </form>  
                             <?php echo "<div class='blog-posts__message'>Order by " . $_SESSION["orderBy"] . ", " . $_SESSION["order"] . "</div>"; ?>
                         </div>
+                        <div class="clear-both"></div>
+                    </div>
+                    <div class="col-sma-12">
                         <div class="blog-posts-container" id="blogPostsContainer">
                             <div class="blog-posts" id="blogPosts">
                                 <?php
@@ -81,6 +86,7 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                                 foreach ($postsToDisplay as $post) : setup_postdata($post);
                                     ?>                                                       
                                     <div class="blog-post">
+                                        <div class="blog__image"><?php the_post_thumbnail('medium_rect_crop'); ?></div>
                                         <h4 class="blog__title"><?php the_title(); ?></h4>
                                         <div class="blog__categories"><?php
                                             $categories = get_the_category();
@@ -104,8 +110,7 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                                             ?>
                                         </div>
                                         <div class="blog__author">By: <?php the_author(); ?></div>
-                                        <div class="blog__date"><?php the_date(); ?></div>
-                                        <div class="blog__image"><?php the_post_thumbnail('medium_rect_crop'); ?></div>
+                                        <div class="blog__date"><?php the_date(); ?></div>                                      
                                         <div class="blog__content"><?php the_content(); ?></div>
                                         <div class="clear-both"></div>
                                     </div>
@@ -115,6 +120,7 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                     </div>
                 </div>
             </div>
+
             <?php include 'assets/include/message-content.php'; ?>
             <?php include 'assets/include/footer-content.php'; ?>
             <script type="text/javascript" src="assets/javascript/javascript-functions.js"></script>
@@ -125,7 +131,7 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                 });
             </script>
             <script type="text/javascript">
-                
+
                 //Use AJAX to update the page without reloading the page.
                 document.getElementById("blogControlForm0").addEventListener("submit", function (event) {
                     updateServerResponse(event, "orderby=date&order=toggle");
@@ -145,8 +151,8 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                             let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
 
                             let blogPostsContainer = ajaxDocument.getElementsByClassName("blog-posts")[0];
-                            let blogPostsMessage =ajaxDocument.getElementsByClassName("blog-posts__message")[0];
-                            
+                            let blogPostsMessage = ajaxDocument.getElementsByClassName("blog-posts__message")[0];
+
                             document.getElementsByClassName("blog-posts")[0].innerHTML = " " + blogPostsContainer.innerHTML;
                             document.getElementsByClassName("blog-posts__message")[0].innerHTML = " " + blogPostsMessage.innerHTML;
                         }
