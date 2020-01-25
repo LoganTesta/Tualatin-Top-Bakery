@@ -1,6 +1,6 @@
 
 .order-blogs { display: none; }
-.order-blogs.show { display: block; width: 213px; padding: 15px 10px; border-radius: 5px; font-weight: bold; background-color: #ac8949; color: #ffffff; cursor: pointer; }
+.order-blogs.show { display: inline-block; width: 213px; padding: 15px 10px; border-radius: 5px; font-weight: bold; background-color: #ac8949; color: #ffffff; cursor: pointer; }
 
 .blog__content.hide { display: none; }
 .blog__image.smaller img { width: 120px; margin-left: auto; margin-right: 0; }

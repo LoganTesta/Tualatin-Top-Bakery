@@ -52,15 +52,16 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
             <?php include 'assets/include/navigation-content.php'; ?>
 
             <div class="content">
-                <div class="content-row inner-wrapper">
+                <div class="inner-wrapper">
+                <div class="content-row no-padding">
                     <div class="col-sma-12">
                         <div class="blog-page__content-text">
-                        <?php
-                        $id = 43;
-                        $page = get_post($id);
-                        $content = "" . apply_filters('the_content', $page->post_content);
-                        echo $content;
-                        ?>
+                            <?php
+                            $id = 43;
+                            $page = get_post($id);
+                            $content = "" . apply_filters('the_content', $page->post_content);
+                            echo $content;
+                            ?>
                         </div>
                         <div id="blogControls" class="blog-controls">
                             <form class="blog-controls__control" id="blogControlForm0" method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -77,6 +78,8 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                         </div>
                         <div class="clear-both"></div>
                     </div>
+                </div>
+                <div class="content-row no-padding">
                     <div class="col-sma-12">
                         <div class="blog-posts-container" id="blogPostsContainer">
                             <div class="blog-posts" id="blogPosts">
@@ -119,6 +122,7 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
 
             <?php include 'assets/include/message-content.php'; ?>
