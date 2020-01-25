@@ -63,7 +63,7 @@ require('./wordpress/wp-load.php');
                                 ?>      
                                 <div class="col-sma-4">
                                     <div class="index-blog-post">
-                                        <a href="blog.php"><h4 class="index-blog__title"><?php the_title(); ?></h4></a>
+                                        <a href="blog.php#<?php the_title(); ?>"><h4 class="index-blog__title"><?php the_title(); ?></h4></a>
                                         <div class="index-blog__categories"><?php
                                             $categories = get_the_category();
                                             $h = 0;
@@ -89,7 +89,7 @@ require('./wordpress/wp-load.php');
                                                 <div class="index-blog__author">By <?php the_author(); ?><span class="index-blog__author__extra-text">, </span></div>
                                                 <div class="index-blog__date"><?php the_date(); ?></div>
                                             </div>
-                                        <div class="index-blog__image"><a href="blog.php"><?php the_post_thumbnail( 'thumbnail' ); ?></a></div>
+                                        <div class="index-blog__image"><a href="blog.php#<?php the_title(); ?>"><?php the_post_thumbnail( 'thumbnail' ); ?></a></div>
                                         <div class="index-blog__content"><?php the_excerpt(); ?></div>
                                         <div class="clear-both"></div>
                                     </div>
