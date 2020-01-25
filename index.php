@@ -29,7 +29,7 @@ require('./wordpress/wp-load.php');
             <?php include 'assets/include/navigation-content.php'; ?>
             <div class="content index-content">
                 <div class="inner-wrapper">
-                    <div class="content-row">
+                    <div class="content-row no-content-row-padding">
                         <div class="col-sma-5">
                             <h3>Welcome to Tualatin Top Bakery!</h3>
                             <p>We specialize in fresh healthy and tasty baked goods!  You can find everything from house-made bread to delicious 
@@ -51,7 +51,7 @@ require('./wordpress/wp-load.php');
                             </div>
                         </div>
                     </div>
-                    <div class="content-row inner-wrapper">
+                    <div class="content-row">
                         <div class="col-sma-12">&nbsp;</div>
                         <h3 class="index-content__h3">Recent Blog Posts</h3>
                         <div class="content-row index-blog-posts" id="indexBlogPosts">

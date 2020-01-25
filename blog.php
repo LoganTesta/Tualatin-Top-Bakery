@@ -53,7 +53,7 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
 
             <div class="content">
                 <div class="inner-wrapper">
-                <div class="content-row no-padding">
+                <div class="content-row no-content-row-padding">
                     <div class="col-sma-12">
                         <div class="blog-page__content-text">
                             <?php
@@ -79,7 +79,7 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                         <div class="clear-both"></div>
                     </div>
                 </div>
-                <div class="content-row no-padding">
+                <div class="content-row no-content-row-padding">
                     <div class="col-sma-12">
                         <div class="blog-posts-container" id="blogPostsContainer">
                             <div class="blog-posts" id="blogPosts">

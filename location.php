@@ -30,22 +30,24 @@ require('./wordpress/wp-load.php');
             <?php include 'assets/include/navigation-content.php'; ?>
 
             <div class="content">
-                <div class="content-row inner-wrapper">
-                    <div class="col-sma-7">
-                        <div class="location-container">
-                            <h3 class="location-container__header">Location</h3>
-                            <p>4422 SW Tualatin-Sherwood Road, Tualatin, Oregon 97062</p>
-                            <div class="location-container__background"></div>
+                <div class="inner-wrapper">
+                    <div class="content-row">
+                        <div class="col-sma-7">
+                            <div class="location-container">
+                                <h3 class="location-container__header">Location</h3>
+                                <p>4422 SW Tualatin-Sherwood Road, Tualatin, Oregon 97062</p>
+                                <div class="location-container__background"></div>
+                            </div>
                         </div>
-                    </div>
-         
-                    <div class="col-sma-5">
-                        <?php
-                        $id = 33;
-                        $page = get_post($id);
-                        $content = "" . apply_filters('the_content', $page->post_content);
-                        echo $content;
-                        ?>
+
+                        <div class="col-sma-5">
+                            <?php
+                            $id = 33;
+                            $page = get_post($id);
+                            $content = "" . apply_filters('the_content', $page->post_content);
+                            echo $content;
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>

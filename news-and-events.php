@@ -30,52 +30,54 @@ require('./wordpress/wp-load.php');
             <?php include 'assets/include/navigation-content.php'; ?>
 
             <div class="content">
-                <div class="content-row inner-wrapper">
-                    <div class="col-sma-5">
-                        <?php
-                        $id = 39;
-                        $page = get_post($id);
-                        $content = "" . apply_filters('the_content', $page->post_content);
-                        echo $content;
-                        ?>
-                        <div class="news-events-items">
-                            <div class="event-container zero">
-                                <div class="event-container__title">3 Hour Discount Buffet</div>
-                                <div class="event-container__image"></div>
-                                <div class="event-container__date">May 8, 2019</div>
-                                <div class="event-container__body-text">All prices marked down 20%!  Come try our tasty treats on discount!</div>
-                                <div class="clear-both"></div>
-                            </div>
-                            <div class="event-container one">
-                                <div class="event-container__title">Kids Cupcake Party</div>
-                                <div class="event-container__image"></div>
-                                <div class="event-container__date">1st Wednesday of the month, all day.  </div>
-                                <div class="event-container__body-text">
-                                    All kids 12 and under invited for a free cupcake!</div>
-                                <div class="clear-both"></div>
-                            </div>
-                            <div class="event-container two">
-                                <div class="event-container__title">Learn How to Make Cherry Pie.</div>
-                                <div class="event-container__image"></div>
-                                <div class="event-container__date">June 8, 2019</div>
-                                <div class="event-container__body-text">Free ingredients and 1-hour lesson!</div>
-                                <div class="clear-both"></div>
-                            </div>
-                            <div class="event-container three">
-                                <div class="event-container__title">Baked Goods Assortment Sampling Buffet</div>
-                                <div class="event-container__image"></div>
-                                <div class="event-container__date">July 20, 2019</div>
-                                <div class="event-container__body-text">
-                                    Curious to try something new that you've been wondering about? Now's your chance! 
-                                    We are holding a sampling event for you to try bites from our excellent, wide-ranging assortment of baked goods.
+                <div class="inner-wrapper">
+                    <div class="content-row">
+                        <div class="col-sma-5">
+                            <?php
+                            $id = 39;
+                            $page = get_post($id);
+                            $content = "" . apply_filters('the_content', $page->post_content);
+                            echo $content;
+                            ?>
+                            <div class="news-events-items">
+                                <div class="event-container zero">
+                                    <div class="event-container__title">3 Hour Discount Buffet</div>
+                                    <div class="event-container__image"></div>
+                                    <div class="event-container__date">May 8, 2019</div>
+                                    <div class="event-container__body-text">All prices marked down 20%!  Come try our tasty treats on discount!</div>
+                                    <div class="clear-both"></div>
                                 </div>
-                                <div class="clear-both"></div>
+                                <div class="event-container one">
+                                    <div class="event-container__title">Kids Cupcake Party</div>
+                                    <div class="event-container__image"></div>
+                                    <div class="event-container__date">1st Wednesday of the month, all day.  </div>
+                                    <div class="event-container__body-text">
+                                        All kids 12 and under invited for a free cupcake!</div>
+                                    <div class="clear-both"></div>
+                                </div>
+                                <div class="event-container two">
+                                    <div class="event-container__title">Learn How to Make Cherry Pie.</div>
+                                    <div class="event-container__image"></div>
+                                    <div class="event-container__date">June 8, 2019</div>
+                                    <div class="event-container__body-text">Free ingredients and 1-hour lesson!</div>
+                                    <div class="clear-both"></div>
+                                </div>
+                                <div class="event-container three">
+                                    <div class="event-container__title">Baked Goods Assortment Sampling Buffet</div>
+                                    <div class="event-container__image"></div>
+                                    <div class="event-container__date">July 20, 2019</div>
+                                    <div class="event-container__body-text">
+                                        Curious to try something new that you've been wondering about? Now's your chance! 
+                                        We are holding a sampling event for you to try bites from our excellent, wide-ranging assortment of baked goods.
+                                    </div>
+                                    <div class="clear-both"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sma-7">
-                        <div class="events-image-container">
-                            <div class="events-container__background"></div>
+                        <div class="col-sma-7">
+                            <div class="events-image-container">
+                                <div class="events-container__background"></div>
+                            </div>
                         </div>
                     </div>
                 </div>

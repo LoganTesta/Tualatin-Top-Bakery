@@ -31,18 +31,20 @@ require('./wordpress/wp-load.php');
             <?php include 'assets/include/navigation-content.php'; ?>
 
             <div class="content">
-                <div class="content-row inner-wrapper">
-                    <div class="col-sma-5">
-                        <?php
-                        $id = 51;
-                        $page = get_post($id);
-                        $content = "" . apply_filters('the_content', $page->post_content);
-                        echo $content;
-                        ?>
-                    </div>
-                    <div class="col-sma-7">
-                        <div class="500-image-container">
-                            <div class="about-us-container__background"></div>
+                <div class="inner-wrapper">
+                    <div class="content-row">
+                        <div class="col-sma-5">
+                            <?php
+                            $id = 51;
+                            $page = get_post($id);
+                            $content = "" . apply_filters('the_content', $page->post_content);
+                            echo $content;
+                            ?>
+                        </div>
+                        <div class="col-sma-7">
+                            <div class="500-image-container">
+                                <div class="about-us-container__background"></div>
+                            </div>
                         </div>
                     </div>
                 </div>

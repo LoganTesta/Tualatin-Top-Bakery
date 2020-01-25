@@ -1,4 +1,5 @@
-<?php declare(strict_types = 1);
+<?php
+declare(strict_types=1);
 session_start();
 
 define('WP_USE_THEMES', false);
@@ -114,18 +115,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         /* Validation Time */
         $PassedValidation = true;
-        
-        
+
+
         $ValidUserName = true;
         if (Trim($UserName) === "") {
             $ValidUserName = false;
         }
-        if ($ValidUserName === false){
+        if ($ValidUserName === false) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter a name.</p>";
         }
-        
-        
+
+
         $ValidUserEmail = true;
         if (Trim($UserEmail) === "") {
             $ValidUserEmail = false;
@@ -134,12 +135,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (!filter_var($UserEmail, FILTER_VALIDATE_EMAIL)) {
             $ValidUserEmail = false;
         }
-        if ($ValidUserEmail === false){
+        if ($ValidUserEmail === false) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter a valid email.</p>";
         }
-        
-        
+
+
         $ValidUserPhone = true;
         if (Trim($UserPhone) === "") {
             $ValidUserPhone = false;
@@ -150,27 +151,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (ctype_digit($UserPhone) === false) {
             $ValidUserPhone = false;
         }
-        if ($ValidUserPhone === false){
+        if ($ValidUserPhone === false) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter a 10 digit phone number, no dashes.</p>";
         }
 
-        
+
         $ValidUserState = true;
         if (Trim($UserState) === "") {
             $ValidUserState = false;
         }
-        if ($ValidUserState === false){
+        if ($ValidUserState === false) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter a state.</p>";
         }
-        
-        
+
+
         $ValidUserCity = true;
         if (Trim($UserCity) === "") {
             $ValidUserCity = false;
         }
-        if ($ValidUserCity === false){
+        if ($ValidUserCity === false) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter a city.</p>";
         }
@@ -186,7 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (ctype_digit($UserZipCode) === false) {
             $ValidUserZipCode = false;
         }
-        if ($ValidUserZipCode === false){
+        if ($ValidUserZipCode === false) {
             $PassedValidation = false;
             $transmitResponse .= "<p>ZIP Code must be exactly 5 digits.</p>";
         }
@@ -207,7 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $Body .= "\n";
             $Body .= "Estimate Items: \n";
             for ($i = 0; $i < count($products); $i++) {
-                if($_SESSION["itemSubtotal"][$i] > 0) {
+                if ($_SESSION["itemSubtotal"][$i] > 0) {
                     $Body .= "" . $products[$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . " \n";
                 }
             }
@@ -224,7 +225,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $transmitResponse .= "<p>" . $UserName . ", your estimate request was successfully submitted.</p>";
                 $transmitResponse .= "<p>Estimate Items:</p>";
                 for ($i = 0; $i < count($products); $i++) {
-                    if($_SESSION["itemSubtotal"][$i] > 0) {
+                    if ($_SESSION["itemSubtotal"][$i] > 0) {
                         $transmitResponse .= "" . $products[$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . "<br />";
                     }
                 }
@@ -261,268 +262,304 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(35)->post_title); ?></h2>
                 </div>
             </header>
-
+                
             <?php include 'assets/include/navigation-content.php'; ?>
 
             <div class="content">
-                <div class="content-row inner-wrapper">
-                    <div class="col-sma-12 products-wrapper">
-                        <div class="products-header">
-                            <?php
-                            $id = 35;
-                            $page = get_post($id);
-                            $content = "" . apply_filters('the_content', $page->post_content);
-                            echo $content;
-                            ?>
-                        </div>
-                        <div class="products content-row">
-                            <div class="col-vsm-6 col-sma-4 col-lar-3">
-                                <div class="product-container zero">
-                                    <div class="product__title"><?php echo $WholeWheatLoaf->get_name(); ?></div>
-                                    <div class="product__background-container">
-                                        <div class="product__background"></div>
-                                    </div>
-                                    <div class="product__price-and-request">
-                                        <div class="product__price">$<?php echo $WholeWheatLoaf->get_price(); ?>
-                                            <span class="product__quantity"><?php if($_SESSION["quantity"][0] > 0) { echo "(" . $_SESSION["quantity"][0] . ")"; } ?></span>
-                                        </div>   
-                                        <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                        <div class="clear-both"></div>
-                                    </div>
-                                    <div class="product__description">
-                                        <p class="no-padding-bottom">Our delicious and wholesome house-made whole wheat 
-                                            bread, baked fresh daily.  One of our staples and customer favorites!</p></div>
-                                </div>
+                <div class="inner-wrapper">
+                    <div class="content-row">
+                        <div class="col-sma-12 products-wrapper">
+                            <div class="products-header">
+                                <?php
+                                $id = 35;
+                                $page = get_post($id);
+                                $content = "" . apply_filters('the_content', $page->post_content);
+                                echo $content;
+                                ?>
                             </div>
-                            <div class="col-vsm-6 col-sma-4 col-lar-3">
-                                <div class="product-container one">
-                                    <div class="product__title"><?php echo $WhiteBreadLoaf->get_name(); ?></div>
-                                    <div class="product__background-container">
-                                        <div class="product__background"></div>
+                            <div class="products content-row">
+                                <div class="col-vsm-6 col-sma-4 col-lar-3">
+                                    <div class="product-container zero">
+                                        <div class="product__title"><?php echo $WholeWheatLoaf->get_name(); ?></div>
+                                        <div class="product__background-container">
+                                            <div class="product__background"></div>
+                                        </div>
+                                        <div class="product__price-and-request">
+                                            <div class="product__price">$<?php echo $WholeWheatLoaf->get_price(); ?>
+                                                <span class="product__quantity"><?php
+                                                    if ($_SESSION["quantity"][0] > 0) {
+                                                        echo "(" . $_SESSION["quantity"][0] . ")";
+                                                    }
+                                                    ?>
+                                                </span>
+                                            </div>   
+                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                            <div class="clear-both"></div>
+                                        </div>
+                                        <div class="product__description">
+                                            <p class="no-padding-bottom">Our delicious and wholesome house-made whole wheat 
+                                                bread, baked fresh daily.  One of our staples and customer favorites!</p></div>
                                     </div>
-                                    <div class="product__price-and-request">
-                                        <div class="product__price">$<?php echo $WhiteBreadLoaf->get_price(); ?>
-                                            <span class="product__quantity"><?php if($_SESSION["quantity"][1] > 0) { echo "(" . $_SESSION["quantity"][1] . ")"; } ?></span>
-                                        </div>   
-                                        <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                        <div class="clear-both"></div>
-                                    </div>
-                                    <div class="product__description">
-                                        <p class="no-padding-bottom">Our delicious and fluffy house-made white bread, baked 
-                                            fresh daily.  One of our staples and customer favorites!</p></div>
                                 </div>
-                            </div>
-                            <div class="col-vsm-6 col-sma-4 col-lar-3">
-                                <div class="product-container two">
-                                    <div class="product__title"><?php echo $BlueberryScone->get_name(); ?></div>
-                                    <div class="product__background-container">
-                                        <div class="product__background"></div>
+                                <div class="col-vsm-6 col-sma-4 col-lar-3">
+                                    <div class="product-container one">
+                                        <div class="product__title"><?php echo $WhiteBreadLoaf->get_name(); ?></div>
+                                        <div class="product__background-container">
+                                            <div class="product__background"></div>
+                                        </div>
+                                        <div class="product__price-and-request">
+                                            <div class="product__price">$<?php echo $WhiteBreadLoaf->get_price(); ?>
+                                                <span class="product__quantity"><?php
+                                                    if ($_SESSION["quantity"][1] > 0) {
+                                                        echo "(" . $_SESSION["quantity"][1] . ")";
+                                                    }
+                                                    ?>
+                                                </span>
+                                            </div>   
+                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                            <div class="clear-both"></div>
+                                        </div>
+                                        <div class="product__description">
+                                            <p class="no-padding-bottom">Our delicious and fluffy house-made white bread, baked 
+                                                fresh daily.  One of our staples and customer favorites!</p></div>
                                     </div>
-                                    <div class="product__price-and-request">
-                                        <div class="product__price">$<?php echo $BlueberryScone->get_price(); ?>
-                                            <span class="product__quantity"><?php if($_SESSION["quantity"][2] > 0) { echo "(" . $_SESSION["quantity"][2] . ")"; } ?></span>
-                                        </div>   
-                                        <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                        <div class="clear-both"></div>
-                                    </div>
-                                    <div class="product__description">
-                                        <p class="no-padding-bottom">Light and fluffy and flaky.  We are always trying new 
-                                            varieties of scones including some seasonal.  We often have blueberry, vanilla, chocolate scones, 
-                                            and many more, so come on in and see what we're baking this week!</p></div>
                                 </div>
-                            </div>
-                            <div class="col-vsm-6 col-sma-4 col-lar-3">
-                                <div class="product-container three">
-                                    <div class="product__title"><?php echo $ChocolateCake->get_name(); ?></div>
-                                    <div class="product__background-container">
-                                        <div class="product__background"></div>
+                                <div class="col-vsm-6 col-sma-4 col-lar-3">
+                                    <div class="product-container two">
+                                        <div class="product__title"><?php echo $BlueberryScone->get_name(); ?></div>
+                                        <div class="product__background-container">
+                                            <div class="product__background"></div>
+                                        </div>
+                                        <div class="product__price-and-request">
+                                            <div class="product__price">$<?php echo $BlueberryScone->get_price(); ?>
+                                                <span class="product__quantity"><?php
+                                                    if ($_SESSION["quantity"][2] > 0) {
+                                                        echo "(" . $_SESSION["quantity"][2] . ")";
+                                                    }
+                                                    ?>
+                                                </span>
+                                            </div>   
+                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                            <div class="clear-both"></div>
+                                        </div>
+                                        <div class="product__description">
+                                            <p class="no-padding-bottom">Light and fluffy and flaky.  We are always trying new 
+                                                varieties of scones including some seasonal.  We often have blueberry, vanilla, chocolate scones, 
+                                                and many more, so come on in and see what we're baking this week!</p></div>
                                     </div>
-                                    <div class="product__price-and-request">
-                                        <div class="product__price">$<?php echo $ChocolateCake->get_price(); ?>
-                                            <span class="product__quantity"><?php if($_SESSION["quantity"][3] > 0) { echo "(" . $_SESSION["quantity"][3] . ")"; } ?></span>
-                                        </div>   
-                                        <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                        <div class="clear-both"></div>
-                                    </div>
-                                    <div class="product__description">
-                                        <p class="no-padding-bottom">Our signature crisp, fluffy chocolate cake with a light 
-                                            layer of house-made chocolate fudge on top!  Yum!</p></div>
                                 </div>
-                            </div>
-                            <div class="col-vsm-6 col-sma-4 col-lar-3">
-                                <div class="product-container four">
-                                    <div class="product__title"><?php echo $CherryPie->get_name(); ?> (and assorted pies)</div>
-                                    <div class="product__background-container">
-                                        <div class="product__background"></div>
+                                <div class="col-vsm-6 col-sma-4 col-lar-3">
+                                    <div class="product-container three">
+                                        <div class="product__title"><?php echo $ChocolateCake->get_name(); ?></div>
+                                        <div class="product__background-container">
+                                            <div class="product__background"></div>
+                                        </div>
+                                        <div class="product__price-and-request">
+                                            <div class="product__price">$<?php echo $ChocolateCake->get_price(); ?>
+                                                <span class="product__quantity"><?php
+                                                    if ($_SESSION["quantity"][3] > 0) {
+                                                        echo "(" . $_SESSION["quantity"][3] . ")";
+                                                    }
+                                                    ?>
+                                                </span>
+                                            </div>   
+                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                            <div class="clear-both"></div>
+                                        </div>
+                                        <div class="product__description">
+                                            <p class="no-padding-bottom">Our signature crisp, fluffy chocolate cake with a light 
+                                                layer of house-made chocolate fudge on top!  Yum!</p></div>
                                     </div>
-                                    <div class="product__price-and-request">
-                                        <div class="product__price">$<?php echo $CherryPie->get_price(); ?> or $2.50/slice
-                                            <span class="product__quantity"><?php if($_SESSION["quantity"][4] > 0) { echo "(" . $_SESSION["quantity"][4] . ")"; } ?></span>
-                                        </div>   
-                                        <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                        <div class="clear-both"></div>
-                                    </div>
-                                    <div class="product__description">
-                                        <p>Assorted wide variety of pies here at Tualatin Top Bakery!</p>
-                                        <p class="no-padding-bottom">We sell cherry pie year round and other pies we sell depending
-                                            on the season include blueberry, pumpkin, banana cream pie, chocolate cream pie, and more!</p></div>
                                 </div>
-                            </div>
-                            <div class="col-vsm-6 col-sma-4 col-lar-3">
-                                <div class="product-container five">
-                                    <div class="product__title"><?php echo $BlueberryMuffin->get_name(); ?></div>
-                                    <div class="product__background-container">
-                                        <div class="product__background"></div>
+                                <div class="col-vsm-6 col-sma-4 col-lar-3">
+                                    <div class="product-container four">
+                                        <div class="product__title"><?php echo $CherryPie->get_name(); ?> (and assorted pies)</div>
+                                        <div class="product__background-container">
+                                            <div class="product__background"></div>
+                                        </div>
+                                        <div class="product__price-and-request">
+                                            <div class="product__price">$<?php echo $CherryPie->get_price(); ?> or $2.50/slice
+                                                <span class="product__quantity"><?php
+                                                    if ($_SESSION["quantity"][4] > 0) {
+                                                        echo "(" . $_SESSION["quantity"][4] . ")";
+                                                    }
+                                                    ?>
+                                                </span>
+                                            </div>   
+                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                            <div class="clear-both"></div>
+                                        </div>
+                                        <div class="product__description">
+                                            <p>Assorted wide variety of pies here at Tualatin Top Bakery!</p>
+                                            <p class="no-padding-bottom">We sell cherry pie year round and other pies we sell depending
+                                                on the season include blueberry, pumpkin, banana cream pie, chocolate cream pie, and more!</p></div>
                                     </div>
-                                    <div class="product__price-and-request">
-                                        <div class="product__price">$<?php echo $BlueberryMuffin->get_price(); ?>
-                                            <span class="product__quantity"><?php if($_SESSION["quantity"][5] > 0) { echo "(" . $_SESSION["quantity"][5] . ")"; } ?></span>
-                                        </div>   
-                                        <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                        <div class="clear-both"></div>
+                                </div>
+                                <div class="col-vsm-6 col-sma-4 col-lar-3">
+                                    <div class="product-container five">
+                                        <div class="product__title"><?php echo $BlueberryMuffin->get_name(); ?></div>
+                                        <div class="product__background-container">
+                                            <div class="product__background"></div>
+                                        </div>
+                                        <div class="product__price-and-request">
+                                            <div class="product__price">$<?php echo $BlueberryMuffin->get_price(); ?>
+                                                <span class="product__quantity"><?php
+                                                    if ($_SESSION["quantity"][5] > 0) {
+                                                        echo "(" . $_SESSION["quantity"][5] . ")";
+                                                    }
+                                                    ?>
+                                                </span>
+                                            </div>   
+                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                            <div class="clear-both"></div>
+                                        </div>
+                                        <div class="product__description">
+                                            <p class="no-padding-bottom">Made with lots of blueberries and a hint of sugar.</p></div>
                                     </div>
-                                    <div class="product__description">
-                                        <p class="no-padding-bottom">Made with lots of blueberries and a hint of sugar.</p></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="content-row inner-wrapper estimate-section">
-                    <div class="col-sma-7">
-                        <div class="estimate-cart">
-                            <h3 class="estimate-cart__title">Estimate Items</h3>
-                            <table class="estimate-table">
-                                <thead>
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>Photo</th>
-                                        <th>Cost</th>
-                                        <th>Quantity</th>
-                                        <th>Subtotal</th>
-                                        <th>Add</th>
-                                        <th>Remove</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="estimate-table__item-zero">
-                                        <td class="estimate-table__item-title"><?php echo $WholeWheatLoaf->get_name(); ?></td>
-                                        <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
-                                        <td class="estimate-table__item-cost">$<?php echo $WholeWheatLoaf->get_price(); ?></td>
-                                        <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][0]; ?></td>
-                                        <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][0]; ?></td>
-                                        <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
-                                        <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                            
-                                    </tr>
-                                    <tr class="estimate-table__item-one">
-                                        <td class="estimate-table__item-title"><?php echo $WhiteBreadLoaf->get_name(); ?></td>
-                                        <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
-                                        <td class="estimate-table__item-cost">$<?php echo $WhiteBreadLoaf->get_price(); ?></td>
-                                        <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][1]; ?></td>
-                                        <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][1]; ?></td>
-                                        <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
-                                        <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                             
-                                    </tr>
-                                    <tr class="estimate-table__item-two">
-                                        <td class="estimate-table__item-title"><?php echo $BlueberryScone->get_name(); ?></td>
-                                        <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
-                                        <td class="estimate-table__item-cost">$<?php echo $BlueberryScone->get_price(); ?></td>
-                                        <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][2]; ?></td>
-                                        <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][2]; ?></td>
-                                        <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
-                                        <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                               
-                                    </tr>
-                                    <tr class="estimate-table__item-three">
-                                        <td class="estimate-table__item-title"><?php echo $ChocolateCake->get_name(); ?></td>
-                                        <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
-                                        <td class="estimate-table__item-cost">$<?php echo $ChocolateCake->get_price(); ?></td>
-                                        <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][3]; ?></td>
-                                        <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][3]; ?></td>
-                                        <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
-                                        <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                               
-                                    </tr>
-                                    <tr class="estimate-table__item-four">
-                                        <td class="estimate-table__item-title"><?php echo $CherryPie->get_name(); ?></td>
-                                        <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
-                                        <td class="estimate-table__item-cost">$<?php echo $CherryPie->get_price(); ?></td>
-                                        <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][4]; ?></td>
-                                        <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][4]; ?></td>
-                                        <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
-                                        <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                            
-                                    </tr>
-                                    <tr class="estimate-table__item-five">
-                                        <td class="estimate-table__item-title"><?php echo $BlueberryMuffin->get_name(); ?></td>
-                                        <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
-                                        <td class="estimate-table__item-cost">$<?php echo $BlueberryMuffin->get_price(); ?></td>
-                                        <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][5]; ?></td>
-                                        <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][5]; ?></td>
-                                        <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
-                                        <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                               
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="content-row estimate-table__cart-summary">
-                                <div class="col-sma-6">
-                                    <div class="cart-total">Today's Total: $<?php echo $_SESSION["totalCost"]; ?></div>
-                                </div>
-                                <div class="col-sma-6">
-                                    <div class="reset-cart">Empty Cart</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sma-5">
-                        <div class="estimate-container" id="estimateContainer">
-                            <h3 class="estimate-container__title">Request Estimate</h3>
+                    <div class="content-row estimate-section">
+                        <div class="col-sma-7">
+                            <div class="estimate-cart">
+                                <h3 class="estimate-cart__title">Estimate Items</h3>
+                                <table class="estimate-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Photo</th>
+                                            <th>Cost</th>
+                                            <th>Quantity</th>
+                                            <th>Subtotal</th>
+                                            <th>Add</th>
+                                            <th>Remove</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="estimate-table__item-zero">
+                                            <td class="estimate-table__item-title"><?php echo $WholeWheatLoaf->get_name(); ?></td>
+                                            <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
+                                            <td class="estimate-table__item-cost">$<?php echo $WholeWheatLoaf->get_price(); ?></td>
+                                            <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][0]; ?></td>
+                                            <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][0]; ?></td>
+                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
+                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                            
+                                        </tr>
+                                        <tr class="estimate-table__item-one">
+                                            <td class="estimate-table__item-title"><?php echo $WhiteBreadLoaf->get_name(); ?></td>
+                                            <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
+                                            <td class="estimate-table__item-cost">$<?php echo $WhiteBreadLoaf->get_price(); ?></td>
+                                            <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][1]; ?></td>
+                                            <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][1]; ?></td>
+                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
+                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                             
+                                        </tr>
+                                        <tr class="estimate-table__item-two">
+                                            <td class="estimate-table__item-title"><?php echo $BlueberryScone->get_name(); ?></td>
+                                            <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
+                                            <td class="estimate-table__item-cost">$<?php echo $BlueberryScone->get_price(); ?></td>
+                                            <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][2]; ?></td>
+                                            <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][2]; ?></td>
+                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
+                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                               
+                                        </tr>
+                                        <tr class="estimate-table__item-three">
+                                            <td class="estimate-table__item-title"><?php echo $ChocolateCake->get_name(); ?></td>
+                                            <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
+                                            <td class="estimate-table__item-cost">$<?php echo $ChocolateCake->get_price(); ?></td>
+                                            <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][3]; ?></td>
+                                            <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][3]; ?></td>
+                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
+                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                               
+                                        </tr>
+                                        <tr class="estimate-table__item-four">
+                                            <td class="estimate-table__item-title"><?php echo $CherryPie->get_name(); ?></td>
+                                            <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
+                                            <td class="estimate-table__item-cost">$<?php echo $CherryPie->get_price(); ?></td>
+                                            <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][4]; ?></td>
+                                            <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][4]; ?></td>
+                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
+                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                            
+                                        </tr>
+                                        <tr class="estimate-table__item-five">
+                                            <td class="estimate-table__item-title"><?php echo $BlueberryMuffin->get_name(); ?></td>
+                                            <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
+                                            <td class="estimate-table__item-cost">$<?php echo $BlueberryMuffin->get_price(); ?></td>
+                                            <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][5]; ?></td>
+                                            <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][5]; ?></td>
+                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
+                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                               
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="content-row estimate-table__cart-summary">
+                                    <div class="col-sma-6">
+                                        <div class="cart-total">Today's Total: $<?php echo $_SESSION["totalCost"]; ?></div>
+                                    </div>
+                                    <div class="col-sma-6">
+                                        <div class="reset-cart">Empty Cart</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sma-5">
+                            <div class="estimate-container" id="estimateContainer">
+                                <h3 class="estimate-container__title">Request Estimate</h3>
                                 <form class="contact-container__form" id="estimateForm" v-on:submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                                <div class="contact-container__response">
-                                    <p>We appreciate your business <strong>{{writeResponse}}</strong> at Tualatin Top Bakery! 
-                                        We will look over your estimate, and respond 
-                                        back within 2 business days with a quote including shipping costs.  We ship anywhere in the continental U.S.</p>
-                                    <div v-if="errors.length">
-                                        <strong>Review the following fields:</strong>
-                                        <ul>
-                                            <li v-for="error in errors">{{error}}</li>
-                                        </ul>
-                                    </div>   
-                                </div>
-                                <div class="input-container">
-                                    <label class="input-container__label" for="userName"><strong>Name *</strong></label>
-                                    <input type="text" id="userName" name="userName" placeholder="Enter Full Name Here" required="required" v-model="userName"> 
-                                </div>
-                                <div class="input-container">
-                                    <label class="input-container__label" for="userEmail"><strong>Email *</strong></label>
-                                    <input type="email" id="userEmail" name="userEmail" placeholder="Enter Email Here" required="required" v-model="userEmail"> 
-                                </div>
-                                <div class="input-container">
-                                    <label class="input-container__label" for="userPhone"><strong>Phone (10 numbers, no dashes)*</strong></label>
-                                    <input type="text" id="userPhone" name="userPhone" placeholder="Phone Number Here" required="required" v-model="userPhone">    
-                                </div>
-                                <div class="input-container">
-                                    <label class="input-container__label" for="userStreetAddress"><strong>Street Address *</strong></label>
-                                    <input id="userStreetAddress" name="userStreetAddress" placeholder="Street Address" required="required" v-model="userStreetAddress" />  
-                                </div>
-                                <div class="input-container">
-                                    <label class="input-container__label" for="userCity"><strong>City *</strong></label>
-                                    <input id="userCity" name="userCity" placeholder="City" required="required" v-model="userCity" />  
-                                </div>
-                                <div class="input-container">
-                                    <label class="input-container__label" for="userState"><strong>State *</strong></label>
-                                    <input id="userState" name="userState" placeholder="State" required="required" v-model="userState" />  
-                                </div>
-                                <div class="input-container">
-                                    <label class="input-container__label" for="userZipCode"><strong>ZIP Code *</strong></label>
-                                    <input id="userZipCode" name="userZipCode" type="text" placeholder="ZIP Code" required="required" v-model="userZipCode" />  
-                                </div>
-                                <div class="input-container">
-                                    <label class="input-container__label" for="additionalNotes"><strong>Additional Notes</strong></label>
-                                    <textarea id="additionalNotes" name="additionalNotes" rows="8" placeholder="Please write any additional order notes here."></textarea>                          
-                                </div>                           
-                                <div class="input-container">
-                                    <button class="input-container__contact-button" id="estimateButton" name="estimateButton" type="submit" v-on:click="setClickedSubmitTrue">Request Estimate!</button>                          
-                                </div>
-                            </form>
-                            <?php if(!empty($transmitResponse)) { echo "<div class=\"contact-container__response-message\">$transmitResponse</div>"; } ?>
+                                    <div class="contact-container__response">
+                                        <p>We appreciate your business <strong>{{writeResponse}}</strong> at Tualatin Top Bakery! 
+                                            We will look over your estimate, and respond 
+                                            back within 2 business days with a quote including shipping costs.  We ship anywhere in the continental U.S.</p>
+                                        <div v-if="errors.length">
+                                            <strong>Review the following fields:</strong>
+                                            <ul>
+                                                <li v-for="error in errors">{{error}}</li>
+                                            </ul>
+                                        </div>   
+                                    </div>
+                                    <div class="input-container">
+                                        <label class="input-container__label" for="userName"><strong>Name *</strong></label>
+                                        <input type="text" id="userName" name="userName" placeholder="Enter Full Name Here" required="required" v-model="userName"> 
+                                    </div>
+                                    <div class="input-container">
+                                        <label class="input-container__label" for="userEmail"><strong>Email *</strong></label>
+                                        <input type="email" id="userEmail" name="userEmail" placeholder="Enter Email Here" required="required" v-model="userEmail"> 
+                                    </div>
+                                    <div class="input-container">
+                                        <label class="input-container__label" for="userPhone"><strong>Phone (10 numbers, no dashes)*</strong></label>
+                                        <input type="text" id="userPhone" name="userPhone" placeholder="Phone Number Here" required="required" v-model="userPhone">    
+                                    </div>
+                                    <div class="input-container">
+                                        <label class="input-container__label" for="userStreetAddress"><strong>Street Address *</strong></label>
+                                        <input id="userStreetAddress" name="userStreetAddress" placeholder="Street Address" required="required" v-model="userStreetAddress" />  
+                                    </div>
+                                    <div class="input-container">
+                                        <label class="input-container__label" for="userCity"><strong>City *</strong></label>
+                                        <input id="userCity" name="userCity" placeholder="City" required="required" v-model="userCity" />  
+                                    </div>
+                                    <div class="input-container">
+                                        <label class="input-container__label" for="userState"><strong>State *</strong></label>
+                                        <input id="userState" name="userState" placeholder="State" required="required" v-model="userState" />  
+                                    </div>
+                                    <div class="input-container">
+                                        <label class="input-container__label" for="userZipCode"><strong>ZIP Code *</strong></label>
+                                        <input id="userZipCode" name="userZipCode" type="text" placeholder="ZIP Code" required="required" v-model="userZipCode" />  
+                                    </div>
+                                    <div class="input-container">
+                                        <label class="input-container__label" for="additionalNotes"><strong>Additional Notes</strong></label>
+                                        <textarea id="additionalNotes" name="additionalNotes" rows="8" placeholder="Please write any additional order notes here."></textarea>                          
+                                    </div>                           
+                                    <div class="input-container">
+                                        <button class="input-container__contact-button" id="estimateButton" name="estimateButton" type="submit" v-on:click="setClickedSubmitTrue">Request Estimate!</button>                          
+                                    </div>
+                                </form>
+                                <?php
+                                if (!empty($transmitResponse)) {
+                                    echo "<div class=\"contact-container__response-message\">$transmitResponse</div>";
+                                }
+                                ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -538,79 +575,117 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </script>
         </div>
         <script type="text/javascript">
-            
+
             //Use AJAX to update the cart without reloading the page.
-            document.getElementsByClassName("product__request-item__add")[0].addEventListener("click", function() { updateCart("item", "=", 0); }, false);
-            document.getElementsByClassName("product__request-item__add")[1].addEventListener("click", function() { updateCart("item", "=", 1); }, false);
-            document.getElementsByClassName("product__request-item__add")[2].addEventListener("click", function() { updateCart("item", "=", 2); }, false);
-            document.getElementsByClassName("product__request-item__add")[3].addEventListener("click", function() { updateCart("item", "=", 3); }, false);
-            document.getElementsByClassName("product__request-item__add")[4].addEventListener("click", function() { updateCart("item", "=", 4); }, false);
-            document.getElementsByClassName("product__request-item__add")[5].addEventListener("click", function() { updateCart("item", "=", 5); }, false);
-            
-            document.getElementsByClassName("estimate-table__add__item")[0].addEventListener("click", function() { updateCart("item", "=", 0); }, false);
-            document.getElementsByClassName("estimate-table__add__item")[1].addEventListener("click", function() { updateCart("item", "=", 1); }, false);
-            document.getElementsByClassName("estimate-table__add__item")[2].addEventListener("click", function() { updateCart("item", "=", 2); }, false);
-            document.getElementsByClassName("estimate-table__add__item")[3].addEventListener("click", function() { updateCart("item", "=", 3); }, false);
-            document.getElementsByClassName("estimate-table__add__item")[4].addEventListener("click", function() { updateCart("item", "=", 4); }, false);
-            document.getElementsByClassName("estimate-table__add__item")[5].addEventListener("click", function() { updateCart("item", "=", 5); }, false);
-            
-            document.getElementsByClassName("estimate-table__minus__item")[0].addEventListener("click", function() { updateCart("remove", "=", 0); }, false);
-            document.getElementsByClassName("estimate-table__minus__item")[1].addEventListener("click", function() { updateCart("remove", "=", 1); }, false);
-            document.getElementsByClassName("estimate-table__minus__item")[2].addEventListener("click", function() { updateCart("remove", "=", 2); }, false);
-            document.getElementsByClassName("estimate-table__minus__item")[3].addEventListener("click", function() { updateCart("remove", "=", 3); }, false);
-            document.getElementsByClassName("estimate-table__minus__item")[4].addEventListener("click", function() { updateCart("remove", "=", 4); }, false);
-            document.getElementsByClassName("estimate-table__minus__item")[5].addEventListener("click", function() { updateCart("remove", "=", 5); }, false);
-            
-            document.getElementsByClassName("reset-cart")[0].addEventListener("click", function() { resetCart("resetCart", "="); }, false);
-            
-            
-            
-            function updateCart(actionString, operatorString, itemID){
+            document.getElementsByClassName("product__request-item__add")[0].addEventListener("click", function () {
+                updateCart("item", "=", 0);
+            }, false);
+            document.getElementsByClassName("product__request-item__add")[1].addEventListener("click", function () {
+                updateCart("item", "=", 1);
+            }, false);
+            document.getElementsByClassName("product__request-item__add")[2].addEventListener("click", function () {
+                updateCart("item", "=", 2);
+            }, false);
+            document.getElementsByClassName("product__request-item__add")[3].addEventListener("click", function () {
+                updateCart("item", "=", 3);
+            }, false);
+            document.getElementsByClassName("product__request-item__add")[4].addEventListener("click", function () {
+                updateCart("item", "=", 4);
+            }, false);
+            document.getElementsByClassName("product__request-item__add")[5].addEventListener("click", function () {
+                updateCart("item", "=", 5);
+            }, false);
+
+            document.getElementsByClassName("estimate-table__add__item")[0].addEventListener("click", function () {
+                updateCart("item", "=", 0);
+            }, false);
+            document.getElementsByClassName("estimate-table__add__item")[1].addEventListener("click", function () {
+                updateCart("item", "=", 1);
+            }, false);
+            document.getElementsByClassName("estimate-table__add__item")[2].addEventListener("click", function () {
+                updateCart("item", "=", 2);
+            }, false);
+            document.getElementsByClassName("estimate-table__add__item")[3].addEventListener("click", function () {
+                updateCart("item", "=", 3);
+            }, false);
+            document.getElementsByClassName("estimate-table__add__item")[4].addEventListener("click", function () {
+                updateCart("item", "=", 4);
+            }, false);
+            document.getElementsByClassName("estimate-table__add__item")[5].addEventListener("click", function () {
+                updateCart("item", "=", 5);
+            }, false);
+
+            document.getElementsByClassName("estimate-table__minus__item")[0].addEventListener("click", function () {
+                updateCart("remove", "=", 0);
+            }, false);
+            document.getElementsByClassName("estimate-table__minus__item")[1].addEventListener("click", function () {
+                updateCart("remove", "=", 1);
+            }, false);
+            document.getElementsByClassName("estimate-table__minus__item")[2].addEventListener("click", function () {
+                updateCart("remove", "=", 2);
+            }, false);
+            document.getElementsByClassName("estimate-table__minus__item")[3].addEventListener("click", function () {
+                updateCart("remove", "=", 3);
+            }, false);
+            document.getElementsByClassName("estimate-table__minus__item")[4].addEventListener("click", function () {
+                updateCart("remove", "=", 4);
+            }, false);
+            document.getElementsByClassName("estimate-table__minus__item")[5].addEventListener("click", function () {
+                updateCart("remove", "=", 5);
+            }, false);
+
+            document.getElementsByClassName("reset-cart")[0].addEventListener("click", function () {
+                resetCart("resetCart", "=");
+            }, false);
+
+
+
+            function updateCart(actionString, operatorString, itemID) {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
                         var parser = new DOMParser();
                         var ajaxDocument = parser.parseFromString(this.responseText, "text/html");
-                        
+
                         var product = ajaxDocument.getElementsByClassName("estimate-table__item-quantity")[itemID];
                         var productSubtotal = ajaxDocument.getElementsByClassName("estimate-table__item-subtotal")[itemID];
                         var cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
-                        
+
                         document.getElementsByClassName("product__quantity")[itemID].innerHTML = "(" + product.innerHTML + ")";
-                        
+
                         document.getElementsByClassName("estimate-table__item-quantity")[itemID].innerHTML = product.innerHTML;
                         document.getElementsByClassName("estimate-table__item-subtotal")[itemID].innerHTML = productSubtotal.innerHTML;
-                        document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;   
+                        document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
                     }
                 };
-                
+
                 xhttp.open("GET", "products.php?" + actionString + operatorString + itemID, true);
-                xhttp.send(); 
+                xhttp.send();
             }
-            
-            function resetCart(actionString, operatorString){
+
+            function resetCart(actionString, operatorString) {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
                         var parser = new DOMParser();
                         var ajaxDocument = parser.parseFromString(this.responseText, "text/html");
-                        
+
                         var products = ajaxDocument.getElementsByClassName("estimate-table__item-quantity");
                         var productSubtotals = ajaxDocument.getElementsByClassName("estimate-table__item-subtotal");
                         var cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
-                        
-                        for(let i = 0; i < products.length; i++){
+
+                        for (let i = 0; i < products.length; i++) {
                             document.getElementsByClassName("product__quantity")[i].innerHTML = "";
-                            
+
                             document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML = products[i].innerHTML;
                             document.getElementsByClassName("estimate-table__item-subtotal")[i].innerHTML = productSubtotals[i].innerHTML;
                         }
-                        document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;   
+                        document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
                     }
                 };
-                
+
                 xhttp.open("GET", "products.php?" + actionString + operatorString, true);
-                xhttp.send(); 
+                xhttp.send();
             }
         </script>
     </body>
