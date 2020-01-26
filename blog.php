@@ -89,8 +89,8 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                                 foreach ($postsToDisplay as $post) : setup_postdata($post);
                                     ?>                                                       
                                     <div  id="<?php the_title(); ?>" class="blog-post">
-                                        <div class="blog__image"><?php the_post_thumbnail('medium_rect_crop'); ?></div>
                                         <h4 class="blog__title"><?php the_title(); ?></h4>
+                                        <div class="blog__image"><?php the_post_thumbnail('medium_rect_crop'); ?></div>
                                         <div class="blog__categories"><?php
                                             $categories = get_the_category();
                                             $h = 0;
