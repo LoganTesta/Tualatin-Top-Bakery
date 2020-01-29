@@ -491,6 +491,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
                                             <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                               
                                         </tr>
+                                        <tr class="clear-both"></div>
                                     </tbody>
                                 </table>
                                 <div class="content-row estimate-table__cart-summary">
