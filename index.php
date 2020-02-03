@@ -97,6 +97,17 @@ require('./wordpress/wp-load.php');
                             <?php endforeach; ?>
                         </div>
                     </div>
+                    <div class="content-row">
+                        <div class="col-sma-12">
+                            <div class="testimonials-wrapper">
+                                <h3 class="index-content__h3">Customers Love Us!</h3>
+                                <?php
+                                $content = "" . do_shortcode('[general_testimonials]');
+                                echo $content;
+                                ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <?php include 'assets/include/message-content.php'; ?>
