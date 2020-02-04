@@ -13,7 +13,8 @@ require('./wordpress/wp-load.php');
         <meta name="description" content="Delicius baked goods featured including bread, cookies, pastries, pies, cakes, and more." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="bakery, bread, whole wheat, cookies, scones, pastries, cupcakes, cakes, pies, Oregon" />
-        <title>Tualatin Top Bakery</title>	   
+        <title>Tualatin Top Bakery</title>
+        <?php wp_head(); ?><!-- Allow WordPress plugins to use CSS and JavaScript. -->
         <?php include 'assets/include/document-head-components.php'; ?>
     </head>
 
@@ -119,6 +120,7 @@ require('./wordpress/wp-load.php');
                 });
             </script>
         </div>
+        <?php wp_footer(); ?><!-- Allow WordPress plugins to use CSS and JavaScript. -->
     </body>
 
 </html>

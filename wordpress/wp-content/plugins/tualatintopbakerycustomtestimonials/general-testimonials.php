@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Tualatin Top Bakery: General Testimonials
- * Plugin URI: https://www.tualatintopbakery.com/
+ * Plugin URI: https://www.tualatintopbakery.com/general-testimonials
  * Version: 1.0
  * Author: Tualatin Top Bakery
  * Description: Allows user to add testimonials to their site.
@@ -10,9 +10,9 @@
 
 
 add_action( 'wp_enqueue_scripts', function(){ 
-   
+   wp_enqueue_style( 'general-testimonials-styling', plugin_dir_url(__FILE__) . '/assets/css/general-testimonials-styles.css' ); 
+   wp_enqueue_style( 'general-testimonials-styling', plugin_dir_url(__FILE__) . 'style.css' );
 });
-
 
 function create_testimonial_post_type() {
     register_post_type('general-testimonials',
@@ -140,8 +140,8 @@ function load_testimonials($a) {
     //Get all testimonials.
     $posts = get_posts($args);
    
-    echo '<div>';
-    echo '<div>';
+    echo '<div class="testimonials-container">';
+     echo '<div class="testimonials-container__inner-wrapper">';
     foreach ($posts as $post) {
         $url_thumb = wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID));
         $providedName = get_testimonialprovidedname($post);
@@ -153,20 +153,20 @@ function load_testimonials($a) {
         }
         echo '<h3 class="testimonial__title">' . $post->post_title . '</h3>';
         if ( !empty($post->post_content) ) {
-            echo '<div class="testimonial__content">' . $post->post_content . '</div>';
+            echo '<p class="testimonial__content">' . $post->post_content . '</p>';
         }
         if( !empty($providedName) ) {
-            echo '<span class="testimonial__provided-name">- ' . $providedName . '</span>';
+            if ( !empty($link)) {
+                 echo '<span class="testimonial__provided-name"><a class="testimonial__link" href="' . $link . '" target="__blank">' . $providedName . '</a></span>';
+            } else {
+                 echo '<span class="testimonial__provided-name">' . $providedName . '</span>';
+            }
         }
         if( !empty($label) ) {
             echo '<span class="testimonial__label">, ' . $label . '</span>';
         }
-        if ( !empty($link)) {
-            echo '<div class="testimonial__link"><a class="testimonial__link--tag" href="' . $link . '" target="__blank">Visit their site</a></div>';
-        }
         echo '</div>';
     }
-
     echo '</div>';
     echo '</div>';
 
