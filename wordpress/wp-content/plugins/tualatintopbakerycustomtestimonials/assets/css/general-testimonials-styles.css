@@ -19,7 +19,7 @@
 @media only screen and (min-width: 700px){
     .testimonial { float: left; width: 50%; padding: 0 15px 0 15px; }
     
-    .testimonial__image { margin-left: 0; margin-right: 0; }
+    .testimonial__image { float: left; padding-right: 15px; margin-left: 0; margin-right: 0; }
     
     .testimonial:first-of-type { padding-left: 0; }
     .testimonial:last-of-type { padding-right: 0; }
