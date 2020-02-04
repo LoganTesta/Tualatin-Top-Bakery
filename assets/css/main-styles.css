@@ -514,6 +514,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     
     .index-blog-posts { padding-bottom: 0px; }
     
+    .index-blog-post { padding-bottom: 0px; }
     .index-blog__image { float: none; padding-left: 0; }
     .index-blog__image img { float: none; margin-left: auto; margin-right: auto; } 
     
