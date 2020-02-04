@@ -100,13 +100,12 @@ require('./wordpress/wp-load.php');
                     </div>
                     <div class="content-row">
                         <div class="col-sma-12">
-                            <div class="testimonials-wrapper">
-                                <h3 class="index-content__h3">Customers Love Us!</h3>
-                                <?php
-                                $content = "" . do_shortcode('[general_testimonials]');
-                                echo $content;
-                                ?>
-                            </div>
+                            <?php
+                            $id = 29;
+                            $page = get_post($id);
+                            $content = "" . apply_filters('the_content', $page->post_content);
+                            echo $content;
+                            ?>
                         </div>
                     </div>
                 </div>

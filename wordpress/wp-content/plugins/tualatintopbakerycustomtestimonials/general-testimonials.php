@@ -141,7 +141,8 @@ function load_testimonials($a) {
     $posts = get_posts($args);
    
     echo '<div class="testimonials-container">';
-     echo '<div class="testimonials-container__inner-wrapper">';
+    echo '<h3 class="testimonials-container__heading">Customers Love Us!</h3>';
+    echo '<div class="testimonials-container__inner-wrapper">';
     foreach ($posts as $post) {
         $url_thumb = wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID));
         $providedName = get_testimonialprovidedname($post);
