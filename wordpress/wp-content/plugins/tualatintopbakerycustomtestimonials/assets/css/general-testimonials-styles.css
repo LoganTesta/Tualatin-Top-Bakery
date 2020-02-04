@@ -4,19 +4,22 @@
 .testimonials-container__inner-wrapper::after { content: ""; display: block; clear: both; }
 
 .testimonial { padding-bottom: 40px; }
-.testimonial__image {}
-.testimonial__title {}
+.testimonial__image { display: block; padding-bottom: 15px; margin-left: auto; margin-right: auto; }
+.testimonial__title { }
 .testimonial__content { padding-bottom: 5px; }
-.testimonial__provided-name { font-size: 18px; font-weight: bold; }
-.testimonial__label { font-size: 18px; font-style: italic; }
+.testimonial__provided-name { font-size: 17px; font-weight: bold; }
+.testimonial__label { font-size: 17px; font-style: italic; }
 
 .testimonial:last-of-type { padding-bottom: 0; }
-.testimonial__link { font-size: 18px; font-weight: bold; }
+.testimonial__link { font-size: 17px; font-weight: bold; }
 
 
 
 @media only screen and (min-width: 700px){
     .testimonial { float: left; width: 50%; padding: 0 15px 0 15px; }
+    
+    .testimonial__image { margin-left: 0; margin-right: 0; }
+    
     .testimonial:first-of-type { padding-left: 0; }
     .testimonial:last-of-type { padding-right: 0; }
 }

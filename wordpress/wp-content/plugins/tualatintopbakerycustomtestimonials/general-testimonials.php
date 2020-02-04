@@ -151,7 +151,7 @@ function load_testimonials($a) {
         if ( !empty($url_thumb) ) {
             echo '<img class="testimonial__image" src="' . $url_thumb . '" />';
         }
-        echo '<h3 class="testimonial__title">' . $post->post_title . '</h3>';
+        echo '<h4 class="testimonial__title">' . $post->post_title . '</h4>';
         if ( !empty($post->post_content) ) {
             echo '<p class="testimonial__content">' . $post->post_content . '</p>';
         }
