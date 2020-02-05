@@ -4,7 +4,7 @@
  * Plugin URI: https://www.tualatintopbakery.com/general-testimonials
  * Version: 1.0
  * Author: Tualatin Top Bakery
- * Description: Allows user to add testimonials to their site.
+ * Description: Add customer testimonials to your site.  Use the shortcode [general_testimonials] where you want to output testimonials, for example in a WordPress generated admin page or a custom PHP page with WordPress enabled.
  * Author URI: https://www.tualatintopbakery.com
  */
 
