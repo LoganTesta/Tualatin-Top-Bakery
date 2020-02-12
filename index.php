@@ -106,11 +106,6 @@ require('./wordpress/wp-load.php');
                             $content = "" . apply_filters('the_content', $page->post_content);
                             echo $content;
                             ?>
-                            
-                            <?php
-                            $content = "" . do_shortcode('[general_testimonials]');
-                            echo $content;
-                            ?>
                         </div>
                     </div>
                 </div>
