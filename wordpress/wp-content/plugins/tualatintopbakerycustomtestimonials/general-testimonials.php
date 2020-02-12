@@ -54,7 +54,7 @@ function general_testimonials_generate_settings_page() {
         <form class="testimonials-settings-form" method="post" action="options.php">
         <?php settings_fields('general-testimonials-settings-group'); ?>
             <label for="general-testimonials-leading-text">Testimonials Leading Text</label>
-            <input id="general-testimonials-leading-text" name="general-testimonials-leading-text" type="text" value="<?php echo get_option('general-testimonials-leading-text'); ?>"/>
+            <input id="general-testimonials-leading-text" name="general-testimonials-leading-text" type="text" value="<?php echo get_option('general-testimonials-leading-text'); ?>" />
         <?php submit_button(); ?>
         </form>
     <?php
@@ -172,7 +172,7 @@ function load_testimonials($a) {
     $posts = get_posts($args);
    
     echo '<div class="testimonials-container">';
-    echo '<h3 class="testimonials-container__heading">Customers Love Us!</h3>';
+    echo '<h3 class="testimonials-container__heading">' . get_option( 'general-testimonials-leading-text' ) . '</h3>';
     echo '<div class="testimonials-container__inner-wrapper">';
     foreach ($posts as $post) {
         $url_thumb = wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID));
@@ -201,7 +201,7 @@ function load_testimonials($a) {
     }
     echo '</div>';
     echo '</div>';
-
+    
 }
 add_shortcode( "general_testimonials", "load_testimonials" );
 add_filter( 'widget_text', 'do_shortcode' );
