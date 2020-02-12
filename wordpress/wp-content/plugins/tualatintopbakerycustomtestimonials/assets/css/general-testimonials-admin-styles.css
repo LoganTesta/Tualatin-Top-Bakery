@@ -1,0 +1,7 @@
+
+/*WordPress Admin styling customization from this plugin.*/
+.general-testimonials-leading-text { }
+
+@media only screen and (min-width: 700px){
+    .general-testimonials-leading-text { width: 400px; }
+}

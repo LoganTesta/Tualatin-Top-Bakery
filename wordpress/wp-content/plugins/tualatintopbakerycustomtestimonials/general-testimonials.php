@@ -8,9 +8,12 @@
  * Author URI: https://www.tualatintopbakery.com
  */
 
+add_action( 'admin_enqueue_scripts', function(){ 
+    wp_enqueue_style( 'general-testimonials-admin-styling', plugin_dir_url(__FILE__) . '/assets/css/general-testimonials-admin-styles.css' ); 
+});
 
 add_action( 'wp_enqueue_scripts', function(){ 
-   wp_enqueue_style( 'general-testimonials-styling', plugin_dir_url(__FILE__) . '/assets/css/general-testimonials-styles.css' ); 
+    wp_enqueue_style( 'general-testimonials-styling', plugin_dir_url(__FILE__) . '/assets/css/general-testimonials-styles.css' ); 
 });
 
 function create_testimonial_post_type() {
@@ -54,7 +57,7 @@ function general_testimonials_generate_settings_page() {
         <form class="testimonials-settings-form" method="post" action="options.php">
         <?php settings_fields('general-testimonials-settings-group'); ?>
             <label for="general-testimonials-leading-text">Testimonials Leading Text</label>
-            <input id="general-testimonials-leading-text" name="general-testimonials-leading-text" type="text" value="<?php echo get_option('general-testimonials-leading-text'); ?>" />
+            <input id="generalTestimonialsLeadingText" class="general-testimonials-leading-text" name="general-testimonials-leading-text" type="text" value="<?php echo get_option('general-testimonials-leading-text'); ?>" />
         <?php submit_button(); ?>
         </form>
     <?php
