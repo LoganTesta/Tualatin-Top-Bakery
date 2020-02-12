@@ -11,7 +11,6 @@
 
 add_action( 'wp_enqueue_scripts', function(){ 
    wp_enqueue_style( 'general-testimonials-styling', plugin_dir_url(__FILE__) . '/assets/css/general-testimonials-styles.css' ); 
-   wp_enqueue_style( 'general-testimonials-styling', plugin_dir_url(__FILE__) . 'style.css' );
 });
 
 function create_testimonial_post_type() {
@@ -28,6 +27,38 @@ function create_testimonial_post_type() {
     );
 }
 add_action('init', 'create_testimonial_post_type');
+
+
+/*Add a settings page for the plugin*/
+
+
+/*Set up the settings page inputs*/
+function general_testimonials_register_settings() {
+    add_option( 'general-testimonials-leading-text', 'Some text' );
+    register_setting( 'general-testimonials-settings-group', 'general-testimonials-leading-text', '' );
+}
+add_action( 'admin_init', 'general_testimonials_register_settings');
+
+
+/*Set up the settings page*/
+function general_testimonials_add_options_page() {
+    add_options_page( 'Page Title', 'General Testimonials Settings', 'manage_options', 'general-testimonials', 'general_testimonials_generate_settings_page' );
+}
+add_action( 'admin_menu', 'general_testimonials_add_options_page');
+
+
+function general_testimonials_generate_settings_page() {
+    ?>
+    <h2>General Testimonials Settings</h2>
+    <?php screen_icon(); ?>
+        <form class="testimonials-settings-form" method="post" action="options.php">
+        <?php settings_fields('general-testimonials-settings-group'); ?>
+            <label for="general-testimonials-leading-text">Testimonials Leading Text</label>
+            <input id="general-testimonials-leading-text" name="general-testimonials-leading-text" type="text" value="<?php echo get_option('general-testimonials-leading-text'); ?>"/>
+        <?php submit_button(); ?>
+        </form>
+    <?php
+}
 
 
 function add_custom_metabox_info() {
