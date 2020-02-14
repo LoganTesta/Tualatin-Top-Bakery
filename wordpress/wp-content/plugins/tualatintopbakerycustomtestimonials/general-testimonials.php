@@ -38,7 +38,7 @@ add_action('init', 'create_testimonial_post_type');
 /*Set up the settings page inputs*/
 function general_testimonials_register_settings() {
     add_option( 'general-testimonials-leading-text', 'Some text' );
-    register_setting( 'general-testimonials-settings-group', 'general-testimonials-leading-text', '' );
+    register_setting( 'general-testimonials-settings-group', 'general-testimonials-leading-text', 'validatetextfield' );
 }
 add_action( 'admin_init', 'general_testimonials_register_settings');
 
@@ -49,6 +49,11 @@ function general_testimonials_add_options_page() {
 }
 add_action( 'admin_menu', 'general_testimonials_add_options_page');
 
+
+function validatetextfield( $input ) {
+    $updatedField = sanitize_text_field( $input );
+    return $updatedField;
+}
 
 function general_testimonials_generate_settings_page() {
     ?>
