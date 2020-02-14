@@ -78,19 +78,25 @@ add_action( 'admin_init', 'add_custom_metabox_info' );
 //Admin area HTML and logic 
 function url_custom_metabox() {
     global $post;
-    $testimonialprovidedname = get_post_meta($post->ID, 'testimonialprovidedname', true);
-    $testimoniallabel = get_post_meta($post->ID, 'testimoniallabel', true);
-    $urllink = get_post_meta($post->ID, 'testimonialurl', true);
     
+    /*Gather the input data, sanitize it, and update the database.*/
+    $testimonialprovidedname = sanitize_text_field( get_post_meta( $post->ID, 'testimonialprovidedname', true ) );
+    update_post_meta( $post->ID, 'testimonialprovidedname', $testimonialprovidedname );
+    $testimoniallabel = sanitize_text_field( get_post_meta( $post->ID, 'testimoniallabel', true ) );
+    update_post_meta( $post->ID, 'testimoniallabel', $testimoniallabel );
+    $testimonialurl = sanitize_text_field( get_post_meta( $post->ID, 'testimonialurl', true ) );
+    update_post_meta( $post->ID, 'testimonialurl', $testimonialurl );
+
+
     $errorsprovidedname = "";
     if( isset($errorsprovidedname) ){
         echo $errorsprovidedname;
     }
    
     $errorslink = "";
-    if (!preg_match("/http(s?):\/\//", $urllink) && $urllink != "") {
+    if (!preg_match("/http(s?):\/\//", $testimonialurl) && $testimonialurl != "") {
         $errorslink = "This URL is not valid";
-        $urllink = "http://";
+        $testimonialurl = "http://";
     }
     
     if( isset($errorslink) ){
@@ -109,7 +115,7 @@ function url_custom_metabox() {
     </p>
     <p>
         <label for="testimonialurl">Testimonial URL:<br />
-            <input id="testimonialurl" size="37" name="testimonialurl" value="<?php if( isset($urllink) ) { echo $urllink; } ?>" />
+            <input id="testimonialurl" size="37" name="testimonialurl" value="<?php if( isset($testimonialurl) ) { echo $testimonialurl; } ?>" />
         </label>
     </p>
  <?php 
@@ -157,8 +163,8 @@ function save_custom_url($post_id) {
 add_action( 'save_post', 'save_custom_url' );
 
 function get_url($post) {
-    $urllink = get_post_meta( $post->ID, 'testimonialurl', true );
-    return $urllink;
+    $testimonialurl = get_post_meta( $post->ID, 'testimonialurl', true );
+    return $testimonialurl;
 }
 
 
