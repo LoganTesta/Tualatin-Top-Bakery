@@ -190,12 +190,13 @@ function load_testimonials($a) {
     echo '<div class="testimonials-container__inner-wrapper">';
     foreach ($posts as $post) {
         $url_thumb = wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID));
+        $url_altText = get_post_meta(get_post_thumbnail_id($post->ID), '_wp_attachment_image_alt', true);
         $providedName = get_testimonialprovidedname($post);
         $label = get_testimoniallabel($post);
         $link = get_url($post);
         echo '<div class="testimonial">';
         if ( !empty($url_thumb) ) {
-            echo '<img class="testimonial__image" src="' . $url_thumb . '" />';
+            echo '<img class="testimonial__image" src="' . $url_thumb . '" alt="' . $url_altText . '" />';
         }
         echo '<h4 class="testimonial__title">' . $post->post_title . '</h4>';
         if ( !empty($post->post_content) ) {
