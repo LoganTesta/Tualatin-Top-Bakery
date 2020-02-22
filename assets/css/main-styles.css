@@ -206,8 +206,8 @@ header { min-height: 200px; background: linear-gradient(#fbe3b7, #f3f3f3); }
                   background: url('../images/hamburger-nav.png') 50% 0%/cover no-repeat; cursor: pointer; }
 #dropdownContent { padding: 0; background: none; transition: 0.8s all ease-in; }    
 #dropdownContent li { display: block; height: 0; padding-bottom: 0px; opacity: 0; transition: 0.8s all ease-in; }
-#dropdownContent.show { padding: 15px; background-color: #eeee99; background-image: linear-gradient(#64460e, #ac8949, #64460e);
-                        transition: 0.8s all ease-in; }
+#dropdownContent .nav__nav-link { background-color: #64460e; }
+#dropdownContent.show { padding: 15px; background-color: #64460e; transition: 0.8s all ease-in; }
 #dropdownContent.show li { height: 21px; margin-bottom: 20px; opacity: 1; transition: 0.8s all ease-in; }
 #dropdownContent.show li:last-of-type { margin-bottom: 0; } 
 
