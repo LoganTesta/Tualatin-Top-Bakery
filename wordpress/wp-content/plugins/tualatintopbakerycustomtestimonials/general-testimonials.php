@@ -16,7 +16,7 @@ add_action( 'wp_enqueue_scripts', function(){
     wp_enqueue_style( 'general-testimonials-styling', plugin_dir_url(__FILE__) . '/assets/css/general-testimonials-styles.css' ); 
 });
 
-function create_testimonial_post_type() {
+function gt_create_testimonial_post_type() {
     register_post_type('general-testimonials',
             array(
                 'labels' => array(
@@ -29,33 +29,33 @@ function create_testimonial_post_type() {
             )
     );
 }
-add_action('init', 'create_testimonial_post_type');
+add_action('init', 'gt_create_testimonial_post_type');
 
 
 /*Add a settings page for the plugin*/
 
 
 /*Set up the settings page inputs*/
-function general_testimonials_register_settings() {
+function gt_register_settings() {
     add_option( 'general-testimonials-leading-text', 'Some text' );
-    register_setting( 'general-testimonials-settings-group', 'general-testimonials-leading-text', 'validatetextfield' );
+    register_setting( 'general-testimonials-settings-group', 'general-testimonials-leading-text', 'gt_validatetextfield' );
 }
-add_action( 'admin_init', 'general_testimonials_register_settings');
+add_action( 'admin_init', 'gt_register_settings');
 
 
 /*Set up the settings page*/
-function general_testimonials_add_options_page() {
-    add_options_page( 'Page Title', 'General Testimonials Settings', 'manage_options', 'general-testimonials', 'general_testimonials_generate_settings_page' );
+function gt_add_options_page() {
+    add_options_page( 'Page Title', 'General Testimonials Settings', 'manage_options', 'general-testimonials', 'gt_generate_settings_page' );
 }
-add_action( 'admin_menu', 'general_testimonials_add_options_page');
+add_action( 'admin_menu', 'gt_add_options_page');
 
 
-function validatetextfield( $input ) {
+function gt_validatetextfield( $input ) {
     $updatedField = sanitize_text_field( $input );
     return $updatedField;
 }
 
-function general_testimonials_generate_settings_page() {
+function gt_generate_settings_page() {
     ?>
     <h2>General Testimonials Settings</h2>
     <?php screen_icon(); ?>
@@ -69,14 +69,14 @@ function general_testimonials_generate_settings_page() {
 }
 
 
-function add_custom_metabox_info() {
-    add_meta_box('custom-metabox', __('Testimonial Information'), 'url_custom_metabox', 'general-testimonials', 'side', 'low');
+function gt_add_custom_metabox_info() {
+    add_meta_box('custom-metabox', __('Testimonial Information'), 'gt_url_custom_metabox', 'general-testimonials', 'side', 'low');
 }
-add_action( 'admin_init', 'add_custom_metabox_info' );
+add_action( 'admin_init', 'gt_add_custom_metabox_info' );
 
 
 //Admin area HTML and logic 
-function url_custom_metabox() {
+function gt_url_custom_metabox() {
     global $post;
     
     /*Gather the input data, sanitize it, and update the database.*/
@@ -123,53 +123,53 @@ function url_custom_metabox() {
 
 
 //Save user provided field data.
-function save_custom_testimonialprovidedname($post_id) {
+function gt_save_custom_testimonialprovidedname($post_id) {
     global $post;
     
     if( isset($_POST['testimonialprovidedname']) ) {
         update_post_meta( $post->ID, 'testimonialprovidedname', $_POST['testimonialprovidedname'] );
     }
 }
-add_action( 'save_post', 'save_custom_testimonialprovidedname' );
+add_action( 'save_post', 'gt_save_custom_testimonialprovidedname' );
 
-function get_testimonialprovidedname($post) {
+function gt_get_testimonialprovidedname($post) {
     $testimonialname = get_post_meta( $post->ID, 'testimonialprovidedname', true );
     return $testimonialname;
 }
 
 
-function save_custom_testimoniallabel($post_id) {
+function gt_save_custom_testimoniallabel($post_id) {
     global $post;
     
     if( isset($_POST['testimoniallabel']) ) {
         update_post_meta( $post->ID, 'testimoniallabel', $_POST['testimoniallabel'] );
     }
 }
-add_action( 'save_post', 'save_custom_testimoniallabel' );
+add_action( 'save_post', 'gt_save_custom_testimoniallabel' );
 
-function get_testimoniallabel($post) {
+function gt_get_testimoniallabel($post) {
     $testimoniallabel = get_post_meta( $post->ID, 'testimoniallabel', true );
     return $testimoniallabel;
 }
 
 
-function save_custom_url($post_id) {
+function gt_save_custom_url($post_id) {
     global $post;
     
     if( isset($_POST['testimonialurl']) ) {
         update_post_meta( $post->ID, 'testimonialurl', $_POST['testimonialurl'] );
     }
 }
-add_action( 'save_post', 'save_custom_url' );
+add_action( 'save_post', 'gt_save_custom_url' );
 
-function get_url($post) {
+function gt_get_url($post) {
     $testimonialurl = get_post_meta( $post->ID, 'testimonialurl', true );
     return $testimonialurl;
 }
 
 
 //Register the shortcode so we can show testimonials.
-function load_testimonials($a) {
+function gt_load_testimonials($a) {
 
     $args = array(
         "post_type" => "general-testimonials"
@@ -191,9 +191,9 @@ function load_testimonials($a) {
     foreach ($posts as $post) {
         $url_thumb = wp_get_attachment_thumb_url(get_post_thumbnail_id($post->ID));
         $url_altText = get_post_meta(get_post_thumbnail_id($post->ID), '_wp_attachment_image_alt', true);
-        $providedName = get_testimonialprovidedname($post);
-        $label = get_testimoniallabel($post);
-        $link = get_url($post);
+        $providedName = gt_get_testimonialprovidedname($post);
+        $label = gt_get_testimoniallabel($post);
+        $link = gt_get_url($post);
         echo '<div class="testimonial">';
         if ( !empty($url_thumb) ) {
             echo '<img class="testimonial__image" src="' . $url_thumb . '" alt="' . $url_altText . '" />';
@@ -218,5 +218,5 @@ function load_testimonials($a) {
     echo '</div>';
     
 }
-add_shortcode( "general_testimonials", "load_testimonials" );
+add_shortcode( "general_testimonials", "gt_load_testimonials" );
 add_filter( 'widget_text', 'do_shortcode' );
