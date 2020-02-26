@@ -53,7 +53,45 @@ require('./wordpress/wp-load.php');
                         </div>
                     </div>
                     <div class="content-row">
-                        <div class="col-sma-12">&nbsp;</div>
+                        <h3 class="index-content__h3">Wholesome Breads, Rich Cakes and Pies, and More!</h3>
+                        <div class="col-sma-3">
+                            <div class="index-product-container zero">
+                                <div class="index-product-container__background-wrapper">
+                                    <div class="index-product-container__background">
+                                        <a class="index-product-container__link" href="products.php"><span class="sr-only">Whole Wheat Loaf</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sma-3">
+                            <div class="index-product-container one">
+                                <div class="index-product-container__background-wrapper">
+                                    <div class="index-product-container__background">
+                                        <a class="index-product-container__link" href="products.php"><span class="sr-only">Cherry Pie</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sma-3">
+                            <div class="index-product-container two">
+                                <div class="index-product-container__background-wrapper">
+                                    <div class="index-product-container__background">
+                                        <a class="index-product-container__link" href="products.php"><span class="sr-only">Scones</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sma-3">
+                            <div class="index-product-container three">
+                                <div class="index-product-container__background-wrapper">
+                                    <div class="index-product-container__background">
+                                        <a class="index-product-container__link" href="products.php"><span class="sr-only">Blueberry Pie</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-row">
                         <h3 class="index-content__h3">Recent Blog Posts</h3>
                         <div class="content-row index-blog-posts" id="indexBlogPosts">
                             <?php

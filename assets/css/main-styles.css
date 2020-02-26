@@ -280,7 +280,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 
 
 /*Index page*/
-.item-container__background.one { background: url('../images/bakery-shelf-cakes.jpg') 0% 0%/cover no-repeat;}
+.item-container__background.one { background: url('../images/bakery-shelf-cakes.jpg') 0% 0%/cover no-repeat; }
 
 .index-content__h3 { text-align: center; }
 
@@ -305,6 +305,15 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .index-blog__date { display: inline; font-style: italic; color: #64460e; }
 .index-blog__author__extra-text { font-weight: normal; color: #64460e; }
 
+.index-product-container { margin-bottom: 30px; }
+.index-product-container__background-wrapper { overflow: hidden; }
+.index-product-container__background { height: 180px; cursor: pointer; }
+.index-product-container__link { display: block; height: 180px; }
+
+.index-product-container.zero .index-product-container__background { background: url('../images/products/whole-wheat-bread.jpg') 0% 0%/cover no-repeat; }
+.index-product-container.one .index-product-container__background  { background: url('../images/products/cherry-pie.jpg') 0% 0%/cover no-repeat; }
+.index-product-container.two .index-product-container__background { background: url('../images/products/scone.jpg') 0% 0%/cover no-repeat; }
+.index-product-container.three .index-product-container__background  { background: url('../images/products/blueberry-pie.jpg') 0% 0%/cover no-repeat; }
 
 /*About Us*/
 .about-us-container__background { height: 240px; background: url('../images/bakery-shelf.jpg') 0% 0%/cover no-repeat; }
@@ -518,6 +527,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     .index-blog__image { float: none; padding-left: 0; }
     .index-blog__image img { float: none; margin-left: auto; margin-right: auto; } 
     
+    .index-product-container { margin-bottom: 0; }
     
     /*About*/
     .about-us-container__background { height: 320px; }
