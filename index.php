@@ -48,7 +48,7 @@ require('./wordpress/wp-load.php');
                         </div>
                         <div class="col-sma-7">
                             <div class="item-container">
-                                <div class="item-container__background one"></div>
+                                <div class="item-container__background zero"></div>
                             </div>
                         </div>
                     </div>

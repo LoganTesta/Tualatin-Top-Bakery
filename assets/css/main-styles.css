@@ -280,7 +280,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 
 
 /*Index page*/
-.item-container__background.one { background: url('../images/bakery-shelf-cakes.jpg') 0% 0%/cover no-repeat; }
+.item-container__background.zero { margin-bottom: 30px; background: url('../images/bakery-shelf-cakes.jpg') 0% 0%/cover no-repeat; }
 
 .index-content__h3 { text-align: center; }
 
@@ -522,6 +522,8 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     
     /*Index*/
     .item-container__background { height: 300px; }
+    
+    .item-container__background.zero { margin-bottom: 0; }
     
     .index-blog-posts { padding-bottom: 0px; }
     
