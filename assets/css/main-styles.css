@@ -306,9 +306,9 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .index-blog__author__extra-text { font-weight: normal; color: #64460e; }
 
 .index-product-container { margin-bottom: 30px; }
-.index-product-container__background-wrapper { overflow: hidden; }
-.index-product-container__background { height: 180px; transition: 0.6s ease-in; cursor: pointer; }
-.index-product-container__link { display: block; height: 180px; }
+.index-product-container__background-wrapper { overflow: hidden; border-radius: 8px; }
+.index-product-container__background { height: 180px; border-radius: 8px; transition: 0.6s ease-in; cursor: pointer; }
+.index-product-container__link { display: block; height: 180px; border-radius: 8px; }
 
 .index-product-container.zero .index-product-container__background { background: url('../images/products/whole-wheat-bread.jpg') 0% 0%/cover no-repeat; }
 .index-product-container.one .index-product-container__background  { background: url('../images/products/cherry-pie.jpg') 0% 0%/cover no-repeat; }
