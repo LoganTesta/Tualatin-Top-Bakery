@@ -54,7 +54,7 @@ require('./wordpress/wp-load.php');
                     </div>
                     <div class="content-row">
                         <h3 class="index-content__h3">Wholesome Breads, Rich Cakes and Pies, and More!</h3>
-                        <div class="col-sma-3">
+                        <div class="col-vsm-6 col-sma-3">
                             <div class="index-product-container zero">
                                 <div class="index-product-container__background-wrapper">
                                     <div class="index-product-container__background">
@@ -63,7 +63,7 @@ require('./wordpress/wp-load.php');
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sma-3">
+                        <div class="col-vsm-6 col-sma-3">
                             <div class="index-product-container one">
                                 <div class="index-product-container__background-wrapper">
                                     <div class="index-product-container__background">
@@ -72,7 +72,7 @@ require('./wordpress/wp-load.php');
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sma-3">
+                        <div class="col-vsm-6 col-sma-3">
                             <div class="index-product-container two">
                                 <div class="index-product-container__background-wrapper">
                                     <div class="index-product-container__background">
@@ -81,7 +81,7 @@ require('./wordpress/wp-load.php');
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sma-3">
+                        <div class="col-vsm-6 col-sma-3">
                             <div class="index-product-container three">
                                 <div class="index-product-container__background-wrapper">
                                     <div class="index-product-container__background">
