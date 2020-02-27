@@ -52,6 +52,51 @@ require('./wordpress/wp-load.php');
                             </div>
                         </div>
                     </div>
+                                       <div class="content-row">
+                        <h3 class="index-content__h3">Recent Blog Posts</h3>
+                        <div class="content-row index-blog-posts" id="indexBlogPosts">
+                            <?php
+                            global $post;
+                            $args = array('posts_per_page' => 3);
+                            $postsToDisplay = get_posts($args);
+                            foreach ($postsToDisplay as $post) : setup_postdata($post);
+                                ?>      
+                                <div class="col-sma-4">
+                                    <div class="index-blog-post">
+                                        <a href="blog.php#<?php the_title(); ?>"><h4 class="index-blog__title"><?php the_title(); ?></h4></a>
+                                        <div class="index-blog__categories"><?php
+                                            $categories = get_the_category();
+                                            $h = 0;
+                                            foreach ($categories as $category) {
+                                                $h++;
+                                            }
+                                            $h = $h - 1;
+
+                                            $i = 0;
+                                            foreach ($categories as $category) {
+                                                $result = "";
+                                                if ($i < $h) {
+                                                    $result .= $category->name . ", ";
+                                                } else {
+                                                    $result .= $category->name;
+                                                }
+                                                echo $result;
+                                                $i++;
+                                            }
+                                            ?>
+                                        </div>
+                                            <div class="index-blog__author-and-name">
+                                                <div class="index-blog__author">By <?php the_author(); ?><span class="index-blog__author__extra-text">, </span></div>
+                                                <div class="index-blog__date"><?php the_date(); ?></div>
+                                            </div>
+                                        <div class="index-blog__image"><a href="blog.php#<?php the_title(); ?>"><?php the_post_thumbnail( 'thumbnail' ); ?></a></div>
+                                        <div class="index-blog__content"><?php the_excerpt(); ?></div>
+                                        <div class="clear-both"></div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
                     <div class="content-row">
                         <h3 class="index-content__h3">Wholesome Breads, Rich Cakes and Pies, and More!</h3>
                         <div class="col-vsm-6 col-sma-3">
@@ -99,51 +144,6 @@ require('./wordpress/wp-load.php');
                             $content = "" . apply_filters('the_content', $page->post_content);
                             echo $content;
                             ?>
-                        </div>
-                    </div>
-                    <div class="content-row">
-                        <h3 class="index-content__h3">Recent Blog Posts</h3>
-                        <div class="content-row index-blog-posts" id="indexBlogPosts">
-                            <?php
-                            global $post;
-                            $args = array('posts_per_page' => 3);
-                            $postsToDisplay = get_posts($args);
-                            foreach ($postsToDisplay as $post) : setup_postdata($post);
-                                ?>      
-                                <div class="col-sma-4">
-                                    <div class="index-blog-post">
-                                        <a href="blog.php#<?php the_title(); ?>"><h4 class="index-blog__title"><?php the_title(); ?></h4></a>
-                                        <div class="index-blog__categories"><?php
-                                            $categories = get_the_category();
-                                            $h = 0;
-                                            foreach ($categories as $category) {
-                                                $h++;
-                                            }
-                                            $h = $h - 1;
-
-                                            $i = 0;
-                                            foreach ($categories as $category) {
-                                                $result = "";
-                                                if ($i < $h) {
-                                                    $result .= $category->name . ", ";
-                                                } else {
-                                                    $result .= $category->name;
-                                                }
-                                                echo $result;
-                                                $i++;
-                                            }
-                                            ?>
-                                        </div>
-                                            <div class="index-blog__author-and-name">
-                                                <div class="index-blog__author">By <?php the_author(); ?><span class="index-blog__author__extra-text">, </span></div>
-                                                <div class="index-blog__date"><?php the_date(); ?></div>
-                                            </div>
-                                        <div class="index-blog__image"><a href="blog.php#<?php the_title(); ?>"><?php the_post_thumbnail( 'thumbnail' ); ?></a></div>
-                                        <div class="index-blog__content"><?php the_excerpt(); ?></div>
-                                        <div class="clear-both"></div>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
