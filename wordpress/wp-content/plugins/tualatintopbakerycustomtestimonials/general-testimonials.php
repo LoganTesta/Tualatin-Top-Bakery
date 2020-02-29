@@ -27,7 +27,7 @@ if( get_option( 'general-testimonials-border-radius' ) !== "" ){
     } else {
         echo $baseTestimonialImageBorderRadius;
     } 
-    ?>; }
+    ?>px; }
 
 </style>
 <?php
@@ -85,7 +85,7 @@ function gt_generate_settings_page() {
             </div>
             <div class="admin-input-container">
                 <label class="admin-input-container__label" for="general-testimonials-border-radius">Border Radius</label>
-                <input id="generalTestimonialsBorderRadius" class="admin-input-container__input general-testimonials-border-radius" name="general-testimonials-border-radius" type="text" value="<?php echo get_option( 'general-testimonials-border-radius' ); ?>" />
+                <input id="generalTestimonialsBorderRadius" class="admin-input-container__input general-testimonials-border-radius" name="general-testimonials-border-radius" type="text" value="<?php echo get_option( 'general-testimonials-border-radius' ); ?>" /><span class="admin-input-container__trailing-text">px</span>
             </div>
             <?php submit_button(); ?>
         </form>

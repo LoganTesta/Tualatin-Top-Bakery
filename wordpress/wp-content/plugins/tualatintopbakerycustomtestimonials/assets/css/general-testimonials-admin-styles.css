@@ -3,10 +3,13 @@
 .general-testimonials-leading-text { }
 
 .admin-input-container { padding-bottom: 15px; }
+.admin-input-container__trailing-text { padding-left: 2px; font-weight: bold; }
 
+.testimonials-settings-form .general-testimonials-border-radius { width: 80px; }
 
 
 @media only screen and (min-width: 700px){
+
 
 }
 
@@ -14,8 +17,8 @@
 
 @media only screen and (min-width: 1200px){
     
-    .testimonials-settings-form .admin-input-container__label { display: inline-block; width: 200px; }
-    .testimonials-settings-form .admin-input-container__input { display: inline-block; width: 400px; }
+    .admin-input-container__label { display: inline-block; width: 200px; }
+    .admin-input-container__input { display: inline-block; width: 400px; }
     
     .general-testimonials-leading-text { width: 400px; }
     

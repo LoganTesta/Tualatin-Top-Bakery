@@ -52,7 +52,7 @@ require('./wordpress/wp-load.php');
                             </div>
                         </div>
                     </div>
-                                       <div class="content-row">
+                    <div class="content-row">
                         <h3 class="index-content__h3">Recent Blog Posts</h3>
                         <div class="content-row index-blog-posts" id="indexBlogPosts">
                             <?php
