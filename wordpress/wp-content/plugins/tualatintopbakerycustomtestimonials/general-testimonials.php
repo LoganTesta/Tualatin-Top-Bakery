@@ -77,13 +77,17 @@ function gt_generate_settings_page() {
     ?>
     <h2>General Testimonials Settings</h2>
     <?php screen_icon(); ?>
-        <form class="testimonials-settings-form" method="post" action="options.php">
-        <?php settings_fields('general-testimonials-settings-group'); ?>
-            <label for="general-testimonials-leading-text">Testimonials Leading Text</label>
-            <input id="generalTestimonialsLeadingText" class="general-testimonials-leading-text" name="general-testimonials-leading-text" type="text" value="<?php echo get_option('general-testimonials-leading-text'); ?>" />
-            <label for="general-testimonials-border-radius">Border Radius</label>
-            <input id="generalTestimonialsBorderRadius" class="general-testimonials-border-radius" name="general-testimonials-border-radius" type="text" value="<?php echo get_option('general-testimonials-border-radius'); ?>" />
-        <?php submit_button(); ?>
+    <form class="testimonials-settings-form" method="post" action="options.php">
+        <?php settings_fields( 'general-testimonials-settings-group' ); ?>
+            <div class="admin-input-container">
+                <label for="general-testimonials-leading-text">Testimonials Leading Text</label>
+                <input id="generalTestimonialsLeadingText" class="general-testimonials-leading-text" name="general-testimonials-leading-text" type="text" value="<?php echo get_option( 'general-testimonials-leading-text' ); ?>" />
+            </div>
+            <div class="admin-input-container">
+                <label for="general-testimonials-border-radius">Border Radius</label>
+                <input id="generalTestimonialsBorderRadius" class="general-testimonials-border-radius" name="general-testimonials-border-radius" type="text" value="<?php echo get_option( 'general-testimonials-border-radius' ); ?>" />
+            </div>
+            <?php submit_button(); ?>
         </form>
     <?php
 }
