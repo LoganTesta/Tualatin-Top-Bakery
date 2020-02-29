@@ -8,50 +8,29 @@
  * Author URI: https://www.tualatintopbakery.com
  */
 
-
-?>
-<style>
-    
-.testimonials-container__heading { text-align: center; }
-.testimonials-container__inner-wrapper { padding-top: 15px; }
-
-.testimonial { padding-bottom: 40px; }
-.testimonial__image { display: block; margin-bottom: 15px; margin-left: auto; margin-right: auto; border-radius: <?php echo get_option( 'general-testimonials-border-radius' ); ?>; }
-.testimonial__title { }
-.testimonial__content { padding-bottom: 5px; }
-.testimonial__provided-name { font-size: 17px; font-weight: bold; }
-.testimonial__label { font-size: 17px; font-style: italic; }
-
-.testimonial:last-of-type { padding-bottom: 0; }
-.testimonials-container__inner-wrapper::after { content: ""; display: block; clear: both; }
-.testimonial__link { font-size: 17px; font-weight: bold; }
-
-
-
-@media only screen and (min-width: 700px){
-    .testimonial { float: left; width: 50%; padding: 0 15px 0 15px; }
-    
-    .testimonial__image { float: left; margin-left: 0; margin-right: 15px; }
-    
-    .testimonial:first-of-type { padding-left: 0; }
-    .testimonial:last-of-type { padding-right: 0; }
-}
-
-
-
-@media only screen and (min-width: 1200px){ 
-     
-}
-</style>
-<?php
+$baseTestimonialImageBorderRadius = "45px";
 
 add_action( 'admin_enqueue_scripts', function(){ 
     wp_enqueue_style( 'general-testimonials-admin-styling', plugin_dir_url(__FILE__) . '/assets/css/general-testimonials-admin-styles.css' ); 
 });
 
 add_action( 'wp_enqueue_scripts', function(){ 
-  //wp_enqueue_style( 'general-testimonials-styling', plugin_dir_url(__FILE__) . '/assets/css/general-testimonials-styles.css' ); 
+  wp_enqueue_style( 'general-testimonials-styling', plugin_dir_url(__FILE__) . '/assets/css/general-testimonials-styles.css' ); 
 });
+
+?>
+<style>
+    
+.testimonial__image { border-radius: <?php  
+if( get_option( 'general-testimonials-border-radius' ) !== "" ){
+    echo get_option( 'general-testimonials-border-radius' );
+    } else {
+        echo $baseTestimonialImageBorderRadius;
+    } 
+    ?>; }
+
+</style>
+<?php
 
 function gt_create_testimonial_post_type() {
     register_post_type('general-testimonials',
@@ -75,7 +54,7 @@ add_action('init', 'gt_create_testimonial_post_type');
 /*Set up the settings page inputs*/
 function gt_register_settings() {
     add_option( 'general-testimonials-leading-text', 'Some text' );
-    add_option( 'general-testimonials-border-radius', '45px' );
+    add_option( 'general-testimonials-border-radius', $baseTestimonialImageBorderRadius );
     register_setting( 'general-testimonials-settings-group', 'general-testimonials-leading-text', 'gt_validatetextfield' );
     register_setting( 'general-testimonials-settings-group', 'general-testimonials-border-radius', 'gt_validatetextfield' );
 }

@@ -4,7 +4,7 @@
 .testimonials-container__inner-wrapper { padding-top: 15px; }
 
 .testimonial { padding-bottom: 40px; }
-.testimonial__image { display: block; margin-bottom: 15px; margin-left: auto; margin-right: auto; border-radius: 45px; }
+.testimonial__image { display: block; margin-bottom: 15px; margin-left: auto; margin-right: auto; }
 .testimonial__title { }
 .testimonial__content { padding-bottom: 5px; }
 .testimonial__provided-name { font-size: 17px; font-weight: bold; }
