@@ -80,12 +80,12 @@ function gt_generate_settings_page() {
     <form class="testimonials-settings-form" method="post" action="options.php">
         <?php settings_fields( 'general-testimonials-settings-group' ); ?>
             <div class="admin-input-container">
-                <label for="general-testimonials-leading-text">Testimonials Leading Text</label>
-                <input id="generalTestimonialsLeadingText" class="general-testimonials-leading-text" name="general-testimonials-leading-text" type="text" value="<?php echo get_option( 'general-testimonials-leading-text' ); ?>" />
+                <label class="admin-input-container__label" for="general-testimonials-leading-text">Testimonials Leading Text</label>
+                <input id="generalTestimonialsLeadingText" class="admin-input-container__input general-testimonials-leading-text" name="general-testimonials-leading-text" type="text" value="<?php echo get_option( 'general-testimonials-leading-text' ); ?>" />
             </div>
             <div class="admin-input-container">
-                <label for="general-testimonials-border-radius">Border Radius</label>
-                <input id="generalTestimonialsBorderRadius" class="general-testimonials-border-radius" name="general-testimonials-border-radius" type="text" value="<?php echo get_option( 'general-testimonials-border-radius' ); ?>" />
+                <label class="admin-input-container__label" for="general-testimonials-border-radius">Border Radius</label>
+                <input id="generalTestimonialsBorderRadius" class="admin-input-container__input general-testimonials-border-radius" name="general-testimonials-border-radius" type="text" value="<?php echo get_option( 'general-testimonials-border-radius' ); ?>" />
             </div>
             <?php submit_button(); ?>
         </form>
