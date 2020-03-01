@@ -40,7 +40,7 @@ add_action('init', 'gt_create_testimonial_post_type');
 /*Set up the settings page inputs*/
 function gt_register_settings() {
     add_option( 'general-testimonials-leading-text', 'Some text' );
-    add_option( 'general-testimonials-border-radius', "45px" );
+    add_option( 'general-testimonials-border-radius', "45" );
     register_setting( 'general-testimonials-settings-group', 'general-testimonials-leading-text', 'gt_validatetextfield' );
     register_setting( 'general-testimonials-settings-group', 'general-testimonials-border-radius', 'gt_validatetextfield' );
 }
