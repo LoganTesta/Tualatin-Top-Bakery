@@ -6,6 +6,9 @@ header("Content-type: text/css; charset: UTF-8");
 require('../../../../../wp-load.php');
 include( plugin_dir_path(__FILE__) . "/general-testimonials.php");
 
+$numberOfTestimonialsPerRow = get_option( 'general-testimonials-testimonials-per-row' );
+$testimonialWidth = 100/get_option( 'general-testimonials-testimonials-per-row' );
+
 ?>
 
 /* */
@@ -26,12 +29,12 @@ include( plugin_dir_path(__FILE__) . "/general-testimonials.php");
 
 
 @media only screen and (min-width: 700px){
-    .testimonial { float: left; width: 50%; padding: 0 15px 0 15px; }
+    .testimonial { float: left; width: <?php echo $testimonialWidth; ?>%; padding: 0 15px 0 15px; }
     
     .testimonial__image { float: left; margin-left: 0; margin-right: 15px; }
     
-    .testimonial:first-of-type { padding-left: 0; }
-    .testimonial:last-of-type { padding-right: 0; }
+    .testimonial:nth-of-type(<?php echo $numberOfTestimonialsPerRow; ?>n+1) { padding-left: 0; }
+    .testimonial:nth-of-type(<?php echo $numberOfTestimonialsPerRow; ?>n+<?php echo $numberOfTestimonialsPerRow; ?>) { padding-right: 0; }
 }
 
 
