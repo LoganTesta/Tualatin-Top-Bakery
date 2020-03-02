@@ -279,6 +279,12 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .bulleted-list { padding-left: 25px; list-style-type: disc; }
 
 
+/*Customized plugin styles*/
+.testimonial__provided-name { color: #64460e; }
+.testimonial__link { color: #64460e; }
+.testimonial__label { color: #64460e; }
+
+
 /*Index page*/
 .item-container__background.zero { margin-bottom: 30px; background: url('../images/bakery-shelf-cakes.jpg') 0% 0%/cover no-repeat; }
 
