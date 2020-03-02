@@ -9,7 +9,6 @@
  */
 
 
-
 add_action( 'admin_enqueue_scripts', function(){ 
     wp_enqueue_style( 'general-testimonials-admin-styling', plugin_dir_url(__FILE__) . '/assets/css/general-testimonials-admin-styles.css' ); 
 });
@@ -208,36 +207,31 @@ function gt_load_testimonials($a) {
     echo '<div class="testimonials-container">';
     echo '<h3 class="testimonials-container__heading">' . get_option( 'general-testimonials-leading-text' ) . '</h3>';
     echo '<div class="testimonials-container__inner-wrapper">';
-    $i = 0; 
-    $numberOfPostsToDisplay = -1;
     foreach ($posts as $post) {
-        if ( $i < $numberOfPostsToDisplay || $numberOfPostsToDisplay === -1 ) {
-            $url_thumb = wp_get_attachment_thumb_url( get_post_thumbnail_id($post->ID ));
-            $url_altText = get_post_meta( get_post_thumbnail_id($post->ID), '_wp_attachment_image_alt', true );
-            $providedName = gt_get_testimonialprovidedname( $post );
-            $label = gt_get_testimoniallabel( $post );
-            $link = gt_get_url( $post );
-            echo '<div class="testimonial">';
-            if ( !empty( $url_thumb ) ) {
-                echo '<img class="testimonial__image" src="' . $url_thumb . '" alt="' . $url_altText . '" />';
-            }
-            echo '<h4 class="testimonial__title">' . $post->post_title . '</h4>';
-            if ( !empty( $post->post_content ) ) {
-                echo '<p class="testimonial__content">' . $post->post_content . '</p>';
-            }
-            if ( !empty( $providedName ) ) {
-                if (!empty( $link )) {
-                    echo '<span class="testimonial__provided-name"><a class="testimonial__link" href="' . $link . '" target="__blank">' . $providedName . '</a></span>';
-                } else {
-                    echo '<span class="testimonial__provided-name">' . $providedName . '</span>';
-                }
-            }
-            if ( !empty( $label ) ) {
-                echo '<span class="testimonial__label">, ' . $label . '</span>';
-            }
-            echo '</div>';
+        $url_thumb = wp_get_attachment_thumb_url( get_post_thumbnail_id($post->ID ));
+        $url_altText = get_post_meta( get_post_thumbnail_id($post->ID), '_wp_attachment_image_alt', true );
+        $providedName = gt_get_testimonialprovidedname( $post );
+        $label = gt_get_testimoniallabel( $post );
+        $link = gt_get_url( $post );
+        echo '<div class="testimonial">';
+        if ( !empty( $url_thumb ) ) {
+            echo '<img class="testimonial__image" src="' . $url_thumb . '" alt="' . $url_altText . '" />';
         }
-        $i++;
+        echo '<h4 class="testimonial__title">' . $post->post_title . '</h4>';
+        if ( !empty( $post->post_content ) ) {
+            echo '<p class="testimonial__content">' . $post->post_content . '</p>';
+        }
+        if ( !empty( $providedName ) ) {
+            if (!empty( $link )) {
+                echo '<span class="testimonial__provided-name"><a class="testimonial__link" href="' . $link . '" target="__blank">' . $providedName . '</a></span>';
+            } else {
+                echo '<span class="testimonial__provided-name">' . $providedName . '</span>';
+            }
+        }
+        if ( !empty( $label ) ) {
+            echo '<span class="testimonial__label">, ' . $label . '</span>';
+        }
+        echo '</div>';
     }
     echo '</div>';
     echo '</div>';
