@@ -5,6 +5,7 @@
 .admin-input-container { padding-bottom: 15px; }
 .admin-input-container__trailing-text { padding-left: 2px; font-weight: bold; }
 .admin-input-container__label--right { padding-right: 15px; }
+.admin-input-container__input.smaller { width: 100px; }
 
 .testimonials-settings-form .general-testimonials-border-radius { width: 80px; }
 
