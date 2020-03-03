@@ -1,10 +1,14 @@
 
 /*WordPress Admin styling customization from this plugin.*/
+.testimonials-settings-form { padding-right: 10px; }
+
 .general-testimonials-leading-text { }
 
 .admin-input-container { padding-bottom: 40px; }
 .admin-input-container__trailing-text { padding-left: 5px; font-weight: 600; }
-.admin-input-container__label { font-weight: 600; }
+.admin-input-container__label { display: block; padding-bottom: 4px; font-weight: 600; }
+.admin-input-container__input { display: inline-block; width: 100%; }
+
 .admin-input-container__label--right { padding-right: 15px; }
 .admin-input-container__input.smaller { width: 100px; }
 
@@ -20,7 +24,7 @@
 
 @media only screen and (min-width: 1200px){
     
-    .admin-input-container__label { display: inline-block; width: 250px; padding-right: 20px; }
+    .admin-input-container__label { display: inline-block; width: 250px; padding-right: 20px; padding-bottom: 0; }
     .admin-input-container__input { display: inline-block; width: 400px; }
     
     .general-testimonials-leading-text { width: 400px; }
