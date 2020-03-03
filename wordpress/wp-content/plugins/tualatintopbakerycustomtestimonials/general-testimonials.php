@@ -67,7 +67,7 @@ function gt_validatetextfield( $input ) {
 
 function gt_generate_settings_page() {
     ?>
-    <h2>General Testimonials Settings</h2>
+    <h1 class="general-testimonials__plugin-title">General Testimonials Settings</h1>
     <?php screen_icon(); ?>
     <form class="testimonials-settings-form" method="post" action="options.php">
         <?php settings_fields( 'general-testimonials-settings-group' ); ?>
