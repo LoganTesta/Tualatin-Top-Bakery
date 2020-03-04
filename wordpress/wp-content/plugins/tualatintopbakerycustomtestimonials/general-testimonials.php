@@ -126,36 +126,57 @@ function gt_url_custom_metabox() {
     update_post_meta( $post->ID, 'testimoniallabel', $testimoniallabel );
     $testimonialurl = sanitize_text_field( get_post_meta( $post->ID, 'testimonialurl', true ) );
     update_post_meta( $post->ID, 'testimonialurl', $testimonialurl );
+    $testimonialorder = sanitize_text_field( get_post_meta( $post->ID, 'testimonialorder', true ) );
+    if( isset( $testimonialorder ) === false || $testimonialorder === "" ) {
+        $testimonialorder = "n/a";
+    }
+    update_post_meta( $post->ID, 'testimonialorder', $testimonialorder );
 
 
     $errorsprovidedname = "";
-    if( isset($errorsprovidedname) ){
+    if( isset( $errorsprovidedname ) ){
         echo $errorsprovidedname;
+    }
+    
+    $errorslabel = "";
+    if( isset( $errorslabel ) ){
+        echo $errorslabel;
     }
    
     $errorslink = "";
-    if (!preg_match( "/http(s?):\/\//", $testimonialurl) && $testimonialurl != "" ) {
+    if ( !preg_match( "/http(s?):\/\//", $testimonialurl ) && $testimonialurl !== "" ) {
         $errorslink = "This URL is not valid";
         $testimonialurl = "http://";
     }
     
-    if( isset($errorslink) ){
+    if( isset( $errorslink ) ){
         echo $errorslink;
     }
+    
+    $errorsorder = "";
+    if( isset( $errorsorder ) ){
+        echo $errorsorder;
+    }
+    
     ?>
     <p>
         <label for="testimonialprovidedname">Provided Testimonial Name:<br />
-            <input id="testimonialprovidedname" name="testimonialprovidedname" size="37" value="<?php if( isset($testimonialprovidedname) ) { echo $testimonialprovidedname; } ?>" />
+            <input id="testimonialprovidedname" name="testimonialprovidedname" size="37" value="<?php if( isset($testimonialprovidedname ) ) { echo $testimonialprovidedname; } ?>" />
         </label>
     </p>
     <p>
         <label for="testimoniallabel">Testimonial Label:<br />
-            <input id="testimoniallabel" name="testimoniallabel" size="37" value="<?php if( isset($testimoniallabel) ) { echo $testimoniallabel; } ?>" />
+            <input id="testimoniallabel" name="testimoniallabel" size="37" value="<?php if( isset( $testimoniallabel ) ) { echo $testimoniallabel; } ?>" />
         </label>
     </p>
     <p>
-        <label for="testimonialurl">Testimonial URL:<br />
-            <input id="testimonialurl" size="37" name="testimonialurl" value="<?php if( isset($testimonialurl) ) { echo $testimonialurl; } ?>" />
+        <label for="testimonialurl">Related URL:<br />
+            <input id="testimonialurl" size="37" name="testimonialurl" value="<?php if( isset( $testimonialurl ) ) { echo $testimonialurl; } ?>" />
+        </label>
+    </p>
+        <p>
+        <label for="testimonialorder">Testimonial Order:<br />
+            <input id="testimonialorder" size="37" name="testimonialorder" value="<?php if( isset($testimonialorder) ) { echo $testimonialorder; } ?>" />
         </label>
     </p>
  <?php 
@@ -208,6 +229,22 @@ function gt_get_url( $post ) {
 }
 
 
+function gt_save_custom_order( $post_id ) {
+    global $post;
+    
+    if( isset($_POST['testimonialorder']) ) {
+        update_post_meta( $post->ID, 'testimonialorder', $_POST['testimonialorder'] );
+    }
+}
+add_action( 'save_post', 'gt_save_custom_order' );
+
+function gt_get_order( $post ) {
+    $testimonialorder = get_post_meta( $post->ID, 'testimonialorder', true );
+    return $testimonialorder;
+}
+
+
+
 /*Adjust admin columns for Testimonials*/
 add_filter( 'manage_posts_columns', 'gt_setup_adjust_admin_columns' );
 function gt_setup_adjust_admin_columns( $columns ) {
@@ -217,10 +254,12 @@ function gt_setup_adjust_admin_columns( $columns ) {
         'image' => __( 'Image' ), 
         'content' => __( 'Testimonial Text' ),
         'testimonialprovidedname' => __( 'Provided Name', 'gt' ),
+        'order' => __( 'Order' ),
         'date' => __( 'Date' ),
     );   
     return $columns;
 }
+
 
 //Add images and other data to posts admin
 add_action( 'manage_posts_custom_column', 'gt_add_data_to_admin_columns', 10, 2 );
@@ -234,7 +273,22 @@ function gt_add_data_to_admin_columns( $column, $post_id ) {
     if( 'content' === $column ) {
         echo get_post_field( 'post_content', $post_id );
     }
+    if( 'order' === $column ) {
+        echo get_post_meta( $post_id, 'testimonialorder', true );
+    } 
 }
+
+
+//Determine order of testimonials shown in admin*/
+add_action( 'pre_get_posts', 'gt_custom_post_order_sort' );
+function gt_custom_post_order_sort( $query ) { 
+    if ( $query->is_main_query() ){
+        $query->set( 'orderby', 'meta_value' );
+        $query->set( 'meta_key', 'testimonialorder' );
+        $query->set( 'order', 'ASC' );
+    }
+}
+
 
 
 //Register the shortcode so we can show testimonials.
@@ -245,14 +299,18 @@ function gt_load_testimonials( $a ) {
 
     if ( isset( $a['rand'] ) && $a['rand'] == true ) {
         $args['orderby'] = 'rand';
+    } else {
+        $args['orderby'] = 'meta_value';
+        $args['meta_key'] = 'testimonialorder';
+        $args['order'] = 'ASC';
     }
+
     if ( isset( $a['max']) ) {
         $args['posts_per_page'] = (int) $a['max'];
     }
 
     //Get all testimonials.
     $posts = get_posts($args);
-   
     echo '<div class="testimonials-container">';
     echo '<h3 class="testimonials-container__heading">' . get_option( 'general-testimonials-leading-text' ) . '</h3>';
     echo '<div class="testimonials-container__inner-wrapper">';
