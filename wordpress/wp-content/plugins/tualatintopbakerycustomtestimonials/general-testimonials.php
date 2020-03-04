@@ -26,12 +26,12 @@ function gt_create_testimonial_post_type() {
                     'singular_name' => __('General Testimonial')
                 ),
                 'public' => true,
-                'supports' => array('title', 'editor', 'thumbnail', 'custom_fields'),
+                'supports' => array( 'title', 'editor', 'thumbnail', 'custom_fields' ),
                 'hierarchical' => false
             )
     );
 }
-add_action('init', 'gt_create_testimonial_post_type');
+add_action( 'init', 'gt_create_testimonial_post_type' );
 
 
 /*Add a settings page for the plugin*/
@@ -59,7 +59,7 @@ add_action( 'admin_init', 'gt_register_settings');
 function gt_add_options_page() {
     add_options_page( 'Page Title', 'General Testimonials Settings', 'manage_options', 'general-testimonials', 'gt_generate_settings_page' );
 }
-add_action( 'admin_menu', 'gt_add_options_page');
+add_action( 'admin_menu', 'gt_add_options_page' );
 
 
 function gt_validatetextfield( $input ) {
@@ -134,7 +134,7 @@ function gt_url_custom_metabox() {
     }
    
     $errorslink = "";
-    if (!preg_match("/http(s?):\/\//", $testimonialurl) && $testimonialurl != "") {
+    if (!preg_match( "/http(s?):\/\//", $testimonialurl) && $testimonialurl != "" ) {
         $errorslink = "This URL is not valid";
         $testimonialurl = "http://";
     }
@@ -163,22 +163,22 @@ function gt_url_custom_metabox() {
 
 
 //Save user provided field data.
-function gt_save_custom_testimonialprovidedname($post_id) {
+function gt_save_custom_testimonialprovidedname( $post_id ) {
     global $post;
     
-    if( isset($_POST['testimonialprovidedname']) ) {
+    if( isset( $_POST['testimonialprovidedname']) ) {
         update_post_meta( $post->ID, 'testimonialprovidedname', $_POST['testimonialprovidedname'] );
     }
 }
 add_action( 'save_post', 'gt_save_custom_testimonialprovidedname' );
 
-function gt_get_testimonialprovidedname($post) {
+function gt_get_testimonialprovidedname( $post ) {
     $testimonialname = get_post_meta( $post->ID, 'testimonialprovidedname', true );
     return $testimonialname;
 }
 
 
-function gt_save_custom_testimoniallabel($post_id) {
+function gt_save_custom_testimoniallabel( $post_id ) {
     global $post;
     
     if( isset($_POST['testimoniallabel']) ) {
@@ -187,13 +187,13 @@ function gt_save_custom_testimoniallabel($post_id) {
 }
 add_action( 'save_post', 'gt_save_custom_testimoniallabel' );
 
-function gt_get_testimoniallabel($post) {
+function gt_get_testimoniallabel( $post ) {
     $testimoniallabel = get_post_meta( $post->ID, 'testimoniallabel', true );
     return $testimoniallabel;
 }
 
 
-function gt_save_custom_url($post_id) {
+function gt_save_custom_url( $post_id ) {
     global $post;
     
     if( isset($_POST['testimonialurl']) ) {
@@ -202,22 +202,22 @@ function gt_save_custom_url($post_id) {
 }
 add_action( 'save_post', 'gt_save_custom_url' );
 
-function gt_get_url($post) {
+function gt_get_url( $post ) {
     $testimonialurl = get_post_meta( $post->ID, 'testimonialurl', true );
     return $testimonialurl;
 }
 
 
 //Register the shortcode so we can show testimonials.
-function gt_load_testimonials($a) {
+function gt_load_testimonials( $a ) {
     $args = array(
         "post_type" => "general-testimonials"
     );
 
-    if (isset($a['rand']) && $a['rand'] == true) {
+    if ( isset( $a['rand'] ) && $a['rand'] == true ) {
         $args['orderby'] = 'rand';
     }
-    if (isset($a['max'])) {
+    if ( isset( $a['max']) ) {
         $args['posts_per_page'] = (int) $a['max'];
     }
 
@@ -229,15 +229,15 @@ function gt_load_testimonials($a) {
     echo '<div class="testimonials-container__inner-wrapper">';
     
     $numberToDisplay = get_option( 'general-testimonials-number-to-display' );
-    if( $numberToDisplay === "") {
+    if( $numberToDisplay === "" ) {
         $numberToDisplay = -1;
     }
-    $numberToDisplay = (int)$numberToDisplay;
+    $numberToDisplay = (int) $numberToDisplay;
     $count = 0;
     foreach ($posts as $post) {
         if( $count < $numberToDisplay  || $numberToDisplay === -1){
-            $url_thumb = wp_get_attachment_thumb_url( get_post_thumbnail_id($post->ID ));
-            $url_altText = get_post_meta( get_post_thumbnail_id($post->ID), '_wp_attachment_image_alt', true );
+            $url_thumb = wp_get_attachment_thumb_url( get_post_thumbnail_id( $post->ID ) );
+            $url_altText = get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true );
             $providedName = gt_get_testimonialprovidedname( $post );
             $label = gt_get_testimoniallabel( $post );
             $link = gt_get_url( $post );
