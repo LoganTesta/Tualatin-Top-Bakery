@@ -208,6 +208,35 @@ function gt_get_url( $post ) {
 }
 
 
+/*Adjust admin columns for Testimonials*/
+add_filter( 'manage_posts_columns', 'gt_setup_adjust_admin_columns' );
+function gt_setup_adjust_admin_columns( $columns ) {
+    $columns = array(
+        'cb' => $columns['cb'],
+        'title' => __( 'Title' ),
+        'image' => __( 'Image' ), 
+        'content' => __( 'Testimonial Text' ),
+        'testimonialprovidedname' => __( 'Provided Name', 'gt' ),
+        'date' => __( 'Date' ),
+    );   
+    return $columns;
+}
+
+//Add images and other data to posts admin
+add_action( 'manage_posts_custom_column', 'gt_add_data_to_admin_columns', 10, 2 );
+function gt_add_data_to_admin_columns( $column, $post_id ) {
+    if( 'image' === $column ) {
+        echo get_the_post_thumbnail( $post_id, array(100, 100) );
+    }
+    if ( 'testimonialprovidedname' === $column ) {
+        echo get_post_meta( $post_id, 'testimonialprovidedname', true);
+    }
+    if( 'content' === $column ) {
+        echo get_post_field( 'post_content', $post_id );
+    }
+}
+
+
 //Register the shortcode so we can show testimonials.
 function gt_load_testimonials( $a ) {
     $args = array(
