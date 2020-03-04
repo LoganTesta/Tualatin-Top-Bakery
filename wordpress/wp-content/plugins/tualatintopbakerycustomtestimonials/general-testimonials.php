@@ -41,12 +41,14 @@ function gt_register_settings() {
     add_option( 'general-testimonials-leading-text', 'Some text' );
     add_option( 'general-testimonials-image-width-height', "150" );
     add_option( 'general-testimonials-border-radius', "45" );
+    add_option( 'general-testimonials-float-image-direction', "left" );
     add_option( 'general-testimonials-testimonials-per-row', "2" );
     add_option( 'general-testimonials-number-to-display', "" );
 
     register_setting( 'general-testimonials-settings-group', 'general-testimonials-leading-text', 'gt_validatetextfield' );
     register_setting( 'general-testimonials-settings-group', 'general-testimonials-image-width-height', 'gt_validatetextfield' );
     register_setting( 'general-testimonials-settings-group', 'general-testimonials-border-radius', 'gt_validatetextfield' );
+    register_setting( 'general-testimonials-settings-group', 'general-testimonials-float-image-direction', 'gt_validatetextfield' );
     register_setting( 'general-testimonials-settings-group', 'general-testimonials-testimonials-per-row', 'gt_validatetextfield' );  
     register_setting( 'general-testimonials-settings-group', 'general-testimonials-number-to-display', 'gt_validatetextfield' );  
 }
@@ -75,13 +77,20 @@ function gt_generate_settings_page() {
                 <label class="admin-input-container__label" for="general-testimonials-leading-text">Testimonials Leading Text</label>
                 <input id="generalTestimonialsLeadingText" class="admin-input-container__input general-testimonials-leading-text" name="general-testimonials-leading-text" type="text" value="<?php echo get_option( 'general-testimonials-leading-text' ); ?>" />
             </div>
-                    <div class="admin-input-container">
+            <div class="admin-input-container">
                 <label class="admin-input-container__label" for="general-testimonials-image-width-height">Image Width, Height (60-150px)</label>
                 <input id="generalTestimonialsNumberToDisplay" class="admin-input-container__input smaller general-testimonials-image-width-height" name="general-testimonials-image-width-height" type="number" value="<?php echo get_option( 'general-testimonials-image-width-height' ); ?>" min="60" max="150" /><span class="admin-input-container__trailing-text">px</span>
             </div>
             <div class="admin-input-container">
                 <label class="admin-input-container__label" for="general-testimonials-border-radius">Image Border Radius</label>
                 <input id="generalTestimonialsImageWidthHeight" class="admin-input-container__input general-testimonials-border-radius" name="general-testimonials-border-radius" type="text" value="<?php echo get_option( 'general-testimonials-border-radius' ); ?>" /><span class="admin-input-container__trailing-text">px</span>
+            </div>
+            <div class="admin-input-container">
+                <span class="admin-input-container__label">Float Image Direction</span>         
+                <input id="generalTestimonialsFloatImageDirection0" class="general-testimonials-float-image-direction" name="general-testimonials-float-image-direction" type="radio" value="left" <?php if(get_option( 'general-testimonials-float-image-direction' ) === "left") { echo 'checked="checked"'; } ?> />
+                <label class="admin-input-container__label--right" for="generalTestimonialsFloatImageDirection0">Left</label>
+                <input id="generalTestimonialsFloatImageDirection1" class="general-testimonials-float-image-direction" name="general-testimonials-float-image-direction" type="radio" value="right" <?php if(get_option( 'general-testimonials-float-image-direction' ) === "right") { echo 'checked="checked"'; } ?> />
+                <label class="admin-input-container__label--right" for="generalTestimonialsFloatImageDirection1">Right</label>
             </div>
             <div class="admin-input-container">
                 <span class="admin-input-container__label">Number of Testimonials Per Row</span>         
