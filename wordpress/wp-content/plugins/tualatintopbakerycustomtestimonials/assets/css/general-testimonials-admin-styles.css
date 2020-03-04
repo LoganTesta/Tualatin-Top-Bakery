@@ -26,6 +26,9 @@
 
 @media only screen and (min-width: 1200px){
     
+    .manage-column.column-title { width: 20%; }
+    .manage-column.column-image { width: 120px; }
+    
     .admin-input-container__label { display: inline-block; width: 250px; padding-right: 20px; padding-bottom: 0; }
     .admin-input-container__input { display: inline-block; width: 400px; }
     
