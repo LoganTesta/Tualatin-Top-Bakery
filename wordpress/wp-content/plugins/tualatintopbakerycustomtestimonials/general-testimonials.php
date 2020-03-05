@@ -284,7 +284,7 @@ function gt_add_data_to_admin_columns( $column, $post_id ) {
 //Determine order of testimonials shown in admin*/
 add_action( 'pre_get_posts', 'gt_custom_post_order_sort' );
 function gt_custom_post_order_sort( $query ) { 
-    if ( $query->is_main_query() ){
+    if ( $query->is_main_query() && $_GET[ 'post_type' ] === "general-testimonials" ){
         $query->set( 'orderby', 'meta_value' );
         $query->set( 'meta_key', 'testimonialorder' );
         $query->set( 'order', 'ASC' );
