@@ -8,6 +8,8 @@
  * Author URI: https://www.tualatintopbakery.com
  */
 
+defined( 'ABSPATH' ) or exit( "File protected." );
+
 
 add_action( 'admin_enqueue_scripts', function(){ 
     wp_enqueue_style( 'general-testimonials-admin-styling', plugin_dir_url(__FILE__) . '/assets/css/general-testimonials-admin-styles.css' ); 
