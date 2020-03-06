@@ -343,7 +343,11 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .product__background:hover { transform: scale(1.12); transition: transform 0.6s ease-in; }
 
 .product__price { padding: 0 0; text-align: center; }
-.product__quantity { padding-left: 4px; font-weight: bold; }
+.product__minus-quantity { display: inline-block; padding: 5px 10px; border-radius: 8px; font-size: 20px; font-weight: bold; background-color: #d0b177; color: #64460e; cursor: pointer; }
+.product__quantity-input { display: inline-block; }
+.product__set-quantity { display: inline-block; width: 80px; margin-left: 2px; margin-right: 2px; }
+.product__increase-quantity { display: inline-block; padding: 5px 10px; border-radius: 8px; font-size: 20px; font-weight: bold; background-color: #d0b177; color: #64460e; cursor: pointer; }
+.product__quantity { padding-left: 10px; font-weight: bold; }
 .product__request-item { padding: 10px 0; }
 .product__request-item__add { width: 107px; padding: 10px; border: 2px solid #64460e; margin-left: auto; margin-right: auto; border-radius: 5px; text-align: center; font-weight: bold; background-color: #008800; color: #f9f9f9; cursor: pointer; transition: 0.4s ease-in; }
 .product__request-item__add:hover { background-color: #22aa22; color: #ffffff; border: 2px solid #64460e; transition: 0.4s ease-in; }

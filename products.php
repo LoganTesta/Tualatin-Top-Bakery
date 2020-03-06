@@ -33,11 +33,15 @@ if (isset($_SESSION["estimateCart"]) === false) {
     }
 }
 
-//Add items to cart.
+//Set cart value quantity
 if (isset($_SESSION["estimateCart"])) {
     if (isset($_GET["item"])) {
         $itemNumber = $_GET["item"];
-        $_SESSION["quantity"][$itemNumber] = $_SESSION["quantity"][$itemNumber] + 1;
+        if(isset($_GET["setValue"])){
+            $_SESSION["quantity"][$itemNumber] = $_GET["setValue"];
+        } else {
+            $_SESSION["quantity"][$itemNumber] = $_SESSION["quantity"][$itemNumber] + 1;
+        }
         $_SESSION["itemSubtotal"][$itemNumber] = number_format($products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
     }
 
@@ -46,6 +50,7 @@ if (isset($_SESSION["estimateCart"])) {
         $_SESSION["totalCost"] = number_format($_SESSION["totalCost"] + $_SESSION["itemSubtotal"][$i], 2);
     }
 }
+
 
 //Remove one item from cart.
 if (isset($_SESSION["estimateCart"])) {
@@ -286,13 +291,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         </div>
                                         <div class="product__price-and-request">
                                             <div class="product__price">$<?php echo $WholeWheatLoaf->get_price(); ?>
-                                                <span class="product__quantity"><?php
-                                                    if ($_SESSION["quantity"][0] > 0) {
-                                                        echo "(" . $_SESSION["quantity"][0] . ")";
-                                                    }
-                                                    ?>
-                                                </span>
                                             </div>   
+                                            <div class="product__adjust-quantity">
+                                                <div class="product__minus-quantity">-</div>
+                                                <div class="product__quantity-input">
+                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
+                                                    <input type="number" min="0" max="100" id="productSetQuantity" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][0]; ?>" />
+                                                </div>
+                                                <div class="product__increase-quantity">+</div>
+                                            </div>
+                                            <div class="product__quantity"><?php
+                                                if ($_SESSION["quantity"][0] > 0) {
+                                                    echo "(" . $_SESSION["quantity"][0] . ")";
+                                                }
+                                                ?>
+                                            </div>
                                             <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="clear-both"></div>
                                         </div>
@@ -307,15 +320,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         <div class="product__background-container">
                                             <div class="product__background"></div>
                                         </div>
-                                        <div class="product__price-and-request">
+                                                                                <div class="product__price-and-request">
                                             <div class="product__price">$<?php echo $WhiteBreadLoaf->get_price(); ?>
-                                                <span class="product__quantity"><?php
-                                                    if ($_SESSION["quantity"][1] > 0) {
-                                                        echo "(" . $_SESSION["quantity"][1] . ")";
-                                                    }
-                                                    ?>
-                                                </span>
                                             </div>   
+                                            <div class="product__adjust-quantity">
+                                                <div class="product__minus-quantity">-</div>
+                                                <div class="product__quantity-input">
+                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
+                                                    <input type="number" min="0" max="100" id="productSetQuantity" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][1]; ?>" />
+                                                </div>
+                                                <div class="product__increase-quantity">+</div>
+                                            </div>
+                                            <div class="product__quantity"><?php
+                                                if ($_SESSION["quantity"][1] > 0) {
+                                                    echo "(" . $_SESSION["quantity"][1] . ")";
+                                                }
+                                                ?>
+                                            </div>
                                             <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="clear-both"></div>
                                         </div>
@@ -332,13 +353,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         </div>
                                         <div class="product__price-and-request">
                                             <div class="product__price">$<?php echo $BlueberryScone->get_price(); ?>
-                                                <span class="product__quantity"><?php
-                                                    if ($_SESSION["quantity"][2] > 0) {
-                                                        echo "(" . $_SESSION["quantity"][2] . ")";
-                                                    }
-                                                    ?>
-                                                </span>
                                             </div>   
+                                            <div class="product__adjust-quantity">
+                                                <div class="product__minus-quantity">-</div>
+                                                <div class="product__quantity-input">
+                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
+                                                    <input type="number" min="0" max="100" id="productSetQuantity" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][2]; ?>" />
+                                                </div>
+                                                <div class="product__increase-quantity">+</div>
+                                            </div>
+                                            <div class="product__quantity"><?php
+                                                if ($_SESSION["quantity"][2] > 0) {
+                                                    echo "(" . $_SESSION["quantity"][2] . ")";
+                                                }
+                                                ?>
+                                            </div>
                                             <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="clear-both"></div>
                                         </div>
@@ -356,13 +385,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         </div>
                                         <div class="product__price-and-request">
                                             <div class="product__price">$<?php echo $ChocolateCake->get_price(); ?>
-                                                <span class="product__quantity"><?php
-                                                    if ($_SESSION["quantity"][3] > 0) {
-                                                        echo "(" . $_SESSION["quantity"][3] . ")";
-                                                    }
-                                                    ?>
-                                                </span>
                                             </div>   
+                                            <div class="product__adjust-quantity">
+                                                <div class="product__minus-quantity">-</div>
+                                                <div class="product__quantity-input">
+                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
+                                                    <input type="number" min="0" max="100" id="productSetQuantity" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][3]; ?>" />
+                                                </div>
+                                                <div class="product__increase-quantity">+</div>
+                                            </div>
+                                            <div class="product__quantity"><?php
+                                                if ($_SESSION["quantity"][3] > 0) {
+                                                    echo "(" . $_SESSION["quantity"][3] . ")";
+                                                }
+                                                ?>
+                                            </div>
                                             <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="clear-both"></div>
                                         </div>
@@ -378,14 +415,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <div class="product__background"></div>
                                         </div>
                                         <div class="product__price-and-request">
-                                            <div class="product__price">$<?php echo $CherryPie->get_price(); ?> or $2.50/slice
-                                                <span class="product__quantity"><?php
-                                                    if ($_SESSION["quantity"][4] > 0) {
-                                                        echo "(" . $_SESSION["quantity"][4] . ")";
-                                                    }
-                                                    ?>
-                                                </span>
+                                            <div class="product__price">$<?php echo $CherryPie->get_price(); ?>
                                             </div>   
+                                            <div class="product__adjust-quantity">
+                                                <div class="product__minus-quantity">-</div>
+                                                <div class="product__quantity-input">
+                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
+                                                    <input type="number" min="0" max="100" id="productSetQuantity" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][4]; ?>" />
+                                                </div>
+                                                <div class="product__increase-quantity">+</div>
+                                            </div>
+                                            <div class="product__quantity"><?php
+                                                if ($_SESSION["quantity"][4] > 0) {
+                                                    echo "(" . $_SESSION["quantity"][4] . ")";
+                                                }
+                                                ?>
+                                            </div>
                                             <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="clear-both"></div>
                                         </div>
@@ -403,13 +448,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         </div>
                                         <div class="product__price-and-request">
                                             <div class="product__price">$<?php echo $BlueberryMuffin->get_price(); ?>
-                                                <span class="product__quantity"><?php
-                                                    if ($_SESSION["quantity"][5] > 0) {
-                                                        echo "(" . $_SESSION["quantity"][5] . ")";
-                                                    }
-                                                    ?>
-                                                </span>
                                             </div>   
+                                            <div class="product__adjust-quantity">
+                                                <div class="product__minus-quantity">-</div>
+                                                <div class="product__quantity-input">
+                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
+                                                    <input type="number" min="0" max="100" id="productSetQuantity" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][5]; ?>" />
+                                                </div>
+                                                <div class="product__increase-quantity">+</div>
+                                            </div>
+                                            <div class="product__quantity"><?php
+                                                if ($_SESSION["quantity"][5] > 0) {
+                                                    echo "(" . $_SESSION["quantity"][5] . ")";
+                                                }
+                                                ?>
+                                            </div>
                                             <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="clear-both"></div>
                                         </div>
@@ -578,24 +631,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <script type="text/javascript">
 
             //Use AJAX to update the cart without reloading the page.
-            document.getElementsByClassName("product__request-item__add")[0].addEventListener("click", function () {
-                updateCart("item", "=", 0);
-            }, false);
-            document.getElementsByClassName("product__request-item__add")[1].addEventListener("click", function () {
-                updateCart("item", "=", 1);
-            }, false);
-            document.getElementsByClassName("product__request-item__add")[2].addEventListener("click", function () {
-                updateCart("item", "=", 2);
-            }, false);
-            document.getElementsByClassName("product__request-item__add")[3].addEventListener("click", function () {
-                updateCart("item", "=", 3);
-            }, false);
-            document.getElementsByClassName("product__request-item__add")[4].addEventListener("click", function () {
-                updateCart("item", "=", 4);
-            }, false);
-            document.getElementsByClassName("product__request-item__add")[5].addEventListener("click", function () {
-                updateCart("item", "=", 5);
-            }, false);
+            for(let i=0; i<6; i++){
+                document.getElementsByClassName("product__request-item__add")[i].addEventListener("click", function () {
+                    let quantityToSet = document.getElementsByClassName("product__set-quantity")[i].value;
+                    setCart("item", "=", i, quantityToSet);
+                }, false);
+            }
+            
+            for(let i=0; i<6; i++){
+                document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function () {
+                    adjustProductSetQuantity(i, "decrease");
+                }, false); 
+            }
+            
+            for(let i=0; i<6; i++){
+                document.getElementsByClassName("product__increase-quantity")[i].addEventListener("click", function () {
+                    adjustProductSetQuantity(i, "increase");
+                }, false); 
+            }
+
 
             document.getElementsByClassName("estimate-table__add__item")[0].addEventListener("click", function () {
                 updateCart("item", "=", 0);
@@ -638,8 +692,41 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             document.getElementsByClassName("reset-cart")[0].addEventListener("click", function () {
                 resetCart("resetCart", "=");
             }, false);
+            
+            
+            function adjustProductSetQuantity(itemNumber, change) {
+                if(change === "decrease"){
+                    document.getElementsByClassName("product__set-quantity")[itemNumber].value --;
+                } else if (change === "increase"){
+                    document.getElementsByClassName("product__set-quantity")[itemNumber].value ++;     
+                }     
+            }
 
+            function setCart(actionString, operatorString, itemID, setValue) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        var parser = new DOMParser();
+                        var ajaxDocument = parser.parseFromString(this.responseText, "text/html");
 
+                        var product = ajaxDocument.getElementsByClassName("estimate-table__item-quantity")[itemID];
+                        var productSubtotal = ajaxDocument.getElementsByClassName("estimate-table__item-subtotal")[itemID];
+                        var cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
+
+                        document.getElementsByClassName("product__quantity")[itemID].innerHTML = "(" + product.innerHTML + ")";
+
+                        document.getElementsByClassName("estimate-table__item-quantity")[itemID].innerHTML = product.innerHTML;
+                        document.getElementsByClassName("estimate-table__item-subtotal")[itemID].innerHTML = productSubtotal.innerHTML;
+                        document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
+                    }
+                };
+                setValue = parseInt(setValue);
+                if(setValue < 0){
+                    setValue = 0;
+                }
+                xhttp.open("GET", "products.php?" + actionString + operatorString + itemID + "&setValue=" + setValue, true);
+                xhttp.send();
+            }
 
             function updateCart(actionString, operatorString, itemID) {
                 var xhttp = new XMLHttpRequest();
