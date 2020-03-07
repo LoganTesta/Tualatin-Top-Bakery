@@ -39,7 +39,10 @@ if (isset($_SESSION["estimateCart"])) {
         $itemNumber = $_GET["item"];
         if((int)$_GET["setValue"] < 0){
             $_GET["setValue"] = 0;
+        } else if((int)$_GET["setValue"] > 100){
+            $_GET["setValue"] = 100;
         }
+        
         if(isset($_GET["setValue"])){
             $_SESSION["quantity"][$itemNumber] = $_GET["setValue"];
         } else {
@@ -700,6 +703,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 setValue = parseInt(setValue);
                 if(setValue < 0){
                     setValue = 0;
+                } else if(setValue > 100){
+                    setValue = 100;
                 }
                 xhttp.open("GET", "products.php?" + actionString + operatorString + itemID + "&setValue=" + setValue, true);
                 xhttp.send();
