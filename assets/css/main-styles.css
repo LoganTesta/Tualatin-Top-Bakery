@@ -554,12 +554,12 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     .product__background { height: 170px; }
     .product__description { padding: 15px 20px; }
     
-    .product__price { padding: 10px 15px 10px 0; float: left; text-align: left; }
+    .product__price { width: 50px; padding: 10px 15px 10px 0; float: left; text-align: left; }
     .product__minus-quantity { display: inline-block; margin-left: 0; margin-right: 0; margin-bottom: 0; }
     .product__quantity-input { display: inline-block; margin-left: 0; margin-right: 0; margin-bottom: 0;  }
     .product__set-quantity { display: inline-block; margin-left: 2px; margin-right: 2px; margin-bottom: 0; }
     .product__increase-quantity { display: inline-block; margin-left: 0; margin-right: 0; margin-bottom: 0; }
-    .product__quantity { display: inline-block; padding-left: 10px; text-align: left; }
+    .product__quantity { display: inline-block; padding-left: 10px; padding-top: 22px; text-align: left; }
     .product__request-item { float: right; padding-bottom: 0; }
     .product__request-item__add { margin-left: 0; margin-right: 0; }
     
@@ -630,6 +630,8 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     .products-header { padding-bottom: 0px; }
     .product-container { margin-bottom: 60px; }
     .product__background { height: 200px; }
+    
+    .product__price { width: 81px; }
     
     .estimate-cart__title { text-align: center; }
     .estimate-table { }
