@@ -646,6 +646,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
             
             for(let i=0; i<numberOfProducts; i++){
+                document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function (event) {           
+                    event.preventDefault();
+                    document.getElementsByClassName("product__minus-quantity")[i].classList.remove("change-color");
+                    void document.getElementsByClassName("product__minus-quantity")[i].offsetWidth;
+                    document.getElementsByClassName("product__minus-quantity")[i].classList.add("change-color");
+                 }, false);
+                document.getElementsByClassName("product__increase-quantity")[i].addEventListener("click", function (event) {           
+                    event.preventDefault();
+                    document.getElementsByClassName("product__increase-quantity")[i].classList.remove("change-color");
+                    void document.getElementsByClassName("product__increase-quantity")[i].offsetWidth;
+                    document.getElementsByClassName("product__increase-quantity")[i].classList.add("change-color");
+                 }, false);
+            }
+
+            for(let i=0; i<numberOfProducts; i++){
                 document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function () {
                     adjustProductSetQuantity(i, "decrease");
                 }, false); 
