@@ -37,6 +37,9 @@ if (isset($_SESSION["estimateCart"]) === false) {
 if (isset($_SESSION["estimateCart"])) {
     if (isset($_GET["item"])) {
         $itemNumber = $_GET["item"];
+        if((int)$_GET["setValue"] < 0){
+            $_GET["setValue"] = 0;
+        }
         if(isset($_GET["setValue"])){
             $_SESSION["quantity"][$itemNumber] = $_GET["setValue"];
         } else {
@@ -629,65 +632,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </script>
         </div>
         <script type="text/javascript">
+            let numberOfProducts = 6;
 
             //Use AJAX to update the cart without reloading the page.
-            for(let i=0; i<6; i++){
+            for(let i=0; i<numberOfProducts; i++){
                 document.getElementsByClassName("product__request-item__add")[i].addEventListener("click", function () {
                     let quantityToSet = document.getElementsByClassName("product__set-quantity")[i].value;
                     setCart("item", "=", i, quantityToSet);
                 }, false);
             }
             
-            for(let i=0; i<6; i++){
+            for(let i=0; i<numberOfProducts; i++){
                 document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function () {
                     adjustProductSetQuantity(i, "decrease");
                 }, false); 
             }
             
-            for(let i=0; i<6; i++){
+            for(let i=0; i<numberOfProducts; i++){
                 document.getElementsByClassName("product__increase-quantity")[i].addEventListener("click", function () {
                     adjustProductSetQuantity(i, "increase");
                 }, false); 
             }
-
-
-            document.getElementsByClassName("estimate-table__add__item")[0].addEventListener("click", function () {
-                updateCart("item", "=", 0);
-            }, false);
-            document.getElementsByClassName("estimate-table__add__item")[1].addEventListener("click", function () {
-                updateCart("item", "=", 1);
-            }, false);
-            document.getElementsByClassName("estimate-table__add__item")[2].addEventListener("click", function () {
-                updateCart("item", "=", 2);
-            }, false);
-            document.getElementsByClassName("estimate-table__add__item")[3].addEventListener("click", function () {
-                updateCart("item", "=", 3);
-            }, false);
-            document.getElementsByClassName("estimate-table__add__item")[4].addEventListener("click", function () {
-                updateCart("item", "=", 4);
-            }, false);
-            document.getElementsByClassName("estimate-table__add__item")[5].addEventListener("click", function () {
-                updateCart("item", "=", 5);
-            }, false);
-
-            document.getElementsByClassName("estimate-table__minus__item")[0].addEventListener("click", function () {
-                updateCart("remove", "=", 0);
-            }, false);
-            document.getElementsByClassName("estimate-table__minus__item")[1].addEventListener("click", function () {
-                updateCart("remove", "=", 1);
-            }, false);
-            document.getElementsByClassName("estimate-table__minus__item")[2].addEventListener("click", function () {
-                updateCart("remove", "=", 2);
-            }, false);
-            document.getElementsByClassName("estimate-table__minus__item")[3].addEventListener("click", function () {
-                updateCart("remove", "=", 3);
-            }, false);
-            document.getElementsByClassName("estimate-table__minus__item")[4].addEventListener("click", function () {
-                updateCart("remove", "=", 4);
-            }, false);
-            document.getElementsByClassName("estimate-table__minus__item")[5].addEventListener("click", function () {
-                updateCart("remove", "=", 5);
-            }, false);
+            
+            for(let i=0; i<numberOfProducts; i++){
+                document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () {
+                    updateCart("item", "=", i);
+                }, false);
+            }
+            
+            for(let i=0; i<numberOfProducts; i++){
+                document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {
+                    updateCart("remove", "=", i);
+                }, false);
+            }
 
             document.getElementsByClassName("reset-cart")[0].addEventListener("click", function () {
                 resetCart("resetCart", "=");
