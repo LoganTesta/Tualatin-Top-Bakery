@@ -296,8 +296,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <div class="product__background"></div>
                                         </div>
                                         <div class="product__price-and-request">
-                                            <div class="product__price">$<?php echo $WholeWheatLoaf->get_price(); ?>
-                                            </div>   
+                                            <div class="product__price">$<?php echo $WholeWheatLoaf->get_price(); ?></div>   
                                             <div class="product__adjust-quantity">
                                                 <div class="product__minus-quantity">-</div>
                                                 <div class="product__quantity-input">
@@ -326,9 +325,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         <div class="product__background-container">
                                             <div class="product__background"></div>
                                         </div>
-                                                                                <div class="product__price-and-request">
-                                            <div class="product__price">$<?php echo $WhiteBreadLoaf->get_price(); ?>
-                                            </div>   
+                                        <div class="product__price-and-request">
+                                            <div class="product__price">$<?php echo $WhiteBreadLoaf->get_price(); ?></div>   
                                             <div class="product__adjust-quantity">
                                                 <div class="product__minus-quantity">-</div>
                                                 <div class="product__quantity-input">
@@ -358,8 +356,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <div class="product__background"></div>
                                         </div>
                                         <div class="product__price-and-request">
-                                            <div class="product__price">$<?php echo $BlueberryScone->get_price(); ?>
-                                            </div>   
+                                            <div class="product__price">$<?php echo $BlueberryScone->get_price(); ?></div>   
                                             <div class="product__adjust-quantity">
                                                 <div class="product__minus-quantity">-</div>
                                                 <div class="product__quantity-input">
@@ -390,8 +387,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <div class="product__background"></div>
                                         </div>
                                         <div class="product__price-and-request">
-                                            <div class="product__price">$<?php echo $ChocolateCake->get_price(); ?>
-                                            </div>   
+                                            <div class="product__price">$<?php echo $ChocolateCake->get_price(); ?></div>   
                                             <div class="product__adjust-quantity">
                                                 <div class="product__minus-quantity">-</div>
                                                 <div class="product__quantity-input">
@@ -421,8 +417,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <div class="product__background"></div>
                                         </div>
                                         <div class="product__price-and-request">
-                                            <div class="product__price">$<?php echo $CherryPie->get_price(); ?>
-                                            </div>   
+                                            <div class="product__price">$<?php echo $CherryPie->get_price(); ?></div>   
                                             <div class="product__adjust-quantity">
                                                 <div class="product__minus-quantity">-</div>
                                                 <div class="product__quantity-input">
@@ -453,8 +448,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <div class="product__background"></div>
                                         </div>
                                         <div class="product__price-and-request">
-                                            <div class="product__price">$<?php echo $BlueberryMuffin->get_price(); ?>
-                                            </div>   
+                                            <div class="product__price">$<?php echo $BlueberryMuffin->get_price(); ?></div>   
                                             <div class="product__adjust-quantity">
                                                 <div class="product__minus-quantity">-</div>
                                                 <div class="product__quantity-input">
