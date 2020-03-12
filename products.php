@@ -14,10 +14,11 @@ $WhiteBreadLoaf = new Product("White Bread Loaf", 1.99, "", "");
 $BlueberryScone = new Product("Blueberry Scone", 2.25, "", "");
 $ChocolateCake = new Product("Chocolate Cake", 15.00, "", "");
 $CherryPie = new Product("Cherry Pie", 12.00, "", "");
+$BlueberryPie = new Product("Blueberry Pie", 12.00, "", "");
 $BlueberryMuffin = new Product("Blueberry Muffin", 2.25, "", "");
 
 
-$products = array($WholeWheatLoaf, $WhiteBreadLoaf, $BlueberryScone, $ChocolateCake, $CherryPie, $BlueberryMuffin);
+$products = array($WholeWheatLoaf, $WhiteBreadLoaf, $BlueberryScone, $ChocolateCake, $CherryPie, $BlueberryPie, $BlueberryMuffin);
 $quantities = array();
 $itemSubtotal = array();
 
@@ -412,7 +413,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 </div>
                                 <div class="col-vsm-6 col-sma-4 col-lar-3">
                                     <div class="product-container four">
-                                        <div class="product__title"><?php echo $CherryPie->get_name(); ?> (and assorted pies)</div>
+                                        <div class="product__title"><?php echo $CherryPie->get_name(); ?></div>
                                         <div class="product__background-container">
                                             <div class="product__background"></div>
                                         </div>
@@ -432,30 +433,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 }
                                                 ?>
                                             </div>
-                                            <label for="product__select-category" class="sr-only">Pie Type</label>
-                                            <select id="productSselectCategory" class="product__select-category" name="product__select-category" type="text">
-                                                <option>Cherry</option>
-                                                <option>Blueberry</option>
-                                                <option>Pumpkin</option>
-                                            </select>
-                                            <div class="clear-both"></div>
                                             <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="clear-both"></div>
                                         </div>
                                         <div class="product__description">
-                                            <p>Assorted wide variety of pies here at Tualatin Top Bakery!</p>
-                                            <p class="no-padding-bottom">We sell cherry pie year round and other pies we sell depending
-                                                on the season include blueberry, pumpkin, banana cream pie, chocolate cream pie, and more!</p></div>
+                                            <p>We sell cherry pie year round at Tualatin Top Bakery!</p>
+                                            <p class="no-padding-bottom">In the late spring and summer we
+                                                often make it with blueberries from local farmers. Made fresh in house!</p></div>
                                     </div>
                                 </div>
                                 <div class="col-vsm-6 col-sma-4 col-lar-3">
                                     <div class="product-container five">
-                                        <div class="product__title"><?php echo $BlueberryMuffin->get_name(); ?></div>
+                                        <div class="product__title"><?php echo $BlueberryPie->get_name(); ?></div>
                                         <div class="product__background-container">
                                             <div class="product__background"></div>
                                         </div>
                                         <div class="product__price-and-request">
-                                            <div class="product__price">$<?php echo $BlueberryMuffin->get_price(); ?></div>   
+                                            <div class="product__price">$<?php echo $BlueberryPie->get_price(); ?></div>   
                                             <div class="product__adjust-quantity">
                                                 <div class="product__minus-quantity">-</div>
                                                 <div class="product__quantity-input">
@@ -467,6 +461,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <div class="product__quantity"><?php
                                                 if ($_SESSION["quantity"][5] > 0) {
                                                     echo "(" . $_SESSION["quantity"][5] . ")";
+                                                }
+                                                ?>
+                                            </div>
+                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                            <div class="clear-both"></div>
+                                        </div>
+                                        <div class="product__description">
+                                            <p>We sell blueberry pie year round at Tualatin Top Bakery!</p>
+                                            <p class="no-padding-bottom">In the summer we
+                                                often make it with cherries from local farmers. Made fresh in house!</p></div>
+                                    </div>
+                                </div>
+                                <div class="col-vsm-6 col-sma-4 col-lar-3">
+                                    <div class="product-container six">
+                                        <div class="product__title"><?php echo $BlueberryMuffin->get_name(); ?></div>
+                                        <div class="product__background-container">
+                                            <div class="product__background"></div>
+                                        </div>
+                                        <div class="product__price-and-request">
+                                            <div class="product__price">$<?php echo $BlueberryMuffin->get_price(); ?></div>   
+                                            <div class="product__adjust-quantity">
+                                                <div class="product__minus-quantity">-</div>
+                                                <div class="product__quantity-input">
+                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
+                                                    <input type="number" min="0" max="100" id="productSetQuantity6" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][6]; ?>" />
+                                                </div>
+                                                <div class="product__increase-quantity">+</div>
+                                            </div>
+                                            <div class="product__quantity"><?php
+                                                if ($_SESSION["quantity"][6] > 0) {
+                                                    echo "(" . $_SESSION["quantity"][6] . ")";
                                                 }
                                                 ?>
                                             </div>
@@ -543,11 +568,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                            
                                         </tr>
                                         <tr class="estimate-table__item-five <?php if($_SESSION["quantity"][5] <= 0){ echo "hide"; } ?>">
+                                            <td class="estimate-table__item-title"><?php echo $BlueberryPie->get_name(); ?></td>
+                                            <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
+                                            <td class="estimate-table__item-cost">$<?php echo $BlueberryPie->get_price(); ?></td>
+                                            <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][5]; ?></td>
+                                            <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][5]; ?></td>
+                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
+                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                            
+                                        </tr>
+                                        <tr class="estimate-table__item-six <?php if($_SESSION["quantity"][6] <= 0){ echo "hide"; } ?>">
                                             <td class="estimate-table__item-title"><?php echo $BlueberryMuffin->get_name(); ?></td>
                                             <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
                                             <td class="estimate-table__item-cost">$<?php echo $BlueberryMuffin->get_price(); ?></td>
-                                            <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][5]; ?></td>
-                                            <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][5]; ?></td>
+                                            <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][6]; ?></td>
+                                            <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][6]; ?></td>
                                             <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
                                             <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                               
                                         </tr>
@@ -636,7 +670,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </script>
         </div>
         <script type="text/javascript">
-            let numberOfProducts = 6;
+            let numberOfProducts = 7;
 
             //Use AJAX to update the cart without reloading the page.
             for(let i=0; i<numberOfProducts; i++){
