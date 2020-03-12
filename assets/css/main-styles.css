@@ -644,22 +644,32 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     
     .estimate-cart__title { text-align: center; }
     .estimate-table { }
+    .estimate-table tr { font-size: 0; }
     .estimate-table tbody tr { float: none; width: 100%; padding-bottom: 0; }
-    .estimate-table th, .estimate-table td { display: table-cell; }
+    .estimate-table th, .estimate-table td { display: inline-block; }
     .estimate-table th { width: auto; text-align: left; }
     .estimate-table td { text-align: left; }
     
+    .estimate-table .estimate-table__th-item { width: 150px; }
+    .estimate-table .estimate-table__th-photo { width: 110px; }
+    .estimate-table .estimate-table__th-cost { width: 85px; }
+    
+    .estimate-table .estimate-table__th-quantity { width: 90px; }
+    .estimate-table .estimate-table__th-subtotal { width: 90px; }
+    .estimate-table .estimate-table__th-add { width: 60px; }
+    .estimate-table .estimate-table__th-remove { width: 80px; }
+
     .estimate-container { padding-top: 0; }
     .estimate-container__title { text-align: center; }
-    .estimate-table__item-image { }
-    .estimate-table__item-title { padding: 10px 5px; }
-    .estimate-table__item-cost { padding-left: 10px; padding-right: 25px; }
-    .estimate-table__item-quantity { } 
-    .estimate-table__item-subtotal { }
-    .estimate-table__add { width: 70px; }
-    .estimate-table__minus { width: 70px; }
+    .estimate-table .estimate-table__item-title { width: 150px; padding: 10px 5px; }
+    .estimate-table .estimate-table__item-image { width: 110px;  }
+    .estimate-table .estimate-table__item-cost { width: 85px; padding-left: 10px; padding-right: 25px; }
+    .estimate-table .estimate-table__item-quantity { width: 90px; } 
+    .estimate-table .estimate-table__item-subtotal { width: 90px; }
+    .estimate-table .estimate-table__add { width: 60px; }
+    .estimate-table .estimate-table__minus { width: 80px; }
     
-    .estimate-table__cart-summary { margin-top: 15px; }
+    .estimate-table__cart-summary { margin-top: 30px; }
     .cart-total { padding-top: 10px; padding-bottom: 0; text-align: left; }
     .reset-cart {}
     

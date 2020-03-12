@@ -512,13 +512,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <table class="estimate-table">
                                     <thead>
                                         <tr>
-                                            <th>Item</th>
-                                            <th>Photo</th>
-                                            <th>Cost</th>
-                                            <th>Quantity</th>
-                                            <th>Subtotal</th>
-                                            <th>Add</th>
-                                            <th>Remove</th>
+                                            <th class="estimate-table__th-item">Item</th>
+                                            <th class="estimate-table__th-photo">Photo</th>
+                                            <th class="estimate-table__th-cost">Cost</th>
+                                            <th class="estimate-table__th-quantity">Quantity</th>
+                                            <th class="estimate-table__th-subtotal">Subtotal</th>
+                                            <th class="estimate-table__th-add">Add</th>
+                                            <th class="estimate-table__th-remove">Remove</th>
                                         </tr>
                                     </thead>
                                     <tbody>
