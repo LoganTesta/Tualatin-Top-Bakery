@@ -182,8 +182,8 @@ h1 { font-size: 30px; }
 h2 { font-size: 24px; }
 h3 { padding: 0 0 15px 0; color: #64460e; text-align: center; }
 h4 { padding: 0 0 12px 0; color: #64460e; }
-input:focus, textarea:focus { box-shadow: 0px 0px 3px 3px rgba(172, 137, 73, 0.6); transition: 0.2s;}
-input::placeholder, textarea::placeholder { color: #64460e; opacity: 0.8; }
+input:focus, textarea:focus, select:focus { box-shadow: 0px 0px 3px 3px rgba(172, 137, 73, 0.6); transition: 0.2s;}
+input::placeholder, textarea::placeholder, select::placeholder { color: #64460e; opacity: 0.8; }
 
 
 /* Header styles */
