@@ -346,7 +346,8 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .product__adjust-quantity { font-size: 0; }
 .product__minus-quantity { display: block; width: 30px; height: 30px; margin-left: auto; margin-right: auto; margin-bottom: 10px; border: 2px solid #64460e; border-radius: 8px; font-size: 20px; font-weight: bold; text-align: center; background-color: #d0b177; color: #64460e; cursor: pointer; user-select: none; }
 .product__quantity-input { display: block; margin-left: auto; margin-right: auto; margin-bottom: 10px; }
-.product__set-quantity { display: block; width: 60px; padding: 6px 10px; margin-left: 2px; margin-right: 2px; margin-left: auto; margin-right: auto; margin-bottom: 10px; border: 1px solid #64460e; -moz-appearance: textfield; }
+.product__set-quantity { display: block; width: 60px; padding: 6px 10px; margin-left: 2px; margin-right: 2px; margin-left: auto; margin-right: auto; margin-bottom: 10px; border: 1px solid #64460e; }
+.product-container .product__set-quantity { -moz-appearance: textfield; }
 .product-container input::-webkit-outer-spin-button,.product-container input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .product__increase-quantity { display: block; width: 30px; height: 30px; padding-top: 1px; margin-left: auto; margin-right: auto; margin-bottom: 10px; border: 2px solid #64460e; border-radius: 8px; font-size: 20px; font-weight: bold; text-align: center; background-color: #d0b177; color: #64460e; cursor: pointer; user-select: none; }
 .product__quantity { display: block; text-align: center; font-weight: bold; }
