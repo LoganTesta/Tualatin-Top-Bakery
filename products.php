@@ -497,7 +497,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="estimate-table__item-zero">
+                                        <tr class="estimate-table__item-zero <?php if($_SESSION["quantity"][0] <= 0){ echo "hide"; } ?>">
                                             <td class="estimate-table__item-title"><?php echo $WholeWheatLoaf->get_name(); ?></td>
                                             <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
                                             <td class="estimate-table__item-cost">$<?php echo $WholeWheatLoaf->get_price(); ?></td>
@@ -506,7 +506,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
                                             <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                            
                                         </tr>
-                                        <tr class="estimate-table__item-one">
+                                        <tr class="estimate-table__item-one <?php if($_SESSION["quantity"][1] <= 1){ echo "hide"; } ?>">
                                             <td class="estimate-table__item-title"><?php echo $WhiteBreadLoaf->get_name(); ?></td>
                                             <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
                                             <td class="estimate-table__item-cost">$<?php echo $WhiteBreadLoaf->get_price(); ?></td>
@@ -515,7 +515,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
                                             <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                             
                                         </tr>
-                                        <tr class="estimate-table__item-two">
+                                        <tr class="estimate-table__item-two <?php if($_SESSION["quantity"][2] <= 0){ echo "hide"; } ?>">
                                             <td class="estimate-table__item-title"><?php echo $BlueberryScone->get_name(); ?></td>
                                             <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
                                             <td class="estimate-table__item-cost">$<?php echo $BlueberryScone->get_price(); ?></td>
@@ -524,7 +524,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
                                             <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                               
                                         </tr>
-                                        <tr class="estimate-table__item-three">
+                                        <tr class="estimate-table__item-three <?php if($_SESSION["quantity"][3] <= 0){ echo "hide"; } ?>">
                                             <td class="estimate-table__item-title"><?php echo $ChocolateCake->get_name(); ?></td>
                                             <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
                                             <td class="estimate-table__item-cost">$<?php echo $ChocolateCake->get_price(); ?></td>
@@ -533,7 +533,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
                                             <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                               
                                         </tr>
-                                        <tr class="estimate-table__item-four">
+                                        <tr class="estimate-table__item-four <?php if($_SESSION["quantity"][4] <= 0){ echo "hide"; } ?>">
                                             <td class="estimate-table__item-title"><?php echo $CherryPie->get_name(); ?></td>
                                             <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
                                             <td class="estimate-table__item-cost">$<?php echo $CherryPie->get_price(); ?></td>
@@ -542,7 +542,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
                                             <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                            
                                         </tr>
-                                        <tr class="estimate-table__item-five">
+                                        <tr class="estimate-table__item-five <?php if($_SESSION["quantity"][5] <= 0){ echo "hide"; } ?>">
                                             <td class="estimate-table__item-title"><?php echo $BlueberryMuffin->get_name(); ?></td>
                                             <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
                                             <td class="estimate-table__item-cost">$<?php echo $BlueberryMuffin->get_price(); ?></td>
@@ -675,12 +675,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
             for(let i=0; i<numberOfProducts; i++){
                 document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () {
-                    updateCart("item", "=", i);
+                   updateCart("item", "=", i);
                 }, false);
             }
             
             for(let i=0; i<numberOfProducts; i++){
-                document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {
+                document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {        
                     updateCart("remove", "=", i);
                 }, false);
             }
@@ -706,14 +706,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         var ajaxDocument = parser.parseFromString(this.responseText, "text/html");
 
                         var product = ajaxDocument.getElementsByClassName("estimate-table__item-quantity")[itemID];
-                        var productSubtotal = ajaxDocument.getElementsByClassName("estimate-table__item-subtotal")[itemID];
+                        var estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
                         var cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
 
                         document.getElementsByClassName("product__quantity")[itemID].innerHTML = "(" + product.innerHTML + ")";
-
-                        document.getElementsByClassName("estimate-table__item-quantity")[itemID].innerHTML = product.innerHTML;
-                        document.getElementsByClassName("estimate-table__item-subtotal")[itemID].innerHTML = productSubtotal.innerHTML;
+                        
+                        document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
+                        
+                        //Recreate event listeners for - and + buttons.
+                        reAddEventListeners();
                     }
                 };
                 setValue = parseInt(setValue);
@@ -734,14 +736,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         var ajaxDocument = parser.parseFromString(this.responseText, "text/html");
 
                         var product = ajaxDocument.getElementsByClassName("estimate-table__item-quantity")[itemID];
-                        var productSubtotal = ajaxDocument.getElementsByClassName("estimate-table__item-subtotal")[itemID];
+                        var estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
                         var cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
 
                         document.getElementsByClassName("product__quantity")[itemID].innerHTML = "(" + product.innerHTML + ")";
 
-                        document.getElementsByClassName("estimate-table__item-quantity")[itemID].innerHTML = product.innerHTML;
-                        document.getElementsByClassName("estimate-table__item-subtotal")[itemID].innerHTML = productSubtotal.innerHTML;
+                        document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
+                        
+                        //Recreate event listeners for - and + buttons.
+                        reAddEventListeners();
                     }
                 };
 
@@ -755,23 +759,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     if (this.readyState === 4 && this.status === 200) {
                         var parser = new DOMParser();
                         var ajaxDocument = parser.parseFromString(this.responseText, "text/html");
-
+                        
                         var products = ajaxDocument.getElementsByClassName("estimate-table__item-quantity");
-                        var productSubtotals = ajaxDocument.getElementsByClassName("estimate-table__item-subtotal");
+
+                        var estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
                         var cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
 
                         for (let i = 0; i < products.length; i++) {
-                            document.getElementsByClassName("product__quantity")[i].innerHTML = "";
-
-                            document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML = products[i].innerHTML;
-                            document.getElementsByClassName("estimate-table__item-subtotal")[i].innerHTML = productSubtotals[i].innerHTML;
+                            document.getElementsByClassName("product__quantity")[i].innerHTML = "";  
                         }
+                        document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
+                        
+                        //Recreate event listeners for - and + buttons.
+                        reAddEventListeners();
                     }
                 };
 
                 xhttp.open("GET", "products.php?" + actionString + operatorString, true);
                 xhttp.send();
+            }
+            
+            function reAddEventListeners () {
+                for(let i=0; i<numberOfProducts; i++){
+                    document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () {
+                       updateCart("item", "=", i);
+                    }, false);
+                }
+
+                for(let i=0; i<numberOfProducts; i++){
+                    document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {        
+                        updateCart("remove", "=", i);
+                    }, false);
+                }
             }
         </script>
     </body>

@@ -379,7 +379,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .estimate-table th { display: none; width: 100%; padding: 10px 5px; text-align: center; font-size: 19px; font-weight: bold; }
 .estimate-table tbody tr { width: 50%; float: left; }
 .estimate-table td { display: inline-block; width: 100%; text-align: center; }
-
+.estimate-table .hide { display: none; }
 
 .estimate-table__item-title { width: 100%; padding: 50px 5px 10px 5px; font-weight: bold; }
 .estimate-table__item-image { width: 100%; padding: 10px 5px; }
