@@ -301,7 +301,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 <div class="product__minus-quantity">-</div>
                                                 <div class="product__quantity-input">
                                                     <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                    <input type="number" min="0" max="100" id="productSetQuantity" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][0]; ?>" />
+                                                    <input type="number" min="0" max="100" id="productSetQuantity0" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][0]; ?>" />
                                                 </div>
                                                 <div class="product__increase-quantity">+</div>
                                             </div>
@@ -331,7 +331,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 <div class="product__minus-quantity">-</div>
                                                 <div class="product__quantity-input">
                                                     <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                    <input type="number" min="0" max="100" id="productSetQuantity" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][1]; ?>" />
+                                                    <input type="number" min="0" max="100" id="productSetQuantity1" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][1]; ?>" />
                                                 </div>
                                                 <div class="product__increase-quantity">+</div>
                                             </div>
@@ -361,7 +361,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 <div class="product__minus-quantity">-</div>
                                                 <div class="product__quantity-input">
                                                     <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                    <input type="number" min="0" max="100" id="productSetQuantity" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][2]; ?>" />
+                                                    <input type="number" min="0" max="100" id="productSetQuantity2" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][2]; ?>" />
                                                 </div>
                                                 <div class="product__increase-quantity">+</div>
                                             </div>
@@ -392,7 +392,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 <div class="product__minus-quantity">-</div>
                                                 <div class="product__quantity-input">
                                                     <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                    <input type="number" min="0" max="100" id="productSetQuantity" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][3]; ?>" />
+                                                    <input type="number" min="0" max="100" id="productSetQuantity3" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][3]; ?>" />
                                                 </div>
                                                 <div class="product__increase-quantity">+</div>
                                             </div>
@@ -422,7 +422,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 <div class="product__minus-quantity">-</div>
                                                 <div class="product__quantity-input">
                                                     <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                    <input type="number" min="0" max="100" id="productSetQuantity" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][4]; ?>" />
+                                                    <input type="number" min="0" max="100" id="productSetQuantity4" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][4]; ?>" />
                                                 </div>
                                                 <div class="product__increase-quantity">+</div>
                                             </div>
@@ -432,6 +432,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 }
                                                 ?>
                                             </div>
+                                            <label for="product__select-category" class="sr-only">Pie Type</label>
+                                            <select id="productSselectCategory" class="product__select-category" name="product__select-category" type="text">
+                                                <option>Cherry</option>
+                                                <option>Blueberry</option>
+                                                <option>Pumpkin</option>
+                                            </select>
+                                            <div class="clear-both"></div>
                                             <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="clear-both"></div>
                                         </div>
@@ -453,7 +460,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 <div class="product__minus-quantity">-</div>
                                                 <div class="product__quantity-input">
                                                     <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                    <input type="number" min="0" max="100" id="productSetQuantity" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][5]; ?>" />
+                                                    <input type="number" min="0" max="100" id="productSetQuantity5" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][5]; ?>" />
                                                 </div>
                                                 <div class="product__increase-quantity">+</div>
                                             </div>
