@@ -306,13 +306,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 </div>
                                                 <div class="product__increase-quantity">+</div>
                                             </div>
+                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="product__quantity"><?php
                                                 if ($_SESSION["quantity"][0] > 0) {
                                                     echo "(" . $_SESSION["quantity"][0] . ")";
                                                 }
                                                 ?>
                                             </div>
-                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="clear-both"></div>
                                         </div>
                                         <div class="product__description">
@@ -336,13 +336,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 </div>
                                                 <div class="product__increase-quantity">+</div>
                                             </div>
+                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="product__quantity"><?php
                                                 if ($_SESSION["quantity"][1] > 0) {
                                                     echo "(" . $_SESSION["quantity"][1] . ")";
                                                 }
                                                 ?>
                                             </div>
-                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="clear-both"></div>
                                         </div>
                                         <div class="product__description">
@@ -366,13 +366,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 </div>
                                                 <div class="product__increase-quantity">+</div>
                                             </div>
+                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="product__quantity"><?php
                                                 if ($_SESSION["quantity"][2] > 0) {
                                                     echo "(" . $_SESSION["quantity"][2] . ")";
                                                 }
                                                 ?>
                                             </div>
-                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="clear-both"></div>
                                         </div>
                                         <div class="product__description">
@@ -397,13 +397,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 </div>
                                                 <div class="product__increase-quantity">+</div>
                                             </div>
+                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="product__quantity"><?php
                                                 if ($_SESSION["quantity"][3] > 0) {
                                                     echo "(" . $_SESSION["quantity"][3] . ")";
                                                 }
                                                 ?>
                                             </div>
-                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="clear-both"></div>
                                         </div>
                                         <div class="product__description">
@@ -427,13 +427,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 </div>
                                                 <div class="product__increase-quantity">+</div>
                                             </div>
+                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="product__quantity"><?php
                                                 if ($_SESSION["quantity"][4] > 0) {
                                                     echo "(" . $_SESSION["quantity"][4] . ")";
                                                 }
                                                 ?>
                                             </div>
-                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="clear-both"></div>
                                         </div>
                                         <div class="product__description">
@@ -458,13 +458,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 </div>
                                                 <div class="product__increase-quantity">+</div>
                                             </div>
+                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="product__quantity"><?php
                                                 if ($_SESSION["quantity"][5] > 0) {
                                                     echo "(" . $_SESSION["quantity"][5] . ")";
                                                 }
                                                 ?>
                                             </div>
-                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="clear-both"></div>
                                         </div>
                                         <div class="product__description">
@@ -489,13 +489,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 </div>
                                                 <div class="product__increase-quantity">+</div>
                                             </div>
+                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="product__quantity"><?php
                                                 if ($_SESSION["quantity"][6] > 0) {
                                                     echo "(" . $_SESSION["quantity"][6] . ")";
                                                 }
                                                 ?>
                                             </div>
-                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="clear-both"></div>
                                         </div>
                                         <div class="product__description">
