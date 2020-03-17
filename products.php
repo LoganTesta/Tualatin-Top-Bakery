@@ -718,21 +718,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         var parser = new DOMParser();
                         var ajaxDocument = parser.parseFromString(this.responseText, "text/html");
 
-                        var product = ajaxDocument.getElementsByClassName("estimate-table__item-quantity")[itemID];
                         var estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
                         var cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
 
 
-                        let productCount = parseInt(product.innerHTML);
-                        if(productCount > 0) {
-                            document.getElementsByClassName("product__quantity")[itemID].innerHTML = "<a href='#estimateContainer'>(" + product.innerHTML + ")</a>";
-                            document.getElementsByClassName("product__quantity-container")[itemID].classList.add("show");
-                        } else {
-                            document.getElementsByClassName("product__quantity")[itemID].innerHTML = "";
-                            document.getElementsByClassName("product__quantity-container")[itemID].classList.remove("show");
-                        }
                         document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
+                        for(let i=0; i<numberOfProducts; i++){
+                            let product = ajaxDocument.getElementsByClassName("estimate-table__item-quantity")[i];
+                            let productCount = parseInt(product.innerHTML);
+                            if (productCount > 0) {
+                                document.getElementsByClassName("product__quantity")[i].innerHTML = "<a href='#estimateContainer'>(" + product.innerHTML + ")</a>";
+                                document.getElementsByClassName("product__quantity-container")[i].classList.add("show");
+                            } else {
+                                document.getElementsByClassName("product__quantity")[i].innerHTML = "";
+                                document.getElementsByClassName("product__quantity-container")[i].classList.remove("show");
+                            }
+                        }
                         
                         //Recreate event listeners for - and + buttons.
                         reAddEventListeners();
@@ -752,24 +754,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
-                        var parser = new DOMParser();
-                        var ajaxDocument = parser.parseFromString(this.responseText, "text/html");
+                        let parser = new DOMParser();
+                        let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
 
-                        var product = ajaxDocument.getElementsByClassName("estimate-table__item-quantity")[itemID];
-                        var estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
-                        var cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
+                        let estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
+                        let cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
 
 
-                        let productCount = parseInt(product.innerHTML);
-                        if(productCount > 0) {
-                            document.getElementsByClassName("product__quantity")[itemID].innerHTML = "<a href='#estimateContainer'>(" + product.innerHTML + ")</a>";
-                            document.getElementsByClassName("product__quantity-container")[itemID].classList.add("show");
-                        } else {
-                            document.getElementsByClassName("product__quantity")[itemID].innerHTML = "";
-                            document.getElementsByClassName("product__quantity-container")[itemID].classList.remove("show");
-                        }
                         document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
+                        for(let i=0; i<numberOfProducts; i++){
+                            let product = ajaxDocument.getElementsByClassName("estimate-table__item-quantity")[i];
+                            let productCount = parseInt(product.innerHTML);
+                            if (productCount > 0) {
+                                document.getElementsByClassName("product__quantity")[i].innerHTML = "<a href='#estimateContainer'>(" + product.innerHTML + ")</a>";
+                                document.getElementsByClassName("product__quantity-container")[i].classList.add("show");
+                            } else {
+                                document.getElementsByClassName("product__quantity")[i].innerHTML = "";
+                                document.getElementsByClassName("product__quantity-container")[i].classList.remove("show");
+                            }
+                        }
                         
                         //Recreate event listeners for - and + buttons.
                         reAddEventListeners();
@@ -806,7 +810,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 xhttp.open("GET", "products.php?" + actionString + operatorString, true);
                 xhttp.send();
             }
-            
+           
             function reAddEventListeners () {
                 for(let i=0; i<numberOfProducts; i++){
                     document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () {
