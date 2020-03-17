@@ -309,7 +309,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="product__quantity"><?php
                                                 if ($_SESSION["quantity"][0] > 0) {
-                                                    echo "(" . $_SESSION["quantity"][0] . ")";
+                                                    echo "<a href='#estimateContainer'>(" . $_SESSION["quantity"][0] . ")</a>";
                                                 }
                                                 ?>
                                             </div>
@@ -339,7 +339,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="product__quantity"><?php
                                                 if ($_SESSION["quantity"][1] > 0) {
-                                                    echo "(" . $_SESSION["quantity"][1] . ")";
+                                                    echo "<a href='#estimateContainer'>(" . $_SESSION["quantity"][1] . ")</a>";
                                                 }
                                                 ?>
                                             </div>
@@ -369,7 +369,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="product__quantity"><?php
                                                 if ($_SESSION["quantity"][2] > 0) {
-                                                    echo "(" . $_SESSION["quantity"][2] . ")";
+                                                    echo "<a href='#estimateContainer'>(" . $_SESSION["quantity"][2] . ")</a>";
                                                 }
                                                 ?>
                                             </div>
@@ -400,7 +400,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="product__quantity"><?php
                                                 if ($_SESSION["quantity"][3] > 0) {
-                                                    echo "(" . $_SESSION["quantity"][3] . ")";
+                                                    echo "<a href='#estimateContainer'>(" . $_SESSION["quantity"][3] . ")</a>";
                                                 }
                                                 ?>
                                             </div>
@@ -430,7 +430,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="product__quantity"><?php
                                                 if ($_SESSION["quantity"][4] > 0) {
-                                                    echo "(" . $_SESSION["quantity"][4] . ")";
+                                                    echo "<a href='#estimateContainer'>(" . $_SESSION["quantity"][4] . ")</a>";
                                                 }
                                                 ?>
                                             </div>
@@ -461,7 +461,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="product__quantity"><?php
                                                 if ($_SESSION["quantity"][5] > 0) {
-                                                    echo "(" . $_SESSION["quantity"][5] . ")";
+                                                    echo "<a href='#estimateContainer'>(" . $_SESSION["quantity"][5] . ")</a>";
                                                 }
                                                 ?>
                                             </div>
@@ -492,7 +492,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                             <div class="product__quantity"><?php
                                                 if ($_SESSION["quantity"][6] > 0) {
-                                                    echo "(" . $_SESSION["quantity"][6] . ")";
+                                                    echo "<a href='#estimateContainer'>(" . $_SESSION["quantity"][6] . ")</a>";
                                                 }
                                                 ?>
                                             </div>
@@ -531,7 +531,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
                                             <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                            
                                         </tr>
-                                        <tr class="estimate-table__item-one <?php if($_SESSION["quantity"][1] <= 1){ echo "hide"; } ?>">
+                                        <tr class="estimate-table__item-one <?php if($_SESSION["quantity"][1] <= 0){ echo "hide"; } ?>">
                                             <td class="estimate-table__item-title"><?php echo $WhiteBreadLoaf->get_name(); ?></td>
                                             <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
                                             <td class="estimate-table__item-cost">$<?php echo $WhiteBreadLoaf->get_price(); ?></td>
@@ -743,7 +743,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         var estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
                         var cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
 
-                        document.getElementsByClassName("product__quantity")[itemID].innerHTML = "(" + product.innerHTML + ")";
+                        document.getElementsByClassName("product__quantity")[itemID].innerHTML = "<a href='#estimateContainer'>(" + product.innerHTML + ")</a>";
                         
                         document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
@@ -773,7 +773,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         var estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
                         var cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
 
-                        document.getElementsByClassName("product__quantity")[itemID].innerHTML = "(" + product.innerHTML + ")";
+                        document.getElementsByClassName("product__quantity")[itemID].innerHTML = "<a href='#estimateContainer'>(" + product.innerHTML + ")</a>";
 
                         document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
