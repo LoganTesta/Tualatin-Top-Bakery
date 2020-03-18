@@ -281,7 +281,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(35)->post_title); ?></h2>
                     <div class="shopping-cart">
                         <div class="shopping-cart__image <?php if ($_SESSION['numberOfItems'] > 0) { echo 'show'; } ?>">
-                            <a href="#estimateContainer">
+                            <a class="shopping-cart__link" href="#estimateContainer">
                                 <div class="shopping-cart__number-of-items"><?php echo $_SESSION["numberOfItems"]; ?></div>
                             </a>
                         </div>

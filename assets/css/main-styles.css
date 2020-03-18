@@ -344,6 +344,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .shopping-cart { }
 .shopping-cart__image {display: none;  }
 .shopping-cart__image.show { display: block; position: absolute; top: 120px; right: 20px; width: 71px; height: 62px; background: url('../images/shopping-cart.png') 0% 0%/cover no-repeat; }
+.shopping-cart__link { display: block; width: auto; height: 100%; }
 .shopping-cart__number-of-items { padding-top: 12px; text-align: center; font-size: 19px; font-weight: bold; color: #64460e; }
 
 .products-header { padding-bottom: 20px; }
