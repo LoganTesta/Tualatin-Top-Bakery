@@ -30,12 +30,14 @@ if (isset($_SESSION["estimateCart"]) === false) {
         $_SESSION["products"][$i] = $products[$i];   //We need to store this for the reset function since that logic is in a separate function.
         $_SESSION["quantity"][$i] = 0;
         $_SESSION["itemSubtotal"][$i] = number_format(0.00, 2);
+        $_SESSION["numberOfItems"] = 0;
         $_SESSION["totalCost"] = number_format(0.00, 2);
     }
 }
 
 //Set cart value quantity
 if (isset($_SESSION["estimateCart"])) {
+    $_SESSION["numberOfItems"] = 0;
     if (isset($_GET["item"])) {
         $itemNumber = $_GET["item"];
         if((int)$_GET["setValue"] < 0){
@@ -51,9 +53,10 @@ if (isset($_SESSION["estimateCart"])) {
         }
         $_SESSION["itemSubtotal"][$itemNumber] = number_format($products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
     }
-
+    
     $_SESSION["totalCost"] = number_format(0.00, 2);
     for ($i = 0; $i < count($products); $i++) {
+        $_SESSION["numberOfItems"] = $_SESSION["numberOfItems"] + $_SESSION["quantity"][$i];
         $_SESSION["totalCost"] = number_format($_SESSION["totalCost"] + $_SESSION["itemSubtotal"][$i], 2);
     }
 }
@@ -62,6 +65,8 @@ if (isset($_SESSION["estimateCart"])) {
 //Remove one item from cart.
 if (isset($_SESSION["estimateCart"])) {
     if (isset($_GET["remove"])) {
+        $_SESSION["numberOfItems"] = 0;
+           
         $itemNumber = $_GET["remove"];
         $newQuantity = $_SESSION["quantity"][$itemNumber] - 1;
 
@@ -71,6 +76,7 @@ if (isset($_SESSION["estimateCart"])) {
 
             $_SESSION["totalCost"] = number_format(0.00, 2);
             for ($i = 0; $i < count($products); $i++) {
+                $_SESSION["numberOfItems"] = $_SESSION["numberOfItems"] + $_SESSION["quantity"][$i];
                 $_SESSION["totalCost"] = number_format($_SESSION["totalCost"] + $_SESSION["itemSubtotal"][$i], 2);
             }
         }
@@ -86,6 +92,7 @@ if (isset($_SESSION["estimateCart"])) {
 
 function resetEstimateCart() {
     unset($_SESSION["estimateCart"]);
+    $_SESSION["numberOfItems"] = 0;
     $_SESSION["totalCost"] = number_format(0.00, 2);
     for ($i = 0; $i < count($_SESSION["products"]); $i++) {
         $_SESSION["quantity"][$i] = 0;
@@ -272,7 +279,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <?php include 'assets/include/logo.php'; ?>
                     <?php include 'assets/include/header-content.php'; ?>
                     <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(35)->post_title); ?></h2>
-                    <div class="shopping-cart"></div>
+                    <div class="shopping-cart"><div class="shopping-cart__quantity"><?php echo $_SESSION["numberOfItems"]; ?></div></div>
                 </div>
             </header>
                 
