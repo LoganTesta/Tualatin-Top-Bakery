@@ -279,7 +279,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <?php include 'assets/include/logo.php'; ?>
                     <?php include 'assets/include/header-content.php'; ?>
                     <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(35)->post_title); ?></h2>
-                    <div class="shopping-cart"><div class="shopping-cart__quantity"><?php echo $_SESSION["numberOfItems"]; ?></div></div>
+                    <div class="shopping-cart"><div class="shopping-cart__number-of-items"><?php echo $_SESSION["numberOfItems"]; ?></div></div>
                 </div>
             </header>
                 
@@ -723,14 +723,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
-                        var parser = new DOMParser();
-                        var ajaxDocument = parser.parseFromString(this.responseText, "text/html");
+                        let parser = new DOMParser();
+                        let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
 
-                        var estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
-                        var cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
+                        let estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
+                        let numberOfItems = ajaxDocument.getElementsByClassName("shopping-cart__number-of-items")[0];
+                        let cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
 
 
                         document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
+                        document.getElementsByClassName("shopping-cart__number-of-items")[0].innerHTML = numberOfItems.innerHTML;
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
                         for(let i=0; i<numberOfProducts; i++){
                             let product = ajaxDocument.getElementsByClassName("estimate-table__item-quantity")[i];
@@ -766,10 +768,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
 
                         let estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
+                        let numberOfItems = ajaxDocument.getElementsByClassName("shopping-cart__number-of-items")[0];
                         let cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
 
 
                         document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
+                        document.getElementsByClassName("shopping-cart__number-of-items")[0].innerHTML = numberOfItems.innerHTML;
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
                         for(let i=0; i<numberOfProducts; i++){
                             let product = ajaxDocument.getElementsByClassName("estimate-table__item-quantity")[i];
@@ -796,18 +800,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
-                        var parser = new DOMParser();
-                        var ajaxDocument = parser.parseFromString(this.responseText, "text/html");
+                        let parser = new DOMParser();
+                        let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
                         
-                        var products = ajaxDocument.getElementsByClassName("estimate-table__item-quantity");
+                        let products = ajaxDocument.getElementsByClassName("estimate-table__item-quantity");
 
-                        var estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
-                        var cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
+                        let estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
+                        let numberOfItems = ajaxDocument.getElementsByClassName("shopping-cart__number-of-items")[0];
+                        let cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
 
                         for (let i = 0; i < products.length; i++) {
                             document.getElementsByClassName("product__quantity")[i].innerHTML = "";  
                         }
                         document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
+                        document.getElementsByClassName("shopping-cart__number-of-items")[0].innerHTML = numberOfItems.innerHTML;
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
                         
                         //Recreate event listeners for - and + buttons.

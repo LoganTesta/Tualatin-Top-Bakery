@@ -342,7 +342,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 
 /*Products*/
 .shopping-cart { position: absolute; top: 120px; right: 15px; width: 71px; height: 62px; background: url('../images/shopping-cart.png') 0% 0%/cover no-repeat; }
-.shopping-cart__quantity { padding-top: 12px; text-align: center; font-size: 19px; font-weight: bold; color: #64460e; }
+.shopping-cart__number-of-items { padding-top: 12px; text-align: center; font-size: 19px; font-weight: bold; color: #64460e; }
 
 .products-header { padding-bottom: 20px; }
 .product-container { margin-bottom: 50px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); border-radius: 20px; }
