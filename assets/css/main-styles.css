@@ -642,7 +642,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     .product__background { height: 200px; }
     .product__description { padding: 15px 20px; }
     
-    .product__price { width: 111px; padding: 5px 15px 5px 0; float: left; text-align: left; }
+    .product__price { width: 120px; padding: 5px 15px 5px 0; float: left; text-align: left; }
     .product__adjust-quantity { width: 100%; margin-left: 0; margin-right: 0; }
     .product__minus-quantity { display: inline-block; margin-left: 0; margin-right: 5px; margin-bottom: 0; }
     .product__quantity-input { display: inline-block; margin-left: 0; margin-right: 0; margin-bottom: 0;  }

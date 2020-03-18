@@ -281,7 +281,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="content">
                 <div class="inner-wrapper">
                     <div class="content-row">
-                        <div class="col-sma-12 products-wrapper">
+                        <div class="products-wrapper">
                             <div class="products-header">
                                 <?php
                                 $id = 35;
