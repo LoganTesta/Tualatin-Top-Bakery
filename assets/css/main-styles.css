@@ -336,11 +336,13 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 
 
 /*Location */
-.location-container__background { height: 240px; padding-top: 20px; background: url('../images/location.png') 0% 0%/cover no-repeat;}
+.location-container__background { height: 240px; padding-top: 20px; background: url('../images/location.png') 0% 0%/cover no-repeat; }
 .location-container__header { }
 
 
 /*Products*/
+.shopping-cart { position: absolute; top: 120px; right: 15px; width: 71px; height: 62px; background: url('../images/shopping-cart.png') 0% 0%/cover no-repeat; }
+
 .products-header { padding-bottom: 20px; }
 .product-container { margin-bottom: 50px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); border-radius: 20px; }
 .product__title { padding: 8px; font-size: 19px; border-radius: 20px 20px 0 0; font-weight: bold; text-align: center; background: linear-gradient(#64460e 20%, #ac8949 100%); color: #ffffff; }
