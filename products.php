@@ -510,8 +510,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <th class="estimate-table__th-cost">Cost</th>
                                             <th class="estimate-table__th-quantity">Quantity</th>
                                             <th class="estimate-table__th-subtotal">Subtotal</th>
-                                            <th class="estimate-table__th-add">Add</th>
                                             <th class="estimate-table__th-remove">Remove</th>
+                                            <th class="estimate-table__th-add">Add</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -521,8 +521,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <td class="estimate-table__item-cost">$<?php echo $WholeWheatLoaf->get_price(); ?></td>
                                             <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][0]; ?></td>
                                             <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][0]; ?></td>
-                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
-                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                            
+                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>  
+                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>                       
                                         </tr>
                                         <tr class="estimate-table__item-one <?php if($_SESSION["quantity"][1] <= 0){ echo "hide"; } ?>">
                                             <td class="estimate-table__item-title"><?php echo $WhiteBreadLoaf->get_name(); ?></td>
@@ -530,8 +530,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <td class="estimate-table__item-cost">$<?php echo $WhiteBreadLoaf->get_price(); ?></td>
                                             <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][1]; ?></td>
                                             <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][1]; ?></td>
-                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
-                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                             
+                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>  
+                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>                        
                                         </tr>
                                         <tr class="estimate-table__item-two <?php if($_SESSION["quantity"][2] <= 0){ echo "hide"; } ?>">
                                             <td class="estimate-table__item-title"><?php echo $BlueberryScone->get_name(); ?></td>
@@ -539,8 +539,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <td class="estimate-table__item-cost">$<?php echo $BlueberryScone->get_price(); ?></td>
                                             <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][2]; ?></td>
                                             <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][2]; ?></td>
-                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
-                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                               
+                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td> 
+                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>                              
                                         </tr>
                                         <tr class="estimate-table__item-three <?php if($_SESSION["quantity"][3] <= 0){ echo "hide"; } ?>">
                                             <td class="estimate-table__item-title"><?php echo $ChocolateCake->get_name(); ?></td>
@@ -548,8 +548,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <td class="estimate-table__item-cost">$<?php echo $ChocolateCake->get_price(); ?></td>
                                             <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][3]; ?></td>
                                             <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][3]; ?></td>
-                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
-                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                               
+                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>  
+                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>                             
                                         </tr>
                                         <tr class="estimate-table__item-four <?php if($_SESSION["quantity"][4] <= 0){ echo "hide"; } ?>">
                                             <td class="estimate-table__item-title"><?php echo $CherryPie->get_name(); ?></td>
@@ -557,8 +557,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <td class="estimate-table__item-cost">$<?php echo $CherryPie->get_price(); ?></td>
                                             <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][4]; ?></td>
                                             <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][4]; ?></td>
-                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
-                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                            
+                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>  
+                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>                          
                                         </tr>
                                         <tr class="estimate-table__item-five <?php if($_SESSION["quantity"][5] <= 0){ echo "hide"; } ?>">
                                             <td class="estimate-table__item-title"><?php echo $BlueberryPie->get_name(); ?></td>
@@ -566,8 +566,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <td class="estimate-table__item-cost">$<?php echo $BlueberryPie->get_price(); ?></td>
                                             <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][5]; ?></td>
                                             <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][5]; ?></td>
-                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
-                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                            
+                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>   
+                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>                         
                                         </tr>
                                         <tr class="estimate-table__item-six <?php if($_SESSION["quantity"][6] <= 0){ echo "hide"; } ?>">
                                             <td class="estimate-table__item-title"><?php echo $BlueberryMuffin->get_name(); ?></td>
@@ -575,8 +575,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             <td class="estimate-table__item-cost">$<?php echo $BlueberryMuffin->get_price(); ?></td>
                                             <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][6]; ?></td>
                                             <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][6]; ?></td>
-                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>
-                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>                               
+                                            <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>    
+                                            <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>                           
                                         </tr>
                                         <tr class="clear-both"></div>
                                     </tbody>
