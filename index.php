@@ -106,6 +106,9 @@ require('./wordpress/wp-load.php');
                                         <a class="index-product-container__link" href="products.php"><span class="sr-only">Whole Wheat Loaf</span></a>
                                     </div>
                                 </div>
+                                <div class="index-product-container__background-layer">
+                                    <a class="index-product-container__link" href="products.php"><span class="sr-only">Whole Wheat Loaf</span></a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-vsm-6 col-sma-3">
@@ -114,6 +117,9 @@ require('./wordpress/wp-load.php');
                                     <div class="index-product-container__background">
                                         <a class="index-product-container__link" href="products.php"><span class="sr-only">Cherry Pie</span></a>
                                     </div>
+                                </div>
+                                <div class="index-product-container__background-layer">
+                                    <a class="index-product-container__link" href="products.php"><span class="sr-only">Cherry Pie</span></a>
                                 </div>
                             </div>
                         </div>
@@ -124,6 +130,9 @@ require('./wordpress/wp-load.php');
                                         <a class="index-product-container__link" href="products.php"><span class="sr-only">Scones</span></a>
                                     </div>
                                 </div>
+                                <div class="index-product-container__background-layer">
+                                    <a class="index-product-container__link" href="products.php"><span class="sr-only">Scones</span></a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-vsm-6 col-sma-3">
@@ -132,6 +141,9 @@ require('./wordpress/wp-load.php');
                                     <div class="index-product-container__background">
                                         <a class="index-product-container__link" href="products.php"><span class="sr-only">Blueberry Pie</span></a>
                                     </div>
+                                </div>
+                                <div class="index-product-container__background-layer">
+                                    <a class="index-product-container__link" href="products.php"><span class="sr-only">Blueberry Pie</span></a>
                                 </div>
                             </div>
                         </div>

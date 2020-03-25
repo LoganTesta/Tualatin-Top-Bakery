@@ -319,17 +319,20 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .index-blog__date { display: inline; font-style: italic; color: #64460e; }
 .index-blog__author__extra-text { font-weight: normal; color: #64460e; }
 
-.index-product-container { margin-bottom: 30px; }
+.index-product-container { position: relative; margin-bottom: 30px; }
 .index-product-container__background-wrapper { overflow: hidden; border-radius: 8px; }
 .index-product-container__background { height: 180px; border-radius: 8px; transition: 0.6s ease-in; cursor: pointer; }
 .index-product-container__link { display: block; height: 180px; border-radius: 8px; }
+.index-product-container__background-layer { position: absolute; top: 0; left: 0; width: 100%; height: 180px; border-radius: 8px; opacity: 0;
+                                             cursor: pointer; transition: 0.6s ease-in; }
+.index-product-container__background-layer:hover { opacity: 1; background-color: rgba(172, 137, 73, 0.4); transition: 0.6s ease-in; }
 
 .index-product-container.zero .index-product-container__background { background: url('../images/products/whole-wheat-bread-small.jpg') 0% 0%/cover no-repeat; }
 .index-product-container.one .index-product-container__background  { background: url('../images/products/cherry-pie-small.jpg') 0% 0%/cover no-repeat; }
 .index-product-container.two .index-product-container__background { background: url('../images/products/scone-small.jpg') 0% 0%/cover no-repeat; }
 .index-product-container.three .index-product-container__background  { background: url('../images/products/chocolate-cake-small.jpg') 0% 0%/cover no-repeat; }
 
-.index-product-container__background:hover { transform: scale(1.08); transition: 0.6s ease-in; }
+.index-product-container:hover .index-product-container__background { transform: scale(1.05); transition: 0.6s ease-in; }
 
 /*About Us*/
 .about-us-container__background { height: 240px; background: url('../images/bakery-shelf.jpg') 0% 0%/cover no-repeat; }
