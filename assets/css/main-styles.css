@@ -357,6 +357,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .product__background-container { overflow: hidden; }
 .product__background { height: 100px; transition: transform 0.6s ease-in; cursor: auto; }
 .product__background:hover { transform: scale(1.12); transition: transform 0.6s ease-in; }
+.product__description p:last-of-type { padding-bottom: 0; }
 
 .product__price { padding-bottom: 10px; text-align: center; }
 .product__adjust-quantity { width: 120px; font-size: 0; margin-left: auto; margin-right: auto; }

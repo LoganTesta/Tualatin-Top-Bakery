@@ -3,12 +3,14 @@
 class Product {
 
     public $name;
+    public $classCSS;
     public $price;
     public $image;
     public $description;
 
-    function __construct(string $input_name, float $input_price, string $input_image, string $input_description) {
+    function __construct(string $input_name, string $classCSS, float $input_price, string $input_image, string $input_description) {
         $this->name = $input_name;
+        $this->classCSS = $classCSS;
         $this->price = number_format($input_price, 2);
         $this->image = $input_image;
         $this->description = $input_description;
@@ -20,6 +22,14 @@ class Product {
 
     function set_name($input) {
         $this->name = $input;
+    }
+    
+    function get_classCSS() {
+        return $this->classCSS;
+    }
+
+    function set_classCSS($input) {
+        $this->classCSS = $input;
     }
 
     function get_price() {
@@ -38,7 +48,7 @@ class Product {
         $this->image = $input;
     }
 
-    function get_descripton() {
+    function get_description() {
         return $this->description;
     }
 

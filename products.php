@@ -9,13 +9,21 @@ require('./wordpress/wp-load.php');
 //Estimate cart code.
 include("assets/include/product.php");
 
-$WholeWheatLoaf = new Product("Whole Wheat Loaf", 2.95, "", "");
-$WhiteBreadLoaf = new Product("White Bread Loaf", 1.99, "", "");
-$BlueberryScone = new Product("Blueberry Scone", 2.25, "", "");
-$ChocolateCake = new Product("Chocolate Cake", 15.00, "", "");
-$CherryPie = new Product("Cherry Pie", 12.00, "", "");
-$BlueberryPie = new Product("Blueberry Pie", 12.00, "", "");
-$BlueberryMuffin = new Product("Blueberry Muffin", 2.25, "", "");
+$WholeWheatLoaf = new Product("Whole Wheat Loaf", "zero", 2.95, "", "<p>Our delicious and wholesome house-made whole wheat 
+                                                    bread, baked fresh daily.  One of our staples and customer favorites!</p>");
+$WhiteBreadLoaf = new Product("White Bread Loaf", "one", 1.99, "", "<p>Our delicious and fluffy house-made white bread, baked 
+                                                fresh daily.  One of our staples and customer favorites!</p>");
+$BlueberryScone = new Product("Blueberry Scone", "two", 2.25, "", "<p>Light and fluffy and flaky.  We are always trying new 
+                                                varieties of scones including some seasonal.  We often have blueberry, vanilla, chocolate scones, 
+                                                and many more, so come on in and see what we're baking this week!</p>");
+$ChocolateCake = new Product("Chocolate Cake", "three", 15.00, "", "<p>Our signature crisp, fluffy chocolate cake with a light 
+                                                layer of house-made chocolate fudge on top!  Yum!</p>");
+$CherryPie = new Product("Cherry Pie", "four", 12.00, "", "<p>We sell cherry pie year round at Tualatin Top Bakery!</p>
+                                            <p>In the late spring and summer we
+                                                often make it with blueberries from local farmers. Made fresh in house!</p>");
+$BlueberryPie = new Product("Blueberry Pie", "five", 12.00, "", "<p>We sell blueberry pie year round at Tualatin Top Bakery!</p>
+                                            <p>In the summer we often make it with cherries from local farmers. Made fresh in house!</p>");
+$BlueberryMuffin = new Product("Blueberry Muffin", "six", 2.25, "", "Made with lots of blueberries and a hint of sugar.");
 
 
 $products = array($WholeWheatLoaf, $WhiteBreadLoaf, $BlueberryScone, $ChocolateCake, $CherryPie, $BlueberryPie, $BlueberryMuffin);
@@ -306,197 +314,33 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 ?>
                             </div>
                             <div class="products content-row">
-                                <div class="col-vsm-6 col-sma-4 col-lar-3">
-                                    <div class="product-container zero">
-                                        <div class="product__title"><?php echo $WholeWheatLoaf->get_name(); ?></div>
-                                        <div class="product__background-container">
-                                            <div class="product__background"></div>
-                                        </div>
-                                        <div class="product__price-and-request">
-                                            <div class="product__price">$<?php echo $WholeWheatLoaf->get_price(); ?></div>   
-                                            <div class="product__adjust-quantity">
-                                                <div class="product__minus-quantity">-</div>
-                                                <div class="product__quantity-input">
-                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                    <input type="number" min="0" max="100" id="productSetQuantity0" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][0]; ?>" />
+                                <?php for($i = 0; $i < count($products); $i++) { ?>
+                                    <div class="col-vsm-6 col-sma-4 col-lar-3">
+                                        <div class="product-container <?php echo $products[$i]->get_classCSS(); ?>">
+                                            <div class="product__title"><?php echo $products[$i]->get_name(); ?></div>
+                                            <div class="product__background-container">
+                                                <div class="product__background"></div>
+                                            </div>
+                                            <div class="product__price-and-request">
+                                                <div class="product__price">$<?php echo $products[$i]->get_price(); ?></div>   
+                                                <div class="product__adjust-quantity">
+                                                    <div class="product__minus-quantity">-</div>
+                                                    <div class="product__quantity-input">
+                                                        <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
+                                                        <input type="number" min="0" max="100" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][$i]; ?>" />
+                                                    </div>
+                                                    <div class="product__increase-quantity">+</div>
                                                 </div>
-                                                <div class="product__increase-quantity">+</div>
-                                            </div>
-                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                            <div class="product__quantity-container <?php if ($_SESSION['quantity'][0] > 0) { echo 'show'; }?>">
-                                                <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["quantity"][0] . "</a>" ?>                                                
-                                            </div>
-                                            <div class="clear-both"></div>
-                                        </div>
-                                        <div class="product__description">
-                                            <p class="no-padding-bottom">Our delicious and wholesome house-made whole wheat 
-                                                bread, baked fresh daily.  One of our staples and customer favorites!</p></div>
-                                    </div>
-                                </div>
-                                <div class="col-vsm-6 col-sma-4 col-lar-3">
-                                    <div class="product-container one">
-                                        <div class="product__title"><?php echo $WhiteBreadLoaf->get_name(); ?></div>
-                                        <div class="product__background-container">
-                                            <div class="product__background"></div>
-                                        </div>
-                                        <div class="product__price-and-request">
-                                            <div class="product__price">$<?php echo $WhiteBreadLoaf->get_price(); ?></div>   
-                                            <div class="product__adjust-quantity">
-                                                <div class="product__minus-quantity">-</div>
-                                                <div class="product__quantity-input">
-                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                    <input type="number" min="0" max="100" id="productSetQuantity1" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][1]; ?>" />
+                                                <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                                <div class="product__quantity-container <?php if ($_SESSION["quantity"][$i] > 0) { echo 'show'; }?>">
+                                                    <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["quantity"][$i] . "</a>" ?>                                                
                                                 </div>
-                                                <div class="product__increase-quantity">+</div>
+                                                <div class="clear-both"></div>
                                             </div>
-                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                            <div class="product__quantity-container <?php if ($_SESSION['quantity'][1] > 0) { echo 'show'; }?>">
-                                                <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["quantity"][1] . "</a>" ?>                                                
-                                            </div>
-                                            <div class="clear-both"></div>
+                                            <div class="product__description"><?php echo $products[$i]->get_description(); ?></div>
                                         </div>
-                                        <div class="product__description">
-                                            <p class="no-padding-bottom">Our delicious and fluffy house-made white bread, baked 
-                                                fresh daily.  One of our staples and customer favorites!</p></div>
-                                    </div>
-                                </div>
-                                <div class="col-vsm-6 col-sma-4 col-lar-3">
-                                    <div class="product-container two">
-                                        <div class="product__title"><?php echo $BlueberryScone->get_name(); ?></div>
-                                        <div class="product__background-container">
-                                            <div class="product__background"></div>
-                                        </div>
-                                        <div class="product__price-and-request">
-                                            <div class="product__price">$<?php echo $BlueberryScone->get_price(); ?></div>   
-                                            <div class="product__adjust-quantity">
-                                                <div class="product__minus-quantity">-</div>
-                                                <div class="product__quantity-input">
-                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                    <input type="number" min="0" max="100" id="productSetQuantity2" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][2]; ?>" />
-                                                </div>
-                                                <div class="product__increase-quantity">+</div>
-                                            </div>
-                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                            <div class="product__quantity-container <?php if ($_SESSION['quantity'][2] > 0) { echo 'show'; }?>">
-                                                <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["quantity"][2] . "</a>" ?>                                                
-                                            </div>
-                                            <div class="clear-both"></div>
-                                        </div>
-                                        <div class="product__description">
-                                            <p class="no-padding-bottom">Light and fluffy and flaky.  We are always trying new 
-                                                varieties of scones including some seasonal.  We often have blueberry, vanilla, chocolate scones, 
-                                                and many more, so come on in and see what we're baking this week!</p></div>
-                                    </div>
-                                </div>
-                                <div class="col-vsm-6 col-sma-4 col-lar-3">
-                                    <div class="product-container three">
-                                        <div class="product__title"><?php echo $ChocolateCake->get_name(); ?></div>
-                                        <div class="product__background-container">
-                                            <div class="product__background"></div>
-                                        </div>
-                                        <div class="product__price-and-request">
-                                            <div class="product__price">$<?php echo $ChocolateCake->get_price(); ?></div>   
-                                            <div class="product__adjust-quantity">
-                                                <div class="product__minus-quantity">-</div>
-                                                <div class="product__quantity-input">
-                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                    <input type="number" min="0" max="100" id="productSetQuantity3" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][3]; ?>" />
-                                                </div>
-                                                <div class="product__increase-quantity">+</div>
-                                            </div>
-                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                            <div class="product__quantity-container <?php if ($_SESSION['quantity'][3] > 0) { echo 'show'; }?>">
-                                                <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["quantity"][3] . "</a>" ?>                                                
-                                            </div>
-                                            <div class="clear-both"></div>
-                                        </div>
-                                        <div class="product__description">
-                                            <p class="no-padding-bottom">Our signature crisp, fluffy chocolate cake with a light 
-                                                layer of house-made chocolate fudge on top!  Yum!</p></div>
-                                    </div>
-                                </div>
-                                <div class="col-vsm-6 col-sma-4 col-lar-3">
-                                    <div class="product-container four">
-                                        <div class="product__title"><?php echo $CherryPie->get_name(); ?></div>
-                                        <div class="product__background-container">
-                                            <div class="product__background"></div>
-                                        </div>
-                                        <div class="product__price-and-request">
-                                            <div class="product__price">$<?php echo $CherryPie->get_price(); ?></div>   
-                                            <div class="product__adjust-quantity">
-                                                <div class="product__minus-quantity">-</div>
-                                                <div class="product__quantity-input">
-                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                    <input type="number" min="0" max="100" id="productSetQuantity4" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][4]; ?>" />
-                                                </div>
-                                                <div class="product__increase-quantity">+</div>
-                                            </div>
-                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                            <div class="product__quantity-container <?php if ($_SESSION['quantity'][4] > 0) { echo 'show'; }?>">
-                                                <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["quantity"][4] . "</a>" ?>                                                
-                                            </div>
-                                            <div class="clear-both"></div>
-                                        </div>
-                                        <div class="product__description">
-                                            <p>We sell cherry pie year round at Tualatin Top Bakery!</p>
-                                            <p class="no-padding-bottom">In the late spring and summer we
-                                                often make it with blueberries from local farmers. Made fresh in house!</p></div>
-                                    </div>
-                                </div>
-                                <div class="col-vsm-6 col-sma-4 col-lar-3">
-                                    <div class="product-container five">
-                                        <div class="product__title"><?php echo $BlueberryPie->get_name(); ?></div>
-                                        <div class="product__background-container">
-                                            <div class="product__background"></div>
-                                        </div>
-                                        <div class="product__price-and-request">
-                                            <div class="product__price">$<?php echo $BlueberryPie->get_price(); ?></div>   
-                                            <div class="product__adjust-quantity">
-                                                <div class="product__minus-quantity">-</div>
-                                                <div class="product__quantity-input">
-                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                    <input type="number" min="0" max="100" id="productSetQuantity5" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][5]; ?>" />
-                                                </div>
-                                                <div class="product__increase-quantity">+</div>
-                                            </div>
-                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                            <div class="product__quantity-container <?php if ($_SESSION['quantity'][5] > 0) { echo 'show'; }?>">
-                                                <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["quantity"][5] . "</a>" ?>                                                
-                                            </div>
-                                            <div class="clear-both"></div>
-                                        </div>
-                                        <div class="product__description">
-                                            <p>We sell blueberry pie year round at Tualatin Top Bakery!</p>
-                                            <p class="no-padding-bottom">In the summer we
-                                                often make it with cherries from local farmers. Made fresh in house!</p></div>
-                                    </div>
-                                </div>
-                                <div class="col-vsm-6 col-sma-4 col-lar-3">
-                                    <div class="product-container six">
-                                        <div class="product__title"><?php echo $BlueberryMuffin->get_name(); ?></div>
-                                        <div class="product__background-container">
-                                            <div class="product__background"></div>
-                                        </div>
-                                        <div class="product__price-and-request">
-                                            <div class="product__price">$<?php echo $BlueberryMuffin->get_price(); ?></div>   
-                                            <div class="product__adjust-quantity">
-                                                <div class="product__minus-quantity">-</div>
-                                                <div class="product__quantity-input">
-                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                    <input type="number" min="0" max="100" id="productSetQuantity6" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][6]; ?>" />
-                                                </div>
-                                                <div class="product__increase-quantity">+</div>
-                                            </div>
-                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                            <div class="product__quantity-container <?php if ($_SESSION['quantity'][6] > 0) { echo 'show'; }?>">
-                                                <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["quantity"][6] . "</a>" ?>                                                
-                                            </div>
-                                            <div class="clear-both"></div>
-                                        </div>
-                                        <div class="product__description">
-                                            <p class="no-padding-bottom">Made with lots of blueberries and a hint of sugar.</p></div>
-                                    </div>
-                                </div>
+                                    </div>       
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
