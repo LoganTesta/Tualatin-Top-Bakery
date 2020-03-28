@@ -9,20 +9,18 @@ require('./wordpress/wp-load.php');
 //Estimate cart code.
 include("assets/include/product.php");
 
-$WholeWheatLoaf = new Product("Whole Wheat Loaf", "zero", 2.95, "", "<p>Our delicious and wholesome house-made whole wheat 
-                                                    bread, baked fresh daily.  One of our staples and customer favorites!</p>");
-$WhiteBreadLoaf = new Product("White Bread Loaf", "one", 1.99, "", "<p>Our delicious and fluffy house-made white bread, baked 
-                                                fresh daily.  One of our staples and customer favorites!</p>");
-$BlueberryScone = new Product("Blueberry Scone", "two", 2.25, "", "<p>Light and fluffy and flaky.  We are always trying new 
-                                                varieties of scones including some seasonal.  We often have blueberry, vanilla, chocolate scones, 
-                                                and many more, so come on in and see what we're baking this week!</p>");
-$ChocolateCake = new Product("Chocolate Cake", "three", 15.00, "", "<p>Our signature crisp, fluffy chocolate cake with a light 
-                                                layer of house-made chocolate fudge on top!  Yum!</p>");
-$CherryPie = new Product("Cherry Pie", "four", 12.00, "", "<p>We sell cherry pie year round at Tualatin Top Bakery!</p>
-                                            <p>In the late spring and summer we
-                                                often make it with blueberries from local farmers. Made fresh in house!</p>");
-$BlueberryPie = new Product("Blueberry Pie", "five", 12.00, "", "<p>We sell blueberry pie year round at Tualatin Top Bakery!</p>
-                                            <p>In the summer we often make it with cherries from local farmers. Made fresh in house!</p>");
+$WholeWheatLoaf = new Product("Whole Wheat Loaf", "zero", 2.95, "", "<p>Our delicious and wholesome house-made whole wheat bread, baked fresh daily.  "
+        . "One of our staples and customer favorites!</p>");
+$WhiteBreadLoaf = new Product("White Bread Loaf", "one", 1.99, "", "<p>Our delicious and fluffy house-made white bread, baked fresh daily.  One of our "
+        . "staples and customer favorites!</p>");
+$BlueberryScone = new Product("Blueberry Scone", "two", 2.25, "", "<p>Light and fluffy and flaky.  We are always trying new varieties of scones including "
+        . "some seasonal.  We often have blueberry, vanilla, chocolate scones, and many more, so come on in and see what we're baking this week!</p>");
+$ChocolateCake = new Product("Chocolate Cake", "three", 15.00, "", "<p>Our signature crisp, fluffy chocolate cake with a light layer of house-made "
+        . "chocolate fudge on top!  Yum!</p>");
+$CherryPie = new Product("Cherry Pie", "four", 12.00, "", "<p>We sell cherry pie year round at Tualatin Top Bakery!</p><p>In the late spring and summer we "
+        . "often make it with blueberries from local farmers. Made fresh in house!</p>");
+$BlueberryPie = new Product("Blueberry Pie", "five", 12.00, "", "<p>We sell blueberry pie year round at Tualatin Top Bakery!</p><p>In the summer we often "
+        . "make it with cherries from local farmers. Made fresh in house!</p>");
 $BlueberryMuffin = new Product("Blueberry Muffin", "six", 2.25, "", "Made with lots of blueberries and a hint of sugar.");
 
 
