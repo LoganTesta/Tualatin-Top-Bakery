@@ -39,21 +39,23 @@ if (isset($_SESSION["estimateCart"]) === false) {
 if (isset($_SESSION["estimateCart"])) {
     $_SESSION["numberOfItems"] = 0;
     if (isset($_GET["item"])) {
-        $itemNumber = $_GET["item"];
-        if((int)$_GET["setValue"] < 0){
-            $_GET["setValue"] = 0;
-        } else if((int)$_GET["setValue"] > 100){
-            $_GET["setValue"] = 100;
-        }
-        
+        $itemNumber = $_GET["item"];    
         if(isset($_GET["setValue"])){
             $_SESSION["quantity"][$itemNumber] = $_GET["setValue"];
         } else {
             $_SESSION["quantity"][$itemNumber] = $_SESSION["quantity"][$itemNumber] + 1;
         }
+        
+        if( $_SESSION["quantity"][$itemNumber] < 0 ){
+            $_SESSION["quantity"][$itemNumber] = 0;
+        }
+        if( $_SESSION["quantity"][$itemNumber] > 100){
+            $_SESSION["quantity"][$itemNumber] = 100;
+        }
+           
         $_SESSION["itemSubtotal"][$itemNumber] = number_format($products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
     }
-    
+
     $_SESSION["totalCost"] = number_format(0.00, 2);
     for ($i = 0; $i < count($products); $i++) {
         $_SESSION["numberOfItems"] = $_SESSION["numberOfItems"] + $_SESSION["quantity"][$i];
@@ -669,6 +671,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             for(let i=0; i<numberOfProducts; i++){
                 document.getElementsByClassName("product__request-item__add")[i].addEventListener("click", function () {
                     let quantityToSet = document.getElementsByClassName("product__set-quantity")[i].value;
+                    quantityToSet = checkQuantityMinAndMax(quantityToSet);
                     setCart("item", "=", i, quantityToSet);
                 }, false);
             }
@@ -701,14 +704,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
             
             for(let i=0; i<numberOfProducts; i++){
-                document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () {
-                   updateCart("item", "=", i);
+                document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {     
+                    let itemQuantity = parseInt(document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML);
+                    itemQuantity = checkQuantityMinAndMax(itemQuantity);
+                    updateCart("remove", "=", i);
                 }, false);
             }
             
             for(let i=0; i<numberOfProducts; i++){
-                document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {        
-                    updateCart("remove", "=", i);
+                document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () { 
+                   let itemQuantity = parseInt(document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML);
+                   itemQuantity = checkQuantityMinAndMax(itemQuantity);
+                   updateCart("item", "=", i);
                 }, false);
             }
 
@@ -756,12 +763,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         reAddEventListeners();
                     }
                 };
-                setValue = parseInt(setValue);
-                if(setValue < 0){
-                    setValue = 0;
-                } else if(setValue > 100){
-                    setValue = 100;
-                }
+                
                 xhttp.open("GET", "products.php?" + actionString + operatorString + itemID + "&setValue=" + setValue, true);
                 xhttp.send();
             }
@@ -788,7 +790,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 document.getElementsByClassName("product__quantity-container")[i].innerHTML = "<a href='#estimateCartTitle' class='product__quantity'>" + product.innerHTML + "</a>";
                                 document.getElementsByClassName("product__quantity-container")[i].classList.add("show");
                             } else {
-                                document.getElementsByClassName("product__quantity")[i].innerHTML = "";
+                                document.getElementsByClassName("product__quantity-container")[i].innerHTML = "";
                                 document.getElementsByClassName("product__quantity-container")[i].classList.remove("show");
                             }
                         }
@@ -816,7 +818,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         let cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
 
                         for (let i = 0; i < products.length; i++) {
-                            document.getElementsByClassName("product__quantity")[i].innerHTML = "";  
+                            document.getElementsByClassName("product__quantity-container")[i].innerHTML = "";  
                         }
                         document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
                         document.getElementsByClassName("shopping-cart")[0].innerHTML = numberOfItems.innerHTML;
@@ -843,6 +845,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         updateCart("remove", "=", i);
                     }, false);
                 }
+            }
+            
+            function checkQuantityMinAndMax(setValue){
+                setValue = parseInt(setValue);
+                if(setValue < 0){
+                    setValue = 0;
+                } else if(setValue > 100){
+                    setValue = 100;
+                }
+                return setValue;
             }
         </script>
     </body>
