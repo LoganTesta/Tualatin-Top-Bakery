@@ -592,7 +592,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             </div>
                         </div>
                         <div class="col-sma-5">
-                            <div class="estimate-container">
+                            <div class="estimate-container" id="estimateContainer">
                                 <h3 class="estimate-container__title">Request Estimate</h3>
                                 <form class="contact-container__form" id="estimateForm" v-on:submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                     <div class="contact-container__response">
