@@ -353,7 +353,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .product-container { margin-bottom: 50px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); border-radius: 20px; }
 .product__title { padding: 8px; font-size: 19px; border-radius: 20px 20px 0 0; font-weight: bold; text-align: center; background: linear-gradient(#64460e 20%, #ac8949 100%); color: #ffffff; }
 .product__price-and-request { position: relative; padding: 5px 5px; background-color: #eeeeee; }
-.product__description { padding: 5px 8px; background-color: #fbe3b7; border-radius: 0 0 20px 20px; }
+.product__description { padding: 6px 8px; background-color: #fbe3b7; border-radius: 0 0 20px 20px; }
 .product__background-container { overflow: hidden; }
 .product__background { height: 100px; transition: transform 0.6s ease-in; cursor: auto; }
 .product__background:hover { transform: scale(1.12); transition: transform 0.6s ease-in; }
@@ -390,9 +390,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .product-container.five .product__background { background: url('../images/products/blueberry-pie.jpg') 0% 0%/cover no-repeat; }
 .product-container.six .product__background { background: url('../images/products/blueberry-muffin.jpg') 0% 0%/cover no-repeat; }
 
-.product-container.six { margin-bottom: 0; }
-
-.estimate-section { padding-top: 30px; }
+.estimate-section { padding-top: 20px; }
 
 .estimate-table { width: 100%; padding-top: 15px; }
 .estimate-table th { display: none; width: 100%; padding: 10px 5px; text-align: center; font-size: 19px; font-weight: bold; }
@@ -581,9 +579,8 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     /*Products*/   
     .shopping-cart__image.show { right: 30px; }
     .product__background { height: 170px; }
-          
-    .product-container.six { margin-bottom: 0; }    
     
+    .estimate-container { padding-top: 0; }
     
     /*Recipes*/
     .recipies-header { padding-bottom: 10px; }
@@ -663,9 +660,9 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     .product__increase-quantity { display: inline-block; margin-left: 0; margin-right: 0; margin-bottom: 0; }
     .product__request-item { float: right; padding-bottom: 0; }
     .product__request-item__add { margin-left: 0; margin-right: 0; }
-    .product__quantity-container.show { display: inline-block; position: static; padding-left: 10px; padding-top: 22px; text-align: left; }
+    .product__quantity-container.show { display: inline-block; position: static; padding-left: 10px; padding-top: 22px; text-align: left; } 
     
-    .product-container.six { margin-bottom: 60px; }    
+    .estimate-section { padding-top: 0px; }
     
     .estimate-cart__title { text-align: center; }
     .estimate-table { }
@@ -684,7 +681,6 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     .estimate-table .estimate-table__th-remove { width: 83px; }
     .estimate-table .estimate-table__th-add { width: 52px; }
 
-    .estimate-container { padding-top: 0; }
     .estimate-container__title { text-align: center; }
     .estimate-table .estimate-table__item-title { width: 150px; padding: 10px 5px; }
     .estimate-table .estimate-table__item-image { float: none; width: 110px;  }
