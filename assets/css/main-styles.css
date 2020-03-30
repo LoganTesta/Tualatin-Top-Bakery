@@ -353,7 +353,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .product-container { margin-bottom: 50px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); border-radius: 20px; }
 .product__title { padding: 8px; font-size: 19px; border-radius: 20px 20px 0 0; font-weight: bold; text-align: center; background: linear-gradient(#64460e 20%, #ac8949 100%); color: #ffffff; }
 .product__price-and-request { position: relative; padding: 5px 5px; background-color: #eeeeee; }
-.product__description { padding: 6px 8px; background-color: #fbe3b7; border-radius: 0 0 20px 20px; }
+.product__description { padding: 10px 12px; background-color: #fbe3b7; border-radius: 0 0 20px 20px; }
 .product__background-container { overflow: hidden; }
 .product__background { height: 100px; transition: transform 0.6s ease-in; cursor: auto; }
 .product__background:hover { transform: scale(1.12); transition: transform 0.6s ease-in; }
@@ -392,14 +392,14 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 
 .estimate-section { padding-top: 20px; }
 
-.estimate-table { width: 100%; padding-top: 15px; }
+.estimate-table { width: 100%; }
 .estimate-table th { display: none; width: 100%; padding: 10px 5px; text-align: center; font-size: 19px; font-weight: bold; }
 .estimate-table tbody tr { float: left; width: 100%; padding-bottom: 30px; }
 .estimate-table td { display: block; padding: 5px 7px 5px 5px; }
 .estimate-table .hide { display: none; }
 
 .estimate-table .estimate-table__item-title { width: 100%; font-weight: bold; }
-.estimate-table .estimate-table__item-image { float: left; padding-right: 5px; }
+.estimate-table .estimate-table__item-image { float: left; }
 .estimate-table .estimate-table__item-cost { float: left; }
 .estimate-table .estimate-table__item-quantity { float: left; } 
 .estimate-table .estimate-table__item-subtotal { float: none; min-width: 70px; padding-right: 5px; }
@@ -665,7 +665,7 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     .estimate-section { padding-top: 0px; }
     
     .estimate-cart__title { text-align: center; }
-    .estimate-table { }
+    .estimate-table { padding-top: 10px; }
     .estimate-table tr { font-size: 0; }
     .estimate-table tbody tr { float: none; width: 100%; padding-bottom: 0; }
     .estimate-table th, .estimate-table td { display: inline-block; }
