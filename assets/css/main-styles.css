@@ -408,8 +408,10 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .estimate-table .estimate-table__minus { float: left; }
 .estimate-table .estimate-table__add { float: left; }
 
-.estimate-table .estimate-table__minus__item { width: 40px; height: 40px; padding: 5px; margin-left: auto; margin-right: auto; border-radius: 15px; background-color: #cc0000; color: #ffffff; font-size: 24px; font-weight: bold; text-align: center; cursor: pointer; user-select: none; }
-.estimate-table .estimate-table__add__item { width: 40px; height: 40px; padding: 5px; margin-left: auto; margin-right: auto; border-radius: 15px; background-color: #008800; color: #ffffff; font-size: 24px; font-weight: bold; text-align: center; cursor: pointer; user-select: none; }
+.estimate-table .estimate-table__minus__item { width: 32px; height: 32px; padding: 4px; margin-left: auto; margin-right: auto; border-radius: 10px; 
+                              background-color: #cc0000; color: #ffffff; font-size: 20px; font-weight: bold; text-align: center; cursor: pointer; user-select: none; }
+.estimate-table .estimate-table__add__item { width: 32px; height: 32px; padding: 4px; margin-left: auto; margin-right: auto; border-radius: 10px; 
+                            background-color: #008800; color: #ffffff; font-size: 20px; font-weight: bold; text-align: center; cursor: pointer; user-select: none; }
 
 .estimate-table__cart-summary { margin-top: 0px; }
 .cart-total { padding-bottom: 15px; font-size: 18px; font-weight: bold; text-align: center; }
@@ -691,6 +693,9 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
     .estimate-table .estimate-table__item-subtotal { float: none; width: 95px; min-width: 0; }
     .estimate-table .estimate-table__minus { float: none; width: 83px; }
     .estimate-table .estimate-table__add { float: none; width: 52px; }
+    
+    .estimate-table .estimate-table__minus__item { width: 40px; height: 40px; padding: 5px; border-radius: 15px; font-size: 24px; }
+    .estimate-table .estimate-table__add__item { width: 40px; height: 40px; padding: 5px; border-radius: 15px; font-size: 24px; }
     
     .estimate-table__cart-summary { margin-top: 30px; }
     .cart-total { padding-top: 10px; padding-bottom: 0; text-align: left; }
