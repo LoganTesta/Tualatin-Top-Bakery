@@ -105,9 +105,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <div class="footer__subscribe">
                 <div class="footer__subscribe-button" @click="showModal=true">
-
-                    <div class="footer__subscribe-button__bg"><span class="footer__subscribe-button__text">Subscribe for Discounts/Cookies!</span></div>
-                    <div class="footer__subscribe-button__bg--hover"><span class="footer__subscribe-button__text">Subscribe for Discounts/Cookies!</span></div>   
+                    <div class="footer__subscribe-button__extra-bg-layer"></div>
+                    <div class="footer__subscribe-button__bg"><span class="footer__subscribe-button__text">Subscribe for Discounts/Cookies!</span></div> 
                 </div>
                 <modal v-if="showModal" @close="showModal=false">
                     <h3 slot="header">Subscribe for News + Coupons</h3>

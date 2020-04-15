@@ -232,25 +232,16 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 
 .footer__social, .footer__location, .footer__hours { padding-top: 20px; padding-bottom: 20px; } 
 
-
-/* (Footer Subscribe button) */
+/*Footer Subscribe button*/
 .footer__subscribe { padding-bottom: 30px; }
-
-.footer__subscribe-button { position: relative; width: 280px; text-align: center; cursor: pointer; transition: 0.4s ease-in; }
-.footer__subscribe-button, .footer__subscribe-button__bg, .footer__subscribe-button__bg--hover { margin-left: auto; margin-right: auto; border-radius: 15px; }
-.footer__subscribe-button__bg, .footer__subscribe-button__bg--hover { width: 280px; padding: 15px 10px; }
- 
+.footer__subscribe-button { position: relative; width: 280px; height: 84px; margin-left: auto; margin-right: auto; border-radius: 15px; text-align: center; cursor: pointer; transition: 0.4s ease-in; }
+.footer__subscribe-button__extra-bg-layer { position: absolute; top: 0; left: 0; width: 280px; height: 84px; border-radius: 15px; 
+                                           background: radial-gradient(rgba(172, 137, 73, 1), rgba(100, 74, 14, 1)); transition: 0.4s ease-in; }
+.footer__subscribe-button__bg { position: absolute; top: 0; left: 0; width: 280px; padding: 15px 10px; margin-left: auto; margin-right: auto; border-radius: 15px; 
+                               background: rgba(100, 74, 14, 1); transition: 0.4s ease-in;  z-index: 9; }
+.footer__subscribe-button__bg:hover {  background: rgba(100, 74, 14, 0); transition: 0.4s ease-in; }
 .footer__subscribe-button__text { font-size: 22px; color: #fbe3b7; z-index: 10; }
 
-.footer__subscribe-button__bg { opacity: 1; background: #64460e; transition: 0.4s ease-in;  z-index: 9; }
-.footer__subscribe-button__bg:hover { opacity: 0; transition: 0.4s ease-in; }
-.footer__subscribe-button__bg:hover .footer__subscribe-button__text { opacity: 0; }
-
-.footer__subscribe-button__bg--hover { opacity: 0; margin-top: -84px; transition: 0.4s ease-in; }
-.footer__subscribe-button__bg--hover:hover { opacity: 1; background: radial-gradient(#ac8949, #64460e); transition: 0.4s ease-in; }
-.footer__subscribe-button__bg--hover .footer__subscribe-button__text { opacity: 0; background-color: #64460e; }
-.footer__subscribe-button__bg--hover:hover .footer__subscribe-button__text { opacity: 1; background-color: transparent; }
-/*End of footer subscribe button */
 
 .footer__copyright { padding-bottom: 30px; text-align: center; }
 .footer__social { text-align: center; }
