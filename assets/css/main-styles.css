@@ -208,8 +208,8 @@ header { min-height: 200px; background: linear-gradient(#fbe3b7, #f3f3f3); }
 .nav { background-color: #64460e; }
 .nav__list { }
 .nav__nav-item { display: block; text-align: center; }
-.nav .nav__nav-link { color: #f9f9f9; }
-.nav .nav__nav-link:hover { color: #fbe3b7; }
+.nav .nav__nav-link { color: #f9f9f9; transition: 0.1s ease-in; }
+.nav .nav__nav-link:hover { color: #fbe3b7; transition: 0.1s ease-in; }
 
 #dropdownButton { position: absolute; top: 25px; right: 20px; width: 30px; height: 30px;
                   background: url('../images/hamburger-nav.png') 50% 0%/cover no-repeat; cursor: pointer; }
@@ -245,17 +245,13 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 
 .footer__copyright { padding-bottom: 30px; text-align: center; }
 .footer__social { text-align: center; }
-.footer__social a { color: #64460e; }
-.footer__social a:hover { color: #ac8949; }
+.footer__social-logo { display: inline-block; padding: 0 15px; }
+.footer__social .footer__social-logo__link { color: #64460e; transition: 0.2s ease-in; }
+.footer__social .footer__social-logo__link:hover { color: #ac8949; transition: 0.2s ease-in; }
 .footer__location { text-align: center; }
 .footer__hours { text-align: center; }
 .footer__hours__day { padding-bottom: 15px; }
 .footer__hours__day:last-of-type { padding-bottom: 0; }
-
-.footer__social { } 
-.footer__social-logo { display: inline-block; padding: 0 15px; }
-.footer__social-icon { transition: 0.4s all; }
-.footer__social-icon:hover { transition: 0.4s all; }
 
 
 /*Modal styles*/

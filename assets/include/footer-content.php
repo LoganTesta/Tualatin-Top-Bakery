@@ -146,14 +146,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="footer__social col-sma-4">
                 <h4 class="footer__subheader">Social</h4>
                 <div class="footer__social-logo facebook">
-                    <a href=""><i class="fab fa-facebook-f fa-2x social-icon"><span class="sr-only">Facebook</span></i>
+                    <a class="footer__social-logo__link" href=""><i class="fab fa-facebook-f fa-2x social-icon"><span class="sr-only">Facebook</span></i>
                     </a>
                 </div>
                 <div class="footer__social-logo instagram">
-                    <a href=""><i class="fab fa-instagram fa-2x social-icon"><span class="sr-only">Instagram</span></i></a>
+                    <a class="footer__social-logo__link" href=""><i class="fab fa-instagram fa-2x social-icon"><span class="sr-only">Instagram</span></i></a>
                 </div>
                 <div class="footer__social-logo twitter">
-                    <a href=""><i class="fab fa-twitter fa-2x social-icon"><span class="sr-only">Twitter</span></i></a>
+                    <a class="footer__social-logo__link" href=""><i class="fab fa-twitter fa-2x social-icon"><span class="sr-only">Twitter</span></i></a>
                 </div>
             </div>
             <div class="footer__location col-sma-4">
