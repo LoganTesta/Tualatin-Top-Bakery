@@ -497,8 +497,8 @@ footer { padding: 50px 10px; background-color: #fbe3b7; }
 .input-container { padding: 10px 10px 20px 10px; }
 .input-container__label { display: inline-block; padding-bottom: 10px; color: #64460e; }
 .input-container__input { }
-.input-container__contact-button { padding: 15px 10px; color: #fbe3b7; background-color: #64460e; border: 1px solid #64460e; border-radius: 15px; cursor: pointer; transition: 0.4s; }
-.input-container__contact-button:hover { color: #64460e; background-color:#fbe3b7; transition: 0.4s; }
+.input-container__contact-button { padding: 15px 10px; color: #fbe3b7; background-color: #64460e; border: 1px solid #64460e; border-radius: 15px; cursor: pointer; transition: 0.4s ease-in; }
+.input-container__contact-button:hover { color: #64460e; background-color:#fbe3b7; transition: 0.4s ease-in; }
 
 .contact-us-container__background { height: 240px; background: url('../images/dough-and-roller.jpg') 0% 0%/cover no-repeat; }
 
