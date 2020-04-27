@@ -81,10 +81,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($PassedValidation) {
             /* Create the e-mail body. */
             $Body = "";
-            $Body .= "User Name: " . $UserFirstName . " " . $UserLastName . "\n";
-            $Body .= "User Email: " . $UserEmail . "\n";
-            $Body .= "Subject: " . $UserSubject . "\n";
-            $Body .= "User Comments: " . $UserComments . "\n";
+            $Body .= "<strong>User Name:</strong> " . $UserFirstName . " " . $UserLastName . "\n";
+            $Body .= "<strong>User Email:</strong> " . $UserEmail . "\n";
+            $Body .= "<strong>Subject:</strong> " . $UserSubject . "\n";
+            $Body .= "<strong>User Comments:</strong> " . $UserComments . "\n";
 
             /* Send the e-mail. */
             $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: " . $UserSubject, $Body, "From: <$UserEmail>");
