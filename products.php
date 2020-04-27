@@ -227,22 +227,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($PassedValidation) {
             /* Create the e-mail body. */
             $Body = "";
-            $Body .= "User Name: " . $UserName . "\n";
-            $Body .= "Email: " . $UserEmail . "\n";
-            $Body .= "Phone: " . $UserPhone . "\n";
-            $Body .= "Address: " . $UserStreetAddress . "\n";
+            $Body .= "<strong>User Name:</strong> " . $UserName . "\n";
+            $Body .= "<strong>Email:</strong> " . $UserEmail . "\n";
+            $Body .= "<strong>Phone:</strong> " . $UserPhone . "\n";
+            $Body .= "<strong>Address:</strong> " . $UserStreetAddress . "\n";
             $Body .= "" . $UserCity . ", " . $UserState . " " . $UserZipCode . " " . "\n";
             $Body .= "\n";
-            $Body .= "Estimate Items: \n";
+            $Body .= "<strong>Estimate Items:</strong> \n";
             for ($i = 0; $i < count($products); $i++) {
                 if ($_SESSION["itemSubtotal"][$i] > 0) {
                     $Body .= "" . $products[$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . " \n";
                 }
             }
             $Body .= "\n";
-            $Body .= "Estimate Total: $" . $_SESSION["totalCost"] . ". \n";
+            $Body .= "<strong>Estimate Total:</strong> $" . $_SESSION["totalCost"] . ". \n";
             $Body .= "\n";
-            $Body .= "Additional Notes: " . $AdditionalNotes . "\n";
+            $Body .= "<strong>Additional Notes:</strong> " . $AdditionalNotes . "\n";
             $Body .= "\n";
 
             /* Send the e-mail. */

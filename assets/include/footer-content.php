@@ -50,8 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($PassedValidation) {
             /* Create the e-mail body. */
             $BodySubscribe = "This user has requested subscription to our bakery customer emails.\n";
-            $BodySubscribe .= "User Name: " . $UserNameSubscribe . "\n";
-            $BodySubscribe .= "User Email: " . $UserEmailSubscribe . "\n";
+            $BodySubscribe .= "<strong>User Name:</strong> " . $UserNameSubscribe . "\n";
+            $BodySubscribe .= "<strong>User Email:</strong> " . $UserEmailSubscribe . "\n";
 
             /* Send the e-mail. */
             $SuccessfulSubmission = mail($SendEmailToSubscribe, $UserSubjectSubscribe, $BodySubscribe, "From: <$UserEmailSubscribe>");

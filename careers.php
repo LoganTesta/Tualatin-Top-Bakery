@@ -82,13 +82,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($PassedValidation) {
             /* Create the e-mail body. */
             $Body = "";
-            $Body .= "User Name: " . $UserName . "\n";
-            $Body .= "Position Applying for: " . $PositionApplyingFor . "\n";
-            $Body .= "User Email: " . $UserEmail . "\n";
+            $Body .= "<strong>User Name:</strong> " . $UserName . "\n";
+            $Body .= "<strong>Position Applying for:</strong> " . $PositionApplyingFor . "\n";
+            $Body .= "<strong>User Email:</strong> " . $UserEmail . "\n";
             $Body .= "\n";
-            $Body .= "Resume: " . $UserResume . "\n";
+            $Body .= "<strong>Resume:</strong> " . $UserResume . "\n";
             $Body .= "\n";
-            $Body .= "Cover Letter: " . $CoverLetter . "\n";
+            $Body .= "<strong>Cover Letter:</strong> " . $CoverLetter . "\n";
 
             /* Send the e-mail. */
             $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: Application for " . $PositionApplyingFor, $Body, "From: <$UserEmail>");
