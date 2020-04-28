@@ -80,18 +80,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         if ($PassedValidation) {
+            /* Set the headers */
+            $Headers = "";
+            $Headers .= "From: <$UserEmail>\r\n";
+            $Headers .= "MIME-Version: 1.0\r\n";
+            $Headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+            
             /* Create the e-mail body. */
             $Body = "";
-            $Body .= "<strong>User Name:</strong> " . $UserName . "\n";
-            $Body .= "<strong>Position Applying for:</strong> " . $PositionApplyingFor . "\n";
-            $Body .= "<strong>User Email:</strong> " . $UserEmail . "\n";
-            $Body .= "\n";
-            $Body .= "<strong>Resume:</strong> " . $UserResume . "\n";
-            $Body .= "\n";
-            $Body .= "<strong>Cover Letter:</strong> " . $CoverLetter . "\n";
+            $Body .= "<strong>User Name:</strong> " . $UserName . "<br />";
+            $Body .= "<strong>Position Applying for:</strong> " . $PositionApplyingFor . "<br />";
+            $Body .= "<strong>User Email:</strong> " . $UserEmail . "<br />";
+            $Body .= "<br />";
+            $Body .= "<strong>Resume:</strong> " . $UserResume . "<br />";
+            $Body .= "<br />";
+            $Body .= "<strong>Cover Letter:</strong> " . $CoverLetter . "<br />";
 
             /* Send the e-mail. */
-            $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: Application for " . $PositionApplyingFor, $Body, "From: <$UserEmail>");
+            $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: Application for " . $PositionApplyingFor, $Body, $Headers);
             if ($SuccessfulSubmission) {
                 $transmitResponse .= "<p>" . $UserName . ", your application was successfully submitted for the " . $PositionApplyingFor . " position.  "
                         . "Thanks for applying, we look forward to reviewing your application!</p>";

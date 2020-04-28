@@ -79,15 +79,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         if ($PassedValidation) {
+            /* Set the headers */
+            $Headers = "";
+            $Headers .= "From: <$UserEmail>\r\n";
+            $Headers .= "MIME-Version: 1.0\r\n";
+            $Headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
             /* Create the e-mail body. */
             $Body = "";
-            $Body .= "<strong>User Name:</strong> " . $UserFirstName . " " . $UserLastName . "\n";
-            $Body .= "<strong>User Email:</strong> " . $UserEmail . "\n";
-            $Body .= "<strong>Subject:</strong> " . $UserSubject . "\n";
-            $Body .= "<strong>User Comments:</strong> " . $UserComments . "\n";
+            $Body .= "<strong>User Name:</strong> " . $UserFirstName . " " . $UserLastName . "<br />";
+            $Body .= "<strong>User Email:</strong> " . $UserEmail . "<br />";
+            $Body .= "<strong>Subject:</strong> " . $UserSubject . "<br />";
+            $Body .= "<strong>User Comments:</strong> " . $UserComments . "<br />";
 
             /* Send the e-mail. */
-            $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: " . $UserSubject, $Body, "From: <$UserEmail>");
+            $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: " . $UserSubject, $Body, $Headers);
             if ($SuccessfulSubmission) {
                 $transmitResponse .= "<p>" . $UserFirstName . ", your form was successfully submitted.  Thanks for contacting us!</p>";
             } else if ($SuccessfulSubmission === false) {

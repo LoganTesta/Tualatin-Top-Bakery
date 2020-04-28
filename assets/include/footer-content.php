@@ -48,13 +48,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         if ($PassedValidation) {
+            /* Set the headers */
+            $Headers = "";
+            $Headers .= "From: <$UserEmailSubscribe>\r\n";
+            $Headers .= "MIME-Version: 1.0\r\n";
+            $Headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+            
             /* Create the e-mail body. */
-            $BodySubscribe = "This user has requested subscription to our bakery customer emails.\n";
-            $BodySubscribe .= "<strong>User Name:</strong> " . $UserNameSubscribe . "\n";
-            $BodySubscribe .= "<strong>User Email:</strong> " . $UserEmailSubscribe . "\n";
+            $BodySubscribe = "This user has requested subscription to our bakery customer emails.<br />";
+            $BodySubscribe .= "<strong>User Name:</strong> " . $UserNameSubscribe . "<br />";
+            $BodySubscribe .= "<strong>User Email:</strong> " . $UserEmailSubscribe . "<br />";
 
             /* Send the e-mail. */
-            $SuccessfulSubmission = mail($SendEmailToSubscribe, $UserSubjectSubscribe, $BodySubscribe, "From: <$UserEmailSubscribe>");
+            $SuccessfulSubmission = mail($SendEmailToSubscribe, $UserSubjectSubscribe, $BodySubscribe, $Headers);
             if ($SuccessfulSubmission) {
                 $transmitResponseSubscribe .= "<p>" . $UserNameSubscribe . ", your form was successfully submitted.  You are "
                         . "now subscribed to our specials and updates!</p>";

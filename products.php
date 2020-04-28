@@ -225,28 +225,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         if ($PassedValidation) {
+            /* Set the headers */
+            $Headers = "";
+            $Headers .= "From: <$UserEmail>\r\n";
+            $Headers .= "MIME-Version: 1.0\r\n";
+            $Headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+            
             /* Create the e-mail body. */
             $Body = "";
-            $Body .= "<strong>User Name:</strong> " . $UserName . "\n";
-            $Body .= "<strong>Email:</strong> " . $UserEmail . "\n";
-            $Body .= "<strong>Phone:</strong> " . $UserPhone . "\n";
-            $Body .= "<strong>Address:</strong> " . $UserStreetAddress . "\n";
-            $Body .= "" . $UserCity . ", " . $UserState . " " . $UserZipCode . " " . "\n";
-            $Body .= "\n";
-            $Body .= "<strong>Estimate Items:</strong> \n";
+            $Body .= "<strong>User Name:</strong> " . $UserName . "<br />";
+            $Body .= "<strong>Email:</strong> " . $UserEmail . "<br />";
+            $Body .= "<strong>Phone:</strong> " . $UserPhone . "<br />";
+            $Body .= "<strong>Address:</strong> " . $UserStreetAddress . "<br />";
+            $Body .= "" . $UserCity . ", " . $UserState . " " . $UserZipCode . " " . "<br />";
+            $Body .= "<br />";
+            $Body .= "<strong>Estimate Items:</strong><br />";
             for ($i = 0; $i < count($products); $i++) {
                 if ($_SESSION["itemSubtotal"][$i] > 0) {
-                    $Body .= "" . $products[$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . " \n";
+                    $Body .= "" . $products[$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . "<br />";
                 }
             }
-            $Body .= "\n";
-            $Body .= "<strong>Estimate Total:</strong> $" . $_SESSION["totalCost"] . ". \n";
-            $Body .= "\n";
-            $Body .= "<strong>Additional Notes:</strong> " . $AdditionalNotes . "\n";
-            $Body .= "\n";
+            $Body .= "<br />";
+            $Body .= "<strong>Estimate Total:</strong> $" . $_SESSION["totalCost"] . ".<br />";
+            $Body .= "<br />";
+            $Body .= "<strong>Additional Notes:</strong> " . $AdditionalNotes . "<br />";
+            $Body .= "<br />";
 
             /* Send the e-mail. */
-            $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: Estimate Order Request for " . $UserName, $Body, "From: <$UserEmail>");
+            $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: Estimate Order Request for " . $UserName, $Body, $Headers);
 
             if ($SuccessfulSubmission) {
                 $transmitResponse .= "<p>" . $UserName . ", your estimate request was successfully submitted.</p>";
