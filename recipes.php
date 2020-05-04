@@ -27,8 +27,8 @@ require('./wordpress/wp-load.php');
                 </div>
             </header>
             <?php include 'assets/include/navigation-content.php'; ?>
-            <div class="content">
-                <div class="inner-wrapper">
+            <div class="inner-wrapper">
+                <div class="content">
                     <div class="content-row">
                         <div class="recipies-header">
                             <?php

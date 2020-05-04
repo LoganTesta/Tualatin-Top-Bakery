@@ -133,8 +133,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <?php include 'assets/include/navigation-content.php'; ?>
 
-            <div class="content">
-                <div class="inner-wrapper">
+            <div class="inner-wrapper">
+                <div class="content">
                     <div class="content-row">
                         <div class="col-sma-5">
                             <?php

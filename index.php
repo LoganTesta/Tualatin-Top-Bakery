@@ -28,8 +28,8 @@ require('./wordpress/wp-load.php');
                 </div>
             </header>
             <?php include 'assets/include/navigation-content.php'; ?>
-            <div class="content index-content">
-                <div class="inner-wrapper">
+            <div class="inner-wrapper">
+                <div class="content index-content">
                     <div class="content-row no-content-row-padding">
                         <div class="col-sma-5">
                             <h3>Welcome to Tualatin Top Bakery!</h3>

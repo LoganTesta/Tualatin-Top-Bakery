@@ -51,78 +51,78 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
 
             <?php include 'assets/include/navigation-content.php'; ?>
 
-            <div class="content">
-                <div class="inner-wrapper">
-                <div class="content-row no-content-row-padding">
-                    <div class="col-sma-12">
-                        <div class="blog-page__content-text">
-                            <?php
-                            $id = 43;
-                            $page = get_post($id);
-                            $content = "" . apply_filters('the_content', $page->post_content);
-                            echo $content;
-                            ?>
-                        </div>
-                        <div id="blogControls" class="blog-controls">
-                            <form class="blog-controls__control" id="blogControlForm0" method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                                <div class="input-container">
-                                    <button class="blog-controls__button" id="blogControlButton0" name="blogControlButton0" type="submit">Order By Date</button>                          
-                                </div>
-                            </form>
-                            <form class="blog-controls__control" id="blogControlForm1" method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                                <div class="input-container">
-                                    <button class="blog-controls__button" id="blogControlButton1" name="blogControlButton1" type="submit">Order By Title</button>                          
-                                </div>
-                            </form>  
-                            <?php echo "<div class='blog-posts__message'>Order by " . $_SESSION["orderBy"] . ", " . $_SESSION["order"] . "</div>"; ?>
-                        </div>
-                        <div class="clear-both"></div>
-                    </div>
-                </div>
-                <div class="content-row no-content-row-padding">
-                    <div class="col-sma-12">
-                        <div class="blog-posts-container" id="blogPostsContainer">
-                            <div class="blog-posts" id="blogPosts">
+            <div class="inner-wrapper">
+                <div class="content">
+                    <div class="content-row no-content-row-padding">
+                        <div class="col-sma-12">
+                            <div class="blog-page__content-text">
                                 <?php
-                                $args = array('posts_per_page' => -1, 'orderby' => $_SESSION["orderBy"], 'order' => $_SESSION["order"]);
-                                $postsToDisplay = get_posts($args);
-                                foreach ($postsToDisplay as $post) : setup_postdata($post);
-                                    ?>                                                       
-                                    <div  id="<?php the_title(); ?>" class="blog-post">
-                                        <h4 class="blog__title"><?php the_title(); ?></h4>
-                                        <div class="blog__image"><?php the_post_thumbnail('medium_rect_crop'); ?></div>
-                                        <div class="blog__categories"><?php
-                                            $categories = get_the_category();
-                                            $h = 0;
-                                            foreach ($categories as $category) {
-                                                $h++;
-                                            }
-                                            $h = $h - 1;
-
-                                            $i = 0;
-                                            foreach ($categories as $category) {
-                                                $result = "";
-                                                if ($i < $h) {
-                                                    $result .= $category->name . ", ";
-                                                } else {
-                                                    $result .= $category->name;
-                                                }
-                                                echo $result;
-                                                $i++;
-                                            }
-                                            ?>
-                                        </div>
-                                        <div class="blog__author">By: <?php the_author(); ?></div>
-                                        <div class="blog__date"><?php the_date(); ?></div>                                      
-                                        <div class="blog__content"><?php the_content(); ?></div>
-                                        <div class="clear-both"></div>
+                                $id = 43;
+                                $page = get_post($id);
+                                $content = "" . apply_filters('the_content', $page->post_content);
+                                echo $content;
+                                ?>
+                            </div>
+                            <div id="blogControls" class="blog-controls">
+                                <form class="blog-controls__control" id="blogControlForm0" method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                    <div class="input-container">
+                                        <button class="blog-controls__button" id="blogControlButton0" name="blogControlButton0" type="submit">Order By Date</button>                          
                                     </div>
-                                <?php endforeach; ?>
+                                </form>
+                                <form class="blog-controls__control" id="blogControlForm1" method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                    <div class="input-container">
+                                        <button class="blog-controls__button" id="blogControlButton1" name="blogControlButton1" type="submit">Order By Title</button>                          
+                                    </div>
+                                </form>  
+                                <?php echo "<div class='blog-posts__message'>Order by " . $_SESSION["orderBy"] . ", " . $_SESSION["order"] . "</div>"; ?>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                    </div>
+                    <div class="content-row no-content-row-padding">
+                        <div class="col-sma-12">
+                            <div class="blog-posts-container" id="blogPostsContainer">
+                                <div class="blog-posts" id="blogPosts">
+                                    <?php
+                                    $args = array('posts_per_page' => -1, 'orderby' => $_SESSION["orderBy"], 'order' => $_SESSION["order"]);
+                                    $postsToDisplay = get_posts($args);
+                                    foreach ($postsToDisplay as $post) : setup_postdata($post);
+                                        ?>                                                       
+                                        <div  id="<?php the_title(); ?>" class="blog-post">
+                                            <h4 class="blog__title"><?php the_title(); ?></h4>
+                                            <div class="blog__image"><?php the_post_thumbnail('medium_rect_crop'); ?></div>
+                                            <div class="blog__categories"><?php
+                                                $categories = get_the_category();
+                                                $h = 0;
+                                                foreach ($categories as $category) {
+                                                    $h++;
+                                                }
+                                                $h = $h - 1;
+
+                                                $i = 0;
+                                                foreach ($categories as $category) {
+                                                    $result = "";
+                                                    if ($i < $h) {
+                                                        $result .= $category->name . ", ";
+                                                    } else {
+                                                        $result .= $category->name;
+                                                    }
+                                                    echo $result;
+                                                    $i++;
+                                                }
+                                                ?>
+                                            </div>
+                                            <div class="blog__author">By: <?php the_author(); ?></div>
+                                            <div class="blog__date"><?php the_date(); ?></div>                                      
+                                            <div class="blog__content"><?php the_content(); ?></div>
+                                            <div class="clear-both"></div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
 
             <?php include 'assets/include/message-content.php'; ?>
