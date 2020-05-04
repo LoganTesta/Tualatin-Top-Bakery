@@ -227,7 +227,8 @@ header { min-height: 200px; background: linear-gradient(#fbe3b7, #f3f3f3); }
 
 
 /*Footer Styles*/
-footer { padding: 50px 10px; background-color: #fbe3b7; }
+footer { background-color: #fbe3b7; }
+.footer__additional-wrapper { padding: 50px 10px; }
 .footer__subheader { padding-bottom: 15px; color: #64460e; }
 
 .footer__social, .footer__location, .footer__hours { padding-top: 20px; padding-bottom: 20px; } 
