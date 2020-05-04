@@ -222,8 +222,9 @@ header { min-height: 200px; background: linear-gradient(#fbe3b7, #f3f3f3); }
 
 
 /*Message styles*/
-.message { padding: 25px 10px; text-align: center; background-color: #ac8949; transition: 0.4s ease-in; }
-.message__text { font-size: 24px; font-weight: bold; color: #f9f9f9; padding-bottom: 0; cursor: pointer; }
+.message { text-align: center; background-color: #ac8949; transition: 0.4s ease-in; }
+.message__additional-wrapper { padding: 22px 10px; }
+.message__text { font-size: 24px; font-weight: bold; color: #f9f9f9; padding-bottom: 0; cursor: default; }
 
 
 /*Footer Styles*/
