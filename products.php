@@ -29,14 +29,48 @@ $quantities = array();
 $itemSubtotal = array();
 
 
+
 //Order products button logic.
-if(isset($_POST["searchByOptions"])){
-    $sortedProducts = usort($products, compare_products());
-    $products = $sortedProducts;
+$productSearchText = "";
+if (isset($_POST["orderByButton"]) === false) {
+    $_SESSION["orderByOptions"] = "";
+    $productSearchText = "";
+} else if (isset($_POST["orderByButton"])) {
+    $_SESSION["orderByOptions"] = htmlspecialchars(strip_tags(trim($_POST['orderByOptions'])));
+
+    if (htmlspecialchars(strip_tags(trim($_POST["orderByOptions"]))) === "Name (Alphabetical)") {
+        usort($products, "compare_names");
+    } else if (htmlspecialchars(strip_tags(trim($_POST["orderByOptions"]))) === "Name (Reverse Alphabetical)") {
+        usort($products, "compare_names_reverse");
+    } else if (htmlspecialchars(strip_tags(trim($_POST["orderByOptions"]))) === "Price (Ascending)") {
+        usort($products, "compare_prices");
+    } else if (htmlspecialchars(strip_tags(trim($_POST["orderByOptions"]))) === "Price (Descending)") {
+        usort($products, "compare_prices_reverse");
+    } else {
+        $_SESSION["orderByOptions"] == "";
+    }
+    if ($_SESSION["orderByOptions"] !== "") {
+        $productSearchText = "Showing products ordered by " . $_SESSION["orderByOptions"];
+    }
 }
+
+function compare_names($a, $b){
+    return strcmp($a->name, $b->name);
+}
+
+function compare_names_reverse($b, $a){
+    return strcmp($a->name, $b->name);
+}
+
 function compare_prices($a, $b){
-    return strcmp($a->price, $b->price);
+    return strnatcmp($a->price, strval($b->price));
 }
+
+function compare_prices_reverse($b, $a){
+    return strnatcmp($a->price, strval($b->price));
+}
+
+
 
 //Initialize the cart.
 if (isset($_SESSION["estimateCart"]) === false) {
@@ -325,12 +359,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 $content = "" . apply_filters('the_content', $page->post_content);
                                 echo $content;
                                 ?>
-                                <div class="products-search">
+                                <div class="product-search">
                                     <form class="" id="sortByPrice" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                         <div class="input-container product-search-container">
                                             <label class="input-container__label" for="orderByOptions"><strong>Order By</strong></label>
                                             <select type="text" id="orderByOptions" name="orderByOptions">
-                                                <option value=""></option>
+                                                <option value=""></option>                        
+                                                <option value="Name (Alphabetical)">Name (Alphabetical)</option>
+                                                <option value="Name (Reverse Alphabetical)">Name (Reverse Alphabetical)</option>                                    
                                                 <option value="Price (Ascending)">Price (Ascending)</option>
                                                 <option value="Price (Descending)">Price (Descending)</option>
                                             </select>
@@ -338,6 +374,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         <div class="input-container product-search-container">
                                             <button class="input-container__contact-button" id="orderByButton" name="orderByButton" type="submit" >Search</button>                          
                                         </div>
+                                        <div class="product-search__text"><?php echo $productSearchText; ?></div>
                                     </form>
                                 </div>
                             </div>
