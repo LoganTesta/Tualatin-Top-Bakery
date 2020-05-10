@@ -29,6 +29,15 @@ $quantities = array();
 $itemSubtotal = array();
 
 
+//Order products button logic.
+if(isset($_POST["searchByOptions"])){
+    $sortedProducts = usort($products, compare_products());
+    $products = $sortedProducts;
+}
+function compare_prices($a, $b){
+    return strcmp($a->price, $b->price);
+}
+
 //Initialize the cart.
 if (isset($_SESSION["estimateCart"]) === false) {
     $_SESSION["estimateCart"] = "not empty";
@@ -316,6 +325,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 $content = "" . apply_filters('the_content', $page->post_content);
                                 echo $content;
                                 ?>
+                                <div class="products-search">
+                                    <form class="" id="sortByPrice" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                        <div class="input-container product-search-container">
+                                            <label class="input-container__label" for="orderByOptions"><strong>Order By</strong></label>
+                                            <select type="text" id="orderByOptions" name="orderByOptions">
+                                                <option value=""></option>
+                                                <option value="Price (Ascending)">Price (Ascending)</option>
+                                                <option value="Price (Descending)">Price (Descending)</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-container product-search-container">
+                                            <button class="input-container__contact-button" id="orderByButton" name="orderByButton" type="submit" >Search</button>                          
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                             <div class="products content-row">
                                 <?php for($i = 0; $i < count($products); $i++) { ?>
