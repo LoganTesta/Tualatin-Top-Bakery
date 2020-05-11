@@ -32,11 +32,36 @@ $itemSubtotal = array();
 
 //Order products button logic.
 $productSearchText = "";
-if (isset($_POST["orderByButton"]) === false) {
+$searchedProducts = false;
+
+if (isset($_POST["searchButton"]) === false) {
     $_SESSION["orderByOptions"] = "";
     $productSearchText = "";
-} else if (isset($_POST["orderByButton"])) {
+} else if (isset($_POST["searchButton"])) {
+    $_SESSION["searchByCategory"] = strtolower(htmlspecialchars(strip_tags(trim($_POST['searchByCategory']))));
     $_SESSION["orderByOptions"] = htmlspecialchars(strip_tags(trim($_POST['orderByOptions'])));
+
+    if ($_SESSION["searchByCategory"] !== "") {
+        $searchedProducts = true;
+    }
+
+    if ($_SESSION["orderByOptions"] !== "") {
+        $searchedProducts = true;
+    }
+
+    $searchedForProducts = array();
+    if ($_SESSION["searchByCategory"] !== "" && $_SESSION["searchByCategory"] !== null) {
+        for ($i = 0; $i < count($products); $i++) {
+            if ($products[$i]->get_category() === $_SESSION["searchByCategory"]) {
+                array_push($searchedForProducts, $products[$i]);
+            }
+        }
+        unset($products);
+        $products = array();
+        for ($i = 0; $i < count($searchedForProducts); $i++) {
+            array_push($products, $searchedForProducts[$i]);
+        }
+    }
 
     if (htmlspecialchars(strip_tags(trim($_POST["orderByOptions"]))) === "Name (Alphabetical)") {
         usort($products, "compare_names");
@@ -47,10 +72,26 @@ if (isset($_POST["orderByButton"]) === false) {
     } else if (htmlspecialchars(strip_tags(trim($_POST["orderByOptions"]))) === "Price (Descending)") {
         usort($products, "compare_prices_reverse");
     } else {
-        $_SESSION["orderByOptions"] == "";
+        $_SESSION["orderByOptions"] = "";
     }
-    if ($_SESSION["orderByOptions"] !== "") {
-        $productSearchText = "Showing products ordered by " . $_SESSION["orderByOptions"];
+
+    if ($searchedProducts === false) {
+        $productSearchText = "Showing all products.";
+    } else {
+        $categoryProductText = "";
+        $orderByText = "";
+        if ($_SESSION["searchByCategory"] === "") {
+            $categoryProductText = "products";
+        } else {
+            $categoryProductText = $_SESSION["searchByCategory"];
+        }
+
+        if ($_SESSION["orderByOptions"] === "") {
+            $orderByText = "";
+        } else {
+            $orderByText = " ordered by " . $_SESSION["orderByOptions"];
+        }
+        $productSearchText = "Showing " . $categoryProductText . $orderByText . ".";
     }
 }
 
@@ -362,6 +403,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <div class="product-search">
                                     <form class="" id="sortByPrice" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                         <div class="input-container product-search-container">
+                                            <label class="input-container__label" for="searchByCategory"><strong>Category</strong></label>
+                                            <select type="text" id="searchByCategory" name="searchByCategory">
+                                                <option value=""></option>                        
+                                                <option value="Breads">Breads</option>
+                                                <option value="Pastries">Pastries</option>                                    
+                                                <option value="Muffins">Muffins</option>
+                                                <option value="Cakes">Cakes</option>
+                                                <option value="Pies">Pies</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-container product-search-container">
                                             <label class="input-container__label" for="orderByOptions"><strong>Order By</strong></label>
                                             <select type="text" id="orderByOptions" name="orderByOptions">
                                                 <option value=""></option>                        
@@ -372,7 +425,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                             </select>
                                         </div>
                                         <div class="input-container product-search-container">
-                                            <button class="input-container__contact-button" id="orderByButton" name="orderByButton" type="submit" >Search</button>                          
+                                            <button class="input-container__contact-button" id="searchButton" name="searchButton" type="submit" >Search</button>                          
                                         </div>
                                         <div class="product-search__text"><?php echo $productSearchText; ?></div>
                                     </form>
