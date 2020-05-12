@@ -404,7 +404,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <form class="" id="sortByPrice" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                         <div class="input-container product-search-container">
                                             <label class="input-container__label" for="searchByCategory"><strong>Category</strong></label>
-                                            <select type="text" id="searchByCategory" name="searchByCategory">
+                                            <select type="text" class="product-search__select" id="searchByCategory" name="searchByCategory">
                                                 <option value=""></option>                        
                                                 <option value="Breads">Breads</option>
                                                 <option value="Pastries">Pastries</option>                                    
@@ -416,7 +416,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         </div>
                                         <div class="input-container product-search-container">
                                             <label class="input-container__label" for="orderByOptions"><strong>Order By</strong></label>
-                                            <select type="text" id="orderByOptions" name="orderByOptions">
+                                            <select type="text" class="product-search__select" id="orderByOptions" name="orderByOptions">
                                                 <option value=""></option>                        
                                                 <option value="Name (Alphabetical)">Name (Alphabetical)</option>
                                                 <option value="Name (Reverse Alphabetical)">Name (Reverse Alphabetical)</option>                                    

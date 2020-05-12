@@ -342,6 +342,8 @@ footer { background-color: #fbe3b7; }
 .products-header { padding-bottom: 20px; }
 .product-search { font-size: 0; }
 .product-search-container { display: block; font-size: 0; }
+.product-search .input-container__label { display: block; padding-left: 5px; }
+.product-search__select { width: auto; }
 .product-search__text { display: inline-block; }
 .product-container { margin-bottom: 50px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); border-radius: 20px; }
 .product__title { padding: 8px; font-size: 19px; border-radius: 20px 20px 0 0; font-weight: bold; text-align: center; background: linear-gradient(#64460e 20%, #ac8949 100%); color: #ffffff; }
