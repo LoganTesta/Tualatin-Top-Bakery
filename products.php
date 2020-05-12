@@ -24,7 +24,6 @@ $BlueberryPie = new Product("Blueberry Pie", "five", 12.00, "pies", "", "<p>We s
 $BlueberryMuffin = new Product("Blueberry Muffin", "six", 2.25, "muffins", "", "Made with lots of blueberries and a hint of sugar.");
 
 
-$products = array($WholeWheatLoaf, $WhiteBreadLoaf, $BlueberryScone, $ChocolateCake, $CherryPie, $BlueberryPie, $BlueberryMuffin);
 $quantities = array();
 $itemSubtotal = array();
 
@@ -34,65 +33,71 @@ $itemSubtotal = array();
 $productSearchText = "";
 $searchedProducts = false;
 
-if (isset($_POST["searchButton"]) === false) {
+$_SESSION["products"] = array();
+array_push($_SESSION["products"], $WholeWheatLoaf);
+array_push($_SESSION["products"], $WhiteBreadLoaf);
+array_push($_SESSION["products"], $BlueberryScone);
+array_push($_SESSION["products"], $ChocolateCake);
+array_push($_SESSION["products"], $CherryPie);
+array_push($_SESSION["products"], $BlueberryPie);
+array_push($_SESSION["products"], $BlueberryMuffin);
+
+
+    
+$_SESSION["searchByCategory"] = strtolower("" . $_GET['searchByCategory']);
+$_SESSION["orderByOptions"] = strtolower("" . $_GET['orderByOptions']);
+
+if ($_SESSION["searchByCategory"] !== "") {
+    $searchedProducts = true;
+}
+
+if ($_SESSION["orderByOptions"] !== "") {
+    $searchedProducts = true;
+}
+
+$searchedForProducts = array();
+if ($_SESSION["searchByCategory"] !== "" && $_SESSION["searchByCategory"] !== null) {
+    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
+        if ($_SESSION["products"][$i]->get_category() === $_SESSION["searchByCategory"]) {
+            array_push($searchedForProducts, $_SESSION["products"][$i]);
+        }
+    }
+    unset($_SESSION["products"]);
+    $_SESSION["products"] = array();
+    for ($i = 0; $i < count($searchedForProducts); $i++) {
+        array_push($_SESSION["products"], $searchedForProducts[$i]);
+    }
+}
+
+if ($_GET["orderByOptions"] === "Name (Alphabetical)") {
+    usort($_SESSION["products"], "compare_names");
+} else if ($_GET["orderByOptions"] === "Name (Reverse Alphabetical)") {
+    usort($_SESSION["products"], "compare_names_reverse");
+} else if ($_GET["orderByOptions"] === "Price (Ascending)") {
+    usort($_SESSION["products"], "compare_prices");
+} else if ($_GET["orderByOptions"] === "Price (Descending)") {
+    usort($_SESSION["products"], "compare_prices_reverse");
+} else {
     $_SESSION["orderByOptions"] = "";
-    $productSearchText = "";
-} else if (isset($_POST["searchButton"])) {
-    $_SESSION["searchByCategory"] = strtolower(htmlspecialchars(strip_tags(trim($_POST['searchByCategory']))));
-    $_SESSION["orderByOptions"] = htmlspecialchars(strip_tags(trim($_POST['orderByOptions'])));
+}
 
-    if ($_SESSION["searchByCategory"] !== "") {
-        $searchedProducts = true;
-    }
-
-    if ($_SESSION["orderByOptions"] !== "") {
-        $searchedProducts = true;
-    }
-
-    $searchedForProducts = array();
-    if ($_SESSION["searchByCategory"] !== "" && $_SESSION["searchByCategory"] !== null) {
-        for ($i = 0; $i < count($products); $i++) {
-            if ($products[$i]->get_category() === $_SESSION["searchByCategory"]) {
-                array_push($searchedForProducts, $products[$i]);
-            }
-        }
-        unset($products);
-        $products = array();
-        for ($i = 0; $i < count($searchedForProducts); $i++) {
-            array_push($products, $searchedForProducts[$i]);
-        }
-    }
-
-    if (htmlspecialchars(strip_tags(trim($_POST["orderByOptions"]))) === "Name (Alphabetical)") {
-        usort($products, "compare_names");
-    } else if (htmlspecialchars(strip_tags(trim($_POST["orderByOptions"]))) === "Name (Reverse Alphabetical)") {
-        usort($products, "compare_names_reverse");
-    } else if (htmlspecialchars(strip_tags(trim($_POST["orderByOptions"]))) === "Price (Ascending)") {
-        usort($products, "compare_prices");
-    } else if (htmlspecialchars(strip_tags(trim($_POST["orderByOptions"]))) === "Price (Descending)") {
-        usort($products, "compare_prices_reverse");
+if ($searchedProducts === false) {
+    $productSearchText = "Showing all products.";
+} else {
+    $categoryProductText = "";
+    $orderByText = "";
+    if ($_SESSION["searchByCategory"] === "") {
+        $categoryProductText = "products";
     } else {
-        $_SESSION["orderByOptions"] = "";
+        $categoryProductText = $_SESSION["searchByCategory"];
     }
 
-    if ($searchedProducts === false) {
-        $productSearchText = "Showing all products.";
-    } else {
-        $categoryProductText = "";
+    if ($_SESSION["orderByOptions"] === "") {
         $orderByText = "";
-        if ($_SESSION["searchByCategory"] === "") {
-            $categoryProductText = "products";
-        } else {
-            $categoryProductText = $_SESSION["searchByCategory"];
-        }
-
-        if ($_SESSION["orderByOptions"] === "") {
-            $orderByText = "";
-        } else {
-            $orderByText = " ordered by " . $_SESSION["orderByOptions"];
-        }
-        $productSearchText = "Showing " . $categoryProductText . $orderByText . ".";
+    } else {
+        $orderByText = " ordered by " . $_SESSION["orderByOptions"];
     }
+    $productSearchText = "Showing " . $categoryProductText . $orderByText . ".";
 }
 
 function compare_names($a, $b){
@@ -116,8 +121,8 @@ function compare_prices_reverse($b, $a){
 //Initialize the cart.
 if (isset($_SESSION["estimateCart"]) === false) {
     $_SESSION["estimateCart"] = "not empty";
-    for ($i = 0; $i < count($products); $i++) {
-        $_SESSION["products"][$i] = $products[$i];   //We need to store this for the reset function since that logic is in a separate function.
+    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
+        $_SESSION["products"][$i] = $_SESSION["products"][$i];   //We need to store this for the reset function since that logic is in a separate function.
         $_SESSION["quantity"][$i] = 0;
         $_SESSION["itemSubtotal"][$i] = number_format(0.00, 2);
         $_SESSION["numberOfItems"] = 0;
@@ -143,11 +148,11 @@ if (isset($_SESSION["estimateCart"])) {
             $_SESSION["quantity"][$itemNumber] = 100;
         }
            
-        $_SESSION["itemSubtotal"][$itemNumber] = number_format($products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
+        $_SESSION["itemSubtotal"][$itemNumber] = number_format($_SESSION["products"][$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
     }
 
     $_SESSION["totalCost"] = number_format(0.00, 2);
-    for ($i = 0; $i < count($products); $i++) {
+    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
         $_SESSION["numberOfItems"] = $_SESSION["numberOfItems"] + $_SESSION["quantity"][$i];
         $_SESSION["totalCost"] = number_format($_SESSION["totalCost"] + $_SESSION["itemSubtotal"][$i], 2);
     }
@@ -164,10 +169,10 @@ if (isset($_SESSION["estimateCart"])) {
 
         if ($newQuantity >= 0) {
             $_SESSION["quantity"][$itemNumber] = $newQuantity;
-            $_SESSION["itemSubtotal"][$itemNumber] = number_format($products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
+            $_SESSION["itemSubtotal"][$itemNumber] = number_format($_SESSION["products"][$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
 
             $_SESSION["totalCost"] = number_format(0.00, 2);
-            for ($i = 0; $i < count($products); $i++) {
+            for ($i = 0; $i < count($_SESSION["products"]); $i++) {
                 $_SESSION["numberOfItems"] = $_SESSION["numberOfItems"] + $_SESSION["quantity"][$i];
                 $_SESSION["totalCost"] = number_format($_SESSION["totalCost"] + $_SESSION["itemSubtotal"][$i], 2);
             }
@@ -324,9 +329,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $Body .= "" . $UserCity . ", " . $UserState . " " . $UserZipCode . " " . "<br />";
             $Body .= "<br />";
             $Body .= "<strong>Estimate Items:</strong><br />";
-            for ($i = 0; $i < count($products); $i++) {
+            for ($i = 0; $i < count($_SESSION["products"]); $i++) {
                 if ($_SESSION["itemSubtotal"][$i] > 0) {
-                    $Body .= "" . $products[$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . "<br />";
+                    $Body .= "" . $_SESSION["products"][$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . "<br />";
                 }
             }
             $Body .= "<br />";
@@ -341,9 +346,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if ($SuccessfulSubmission) {
                 $transmitResponse .= "<p>" . $UserName . ", your estimate request was successfully submitted.</p>";
                 $transmitResponse .= "<p>Estimate Items:</p>";
-                for ($i = 0; $i < count($products); $i++) {
+                for ($i = 0; $i < count($_SESSION["products"]); $i++) {
                     if ($_SESSION["itemSubtotal"][$i] > 0) {
-                        $transmitResponse .= "" . $products[$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . "<br />";
+                        $transmitResponse .= "" . $_SESSION["products"][$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . "<br />";
                     }
                 }
                 $transmitResponse .= "<p>Estimate Total: $" . $_SESSION["totalCost"] . ".</p>";
@@ -402,47 +407,47 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         </div>
                         <div class="col-sma-7">
                             <div class="product-search">
-                                <form class="" id="sortByPrice" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                                    <div class="input-container product-search-container">
-                                        <label class="input-container__label" for="searchByCategory"><strong>Category</strong></label>
-                                        <select type="text" class="product-search__select" id="searchByCategory" name="searchByCategory">
-                                            <option value=""></option>                        
-                                            <option value="Breads">Breads</option>
-                                            <option value="Pastries">Pastries</option>                                    
-                                            <option value="Muffins">Muffins</option>
-                                            <option value="Cakes">Cakes</option>
-                                            <option value="Pies">Pies</option>
-                                            <option value="Other">Other</option>
-                                        </select>
-                                    </div>
-                                    <div class="input-container product-search-container">
-                                        <label class="input-container__label" for="orderByOptions"><strong>Order By</strong></label>
-                                        <select type="text" class="product-search__select" id="orderByOptions" name="orderByOptions">
-                                            <option value=""></option>                        
-                                            <option value="Name (Alphabetical)">Name (Alphabetical)</option>
-                                            <option value="Name (Reverse Alphabetical)">Name (Reverse Alphabetical)</option>                                    
-                                            <option value="Price (Ascending)">Price (Ascending)</option>
-                                            <option value="Price (Descending)">Price (Descending)</option>
-                                        </select>
-                                    </div>
-                                    <div class="input-container product-search-container">
-                                        <button class="input-container__contact-button" id="searchButton" name="searchButton" type="submit" >Search</button>                          
-                                    </div>
-                                    <div class="product-search__text"><?php echo $productSearchText; ?></div>
-                                </form>
+                                <div class="input-container product-search-container">
+                                    <label class="input-container__label" for="searchByCategory"><strong>Category</strong></label>
+                                    <select type="text" class="product-search__select" id="searchByCategory" name="searchByCategory">
+                                        <option value=""></option>                        
+                                        <option value="Breads">Breads</option>
+                                        <option value="Pastries">Pastries</option>                                    
+                                        <option value="Muffins">Muffins</option>
+                                        <option value="Cakes">Cakes</option>
+                                        <option value="Pies">Pies</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="input-container product-search-container">
+                                    <label class="input-container__label" for="orderByOptions"><strong>Order By</strong></label>
+                                    <select type="text" class="product-search__select" id="orderByOptions" name="orderByOptions">
+                                        <option value=""></option>                        
+                                        <option value="Name (Alphabetical)">Name (Alphabetical)</option>
+                                        <option value="Name (Reverse Alphabetical)">Name (Reverse Alphabetical)</option>                                    
+                                        <option value="Price (Ascending)">Price (Ascending)</option>
+                                        <option value="Price (Descending)">Price (Descending)</option>
+                                    </select>
+                                </div>
+                                <div class="input-container product-search-container">
+                                    <div class="input-container__contact-button" id="searchButton" name="searchButton">Search</div>                          
+                                </div>
+                                <div class="product-search__text">
+                                    <?php echo $productSearchText; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="products content-row">
-                        <?php for ($i = 0; $i < count($products); $i++) { ?>
+                    <div class="content-row products">
+                        <?php for ($i = 0; $i < count($_SESSION["products"]); $i++) { ?>
                             <div class="col-vsm-6 col-sma-4 col-lar-3">
-                                <div class="product-container <?php echo $products[$i]->get_classCSS(); ?>">
-                                    <div class="product__title"><?php echo $products[$i]->get_name(); ?></div>
+                                <div class="product-container <?php echo $_SESSION["products"][$i]->get_classCSS(); ?>">
+                                    <div class="product__title"><?php echo $_SESSION["products"][$i]->get_name(); ?></div>
                                     <div class="product__background-container">
                                         <div class="product__background"></div>
                                     </div>
                                     <div class="product__price-and-request">
-                                        <div class="product__price">$<?php echo $products[$i]->get_price(); ?></div>   
+                                        <div class="product__price">$<?php echo $_SESSION["products"][$i]->get_price(); ?></div>   
                                         <div class="product__adjust-quantity">
                                             <div class="product__minus-quantity">-</div>
                                             <div class="product__quantity-input">
@@ -461,7 +466,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         </div>
                                         <div class="clear-both"></div>
                                     </div>
-                                    <div class="product__description"><?php echo $products[$i]->get_description(); ?></div>
+                                    <div class="product__description"><?php echo $_SESSION["products"][$i]->get_description(); ?></div>
                                 </div>
                             </div>
                         <?php } ?>
@@ -484,13 +489,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php for ($i = 0; $i < count($products); $i++) { ?>
-                                            <tr class="estimate-table__item <?php echo $products[$i]->get_classCSS(); ?> <?php if ($_SESSION["quantity"][$i] <= 0) {
+                                        <?php for ($i = 0; $i < count($_SESSION["products"]); $i++) { ?>
+                                            <tr class="estimate-table__item <?php echo $_SESSION["products"][$i]->get_classCSS(); ?> <?php if ($_SESSION["quantity"][$i] <= 0) {
                                                 echo "hide";
                                                 } ?>">
-                                                <td class="estimate-table__item-title"><?php echo $products[$i]->get_name(); ?></td>
+                                                <td class="estimate-table__item-title"><?php echo $_SESSION["products"][$i]->get_name(); ?></td>
                                                 <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
-                                                <td class="estimate-table__item-cost">$<?php echo $products[$i]->get_price(); ?></td>
+                                                <td class="estimate-table__item-cost">$<?php echo $_SESSION["products"][$i]->get_price(); ?></td>
                                                 <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][$i]; ?></td>
                                                 <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][$i]; ?></td>
                                                 <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>  
@@ -641,6 +646,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 resetCart("resetCart", "=");
             }, false);
             
+            document.getElementById("searchButton").addEventListener("click", function () {
+                let searchByCategory = "" + document.getElementById("searchByCategory").value;
+                let orderByOptions = "" + document.getElementById("orderByOptions").value;
+                updateProductsShown("searchByCategory=" + searchByCategory, "&orderByOptions=" + orderByOptions);
+            }, false);
+            
+            
             
             function adjustProductSetQuantity(itemNumber, change) {
                 if(change === "decrease"){
@@ -752,6 +764,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
            
             function reAddEventListeners () {
+                document.getElementById("searchButton").addEventListener("click", function () {
+                    let searchByCategory = "" + document.getElementById("searchByCategory").value;
+                    let orderByOptions = "" + document.getElementById("orderByOptions").value;
+                    updateProductsShown("searchByCategory=" + searchByCategory, "&orderByOptions=" + orderByOptions);
+                }, false);
+            
                 for(let i=0; i<numberOfProducts; i++){
                     document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () {
                        updateCart("item", "=", i);
@@ -774,6 +792,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 }
                 return setValue;
             }
+            
+            
+            function updateProductsShown(searchByCategoryString, orderByOptionsString){
+                var xhttp = new XMLHttpRequest();   
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        let parser = new DOMParser();
+                        let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
+                        
+                        let productSearch = ajaxDocument.getElementsByClassName("product-search")[0];
+                        let products = ajaxDocument.getElementsByClassName("products")[0];
+
+                        document.getElementsByClassName("product-search")[0].innerHTML = productSearch.innerHTML;
+                        document.getElementsByClassName("products")[0].innerHTML = products.innerHTML;
+                        //Recreate event listeners for - and + buttons.
+                        reAddEventListeners();  
+                    }
+                };
+
+                xhttp.open("GET", "products.php?" + searchByCategoryString + orderByOptionsString, true);
+                xhttp.send();   
+            }
+                        
         </script>
     </body>
 
