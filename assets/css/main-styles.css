@@ -672,21 +672,21 @@ footer { background-color: #fbe3b7; }
     .estimate-table .estimate-table__th-cost { width: 85px; }
     
     .estimate-table .estimate-table__th-quantity { width: 90px; }
-    .estimate-table .estimate-table__th-subtotal { width: 95px; }
-    .estimate-table .estimate-table__th-remove { width: 83px; }
-    .estimate-table .estimate-table__th-add { width: 52px; }
+    .estimate-table .estimate-table__th-subtotal { width: 87px; }
+    .estimate-table .estimate-table__th-remove { width: 81px; }
+    .estimate-table .estimate-table__th-add { width: 50px; }
 
     .estimate-container__title { text-align: center; }
     .estimate-table .estimate-table__item-title { width: 150px; padding: 10px 5px; }
     .estimate-table .estimate-table__item-image { float: none; width: 110px;  }
     .estimate-table .estimate-table__item-cost { float: none; width: 85px; padding-left: 10px; padding-right: 25px; }
     .estimate-table .estimate-table__item-quantity { float: none; width: 90px; } 
-    .estimate-table .estimate-table__item-subtotal { float: none; width: 95px; min-width: 0; }
-    .estimate-table .estimate-table__minus { float: none; width: 83px; }
-    .estimate-table .estimate-table__add { float: none; width: 52px; }
+    .estimate-table .estimate-table__item-subtotal { float: none; width: 87px; min-width: 0; }
+    .estimate-table .estimate-table__minus { float: none; width: 81px; }
+    .estimate-table .estimate-table__add { float: none; width: 50px; }
     
-    .estimate-table .estimate-table__minus__item { width: 40px; height: 40px; padding: 5px; border-radius: 15px; font-size: 24px; }
-    .estimate-table .estimate-table__add__item { width: 40px; height: 40px; padding: 5px; border-radius: 15px; font-size: 24px; }
+    .estimate-table .estimate-table__minus__item { width: 36px; height: 36px; padding: 5px; border-radius: 15px; font-size: 21px; }
+    .estimate-table .estimate-table__add__item { width: 36px; height: 36px; padding: 5px; border-radius: 15px; font-size: 21px; }
     
     .estimate-table__cart-summary { margin-top: 30px; }
     .cart-total { padding-top: 10px; padding-bottom: 0; text-align: left; }
