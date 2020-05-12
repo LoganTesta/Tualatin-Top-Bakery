@@ -391,77 +391,82 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <div class="inner-wrapper">
                 <div class="content">
-                    <div class="content-row">
-                        <div class="products-wrapper">
-                            <div class="products-header">
-                                <?php
-                                $id = 35;
-                                $page = get_post($id);
-                                $content = "" . apply_filters('the_content', $page->post_content);
-                                echo $content;
-                                ?>
-                                <div class="product-search">
-                                    <form class="" id="sortByPrice" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                                        <div class="input-container product-search-container">
-                                            <label class="input-container__label" for="searchByCategory"><strong>Category</strong></label>
-                                            <select type="text" class="product-search__select" id="searchByCategory" name="searchByCategory">
-                                                <option value=""></option>                        
-                                                <option value="Breads">Breads</option>
-                                                <option value="Pastries">Pastries</option>                                    
-                                                <option value="Muffins">Muffins</option>
-                                                <option value="Cakes">Cakes</option>
-                                                <option value="Pies">Pies</option>
-                                                <option value="Other">Other</option>
-                                            </select>
-                                        </div>
-                                        <div class="input-container product-search-container">
-                                            <label class="input-container__label" for="orderByOptions"><strong>Order By</strong></label>
-                                            <select type="text" class="product-search__select" id="orderByOptions" name="orderByOptions">
-                                                <option value=""></option>                        
-                                                <option value="Name (Alphabetical)">Name (Alphabetical)</option>
-                                                <option value="Name (Reverse Alphabetical)">Name (Reverse Alphabetical)</option>                                    
-                                                <option value="Price (Ascending)">Price (Ascending)</option>
-                                                <option value="Price (Descending)">Price (Descending)</option>
-                                            </select>
-                                        </div>
-                                        <div class="input-container product-search-container">
-                                            <button class="input-container__contact-button" id="searchButton" name="searchButton" type="submit" >Search</button>                          
-                                        </div>
-                                        <div class="product-search__text"><?php echo $productSearchText; ?></div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="products content-row">
-                                <?php for($i = 0; $i < count($products); $i++) { ?>
-                                    <div class="col-vsm-6 col-sma-4 col-lar-3">
-                                        <div class="product-container <?php echo $products[$i]->get_classCSS(); ?>">
-                                            <div class="product__title"><?php echo $products[$i]->get_name(); ?></div>
-                                            <div class="product__background-container">
-                                                <div class="product__background"></div>
-                                            </div>
-                                            <div class="product__price-and-request">
-                                                <div class="product__price">$<?php echo $products[$i]->get_price(); ?></div>   
-                                                <div class="product__adjust-quantity">
-                                                    <div class="product__minus-quantity">-</div>
-                                                    <div class="product__quantity-input">
-                                                        <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                        <input type="number" min="0" max="100" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][$i]; ?>" />
-                                                    </div>
-                                                    <div class="product__increase-quantity">+</div>
-                                                </div>
-                                                <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                                <div class="product__quantity-container <?php if ($_SESSION["quantity"][$i] > 0) { echo 'show'; }?>">
-                                                    <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["quantity"][$i] . "</a>" ?>                                                
-                                                </div>
-                                                <div class="clear-both"></div>
-                                            </div>
-                                            <div class="product__description"><?php echo $products[$i]->get_description(); ?></div>
-                                        </div>
-                                    </div>       
-                                <?php } ?>
+                    <div class="content-row products-header">
+                        <div class="col-sma-5">
+                            <?php
+                            $id = 35;
+                            $page = get_post($id);
+                            $content = "" . apply_filters('the_content', $page->post_content);
+                            echo $content;
+                            ?>
+                        </div>
+                        <div class="col-sma-7">
+                            <div class="product-search">
+                                <form class="" id="sortByPrice" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                    <div class="input-container product-search-container">
+                                        <label class="input-container__label" for="searchByCategory"><strong>Category</strong></label>
+                                        <select type="text" class="product-search__select" id="searchByCategory" name="searchByCategory">
+                                            <option value=""></option>                        
+                                            <option value="Breads">Breads</option>
+                                            <option value="Pastries">Pastries</option>                                    
+                                            <option value="Muffins">Muffins</option>
+                                            <option value="Cakes">Cakes</option>
+                                            <option value="Pies">Pies</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-container product-search-container">
+                                        <label class="input-container__label" for="orderByOptions"><strong>Order By</strong></label>
+                                        <select type="text" class="product-search__select" id="orderByOptions" name="orderByOptions">
+                                            <option value=""></option>                        
+                                            <option value="Name (Alphabetical)">Name (Alphabetical)</option>
+                                            <option value="Name (Reverse Alphabetical)">Name (Reverse Alphabetical)</option>                                    
+                                            <option value="Price (Ascending)">Price (Ascending)</option>
+                                            <option value="Price (Descending)">Price (Descending)</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-container product-search-container">
+                                        <button class="input-container__contact-button" id="searchButton" name="searchButton" type="submit" >Search</button>                          
+                                    </div>
+                                    <div class="product-search__text"><?php echo $productSearchText; ?></div>
+                                </form>
                             </div>
                         </div>
                     </div>
+                    <div class="products content-row">
+                        <div class="products-wrapper">
+                            <?php for ($i = 0; $i < count($products); $i++) { ?>
+                                <div class="col-vsm-6 col-sma-4 col-lar-3">
+                                    <div class="product-container <?php echo $products[$i]->get_classCSS(); ?>">
+                                        <div class="product__title"><?php echo $products[$i]->get_name(); ?></div>
+                                        <div class="product__background-container">
+                                            <div class="product__background"></div>
+                                        </div>
+                                        <div class="product__price-and-request">
+                                            <div class="product__price">$<?php echo $products[$i]->get_price(); ?></div>   
+                                            <div class="product__adjust-quantity">
+                                                <div class="product__minus-quantity">-</div>
+                                                <div class="product__quantity-input">
+                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
+                                                    <input type="number" min="0" max="100" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][$i]; ?>" />
+                                                </div>
+                                                <div class="product__increase-quantity">+</div>
+                                            </div>
+                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                            <div class="product__quantity-container <?php if ($_SESSION["quantity"][$i] > 0) { 
+                                                echo 'show';
+                                                } ?>">
+                                                <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["quantity"][$i] . "</a>" ?>                                                
+                                            </div>
+                                            <div class="clear-both"></div>
+                                        </div>
+                                        <div class="product__description"><?php echo $products[$i]->get_description(); ?></div>
+                                    </div>
+                                </div>
+                                    <?php } ?>
+                        </div>
+                    </div>
+
                     <div class="content-row estimate-section">
                         <div class="col-sma-7">
                             <div class="estimate-cart">
@@ -479,8 +484,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php for($i = 0; $i < count($products); $i++) { ?>
-                                            <tr class="estimate-table__item <?php echo $products[$i]->get_classCSS(); ?> <?php if($_SESSION["quantity"][$i] <= 0){ echo "hide"; } ?>">
+                                        <?php for ($i = 0; $i < count($products); $i++) { ?>
+                                            <tr class="estimate-table__item <?php echo $products[$i]->get_classCSS(); ?> <?php if ($_SESSION["quantity"][$i] <= 0) {
+                                                echo "hide";
+                                                } ?>">
                                                 <td class="estimate-table__item-title"><?php echo $products[$i]->get_name(); ?></td>
                                                 <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
                                                 <td class="estimate-table__item-cost">$<?php echo $products[$i]->get_price(); ?></td>
@@ -489,7 +496,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>  
                                                 <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>                       
                                             </tr>
-                                        <?php } ?>
+                                                <?php } ?>
                                         <tr class="clear-both"></div>
                                     </tbody>
                                 </table>
@@ -564,6 +571,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </div>
                 </div>
             </div>
+        </div>
             <?php include 'assets/include/message-content.php'; ?>
             <?php include 'assets/include/footer-content.php'; ?>
             <script type="text/javascript" src="assets/javascript/javascript-functions.js"></script>
