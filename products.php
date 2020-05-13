@@ -18,10 +18,13 @@ $BlueberryScone = new Product("Blueberry Scone", "two", 2.25, "pastries", "", "<
 $ChocolateCake = new Product("Chocolate Cake", "three", 15.00, "cakes", "", "<p>Our signature crisp, fluffy chocolate cake with a light layer of house-made "
         . "chocolate fudge on top!  Yum!</p>");
 $CherryPie = new Product("Cherry Pie", "four", 12.00, "pies", "", "<p>We sell cherry pie year round at Tualatin Top Bakery!</p><p>In the late spring and summer we "
-        . "often make it with blueberries from local farmers. Made fresh in house!</p>");
+        . "often make it with cherries from local farmers. Made fresh in house!</p>");
 $BlueberryPie = new Product("Blueberry Pie", "five", 12.00, "pies", "", "<p>We sell blueberry pie year round at Tualatin Top Bakery!</p><p>In the summer we often "
-        . "make it with cherries from local farmers. Made fresh in house!</p>");
+        . "make it with blueberries from local farmers. Made fresh in house!</p>");
 $BlueberryMuffin = new Product("Blueberry Muffin", "six", 2.25, "muffins", "", "Made with lots of blueberries and a hint of sugar.");
+$ChocolateCupcake = new Product("Chocolate Cupcake", "seven", 2.50, "cakes", "", "Want a personal size cake (or two?) Pick up one of our delicious choclate cupcakes, with "
+        . "a touch of powder on top!");
+$RyeBread = new Product("Rye Bread", "eight", 2.95, "breads", "", "Hearty rye bread rich with flavor, baked fresh daily.");
 
 
 $quantities = array();
@@ -41,9 +44,11 @@ array_push($_SESSION["products"], $ChocolateCake);
 array_push($_SESSION["products"], $CherryPie);
 array_push($_SESSION["products"], $BlueberryPie);
 array_push($_SESSION["products"], $BlueberryMuffin);
+array_push($_SESSION["products"], $ChocolateCupcake);
+array_push($_SESSION["products"], $RyeBread);
 
 
-    
+   
 $_SESSION["searchByCategory"] = strtolower("" . $_GET['searchByCategory']);
 $_SESSION["orderByOptions"] = "" . $_GET['orderByOptions'];
 
@@ -591,7 +596,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </script>
         </div>
         <script type="text/javascript">
-            let numberOfProducts = 7;
+            let numberOfProducts = 9;
 
             //Use AJAX to update the cart without reloading the page.
             for(let i=0; i<numberOfProducts; i++){
