@@ -608,9 +608,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     quantityToSet = checkQuantityMinAndMax(quantityToSet);
                     setCart("item", "=", i, quantityToSet);
                 }, false);
-            }
-            
-            for(let i=0; i<numberOfProducts; i++){
+
                 document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function (event) {           
                     event.preventDefault();
                     document.getElementsByClassName("product__minus-quantity")[i].classList.remove("change-color");
@@ -623,29 +621,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     void document.getElementsByClassName("product__increase-quantity")[i].offsetWidth;
                     document.getElementsByClassName("product__increase-quantity")[i].classList.add("change-color");
                  }, false);
-            }
 
-            for(let i=0; i<numberOfProducts; i++){
                 document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function () {
                     adjustProductSetQuantity(i, "decrease");
                 }, false); 
-            }
-            
-            for(let i=0; i<numberOfProducts; i++){
+          
                 document.getElementsByClassName("product__increase-quantity")[i].addEventListener("click", function () {
                     adjustProductSetQuantity(i, "increase");
                 }, false); 
-            }
             
-            for(let i=0; i<numberOfProducts; i++){
                 document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {     
                     let itemQuantity = parseInt(document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML);
                     itemQuantity = checkQuantityMinAndMax(itemQuantity);
                     updateCart("remove", "=", i);
                 }, false);
-            }
-            
-            for(let i=0; i<numberOfProducts; i++){
+
                 document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () { 
                    let itemQuantity = parseInt(document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML);
                    itemQuantity = checkQuantityMinAndMax(itemQuantity);
@@ -774,24 +764,58 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 xhttp.send();
             }
            
-            function reAddEventListeners () {
+            function reAddEventListeners () {           
+                for(let i=0; i<numberOfProducts; i++){
+                    document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () {
+                       updateCart("item", "=", i);
+                    }, false);
+                    document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {        
+                        updateCart("remove", "=", i);
+                    }, false);
+                }
+                
                 document.getElementById("searchButton").addEventListener("click", function () {
                     let searchByCategory = "" + document.getElementById("searchByCategory").value;
                     let orderByOptions = "" + document.getElementById("orderByOptions").value;
                     updateProductsShown("searchByCategory=" + searchByCategory, "&orderByOptions=" + orderByOptions);
                 }, false);
+            }
             
+            function updateProductsEventListeners(){
                 for(let i=0; i<numberOfProducts; i++){
-                    document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () {
-                       updateCart("item", "=", i);
+                    document.getElementsByClassName("product__request-item__add")[i].addEventListener("click", function () {
+                        let quantityToSet = document.getElementsByClassName("product__set-quantity")[i].value;
+                        quantityToSet = checkQuantityMinAndMax(quantityToSet);
+                        setCart("item", "=", i, quantityToSet);
                     }, false);
-                }
 
-                for(let i=0; i<numberOfProducts; i++){
-                    document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {        
-                        updateCart("remove", "=", i);
-                    }, false);
+                    document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function (event) {           
+                        event.preventDefault();
+                        document.getElementsByClassName("product__minus-quantity")[i].classList.remove("change-color");
+                        void document.getElementsByClassName("product__minus-quantity")[i].offsetWidth;
+                        document.getElementsByClassName("product__minus-quantity")[i].classList.add("change-color");
+                     }, false);
+                    document.getElementsByClassName("product__increase-quantity")[i].addEventListener("click", function (event) {           
+                        event.preventDefault();
+                        document.getElementsByClassName("product__increase-quantity")[i].classList.remove("change-color");
+                        void document.getElementsByClassName("product__increase-quantity")[i].offsetWidth;
+                        document.getElementsByClassName("product__increase-quantity")[i].classList.add("change-color");
+                     }, false);
+                     
+                    document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function () {
+                        adjustProductSetQuantity(i, "decrease");
+                    }, false); 
+                    
+                    document.getElementsByClassName("product__increase-quantity")[i].addEventListener("click", function () {
+                        adjustProductSetQuantity(i, "increase");
+                    }, false); 
                 }
+                
+                document.getElementById("searchButton").addEventListener("click", function () {
+                    let searchByCategory = "" + document.getElementById("searchByCategory").value;
+                    let orderByOptions = "" + document.getElementById("orderByOptions").value;
+                    updateProductsShown("searchByCategory=" + searchByCategory, "&orderByOptions=" + orderByOptions);
+                }, false);
             }
             
             function checkQuantityMinAndMax(setValue){
@@ -817,8 +841,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                         document.getElementsByClassName("product-search")[0].innerHTML = productSearch.innerHTML;
                         document.getElementsByClassName("products")[0].innerHTML = products.innerHTML;
-                        //Recreate event listeners for - and + buttons.
-                        reAddEventListeners();  
+                        //Recreate event listeners for product search and the products.
+                        updateProductsEventListeners();  
                     }
                 };
 
