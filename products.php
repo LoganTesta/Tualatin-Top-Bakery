@@ -407,30 +407,33 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         </div>
                         <div class="col-sma-7">
                             <div class="product-search">
-                                <div class="input-container product-search-container">
-                                    <label class="input-container__label" for="searchByCategory"><strong>Category</strong></label>
-                                    <select type="text" class="product-search__select" id="searchByCategory" name="searchByCategory">
-                                        <option value=""></option>                        
-                                        <option value="Breads" <?php if($_SESSION["searchByCategory"] === "breads"){ echo "selected='selected'"; } ?> >Breads</option>
-                                        <option value="Pastries" <?php if($_SESSION["searchByCategory"] === "pastries"){ echo "selected='selected'"; } ?> >Pastries</option>                                    
-                                        <option value="Muffins" <?php if($_SESSION["searchByCategory"] === "muffins"){ echo "selected='selected'"; } ?> >Muffins</option>
-                                        <option value="Cakes" <?php if($_SESSION["searchByCategory"] === "cakes"){ echo "selected='selected'"; } ?> >Cakes</option>
-                                        <option value="Pies" <?php if($_SESSION["searchByCategory"] === "pies"){ echo "selected='selected'"; } ?> >Pies</option>
-                                        <option value="Other" <?php if($_SESSION["searchByCategory"] === "other"){ echo "selected='selected'"; } ?> >Other</option>
-                                    </select>
-                                </div>
-                                <div class="input-container product-search-container">
-                                    <label class="input-container__label" for="orderByOptions"><strong>Order By</strong></label>
-                                    <select type="text" class="product-search__select" id="orderByOptions" name="orderByOptions">
-                                        <option value=""></option>                        
-                                        <option value="Name (Alphabetical)" <?php if($_SESSION["orderByOptions"] === "Name (Alphabetical)"){ echo "selected='selected'"; } ?> >Name (Alphabetical)</option>
-                                        <option value="Name (Reverse Alphabetical)" <?php if($_SESSION["orderByOptions"] === "Name (Reverse Alphabetical)"){ echo "selected='selected'"; } ?> >Name (Reverse Alphabetical)</option>                                    
-                                        <option value="Price (Ascending)" <?php if($_SESSION["orderByOptions"] === "Price (Ascending)"){ echo "selected='selected'"; } ?> >Price (Ascending)</option>
-                                        <option value="Price (Descending)" <?php if($_SESSION["orderByOptions"] === "Price (Descending)"){ echo "selected='selected'"; } ?> >Price (Descending)</option>
-                                    </select>
-                                </div>
-                                <div class="input-container product-search-container">
-                                    <div class="input-container__contact-button" id="searchButton" name="searchButton">Search</div>                          
+                                <div class="product-search__inputs">
+                                    <h4 class="product-search__title">Search for Products</h4>
+                                    <div class="input-container product-search-container">
+                                        <label class="input-container__label" for="searchByCategory"><strong>Category</strong></label>
+                                        <select type="text" class="product-search__select" id="searchByCategory" name="searchByCategory">
+                                            <option value=""></option>                        
+                                            <option value="Breads" <?php if($_SESSION["searchByCategory"] === "breads"){ echo "selected='selected'"; } ?> >Breads</option>
+                                            <option value="Pastries" <?php if($_SESSION["searchByCategory"] === "pastries"){ echo "selected='selected'"; } ?> >Pastries</option>                                    
+                                            <option value="Muffins" <?php if($_SESSION["searchByCategory"] === "muffins"){ echo "selected='selected'"; } ?> >Muffins</option>
+                                            <option value="Cakes" <?php if($_SESSION["searchByCategory"] === "cakes"){ echo "selected='selected'"; } ?> >Cakes</option>
+                                            <option value="Pies" <?php if($_SESSION["searchByCategory"] === "pies"){ echo "selected='selected'"; } ?> >Pies</option>
+                                            <option value="Other" <?php if($_SESSION["searchByCategory"] === "other"){ echo "selected='selected'"; } ?> >Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-container product-search-container">
+                                        <label class="input-container__label" for="orderByOptions"><strong>Order By</strong></label>
+                                        <select type="text" class="product-search__select" id="orderByOptions" name="orderByOptions">
+                                            <option value=""></option>                        
+                                            <option value="Name (Alphabetical)" <?php if($_SESSION["orderByOptions"] === "Name (Alphabetical)"){ echo "selected='selected'"; } ?> >Name (Alphabetical)</option>
+                                            <option value="Name (Reverse Alphabetical)" <?php if($_SESSION["orderByOptions"] === "Name (Reverse Alphabetical)"){ echo "selected='selected'"; } ?> >Name (Reverse Alphabetical)</option>                                    
+                                            <option value="Price (Ascending)" <?php if($_SESSION["orderByOptions"] === "Price (Ascending)"){ echo "selected='selected'"; } ?> >Price (Ascending)</option>
+                                            <option value="Price (Descending)" <?php if($_SESSION["orderByOptions"] === "Price (Descending)"){ echo "selected='selected'"; } ?> >Price (Descending)</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-container product-search-container">
+                                        <div class="input-container__contact-button" id="searchButton" name="searchButton">Search</div>                          
+                                    </div>
                                 </div>
                                 <div class="product-search__text">
                                     <?php echo $productSearchText; ?>
