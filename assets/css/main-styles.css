@@ -347,6 +347,7 @@ footer { background-color: #fbe3b7; }
 .product-search .input-container__label { display: block; padding-left: 5px; }
 .product-search__select { width: auto; }
 .product-search__text { }
+.product-search .input-container__contact-button { width: 70px; }
 .product-container { margin-bottom: 50px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); border-radius: 20px; }
 .product__title { padding: 8px; font-size: 19px; border-radius: 20px 20px 0 0; font-weight: bold; text-align: center; background: linear-gradient(#64460e 20%, #ac8949 100%); color: #ffffff; }
 .product__price-and-request { position: relative; padding: 5px 5px; background-color: #eeeeee; }
@@ -506,7 +507,7 @@ footer { background-color: #fbe3b7; }
 .input-container { padding: 10px 10px 20px 10px; }
 .input-container__label { display: inline-block; padding-bottom: 10px; color: #64460e; }
 .input-container__input { }
-.input-container__contact-button { width: 70px; padding: 15px 10px; color: #fbe3b7; background-color: #64460e; border: 1px solid #64460e; 
+.input-container__contact-button { padding: 15px 10px; color: #fbe3b7; background-color: #64460e; border: 1px solid #64460e; 
                                   border-radius: 15px; text-align: center; cursor: pointer; transition: 0.4s ease-in; }
 .input-container__contact-button:hover { color: #64460e; background-color:#fbe3b7; transition: 0.4s ease-in; }
 
