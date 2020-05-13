@@ -425,6 +425,8 @@ footer { background-color: #fbe3b7; }
 .estimate-table__item.four .estimate-table__item-image__photo { background: url('../images/products/cherry-pie.jpg') 0% 0%/cover no-repeat; }
 .estimate-table__item.five .estimate-table__item-image__photo { background: url('../images/products/blueberry-pie.jpg') 0% 0%/cover no-repeat; }
 .estimate-table__item.six .estimate-table__item-image__photo { background: url('../images/products/blueberry-muffin.jpg') 0% 0%/cover no-repeat; }
+.estimate-table__item.seven .estimate-table__item-image__photo { background: url('../images/products/chocolate-cupcakes.jpg') 0% 0%/cover no-repeat; }
+.estimate-table__item.eight .estimate-table__item-image__photo { background: url('../images/products/rye-bread.jpg') 0% 0%/cover no-repeat; }
 
 
 /*Recipes*/
