@@ -397,7 +397,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="inner-wrapper">
                 <div class="content">
                     <div class="content-row products-header">
-                        <div class="col-sma-5">
+                        <div class="col-lar-5">
                             <?php
                             $id = 35;
                             $page = get_post($id);
@@ -405,7 +405,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             echo $content;
                             ?>
                         </div>
-                        <div class="col-sma-7">
+                        <div class="col-lar-7">
                             <div class="product-search">
                                 <div class="product-search__inputs">
                                     <h4 class="product-search__title">Search for Products</h4>
