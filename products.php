@@ -9,22 +9,22 @@ require('./wordpress/wp-load.php');
 //Estimate cart code.
 include("assets/include/product.php");
 
-$WholeWheatLoaf = new Product("Whole Wheat Loaf", "zero", "", 2.95, "breads", "", "<p>Our delicious and wholesome house-made whole wheat bread, baked fresh daily.  "
+$WholeWheatLoaf = new Product("Whole Wheat Loaf", "zero", 0, "", 2.95, "breads", "", "<p>Our delicious and wholesome house-made whole wheat bread, baked fresh daily.  "
         . "One of our staples and customer favorites!</p>");
-$WhiteBreadLoaf = new Product("White Bread Loaf", "one", "", 1.99, "breads", "", "<p>Our delicious and fluffy house-made white bread, baked fresh daily.  One of our "
+$WhiteBreadLoaf = new Product("White Bread Loaf", "one", 1, "", 1.99, "breads", "", "<p>Our delicious and fluffy house-made white bread, baked fresh daily.  One of our "
         . "staples and customer favorites!</p>");
-$BlueberryScone = new Product("Blueberry Scone", "two", "", 2.25, "pastries", "", "<p>Light and fluffy and flaky.  We are always trying new varieties of scones including "
+$BlueberryScone = new Product("Blueberry Scone", "two", 2, "", 2.25, "pastries", "", "<p>Light and fluffy and flaky.  We are always trying new varieties of scones including "
         . "some seasonal.  We often have blueberry, vanilla, chocolate scones, and many more, so come on in and see what we're baking this week!</p>");
-$ChocolateCake = new Product("Chocolate Cake", "three", "", 15.00, "cakes", "", "<p>Our signature crisp, fluffy chocolate cake with a light layer of house-made "
+$ChocolateCake = new Product("Chocolate Cake", "three", 3, "", 15.00, "cakes", "", "<p>Our signature crisp, fluffy chocolate cake with a light layer of house-made "
         . "chocolate fudge on top!  Yum!</p>");
-$CherryPie = new Product("Cherry Pie", "four", "", 12.00, "pies", "", "<p>We sell cherry pie year round at Tualatin Top Bakery!</p><p>In the late spring and summer we "
+$CherryPie = new Product("Cherry Pie", "four", 4, "", 12.00, "pies", "", "<p>We sell cherry pie year round at Tualatin Top Bakery!</p><p>In the late spring and summer we "
         . "often make it with cherries from local farmers. Made fresh in house!</p>");
-$BlueberryPie = new Product("Blueberry Pie", "five", "", 12.00, "pies", "", "<p>We sell blueberry pie year round at Tualatin Top Bakery!</p><p>In the summer we often "
+$BlueberryPie = new Product("Blueberry Pie", "five", 5, "", 12.00, "pies", "", "<p>We sell blueberry pie year round at Tualatin Top Bakery!</p><p>In the summer we often "
         . "make it with blueberries from local farmers. Made fresh in house!</p>");
-$BlueberryMuffin = new Product("Blueberry Muffin", "six", "", 2.25, "muffins", "", "Made with lots of blueberries and a hint of sugar.");
-$ChocolateCupcake = new Product("Chocolate Cupcake", "seven", "", 2.50, "cakes", "", "Want a personal size cake (or two?) Pick up one of our delicious choclate cupcakes, with "
+$BlueberryMuffin = new Product("Blueberry Muffin", "six", 6, "", 2.25, "muffins", "", "Made with lots of blueberries and a hint of sugar.");
+$ChocolateCupcake = new Product("Chocolate Cupcake", "seven", 7, "", 2.50, "cakes", "", "Want a personal size cake (or two?) Pick up one of our delicious choclate cupcakes, with "
         . "a touch of powder on top!");
-$RyeBread = new Product("Rye Bread", "eight", "", 2.95, "breads", "", "Hearty rye bread rich with flavor, baked fresh daily.");
+$RyeBread = new Product("Rye Bread", "eight", 8, "", 2.95, "breads", "", "Hearty rye bread rich with flavor, baked fresh daily.");
 
 $startingProducts = array($WholeWheatLoaf, $WhiteBreadLoaf, $BlueberryScone, $ChocolateCake, $CherryPie, $BlueberryPie, $BlueberryMuffin, $ChocolateCupcake, $RyeBread);
 
@@ -48,7 +48,7 @@ array_push($_SESSION["products"], $BlueberryMuffin);
 array_push($_SESSION["products"], $ChocolateCupcake);
 array_push($_SESSION["products"], $RyeBread);
 
-
+$_SESSION["classOrder"] = array(0, 1, 2, 3, 4, 5, 6, 7, 8);
    
 $_SESSION["searchByCategory"] = strtolower("" . $_GET['searchByCategory']);
 $_SESSION["orderByOptions"] = "" . $_GET['orderByOptions'];
@@ -88,6 +88,19 @@ if ($_GET["orderByOptions"] === "Name (Alphabetical)") {
     usort($_SESSION["products"], "compare_prices_reverse");
 } else {
     $_SESSION["orderByOptions"] = "";
+}
+
+reorderProdQuantities();
+
+//Loop through the products, set the class order equal to the products new order.  Then set the product quantity for the product cards equal to the new order.
+function reorderProdQuantities(){
+    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
+        $_SESSION["classOrder"][$i] = $_SESSION["products"][$i]->get_classInt(); 
+    }
+    
+    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
+        $_SESSION["prodQuantity"][$i] = $_SESSION["quantity"][$_SESSION["classOrder"][$i]];
+    }
 }
 
 if ($searchedProducts === false) {
@@ -132,6 +145,8 @@ if (isset($_SESSION["estimateCart"]) === false) {
     $_SESSION["estimateCart"] = "not empty";
     for ($i = 0; $i < count($_SESSION["products"]); $i++) {
         $_SESSION["products"][$i] = $_SESSION["products"][$i];   //We need to store this for the reset function since that logic is in a separate function.
+        $_SESSION["prodQuantity"][$i] = 0;
+        $_SESSION["classOrder"][$i] = $i;
         $_SESSION["quantity"][$i] = 0;
         $_SESSION["itemSubtotal"][$i] = number_format(0.00, 2);
         $_SESSION["numberOfItems"] = 0;
@@ -145,15 +160,19 @@ if (isset($_SESSION["estimateCart"])) {
     if (isset($_GET["item"])) {
         $itemNumber = $_GET["item"];    
         if(isset($_GET["setValue"])){
+              $_SESSION["prodQuantity"][$itemNumber] = $_GET["setValue"];
             $_SESSION["quantity"][$itemNumber] = $_GET["setValue"];
         } else {
+             $_SESSION["prodQuantity"][$itemNumber] = $_SESSION["prodQuantity"][$itemNumber] + 1;
             $_SESSION["quantity"][$itemNumber] = $_SESSION["quantity"][$itemNumber] + 1;
         }
         
         if( $_SESSION["quantity"][$itemNumber] < 0 ){
+            $_SESSION["prodQuantity"][$itemNumber] = 0;
             $_SESSION["quantity"][$itemNumber] = 0;
         }
         if( $_SESSION["quantity"][$itemNumber] > 100){
+            $_SESSION["prodQuantity"][$itemNumber] = 100;
             $_SESSION["quantity"][$itemNumber] = 100;
         }
            
@@ -177,6 +196,7 @@ if (isset($_SESSION["estimateCart"])) {
         $newQuantity = $_SESSION["quantity"][$itemNumber] - 1;
 
         if ($newQuantity >= 0) {
+            $_SESSION["prodQuantity"][$itemNumber] = $newQuantity;
             $_SESSION["quantity"][$itemNumber] = $newQuantity;
             $_SESSION["itemSubtotal"][$itemNumber] = number_format($_SESSION["products"][$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
 
@@ -201,6 +221,7 @@ function resetEstimateCart() {
     $_SESSION["numberOfItems"] = 0;
     $_SESSION["totalCost"] = number_format(0.00, 2);
     for ($i = 0; $i < count($_SESSION["products"]); $i++) {
+        $_SESSION["prodQuantity"][$i] = 0;
         $_SESSION["quantity"][$i] = 0;
         $_SESSION["itemSubtotal"][$i] = number_format(0.00, 2);
     }
@@ -470,11 +491,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         </div>
                                         <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
                                         <div class="product__quantity-container <?php
-                                        if ($_SESSION["quantity"][$i] > 0) {
+                                        if ($_SESSION["prodQuantity"][$i] > 0) {
                                             echo 'show';
                                         }
                                         ?>">
-                                            <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["quantity"][$i] . "</a>" ?>                                                
+                                            <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["prodQuantity"][$i] . "</a>" ?>                                                
                                         </div>
                                         <div class="clear-both"></div>
                                     </div>
