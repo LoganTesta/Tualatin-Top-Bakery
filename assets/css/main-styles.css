@@ -380,6 +380,8 @@ footer { background-color: #fbe3b7; }
 }
 .product__request-item__add:hover { background-color: #22aa22; color: #ffffff; border: 2px solid #64460e; transition: 0.4s ease-in; }
 
+.page-products .products .product-outer.hide { display: none; }
+
 .product-container.zero .product__background { background: url('../images/products/whole-wheat-bread.jpg') 0% 0%/cover no-repeat; }
 .product-container.one .product__background { background: url('../images/products/white-bread.jpg') 0% 0%/cover no-repeat; }
 .product-container.two .product__background { background: url('../images/products/scone.jpg') 0% 0%/cover no-repeat; }
@@ -526,23 +528,22 @@ footer { background-color: #fbe3b7; }
 
 /* Clearing variable width columns */
 @media only screen and (max-width: 699px) {
-    .products > div:nth-child(2n+1){ content: ""; display: block; clear: both; }
+    .products .product-outer:nth-child(2n+1){ content: ""; display: block; clear: both; }
 }
 
 @media only screen and (min-width: 700px) and (max-width: 1199px){   
     .recipes > div:nth-child(2n+1){ content: ""; display: block; clear: both; }
 }
 @media only screen and (min-width: 700px) and (max-width: 1199px){
-    .products > div:nth-child(3n+1){ content: ""; display: block; clear: both; }
+    .products .product-outer:nth-child(3n+1){ content: ""; display: block; clear: both; }
 }
 
 @media only screen and (min-width: 1200px){   
     
-     .products > div:nth-child(4n+1){ content: ""; display: block; clear: both; }
+     .products .product-outer:nth-child(4n+1){ content: ""; display: block; clear: both; }
      
      .recipes > div:nth-child(3n+1){ content: ""; display: block; clear: both; }   
 }
-
 
 
 @media only screen and (min-width: 500px){   
