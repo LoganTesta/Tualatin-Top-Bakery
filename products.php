@@ -9,23 +9,24 @@ require('./wordpress/wp-load.php');
 //Estimate cart code.
 include("assets/include/product.php");
 
-$WholeWheatLoaf = new Product("Whole Wheat Loaf", "zero", "", 2.95, "breads", "", "<p>Our delicious and wholesome house-made whole wheat bread, baked fresh daily.  "
+$WholeWheatLoaf = new Product("Whole Wheat Loaf", "zero", 2.95, "breads", "", "<p>Our delicious and wholesome house-made whole wheat bread, baked fresh daily.  "
         . "One of our staples and customer favorites!</p>");
-$WhiteBreadLoaf = new Product("White Bread Loaf", "one", "", 1.99, "breads", "", "<p>Our delicious and fluffy house-made white bread, baked fresh daily.  One of our "
+$WhiteBreadLoaf = new Product("White Bread Loaf", "one", 1.99, "breads", "", "<p>Our delicious and fluffy house-made white bread, baked fresh daily.  One of our "
         . "staples and customer favorites!</p>");
-$BlueberryScone = new Product("Blueberry Scone", "two", "", 2.25, "pastries", "", "<p>Light and fluffy and flaky.  We are always trying new varieties of scones including "
+$BlueberryScone = new Product("Blueberry Scone", "two", 2.25, "pastries", "", "<p>Light and fluffy and flaky.  We are always trying new varieties of scones including "
         . "some seasonal.  We often have blueberry, vanilla, chocolate scones, and many more, so come on in and see what we're baking this week!</p>");
-$ChocolateCake = new Product("Chocolate Cake", "three", "", 15.00, "cakes", "", "<p>Our signature crisp, fluffy chocolate cake with a light layer of house-made "
+$ChocolateCake = new Product("Chocolate Cake", "three", 15.00, "cakes", "", "<p>Our signature crisp, fluffy chocolate cake with a light layer of house-made "
         . "chocolate fudge on top!  Yum!</p>");
-$CherryPie = new Product("Cherry Pie", "four", "", 12.00, "pies", "", "<p>We sell cherry pie year round at Tualatin Top Bakery!</p><p>In the late spring and summer we "
+$CherryPie = new Product("Cherry Pie", "four", 12.00, "pies", "", "<p>We sell cherry pie year round at Tualatin Top Bakery!</p><p>In the late spring and summer we "
         . "often make it with cherries from local farmers. Made fresh in house!</p>");
-$BlueberryPie = new Product("Blueberry Pie", "five", "", 12.00, "pies", "", "<p>We sell blueberry pie year round at Tualatin Top Bakery!</p><p>In the summer we often "
+$BlueberryPie = new Product("Blueberry Pie", "five", 12.00, "pies", "", "<p>We sell blueberry pie year round at Tualatin Top Bakery!</p><p>In the summer we often "
         . "make it with blueberries from local farmers. Made fresh in house!</p>");
-$BlueberryMuffin = new Product("Blueberry Muffin", "six", "", 2.25, "muffins", "", "Made with lots of blueberries and a hint of sugar.");
-$ChocolateCupcake = new Product("Chocolate Cupcake", "seven", "", 2.50, "cakes", "", "Want a personal size cake (or two?) Pick up one of our delicious choclate cupcakes, with "
+$BlueberryMuffin = new Product("Blueberry Muffin", "six", 2.25, "muffins", "", "Made with lots of blueberries and a hint of sugar.");
+$ChocolateCupcake = new Product("Chocolate Cupcake", "seven", 2.50, "cakes", "", "Want a personal size cake (or two?) Pick up one of our delicious choclate cupcakes, with "
         . "a touch of powder on top!");
-$RyeBread = new Product("Rye Bread", "eight", "", 2.95, "breads", "", "Hearty rye bread rich with flavor, baked fresh daily.");
+$RyeBread = new Product("Rye Bread", "eight", 2.95, "breads", "", "Hearty rye bread rich with flavor, baked fresh daily.");
 
+$startingProducts = array($WholeWheatLoaf, $WhiteBreadLoaf, $BlueberryScone, $ChocolateCake, $CherryPie, $BlueberryPie, $BlueberryMuffin, $ChocolateCupcake, $RyeBread);
 
 $quantities = array();
 $itemSubtotal = array();
@@ -63,17 +64,20 @@ if ($_SESSION["orderByOptions"] !== "") {
 $searchedForProducts = array();
 if ($_SESSION["searchByCategory"] !== "" && $_SESSION["searchByCategory"] !== null) {
     for ($i = 0; $i < count($_SESSION["products"]); $i++) {
-        array_push($searchedForProducts, $_SESSION["products"][$i]);
-        $productCount = count($_SESSION["products"]);
         if ($_SESSION["products"][$i]->get_category() === $_SESSION["searchByCategory"]) {
-            $_SESSION["products"][$i]->set_displayCSS("");
-        } else {
-             $_SESSION["products"][$i]->set_displayCSS("hide");
+            array_push($searchedForProducts, $_SESSION["products"][$i]);
         }
     }
+    unset($_SESSION["products"]);
+    $_SESSION["products"] = array();
+    for ($i = 0; $i < count($searchedForProducts); $i++) {
+        array_push($_SESSION["products"], $searchedForProducts[$i]);
+    }
 } else {
-    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
-        $_SESSION["products"][$i]->set_displayCSS("");
+    unset($_SESSION["products"]);
+    $_SESSION["products"] = array();
+    for ($i = 0; $i < count($startingProducts); $i++) {
+        array_push($_SESSION["products"], $startingProducts[$i]);
     }
 }
 
@@ -452,7 +456,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div class="content-row products">
                         <?php for ($i = 0; $i < count($_SESSION["products"]); $i++) { ?>
                             <div class="col-vsm-6 col-sma-4 col-lar-3">
-                                <div class="product-container <?php echo $_SESSION["products"][$i]->get_classCSS(); ?> <?php echo $_SESSION["products"][$i]->get_displayCSS(); ?>">
+                                <div class="product-container <?php echo $_SESSION["products"][$i]->get_classCSS(); ?>">
                                     <div class="product__title"><?php echo $_SESSION["products"][$i]->get_name(); ?></div>
                                     <div class="product__background-container">
                                         <div class="product__background"></div>
@@ -599,7 +603,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </script>
         </div>
          <script type="text/javascript">
-            let numberOfProducts = 9;
+            let numberOfProducts = document.getElementsByClassName("product-container").length;
 
             //Use AJAX to update the cart without reloading the page.
             for(let i=0; i<numberOfProducts; i++){
@@ -741,14 +745,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     if (this.readyState === 4 && this.status === 200) {
                         let parser = new DOMParser();
                         let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
-                        
-                        let products = ajaxDocument.getElementsByClassName("estimate-table__item-quantity");
-
+                      
                         let estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
                         let numberOfItems = ajaxDocument.getElementsByClassName("shopping-cart")[0];
                         let cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
 
-                        for (let i = 0; i < products.length; i++) {
+                        for (let i = 0; i < numberOfProducts; i++) {
                             document.getElementsByClassName("product__quantity-container")[i].innerHTML = "";  
                         }
                         document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
@@ -764,7 +766,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 xhttp.send();
             }
            
-            function reAddEventListeners () {           
+            function reAddEventListeners () { 
+                numberOfProducts = document.getElementsByClassName("product-container").length;
                 for(let i=0; i<numberOfProducts; i++){
                     document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () {
                        updateCart("item", "=", i);
@@ -782,6 +785,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
             
             function updateProductsEventListeners(){
+                numberOfProducts = document.getElementsByClassName("product-container").length;
                 for(let i=0; i<numberOfProducts; i++){
                     document.getElementsByClassName("product__request-item__add")[i].addEventListener("click", function () {
                         let quantityToSet = document.getElementsByClassName("product__set-quantity")[i].value;
