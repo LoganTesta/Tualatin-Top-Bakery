@@ -621,9 +621,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </script>
         </div>
          <script type="text/javascript">
+            //Intialize variables and add the event listeners.
             let numberOfProducts = document.getElementsByClassName("product-container").length;
 
-            //Use AJAX to update the cart without reloading the page.
+
             for(let i=0; i<numberOfProducts; i++){
                 document.getElementsByClassName("product__request-item__add")[i].addEventListener("click", function () {
                     let quantityToSet = document.getElementsByClassName("product__set-quantity")[i].value;
@@ -674,9 +675,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 let orderByOptions = "" + document.getElementById("orderByOptions").value;
                 updateProductsShown("searchByCategory=" + searchByCategory, "&orderByOptions=" + orderByOptions);
             }, false);
+            //End of intializing variables and adding event listeners.
             
             
-            
+            //Additional functions.
             function adjustProductSetQuantity(itemNumber, change) {
                 if(change === "decrease"){
                     document.getElementsByClassName("product__set-quantity")[itemNumber].value --;
@@ -684,7 +686,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     document.getElementsByClassName("product__set-quantity")[itemNumber].value ++;     
                 }     
             }
-
+            
+            function checkQuantityMinAndMax(setValue){
+                setValue = parseInt(setValue);
+                if(setValue < 0){
+                    setValue = 0;
+                } else if(setValue > 100){
+                    setValue = 100;
+                }
+                return setValue;
+            }
+            
+            
+            //AJAX page update functions.
             function setCart(actionString, operatorString, itemID, setValue) {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
@@ -710,16 +724,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 document.getElementsByClassName("product__quantity-container")[i].innerHTML = "";
                                 document.getElementsByClassName("product__quantity-container")[i].classList.remove("show");
                             }
-                        }
-                        
-                        //Recreate event listeners for - and + buttons.
-                        reAddEventListeners();
+                        }          
+                        //Recreate event listeners for some items.
+                        reAddEventListenersUpdateCart();
                     }
-                };
-                
+                };           
                 xhttp.open("GET", "products.php?" + actionString + operatorString + itemID + "&setValue=" + setValue, true);
                 xhttp.send();
             }
+
 
             function updateCart(actionString, operatorString, itemID) {
                 var xhttp = new XMLHttpRequest();
@@ -746,17 +759,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 document.getElementsByClassName("product__quantity-container")[i].innerHTML = "";
                                 document.getElementsByClassName("product__quantity-container")[i].classList.remove("show");
                             }
-                        }
-                        
-                        //Recreate event listeners for - and + buttons.
-                        reAddEventListeners();
+                        }   
+                        //Recreate event listeners for some items.
+                        reAddEventListenersUpdateCart();
                     }
                 };
-
                 xhttp.open("GET", "products.php?" + actionString + operatorString + itemID, true);
                 xhttp.send();
             }
 
+         
+            function updateProductsShown(searchByCategoryString, orderByOptionsString){
+                var xhttp = new XMLHttpRequest();   
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        let parser = new DOMParser();
+                        let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
+                        
+                        let productSearch = ajaxDocument.getElementsByClassName("product-search")[0];
+                        let products = ajaxDocument.getElementsByClassName("products")[0];
+
+                        document.getElementsByClassName("product-search")[0].innerHTML = productSearch.innerHTML;
+                        document.getElementsByClassName("products")[0].innerHTML = products.innerHTML;
+                        
+                        //Recreate event listeners for some items.
+                        reAddEventListenersSearch();
+                    }
+                };
+                xhttp.open("GET", "products.php?" + searchByCategoryString + orderByOptionsString, true);
+                xhttp.send();   
+            }
+                 
+                 
             function resetCart(actionString, operatorString) {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
@@ -775,103 +809,48 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         document.getElementsByClassName("shopping-cart")[0].innerHTML = numberOfItems.innerHTML;
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
                         
-                        //Recreate event listeners for - and + buttons.
-                        reAddEventListeners();
+                        //Recreate event listeners for some items.
+                        reAddEventListenersUpdateCart();
                     }
                 };
-
                 xhttp.open("GET", "products.php?" + actionString + operatorString, true);
                 xhttp.send();
             }
-           
-            function reAddEventListeners () { 
-                numberOfProducts = document.getElementsByClassName("product-container").length;
+            
+            
+              
+            //The reset event listeners functions.  
+            function reAddEventListenersUpdateCart(){
+                let numberOfProducts = document.getElementsByClassName("product-container").length;
+                
                 for(let i=0; i<numberOfProducts; i++){
-                    document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () {
-                       updateCart("item", "=", i);
-                    }, false);
-                    document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {        
+                    document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {     
+                        let itemQuantity = parseInt(document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML);
+                        itemQuantity = checkQuantityMinAndMax(itemQuantity);
                         updateCart("remove", "=", i);
                     }, false);
+
+                    document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () { 
+                       let itemQuantity = parseInt(document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML);
+                       itemQuantity = checkQuantityMinAndMax(itemQuantity);
+                       updateCart("item", "=", i);
+                    }, false);
                 }
+            }      
+                 
+       
+            function reAddEventListenersSearch(){
+                let numberOfProducts = document.getElementsByClassName("product-container").length;
                 
-                document.getElementById("searchButton").addEventListener("click", function () {
-                    let searchByCategory = "" + document.getElementById("searchByCategory").value;
-                    let orderByOptions = "" + document.getElementById("orderByOptions").value;
-                    updateProductsShown("searchByCategory=" + searchByCategory, "&orderByOptions=" + orderByOptions);
-                }, false);
-            }
-            
-            function updateProductsEventListeners(){
-                numberOfProducts = document.getElementsByClassName("product-container").length;
                 for(let i=0; i<numberOfProducts; i++){
                     document.getElementsByClassName("product__request-item__add")[i].addEventListener("click", function () {
                         let quantityToSet = document.getElementsByClassName("product__set-quantity")[i].value;
                         quantityToSet = checkQuantityMinAndMax(quantityToSet);
                         setCart("item", "=", i, quantityToSet);
                     }, false);
-
-                    document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function (event) {           
-                        event.preventDefault();
-                        document.getElementsByClassName("product__minus-quantity")[i].classList.remove("change-color");
-                        void document.getElementsByClassName("product__minus-quantity")[i].offsetWidth;
-                        document.getElementsByClassName("product__minus-quantity")[i].classList.add("change-color");
-                     }, false);
-                    document.getElementsByClassName("product__increase-quantity")[i].addEventListener("click", function (event) {           
-                        event.preventDefault();
-                        document.getElementsByClassName("product__increase-quantity")[i].classList.remove("change-color");
-                        void document.getElementsByClassName("product__increase-quantity")[i].offsetWidth;
-                        document.getElementsByClassName("product__increase-quantity")[i].classList.add("change-color");
-                     }, false);
-                     
-                    document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function () {
-                        adjustProductSetQuantity(i, "decrease");
-                    }, false); 
-                    
-                    document.getElementsByClassName("product__increase-quantity")[i].addEventListener("click", function () {
-                        adjustProductSetQuantity(i, "increase");
-                    }, false); 
                 }
-                
-                document.getElementById("searchButton").addEventListener("click", function () {
-                    let searchByCategory = "" + document.getElementById("searchByCategory").value;
-                    let orderByOptions = "" + document.getElementById("orderByOptions").value;
-                    updateProductsShown("searchByCategory=" + searchByCategory, "&orderByOptions=" + orderByOptions);
-                }, false);
             }
             
-            function checkQuantityMinAndMax(setValue){
-                setValue = parseInt(setValue);
-                if(setValue < 0){
-                    setValue = 0;
-                } else if(setValue > 100){
-                    setValue = 100;
-                }
-                return setValue;
-            }
-            
-            
-            function updateProductsShown(searchByCategoryString, orderByOptionsString){
-                var xhttp = new XMLHttpRequest();   
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState === 4 && this.status === 200) {
-                        let parser = new DOMParser();
-                        let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
-                        
-                        let productSearch = ajaxDocument.getElementsByClassName("product-search")[0];
-                        let products = ajaxDocument.getElementsByClassName("products")[0];
-
-                        document.getElementsByClassName("product-search")[0].innerHTML = productSearch.innerHTML;
-                        document.getElementsByClassName("products")[0].innerHTML = products.innerHTML;
-                        //Recreate event listeners for product search and the products.
-                        updateProductsEventListeners();  
-                    }
-                };
-
-                xhttp.open("GET", "products.php?" + searchByCategoryString + orderByOptionsString, true);
-                xhttp.send();   
-            }
-                        
         </script>
     </body>
 
