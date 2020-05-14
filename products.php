@@ -652,6 +652,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 document.getElementsByClassName("product__increase-quantity")[i].addEventListener("click", function () {
                     adjustProductSetQuantity(i, "increase");
                 }, false); 
+                
+                
             
                 document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {     
                     let itemQuantity = parseInt(document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML);
@@ -848,7 +850,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         quantityToSet = checkQuantityMinAndMax(quantityToSet);
                         setCart("item", "=", i, quantityToSet);
                     }, false);
+                    
+                    document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function (event) {           
+                        event.preventDefault();
+                        document.getElementsByClassName("product__minus-quantity")[i].classList.remove("change-color");
+                        void document.getElementsByClassName("product__minus-quantity")[i].offsetWidth;
+                        document.getElementsByClassName("product__minus-quantity")[i].classList.add("change-color");
+                     }, false);
+                    document.getElementsByClassName("product__increase-quantity")[i].addEventListener("click", function (event) {           
+                        event.preventDefault();
+                        document.getElementsByClassName("product__increase-quantity")[i].classList.remove("change-color");
+                        void document.getElementsByClassName("product__increase-quantity")[i].offsetWidth;
+                        document.getElementsByClassName("product__increase-quantity")[i].classList.add("change-color");
+                     }, false);
+
+                    document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function () {
+                        adjustProductSetQuantity(i, "decrease");
+                    }, false); 
+          
+                    document.getElementsByClassName("product__increase-quantity")[i].addEventListener("click", function () {
+                       adjustProductSetQuantity(i, "increase");
+                    }, false); 
                 }
+                  
+                document.getElementById("searchButton").addEventListener("click", function () {
+                    let searchByCategory = "" + document.getElementById("searchByCategory").value;
+                    let orderByOptions = "" + document.getElementById("orderByOptions").value;
+                    updateProductsShown("searchByCategory=" + searchByCategory, "&orderByOptions=" + orderByOptions);
+                }, false);
             }
             
         </script>
