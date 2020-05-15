@@ -310,46 +310,44 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <div class="inner-wrapper">
                 <div class="content">
-                    <div class="content-row">
-                        <div class="products-wrapper">
-                            <div class="products-header">
-                                <?php
-                                $id = 35;
-                                $page = get_post($id);
-                                $content = "" . apply_filters('the_content', $page->post_content);
-                                echo $content;
-                                ?>
-                            </div>
-                            <div class="products content-row">
-                                <?php for($i = 0; $i < count($products); $i++) { ?>
-                                    <div class="col-vsm-6 col-sma-4 col-lar-3 product-outer">
-                                        <div class="product-container <?php echo $products[$i]->get_classCSS(); ?>">
-                                            <div class="product__title"><?php echo $products[$i]->get_name(); ?></div>
-                                            <div class="product__background-container">
-                                                <div class="product__background"></div>
-                                            </div>
-                                            <div class="product__price-and-request">
-                                                <div class="product__price">$<?php echo $products[$i]->get_price(); ?></div>   
-                                                <div class="product__adjust-quantity">
-                                                    <div class="product__minus-quantity">-</div>
-                                                    <div class="product__quantity-input">
-                                                        <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                        <input type="number" min="0" max="100" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][$i]; ?>" />
-                                                    </div>
-                                                    <div class="product__increase-quantity">+</div>
-                                                </div>
-                                                <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                                <div class="product__quantity-container <?php if ($_SESSION["quantity"][$i] > 0) { echo 'show'; }?>">
-                                                    <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["quantity"][$i] . "</a>" ?>                                                
-                                                </div>
-                                                <div class="clear-both"></div>
-                                            </div>
-                                            <div class="product__description"><?php echo $products[$i]->get_description(); ?></div>
-                                        </div>
-                                    </div>       
-                                <?php } ?>
-                            </div>
+                    <div class="content-row products-header">
+                        <div class="col-sma-12">
+                            <?php
+                            $id = 35;
+                            $page = get_post($id);
+                            $content = "" . apply_filters('the_content', $page->post_content);
+                            echo $content;
+                            ?>
                         </div>
+                    </div>
+                    <div class="content-row products">
+                        <?php for($i = 0; $i < count($products); $i++) { ?>
+                            <div class="col-vsm-6 col-sma-4 col-lar-3 product-outer">
+                                <div class="product-container <?php echo $products[$i]->get_classCSS(); ?>">
+                                    <div class="product__title"><?php echo $products[$i]->get_name(); ?></div>
+                                    <div class="product__background-container">
+                                        <div class="product__background"></div>
+                                    </div>
+                                    <div class="product__price-and-request">
+                                        <div class="product__price">$<?php echo $products[$i]->get_price(); ?></div>   
+                                        <div class="product__adjust-quantity">
+                                            <div class="product__minus-quantity">-</div>
+                                            <div class="product__quantity-input">
+                                                <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
+                                                <input type="number" min="0" max="100" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][$i]; ?>" />
+                                            </div>
+                                            <div class="product__increase-quantity">+</div>
+                                        </div>
+                                        <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                        <div class="product__quantity-container <?php if ($_SESSION["quantity"][$i] > 0) { echo 'show'; }?>">
+                                            <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["quantity"][$i] . "</a>" ?>                                                
+                                        </div>
+                                        <div class="clear-both"></div>
+                                    </div>
+                                    <div class="product__description"><?php echo $products[$i]->get_description(); ?></div>
+                                </div>
+                            </div>       
+                        <?php } ?>
                     </div>
                     <div class="content-row estimate-section">
                         <div class="col-sma-7">
