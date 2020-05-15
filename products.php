@@ -9,144 +9,34 @@ require('./wordpress/wp-load.php');
 //Estimate cart code.
 include("assets/include/product.php");
 
-$WholeWheatLoaf = new Product("Whole Wheat Loaf", "zero", 0, "", 2.95, "breads", "", "<p>Our delicious and wholesome house-made whole wheat bread, baked fresh daily.  "
+$WholeWheatLoaf = new Product("Whole Wheat Loaf", "zero", 2.95, "breads", "", "<p>Our delicious and wholesome house-made whole wheat bread, baked fresh daily.  "
         . "One of our staples and customer favorites!</p>");
-$WhiteBreadLoaf = new Product("White Bread Loaf", "one", 1, "", 1.99, "breads", "", "<p>Our delicious and fluffy house-made white bread, baked fresh daily.  One of our "
+$WhiteBreadLoaf = new Product("White Bread Loaf", "one", 1.99, "breads", "", "<p>Our delicious and fluffy house-made white bread, baked fresh daily.  One of our "
         . "staples and customer favorites!</p>");
-$BlueberryScone = new Product("Blueberry Scone", "two", 2, "", 2.25, "pastries", "", "<p>Light and fluffy and flaky.  We are always trying new varieties of scones including "
+$BlueberryScone = new Product("Blueberry Scone", "two", 2.25, "pastries", "", "<p>Light and fluffy and flaky.  We are always trying new varieties of scones including "
         . "some seasonal.  We often have blueberry, vanilla, chocolate scones, and many more, so come on in and see what we're baking this week!</p>");
-$ChocolateCake = new Product("Chocolate Cake", "three", 3, "", 15.00, "cakes", "", "<p>Our signature crisp, fluffy chocolate cake with a light layer of house-made "
+$ChocolateCake = new Product("Chocolate Cake", "three", 15.00, "cakes", "", "<p>Our signature crisp, fluffy chocolate cake with a light layer of house-made "
         . "chocolate fudge on top!  Yum!</p>");
-$CherryPie = new Product("Cherry Pie", "four", 4, "", 12.00, "pies", "", "<p>We sell cherry pie year round at Tualatin Top Bakery!</p><p>In the late spring and summer we "
+$CherryPie = new Product("Cherry Pie", "four", 12.00, "pies", "", "<p>We sell cherry pie year round at Tualatin Top Bakery!</p><p>In the late spring and summer we "
         . "often make it with cherries from local farmers. Made fresh in house!</p>");
-$BlueberryPie = new Product("Blueberry Pie", "five", 5, "", 12.00, "pies", "", "<p>We sell blueberry pie year round at Tualatin Top Bakery!</p><p>In the summer we often "
+$BlueberryPie = new Product("Blueberry Pie", "five", 12.00, "pies", "", "<p>We sell blueberry pie year round at Tualatin Top Bakery!</p><p>In the summer we often "
         . "make it with blueberries from local farmers. Made fresh in house!</p>");
-$BlueberryMuffin = new Product("Blueberry Muffin", "six", 6, "", 2.25, "muffins", "", "Made with lots of blueberries and a hint of sugar.");
-$ChocolateCupcake = new Product("Chocolate Cupcake", "seven", 7, "", 2.50, "cakes", "", "Want a personal size cake (or two?) Pick up one of our delicious choclate cupcakes, with "
+$BlueberryMuffin = new Product("Blueberry Muffin", "six", 2.25, "muffins", "", "Made with lots of blueberries and a hint of sugar.");
+$ChocolateCupcake = new Product("Chocolate Cupcake", "seven", 2.50, "cakes", "", "Want a personal size cake (or two?) Pick up one of our delicious choclate cupcakes, with "
         . "a touch of powder on top!");
-$RyeBread = new Product("Rye Bread", "eight", 8, "", 2.95, "breads", "", "Hearty rye bread rich with flavor, baked fresh daily.");
+$RyeBread = new Product("Rye Bread", "eight", 2.95, "breads", "", "Hearty rye bread rich with flavor, baked fresh daily.");
 
-$startingProducts = array($WholeWheatLoaf, $WhiteBreadLoaf, $BlueberryScone, $ChocolateCake, $CherryPie, $BlueberryPie, $BlueberryMuffin, $ChocolateCupcake, $RyeBread);
 
+$products = array($WholeWheatLoaf, $WhiteBreadLoaf, $BlueberryScone, $ChocolateCake, $CherryPie, $BlueberryPie, $BlueberryMuffin, $ChocolateCupcake, $RyeBread);
 $quantities = array();
 $itemSubtotal = array();
-
-
-
-//Order products button logic.
-$productSearchText = "";
-$searchedProducts = false;
-
-$_SESSION["products"] = array();
-array_push($_SESSION["products"], $WholeWheatLoaf);
-array_push($_SESSION["products"], $WhiteBreadLoaf);
-array_push($_SESSION["products"], $BlueberryScone);
-array_push($_SESSION["products"], $ChocolateCake);
-array_push($_SESSION["products"], $CherryPie);
-array_push($_SESSION["products"], $BlueberryPie);
-array_push($_SESSION["products"], $BlueberryMuffin);
-array_push($_SESSION["products"], $ChocolateCupcake);
-array_push($_SESSION["products"], $RyeBread);
-
-$_SESSION["classOrder"] = array(0, 1, 2, 3, 4, 5, 6, 7, 8);
-   
-$_SESSION["searchByCategory"] = strtolower("" . $_GET['searchByCategory']);
-$_SESSION["orderByOptions"] = "" . $_GET['orderByOptions'];
-
-if ($_SESSION["searchByCategory"] !== "") {
-    $searchedProducts = true;
-}
-
-if ($_SESSION["orderByOptions"] !== "") {
-    $searchedProducts = true;
-}
-
-$searchedForProducts = array();
-if ($_SESSION["searchByCategory"] !== "" && $_SESSION["searchByCategory"] !== null) {
-    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
-        array_push($searchedForProducts, $_SESSION["products"][$i]);
-        $productCount = count($_SESSION["products"]);
-        if ($_SESSION["products"][$i]->get_category() === $_SESSION["searchByCategory"]) {
-            $_SESSION["products"][$i]->set_displayCSS("awese");
-        } else {
-             $_SESSION["products"][$i]->set_displayCSS("hide");
-        }
-    }
-} else {
-    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
-        $_SESSION["products"][$i]->set_displayCSS("");
-    }
-}
-
-if ($_GET["orderByOptions"] === "Name (Alphabetical)") {
-    usort($_SESSION["products"], "compare_names");
-} else if ($_GET["orderByOptions"] === "Name (Reverse Alphabetical)") {
-    usort($_SESSION["products"], "compare_names_reverse");
-} else if ($_GET["orderByOptions"] === "Price (Ascending)") {
-    usort($_SESSION["products"], "compare_prices");
-} else if ($_GET["orderByOptions"] === "Price (Descending)") {
-    usort($_SESSION["products"], "compare_prices_reverse");
-} else {
-    $_SESSION["orderByOptions"] = "";
-}
-
-reorderProdQuantities();
-
-//Loop through the products, set the class order equal to the products new order.  Then set the product quantity for the product cards equal to the new order.
-function reorderProdQuantities(){
-    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
-        $_SESSION["classOrder"][$i] = $_SESSION["products"][$i]->get_classInt(); 
-    }
-    
-    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
-        $_SESSION["prodQuantity"][$i] = $_SESSION["quantity"][$_SESSION["classOrder"][$i]];
-    }
-}
-
-if ($searchedProducts === false) {
-    $productSearchText = "Showing all products.";
-} else {
-    $categoryProductText = "";
-    $orderByText = "";
-    if ($_SESSION["searchByCategory"] === "") {
-        $categoryProductText = "products";
-    } else {
-        $categoryProductText = $_SESSION["searchByCategory"];
-    }
-
-    if ($_SESSION["orderByOptions"] === "") {
-        $orderByText = "";
-    } else {
-        $orderByText = " ordered by " . $_SESSION["orderByOptions"];
-    }
-    $productSearchText = "Showing " . $categoryProductText . $orderByText . ".";
-}
-
-function compare_names($a, $b){
-    return strcmp($a->name, $b->name);
-}
-
-function compare_names_reverse($b, $a){
-    return strcmp($a->name, $b->name);
-}
-
-function compare_prices($a, $b){
-    return strnatcmp($a->price, strval($b->price));
-}
-
-function compare_prices_reverse($b, $a){
-    return strnatcmp($a->price, strval($b->price));
-}
-
 
 
 //Initialize the cart.
 if (isset($_SESSION["estimateCart"]) === false) {
     $_SESSION["estimateCart"] = "not empty";
-    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
-        $_SESSION["products"][$i] = $_SESSION["products"][$i];   //We need to store this for the reset function since that logic is in a separate function.
-        $_SESSION["prodQuantity"][$i] = 0;
-        $_SESSION["classOrder"][$i] = $i;
+    for ($i = 0; $i < count($products); $i++) {
+        $_SESSION["products"][$i] = $products[$i];   //We need to store this for the reset function since that logic is in a separate function.
         $_SESSION["quantity"][$i] = 0;
         $_SESSION["itemSubtotal"][$i] = number_format(0.00, 2);
         $_SESSION["numberOfItems"] = 0;
@@ -160,27 +50,23 @@ if (isset($_SESSION["estimateCart"])) {
     if (isset($_GET["item"])) {
         $itemNumber = $_GET["item"];    
         if(isset($_GET["setValue"])){
-              $_SESSION["prodQuantity"][$itemNumber] = $_GET["setValue"];
             $_SESSION["quantity"][$itemNumber] = $_GET["setValue"];
         } else {
-             $_SESSION["prodQuantity"][$itemNumber] = $_SESSION["prodQuantity"][$itemNumber] + 1;
             $_SESSION["quantity"][$itemNumber] = $_SESSION["quantity"][$itemNumber] + 1;
         }
         
         if( $_SESSION["quantity"][$itemNumber] < 0 ){
-            $_SESSION["prodQuantity"][$itemNumber] = 0;
             $_SESSION["quantity"][$itemNumber] = 0;
         }
         if( $_SESSION["quantity"][$itemNumber] > 100){
-            $_SESSION["prodQuantity"][$itemNumber] = 100;
             $_SESSION["quantity"][$itemNumber] = 100;
         }
            
-        $_SESSION["itemSubtotal"][$itemNumber] = number_format($_SESSION["products"][$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
+        $_SESSION["itemSubtotal"][$itemNumber] = number_format($products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
     }
 
     $_SESSION["totalCost"] = number_format(0.00, 2);
-    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
+    for ($i = 0; $i < count($products); $i++) {
         $_SESSION["numberOfItems"] = $_SESSION["numberOfItems"] + $_SESSION["quantity"][$i];
         $_SESSION["totalCost"] = number_format($_SESSION["totalCost"] + $_SESSION["itemSubtotal"][$i], 2);
     }
@@ -196,12 +82,11 @@ if (isset($_SESSION["estimateCart"])) {
         $newQuantity = $_SESSION["quantity"][$itemNumber] - 1;
 
         if ($newQuantity >= 0) {
-            $_SESSION["prodQuantity"][$itemNumber] = $newQuantity;
             $_SESSION["quantity"][$itemNumber] = $newQuantity;
-            $_SESSION["itemSubtotal"][$itemNumber] = number_format($_SESSION["products"][$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
+            $_SESSION["itemSubtotal"][$itemNumber] = number_format($products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
 
             $_SESSION["totalCost"] = number_format(0.00, 2);
-            for ($i = 0; $i < count($_SESSION["products"]); $i++) {
+            for ($i = 0; $i < count($products); $i++) {
                 $_SESSION["numberOfItems"] = $_SESSION["numberOfItems"] + $_SESSION["quantity"][$i];
                 $_SESSION["totalCost"] = number_format($_SESSION["totalCost"] + $_SESSION["itemSubtotal"][$i], 2);
             }
@@ -221,7 +106,6 @@ function resetEstimateCart() {
     $_SESSION["numberOfItems"] = 0;
     $_SESSION["totalCost"] = number_format(0.00, 2);
     for ($i = 0; $i < count($_SESSION["products"]); $i++) {
-        $_SESSION["prodQuantity"][$i] = 0;
         $_SESSION["quantity"][$i] = 0;
         $_SESSION["itemSubtotal"][$i] = number_format(0.00, 2);
     }
@@ -359,9 +243,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $Body .= "" . $UserCity . ", " . $UserState . " " . $UserZipCode . " " . "<br />";
             $Body .= "<br />";
             $Body .= "<strong>Estimate Items:</strong><br />";
-            for ($i = 0; $i < count($_SESSION["products"]); $i++) {
+            for ($i = 0; $i < count($products); $i++) {
                 if ($_SESSION["itemSubtotal"][$i] > 0) {
-                    $Body .= "" . $_SESSION["products"][$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . "<br />";
+                    $Body .= "" . $products[$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . "<br />";
                 }
             }
             $Body .= "<br />";
@@ -376,9 +260,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if ($SuccessfulSubmission) {
                 $transmitResponse .= "<p>" . $UserName . ", your estimate request was successfully submitted.</p>";
                 $transmitResponse .= "<p>Estimate Items:</p>";
-                for ($i = 0; $i < count($_SESSION["products"]); $i++) {
+                for ($i = 0; $i < count($products); $i++) {
                     if ($_SESSION["itemSubtotal"][$i] > 0) {
-                        $transmitResponse .= "" . $_SESSION["products"][$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . "<br />";
+                        $transmitResponse .= "" . $products[$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . "<br />";
                     }
                 }
                 $transmitResponse .= "<p>Estimate Total: $" . $_SESSION["totalCost"] . ".</p>";
@@ -426,85 +310,47 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <div class="inner-wrapper">
                 <div class="content">
-                    <div class="content-row products-header">
-                        <div class="col-lar-5">
-                            <?php
-                            $id = 35;
-                            $page = get_post($id);
-                            $content = "" . apply_filters('the_content', $page->post_content);
-                            echo $content;
-                            ?>
-                        </div>
-                        <div class="col-lar-7">
-                            <div class="product-search">
-                                <div class="product-search__inputs">
-                                    <h4 class="product-search__title">Search for Products</h4>
-                                    <div class="input-container product-search-container">
-                                        <label class="input-container__label" for="searchByCategory"><strong>Category</strong></label>
-                                        <select type="text" class="product-search__select" id="searchByCategory" name="searchByCategory">
-                                            <option value=""></option>                        
-                                            <option value="Breads" <?php if($_SESSION["searchByCategory"] === "breads"){ echo "selected='selected'"; } ?> >Breads</option>
-                                            <option value="Pastries" <?php if($_SESSION["searchByCategory"] === "pastries"){ echo "selected='selected'"; } ?> >Pastries</option>                                    
-                                            <option value="Muffins" <?php if($_SESSION["searchByCategory"] === "muffins"){ echo "selected='selected'"; } ?> >Muffins</option>
-                                            <option value="Cakes" <?php if($_SESSION["searchByCategory"] === "cakes"){ echo "selected='selected'"; } ?> >Cakes</option>
-                                            <option value="Pies" <?php if($_SESSION["searchByCategory"] === "pies"){ echo "selected='selected'"; } ?> >Pies</option>
-                                            <option value="Other" <?php if($_SESSION["searchByCategory"] === "other"){ echo "selected='selected'"; } ?> >Other</option>
-                                        </select>
-                                    </div>
-                                    <div class="input-container product-search-container">
-                                        <label class="input-container__label" for="orderByOptions"><strong>Order By</strong></label>
-                                        <select type="text" class="product-search__select" id="orderByOptions" name="orderByOptions">
-                                            <option value=""></option>                        
-                                            <option value="Name (Alphabetical)" <?php if($_SESSION["orderByOptions"] === "Name (Alphabetical)"){ echo "selected='selected'"; } ?> >Name (Alphabetical)</option>
-                                            <option value="Name (Reverse Alphabetical)" <?php if($_SESSION["orderByOptions"] === "Name (Reverse Alphabetical)"){ echo "selected='selected'"; } ?> >Name (Reverse Alphabetical)</option>                                    
-                                            <option value="Price (Ascending)" <?php if($_SESSION["orderByOptions"] === "Price (Ascending)"){ echo "selected='selected'"; } ?> >Price (Ascending)</option>
-                                            <option value="Price (Descending)" <?php if($_SESSION["orderByOptions"] === "Price (Descending)"){ echo "selected='selected'"; } ?> >Price (Descending)</option>
-                                        </select>
-                                    </div>
-                                    <div class="input-container product-search-container">
-                                        <div class="input-container__contact-button" id="searchButton" name="searchButton">Search</div>                          
-                                    </div>
-                                </div>
-                                <div class="product-search__text">
-                                    <?php echo $productSearchText; ?>
-                                </div>
+                    <div class="content-row">
+                        <div class="products-wrapper">
+                            <div class="products-header">
+                                <?php
+                                $id = 35;
+                                $page = get_post($id);
+                                $content = "" . apply_filters('the_content', $page->post_content);
+                                echo $content;
+                                ?>
                             </div>
-                        </div>
-                    </div>
-                    <div class="content-row products">
-                        <?php for ($i = 0; $i < count($_SESSION["products"]); $i++) { ?>
-                            <div class="col-vsm-6 col-sma-4 col-lar-3 product-outer <?php echo $_SESSION["products"][$i]->get_displayCSS(); ?>">
-                                <div class="product-container <?php echo $_SESSION["products"][$i]->get_classCSS(); ?>">
-                                    <div class="product__title"><?php echo $_SESSION["products"][$i]->get_name(); ?></div>
-                                    <div class="product__background-container">
-                                        <div class="product__background"></div>
-                                    </div>
-                                    <div class="product__price-and-request">
-                                        <div class="product__price">$<?php echo $_SESSION["products"][$i]->get_price(); ?></div>   
-                                        <div class="product__adjust-quantity">
-                                            <div class="product__minus-quantity">-</div>
-                                            <div class="product__quantity-input">
-                                                <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                <input type="number" min="0" max="100" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][$i]; ?>" />
+                            <div class="products content-row">
+                                <?php for($i = 0; $i < count($products); $i++) { ?>
+                                    <div class="col-vsm-6 col-sma-4 col-lar-3 product-outer">
+                                        <div class="product-container <?php echo $products[$i]->get_classCSS(); ?>">
+                                            <div class="product__title"><?php echo $products[$i]->get_name(); ?></div>
+                                            <div class="product__background-container">
+                                                <div class="product__background"></div>
                                             </div>
-                                            <div class="product__increase-quantity">+</div>
+                                            <div class="product__price-and-request">
+                                                <div class="product__price">$<?php echo $products[$i]->get_price(); ?></div>   
+                                                <div class="product__adjust-quantity">
+                                                    <div class="product__minus-quantity">-</div>
+                                                    <div class="product__quantity-input">
+                                                        <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
+                                                        <input type="number" min="0" max="100" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][$i]; ?>" />
+                                                    </div>
+                                                    <div class="product__increase-quantity">+</div>
+                                                </div>
+                                                <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                                <div class="product__quantity-container <?php if ($_SESSION["quantity"][$i] > 0) { echo 'show'; }?>">
+                                                    <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["quantity"][$i] . "</a>" ?>                                                
+                                                </div>
+                                                <div class="clear-both"></div>
+                                            </div>
+                                            <div class="product__description"><?php echo $products[$i]->get_description(); ?></div>
                                         </div>
-                                        <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                        <div class="product__quantity-container <?php
-                                        if ($_SESSION["prodQuantity"][$i] > 0) {
-                                            echo 'show';
-                                        }
-                                        ?>">
-                                            <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["prodQuantity"][$i] . "</a>" ?>                                                
-                                        </div>
-                                        <div class="clear-both"></div>
-                                    </div>
-                                    <div class="product__description"><?php echo $_SESSION["products"][$i]->get_description(); ?></div>
-                                </div>
+                                    </div>       
+                                <?php } ?>
                             </div>
-                        <?php } ?>
+                        </div>
                     </div>
-
                     <div class="content-row estimate-section">
                         <div class="col-sma-7">
                             <div class="estimate-cart">
@@ -522,19 +368,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php for ($i = 0; $i < count($_SESSION["products"]); $i++) { ?>
-                                            <tr class="estimate-table__item <?php echo $_SESSION["products"][$i]->get_classCSS(); ?> <?php if ($_SESSION["quantity"][$i] <= 0) {
-                                                echo "hide";
-                                                } ?>">
-                                                <td class="estimate-table__item-title"><?php echo $_SESSION["products"][$i]->get_name(); ?></td>
+                                        <?php for($i = 0; $i < count($products); $i++) { ?>
+                                            <tr class="estimate-table__item <?php echo $products[$i]->get_classCSS(); ?> <?php if($_SESSION["quantity"][$i] <= 0){ echo "hide"; } ?>">
+                                                <td class="estimate-table__item-title"><?php echo $products[$i]->get_name(); ?></td>
                                                 <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
-                                                <td class="estimate-table__item-cost">$<?php echo $_SESSION["products"][$i]->get_price(); ?></td>
+                                                <td class="estimate-table__item-cost">$<?php echo $products[$i]->get_price(); ?></td>
                                                 <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][$i]; ?></td>
                                                 <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][$i]; ?></td>
                                                 <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>  
                                                 <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>                       
                                             </tr>
-                                                <?php } ?>
+                                        <?php } ?>
                                         <tr class="clear-both"></div>
                                     </tbody>
                                 </table>
@@ -609,7 +453,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </div>
                 </div>
             </div>
-        </div>
             <?php include 'assets/include/message-content.php'; ?>
             <?php include 'assets/include/footer-content.php'; ?>
             <script type="text/javascript" src="assets/javascript/javascript-functions.js"></script>
@@ -620,18 +463,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 });
             </script>
         </div>
-         <script type="text/javascript">
-            //Intialize variables and add the event listeners.
+        <script type="text/javascript">
             let numberOfProducts = document.getElementsByClassName("product-container").length;
 
-
+            //Use AJAX to update the cart without reloading the page.
             for(let i=0; i<numberOfProducts; i++){
                 document.getElementsByClassName("product__request-item__add")[i].addEventListener("click", function () {
                     let quantityToSet = document.getElementsByClassName("product__set-quantity")[i].value;
                     quantityToSet = checkQuantityMinAndMax(quantityToSet);
                     setCart("item", "=", i, quantityToSet);
                 }, false);
-
+            }
+            
+            for(let i=0; i<numberOfProducts; i++){
                 document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function (event) {           
                     event.preventDefault();
                     document.getElementsByClassName("product__minus-quantity")[i].classList.remove("change-color");
@@ -644,23 +488,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     void document.getElementsByClassName("product__increase-quantity")[i].offsetWidth;
                     document.getElementsByClassName("product__increase-quantity")[i].classList.add("change-color");
                  }, false);
+            }
 
+            for(let i=0; i<numberOfProducts; i++){
                 document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function () {
                     adjustProductSetQuantity(i, "decrease");
                 }, false); 
-          
+            }
+            
+            for(let i=0; i<numberOfProducts; i++){
                 document.getElementsByClassName("product__increase-quantity")[i].addEventListener("click", function () {
                     adjustProductSetQuantity(i, "increase");
                 }, false); 
-                
-                
+            }
             
+            for(let i=0; i<numberOfProducts; i++){
                 document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {     
                     let itemQuantity = parseInt(document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML);
                     itemQuantity = checkQuantityMinAndMax(itemQuantity);
                     updateCart("remove", "=", i);
                 }, false);
-
+            }
+            
+            for(let i=0; i<numberOfProducts; i++){
                 document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () { 
                    let itemQuantity = parseInt(document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML);
                    itemQuantity = checkQuantityMinAndMax(itemQuantity);
@@ -672,15 +522,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 resetCart("resetCart", "=");
             }, false);
             
-            document.getElementById("searchButton").addEventListener("click", function () {
-                let searchByCategory = "" + document.getElementById("searchByCategory").value;
-                let orderByOptions = "" + document.getElementById("orderByOptions").value;
-                updateProductsShown("searchByCategory=" + searchByCategory, "&orderByOptions=" + orderByOptions);
-            }, false);
-            //End of intializing variables and adding event listeners.
             
-            
-            //Additional functions.
             function adjustProductSetQuantity(itemNumber, change) {
                 if(change === "decrease"){
                     document.getElementsByClassName("product__set-quantity")[itemNumber].value --;
@@ -688,19 +530,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     document.getElementsByClassName("product__set-quantity")[itemNumber].value ++;     
                 }     
             }
-            
-            function checkQuantityMinAndMax(setValue){
-                setValue = parseInt(setValue);
-                if(setValue < 0){
-                    setValue = 0;
-                } else if(setValue > 100){
-                    setValue = 100;
-                }
-                return setValue;
-            }
-            
-            
-            //AJAX page update functions.
+
             function setCart(actionString, operatorString, itemID, setValue) {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
@@ -726,15 +556,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 document.getElementsByClassName("product__quantity-container")[i].innerHTML = "";
                                 document.getElementsByClassName("product__quantity-container")[i].classList.remove("show");
                             }
-                        }          
-                        //Recreate event listeners for some items.
-                        reAddEventListenersUpdateCart();
+                        }
+                        
+                        //Recreate event listeners for - and + buttons.
+                        reAddEventListeners();
                     }
-                };           
+                };
+                
                 xhttp.open("GET", "products.php?" + actionString + operatorString + itemID + "&setValue=" + setValue, true);
                 xhttp.send();
             }
-
 
             function updateCart(actionString, operatorString, itemID) {
                 var xhttp = new XMLHttpRequest();
@@ -761,125 +592,69 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 document.getElementsByClassName("product__quantity-container")[i].innerHTML = "";
                                 document.getElementsByClassName("product__quantity-container")[i].classList.remove("show");
                             }
-                        }   
-                        //Recreate event listeners for some items.
-                        reAddEventListenersUpdateCart();
+                        }
+                        
+                        //Recreate event listeners for - and + buttons.
+                        reAddEventListeners();
                     }
                 };
+
                 xhttp.open("GET", "products.php?" + actionString + operatorString + itemID, true);
                 xhttp.send();
             }
 
-         
-            function updateProductsShown(searchByCategoryString, orderByOptionsString){
-                var xhttp = new XMLHttpRequest();   
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState === 4 && this.status === 200) {
-                        let parser = new DOMParser();
-                        let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
-                        
-                        let productSearch = ajaxDocument.getElementsByClassName("product-search")[0];
-                        let products = ajaxDocument.getElementsByClassName("products")[0];
-
-                        document.getElementsByClassName("product-search")[0].innerHTML = productSearch.innerHTML;
-                        document.getElementsByClassName("products")[0].innerHTML = products.innerHTML;
-                        
-                        //Recreate event listeners for some items.
-                        reAddEventListenersSearch();
-                    }
-                };
-                xhttp.open("GET", "products.php?" + searchByCategoryString + orderByOptionsString, true);
-                xhttp.send();   
-            }
-                 
-                 
             function resetCart(actionString, operatorString) {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
                         let parser = new DOMParser();
                         let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
-                      
+                        
+                        let products = ajaxDocument.getElementsByClassName("estimate-table__item-quantity");
+
                         let estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
                         let numberOfItems = ajaxDocument.getElementsByClassName("shopping-cart")[0];
                         let cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
 
-                        for (let i = 0; i < numberOfProducts; i++) {
+                        for (let i = 0; i < products.length; i++) {
                             document.getElementsByClassName("product__quantity-container")[i].innerHTML = "";  
                         }
                         document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
                         document.getElementsByClassName("shopping-cart")[0].innerHTML = numberOfItems.innerHTML;
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
                         
-                        //Recreate event listeners for some items.
-                        reAddEventListenersUpdateCart();
+                        //Recreate event listeners for - and + buttons.
+                        reAddEventListeners();
                     }
                 };
+
                 xhttp.open("GET", "products.php?" + actionString + operatorString, true);
                 xhttp.send();
             }
-            
-            
-              
-            //The reset event listeners functions.  
-            function reAddEventListenersUpdateCart(){
-                let numberOfProducts = document.getElementsByClassName("product-container").length;
-                
+           
+            function reAddEventListeners () {
                 for(let i=0; i<numberOfProducts; i++){
-                    document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {     
-                        let itemQuantity = parseInt(document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML);
-                        itemQuantity = checkQuantityMinAndMax(itemQuantity);
-                        updateCart("remove", "=", i);
-                    }, false);
-
-                    document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () { 
-                       let itemQuantity = parseInt(document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML);
-                       itemQuantity = checkQuantityMinAndMax(itemQuantity);
+                    document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () {
                        updateCart("item", "=", i);
                     }, false);
                 }
-            }      
-                 
-       
-            function reAddEventListenersSearch(){
-                let numberOfProducts = document.getElementsByClassName("product-container").length;
-                
-                for(let i=0; i<numberOfProducts; i++){
-                    document.getElementsByClassName("product__request-item__add")[i].addEventListener("click", function () {
-                        let quantityToSet = document.getElementsByClassName("product__set-quantity")[i].value;
-                        quantityToSet = checkQuantityMinAndMax(quantityToSet);
-                        setCart("item", "=", i, quantityToSet);
-                    }, false);
-                    
-                    document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function (event) {           
-                        event.preventDefault();
-                        document.getElementsByClassName("product__minus-quantity")[i].classList.remove("change-color");
-                        void document.getElementsByClassName("product__minus-quantity")[i].offsetWidth;
-                        document.getElementsByClassName("product__minus-quantity")[i].classList.add("change-color");
-                     }, false);
-                    document.getElementsByClassName("product__increase-quantity")[i].addEventListener("click", function (event) {           
-                        event.preventDefault();
-                        document.getElementsByClassName("product__increase-quantity")[i].classList.remove("change-color");
-                        void document.getElementsByClassName("product__increase-quantity")[i].offsetWidth;
-                        document.getElementsByClassName("product__increase-quantity")[i].classList.add("change-color");
-                     }, false);
 
-                    document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function () {
-                        adjustProductSetQuantity(i, "decrease");
-                    }, false); 
-          
-                    document.getElementsByClassName("product__increase-quantity")[i].addEventListener("click", function () {
-                       adjustProductSetQuantity(i, "increase");
-                    }, false); 
+                for(let i=0; i<numberOfProducts; i++){
+                    document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {        
+                        updateCart("remove", "=", i);
+                    }, false);
                 }
-                  
-                document.getElementById("searchButton").addEventListener("click", function () {
-                    let searchByCategory = "" + document.getElementById("searchByCategory").value;
-                    let orderByOptions = "" + document.getElementById("orderByOptions").value;
-                    updateProductsShown("searchByCategory=" + searchByCategory, "&orderByOptions=" + orderByOptions);
-                }, false);
             }
             
+            function checkQuantityMinAndMax(setValue){
+                setValue = parseInt(setValue);
+                if(setValue < 0){
+                    setValue = 0;
+                } else if(setValue > 100){
+                    setValue = 100;
+                }
+                return setValue;
+            }
         </script>
     </body>
 
