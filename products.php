@@ -687,7 +687,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         document.getElementsByClassName("shopping-cart")[0].innerHTML = numberOfItems.innerHTML;
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
                         for(let i=0; i<numberOfProducts; i++){
-                            let product = ajaxDocument.getElementsByClassName("product__quantity-container")[i];
+                            let product = ajaxDocument.getElementsByClassName("estimate-table__item-quantity")[i];
                             let productCount = parseInt(product.innerHTML);
                             if (productCount > 0) {
                                 document.getElementsByClassName("product__quantity-container")[i].innerHTML = "<a href='#estimateCartTitle' class='product__quantity'>" + product.innerHTML + "</a>";
