@@ -385,6 +385,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <div class="inner-wrapper">
                 <div class="content">
+                    <div class="content-row">
+                        <div class="col-lar-5">
+                            <?php
+                            $id = 35;
+                            $page = get_post($id);
+                            $content = "" . apply_filters('the_content', $page->post_content);
+                            echo $content;
+                            ?>
+                        </div>
                         <div class="col-lar-7">
                             <div class="product-search">
                                 <div class="product-search__inputs">
