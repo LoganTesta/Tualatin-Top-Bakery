@@ -348,6 +348,10 @@ footer { background-color: #fbe3b7; }
 .product-search__select { width: 100%; }
 .product-search__text { }
 .product-search .input-container__contact-button { width: 70px; }
+
+.product-quantities { display: none; }
+.product-quantities-hidden { display: none; }
+
 .product-container { margin-bottom: 50px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); border-radius: 20px; }
 .product__title { padding: 8px; font-size: 19px; border-radius: 20px 20px 0 0; font-weight: bold; text-align: center; background: linear-gradient(#64460e 20%, #ac8949 100%); color: #ffffff; }
 .product__price-and-request { position: relative; padding: 5px 5px; background-color: #eeeeee; }

@@ -9,22 +9,22 @@ require('./wordpress/wp-load.php');
 //Estimate cart code.
 include("assets/include/product.php");
 
-$WholeWheatLoaf = new Product("Whole Wheat Loaf", "zero", "", 2.95, "breads", "", "<p>Our delicious and wholesome house-made whole wheat bread, baked fresh daily.  "
+$WholeWheatLoaf = new Product("Whole Wheat Loaf", "zero", "0", "", 2.95, "breads", "", "<p>Our delicious and wholesome house-made whole wheat bread, baked fresh daily.  "
         . "One of our staples and customer favorites!</p>");
-$WhiteBreadLoaf = new Product("White Bread Loaf", "one", "", 1.99, "breads", "", "<p>Our delicious and fluffy house-made white bread, baked fresh daily.  One of our "
+$WhiteBreadLoaf = new Product("White Bread Loaf", "one", "1", "", 1.99, "breads", "", "<p>Our delicious and fluffy house-made white bread, baked fresh daily.  One of our "
         . "staples and customer favorites!</p>");
-$BlueberryScone = new Product("Blueberry Scone", "two", "", 2.25, "pastries", "", "<p>Light and fluffy and flaky.  We are always trying new varieties of scones including "
+$BlueberryScone = new Product("Blueberry Scone", "two", "2", "", 2.25, "pastries", "", "<p>Light and fluffy and flaky.  We are always trying new varieties of scones including "
         . "some seasonal.  We often have blueberry, vanilla, chocolate scones, and many more, so come on in and see what we're baking this week!</p>");
-$ChocolateCake = new Product("Chocolate Cake", "three", "", 15.00, "cakes", "", "<p>Our signature crisp, fluffy chocolate cake with a light layer of house-made "
+$ChocolateCake = new Product("Chocolate Cake", "three", "3", "", 15.00, "cakes", "", "<p>Our signature crisp, fluffy chocolate cake with a light layer of house-made "
         . "chocolate fudge on top!  Yum!</p>");
-$CherryPie = new Product("Cherry Pie", "four", "", 12.00, "pies", "", "<p>We sell cherry pie year round at Tualatin Top Bakery!</p><p>In the late spring and summer we "
+$CherryPie = new Product("Cherry Pie", "four", "4", "", 12.00, "pies", "", "<p>We sell cherry pie year round at Tualatin Top Bakery!</p><p>In the late spring and summer we "
         . "often make it with cherries from local farmers. Made fresh in house!</p>");
-$BlueberryPie = new Product("Blueberry Pie", "five", "", 12.00, "pies", "", "<p>We sell blueberry pie year round at Tualatin Top Bakery!</p><p>In the summer we often "
+$BlueberryPie = new Product("Blueberry Pie", "five", "5", "", 12.00, "pies", "", "<p>We sell blueberry pie year round at Tualatin Top Bakery!</p><p>In the summer we often "
         . "make it with blueberries from local farmers. Made fresh in house!</p>");
-$BlueberryMuffin = new Product("Blueberry Muffin", "six", "", 2.25, "muffins", "", "Made with lots of blueberries and a hint of sugar.");
-$ChocolateCupcake = new Product("Chocolate Cupcake", "seven", "", 2.50, "cakes", "", "Want a personal size cake (or two?) Pick up one of our delicious choclate cupcakes, with "
+$BlueberryMuffin = new Product("Blueberry Muffin", "six", "6", "", 2.25, "muffins", "", "Made with lots of blueberries and a hint of sugar.");
+$ChocolateCupcake = new Product("Chocolate Cupcake", "seven", "7","", 2.50, "cakes", "", "Want a personal size cake (or two?) Pick up one of our delicious choclate cupcakes, with "
         . "a touch of powder on top!");
-$RyeBread = new Product("Rye Bread", "eight", "", 2.95, "breads", "", "Hearty rye bread rich with flavor, baked fresh daily.");
+$RyeBread = new Product("Rye Bread", "eight", "8", "", 2.95, "breads", "", "Hearty rye bread rich with flavor, baked fresh daily.");
 
 
 $products = array($WholeWheatLoaf, $WhiteBreadLoaf, $BlueberryScone, $ChocolateCake, $CherryPie, $BlueberryPie, $BlueberryMuffin, $ChocolateCupcake, $RyeBread);
@@ -139,6 +139,17 @@ if (isset($_SESSION["estimateCart"])) {
            
         $_SESSION["itemSubtotal"][$itemNumber] = number_format($products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
     }
+
+    //After setting the quantities array, then set the quantities for the shown products.
+    $_SESSION["shownProductsQuantity"] = array();
+    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
+        if (intval($_SESSION["products"][$i]->get_classInt()) === $i) {
+            $_SESSION["shownProductsQuantity"][$i] = $_SESSION["quantity"][$i];
+        } else {
+            $_SESSION["shownProductsQuantity"][$i] = 0;
+        }
+    }
+
 
     $_SESSION["totalCost"] = number_format(0.00, 2);
     for ($i = 0; $i < count($products); $i++) {
@@ -420,34 +431,46 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             </div>
                         </div>
                     </div>
+                    <div class="content-row product-quantities">
+                        <div class="col-sma-12">
+                            <?php for ($i = 0; $i < count($_SESSION["products"]); $i++) { ?>
+                                <div class="product-quantities-hidden"><?php echo $_SESSION["shownProductsQuantity"][$i]; ?></div>
+                            <?php } ?>
+                        </div>
+                    </div>
                     <div class="content-row products">
-                        <?php for($i = 0; $i < count($_SESSION["products"]); $i++) { ?>
-                            <div class="col-vsm-6 col-sma-4 col-lar-3 product-outer">
-                                <div class="product-container <?php echo $_SESSION["products"][$i]->get_classCSS(); ?> <?php echo $_SESSION["products"][$i]->get_displayCSS(); ?>">
-                                    <div class="product__title"><?php echo $_SESSION["products"][$i]->get_name(); ?></div>
-                                    <div class="product__background-container">
-                                        <div class="product__background"></div>
-                                    </div>
-                                    <div class="product__price-and-request">
-                                        <div class="product__price">$<?php echo $_SESSION["products"][$i]->get_price(); ?></div>   
-                                        <div class="product__adjust-quantity">
-                                            <div class="product__minus-quantity">-</div>
-                                            <div class="product__quantity-input">
-                                                <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                <input type="number" min="0" max="100" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["quantity"][$i]; ?>" />
+                        <?php
+                        for ($i = 0; $i < count($_SESSION["products"]); $i++) {
+                            if ($_SESSION["products"][$i]->get_displayCSS() === "hide") {              
+                            } else {
+                                ?>
+                                <div class="col-vsm-6 col-sma-4 col-lar-3 product-outer">
+                                    <div class="product-container <?php echo $_SESSION["products"][$i]->get_classCSS(); ?> <?php echo $_SESSION["products"][$i]->get_classInt(); ?> <?php echo $_SESSION["products"][$i]->get_displayCSS(); ?>">
+                                        <div class="product__title"><?php echo $_SESSION["products"][$i]->get_name(); ?></div>
+                                        <div class="product__background-container">
+                                            <div class="product__background"></div>
+                                        </div>
+                                        <div class="product__price-and-request">
+                                            <div class="product__price">$<?php echo $_SESSION["products"][$i]->get_price(); ?></div>   
+                                            <div class="product__adjust-quantity">
+                                                <div class="product__minus-quantity">-</div>
+                                                <div class="product__quantity-input">
+                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
+                                                    <input type="number" min="0" max="100" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["shownProductsQuantity"][$i]; ?>" />
+                                                </div>
+                                                <div class="product__increase-quantity">+</div>
                                             </div>
-                                            <div class="product__increase-quantity">+</div>
+                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                            <div class="product__quantity-container <?php if ($_SESSION["shownProductsQuantity"][$i] > 0) { echo 'show'; }?>">
+                                                <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["shownProductsQuantity"][$i] . "</a>" ?>                                                
+                                            </div>
+                                            <div class="clear-both"></div>
                                         </div>
-                                        <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                        <div class="product__quantity-container <?php if ($_SESSION["quantity"][$i] > 0) { echo 'show'; }?>">
-                                            <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["quantity"][$i] . "</a>" ?>                                                
-                                        </div>
-                                        <div class="clear-both"></div>
+                                        <div class="product__description"><?php echo $_SESSION["products"][$i]->get_description(); ?></div>
                                     </div>
-                                    <div class="product__description"><?php echo $_SESSION["products"][$i]->get_description(); ?></div>
-                                </div>
-                            </div>       
+                                </div> 
                         <?php } ?>
+                    <?php } ?>
                     </div>
                     <div class="content-row estimate-section">
                         <div class="col-sma-7">
@@ -599,9 +622,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 }, false); 
                 
                 document.getElementsByClassName("product__request-item__add")[i].addEventListener("click", function () {
+                    let itemNumber = document.getElementsByClassName("product-container")[i].classList.item(2);
                     let quantityToSet = document.getElementsByClassName("product__set-quantity")[i].value;
                     quantityToSet = checkQuantityMinAndMax(quantityToSet);
-                    setCart("item", "=", i, quantityToSet);
+                    setCart("item=" + itemNumber, "productsItem=" + i, quantityToSet);
                 }, false);
             }
             
@@ -646,7 +670,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 return setValue;
             }
 
-            function setCart(actionString, operatorString, itemID, setValue) {
+            function setCart(estimateCartItem, productsItem, setValue) {
                 let xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
@@ -661,26 +685,40 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
                         document.getElementsByClassName("shopping-cart")[0].innerHTML = numberOfItems.innerHTML;
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
-                        for(let i=0; i<numberOfProducts; i++){
-                            let product = ajaxDocument.getElementsByClassName("estimate-table__item-quantity")[i];
-                            let productCount = parseInt(product.innerHTML);
+                        
+                        
+                        let numberOfProductsShown = document.getElementsByClassName("product-container").length; //Get the number of products shown to the user.
+                        let productQuantitiesHiddenArray = Array();
+                        for(let i=0; i<numberOfProducts; i++){                              
+                            let productQuantitiesHidden = ajaxDocument.getElementsByClassName("product-quantities-hidden")[i];
+                            document.getElementsByClassName("product-quantities-hidden")[i].innerHTML = productQuantitiesHidden.innerHTML;
+                            productQuantitiesHiddenArray[i] = productQuantitiesHidden.innerHTML;
+                        }
+                     
+                     
+                        for(let i=0; i<numberOfProductsShown; i++){
+                            let product = ajaxDocument.getElementsByClassName("product__quantity-container")[i].innerHTML;
+                            
+                            let productClass = document.getElementsByClassName("product-container")[i].classList.item(2);
+                            let productCount = productQuantitiesHiddenArray[productClass];
+
                             if (productCount > 0) {
-                                document.getElementsByClassName("product__quantity-container")[i].innerHTML = "<a href='#estimateCartTitle' class='product__quantity'>" + product.innerHTML + "</a>";
+                                document.getElementsByClassName("product__quantity-container")[i].innerHTML = "<a href='#estimateCartTitle' class='product__quantity'>" + productCount + "</a>";
                                 document.getElementsByClassName("product__quantity-container")[i].classList.add("show");
                             } else {
                                 document.getElementsByClassName("product__quantity-container")[i].innerHTML = "";
                                 document.getElementsByClassName("product__quantity-container")[i].classList.remove("show");
                             }
-                        }               
+                        }             
                         //Recreate event listeners for - and + buttons.
                         reAddEventListeners();
                     }
-                };             
-                xhttp.open("GET", "products.php?" + actionString + operatorString + itemID + "&setValue=" + setValue, true);
+                };        
+                xhttp.open("GET", "products.php?" + estimateCartItem + "&productsItem" + productsItem + "&setValue=" + setValue, true);
                 xhttp.send();
             }
 
-            function updateCart(actionString, operatorString, itemID) {       
+            function updateCart(actionString, operatorString, itemID) {
                 let xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
@@ -695,7 +733,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
                         document.getElementsByClassName("shopping-cart")[0].innerHTML = numberOfItems.innerHTML;
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
-                        for(let i=0; i<numberOfProducts; i++){
+                        
+                        let numberOfProductsShown = document.getElementsByClassName("product-container").length; //Get the number of products shown to the user.
+                        for(let i=0; i<numberOfProductsShown; i++){
                             let product = ajaxDocument.getElementsByClassName("estimate-table__item-quantity")[i];
                             let productCount = parseInt(product.innerHTML);
                             if (productCount > 0) {
@@ -724,8 +764,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         let estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
                         let numberOfItems = ajaxDocument.getElementsByClassName("shopping-cart")[0];
                         let cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
-
-                        for (let i = 0; i < numberOfProducts; i++) {
+                        
+                        let numberOfProductsShown = document.getElementsByClassName("product-container").length; //Get the number of products shown to the user.
+                        for (let i = 0; i < numberOfProductsShown; i++) {
                             document.getElementsByClassName("product__quantity-container")[i].innerHTML = "";  
                         }
                         document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
@@ -779,7 +820,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 }
             }
             
-            function reAddEventListenersAfterSearching(){                    
+            function reAddEventListenersAfterSearching(){    
+                let numberOfProductsShown = document.getElementsByClassName("product-container").length; //Get the number of products shown to the user.
+                
                 //Header, search event listeners.        
                 document.getElementById("searchButton").addEventListener("click", function () {
                     let searchByCategory = "" + document.getElementById("searchByCategory").value;
@@ -788,7 +831,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
                 //Product item event listeners.
-                for(let i=0; i<numberOfProducts; i++){ 
+                for(let i=0; i<numberOfProductsShown; i++){ 
                     document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function (event) {           
                         event.preventDefault();
                         document.getElementsByClassName("product__minus-quantity")[i].classList.remove("change-color");
@@ -812,9 +855,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     }, false); 
 
                     document.getElementsByClassName("product__request-item__add")[i].addEventListener("click", function () {
+                        let itemNumber = document.getElementsByClassName("product-container")[i].classList.item(2);
                         let quantityToSet = document.getElementsByClassName("product__set-quantity")[i].value;
                         quantityToSet = checkQuantityMinAndMax(quantityToSet);
-                        setCart("item", "=", i, quantityToSet);
+                        setCart("item=" + itemNumber, "productsItem=" + i, quantityToSet);
                     }, false);
                 }
             }
