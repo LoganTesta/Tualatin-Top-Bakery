@@ -397,7 +397,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="inner-wrapper">
                 <div class="content">
                     <div class="content-row">
-                        <div class="col-lar-5">
+                        <div class="col-lar-7">
                             <?php
                             $id = 35;
                             $page = get_post($id);
@@ -405,7 +405,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             echo $content;
                             ?>
                         </div>
-                        <div class="col-lar-7">
+                        <div class="col-lar-5">
                             <div class="product-search">
                                 <div class="product-search__inputs">
                                     <h4 class="product-search__title">Search for Products</h4>
@@ -633,15 +633,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             //Estimate cart event listeners.
             for(let i=0; i<numberOfProducts; i++){    
                 document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {     
-                    let itemQuantity = parseInt(document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML);
-                    itemQuantity = checkQuantityMinAndMax(itemQuantity);
-                    updateCart("remove", "=", i);
+                    let itemNumber = i;
+                    let quantityToSet = document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML;
+                    quantityToSet = checkQuantityMinAndMax(quantityToSet) - 1;
+                    setCart("item=" + itemNumber, "productsItem=" + i, quantityToSet);
                 }, false);
 
-                document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () { 
-                   let itemQuantity = parseInt(document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML);
-                   itemQuantity = checkQuantityMinAndMax(itemQuantity);
-                   updateCart("item", "=", i);
+                document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () {  
+                    let itemNumber = i;
+                    let quantityToSet = document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML;
+                    quantityToSet = checkQuantityMinAndMax(quantityToSet) + 1;
+                    setCart("item=" + itemNumber, "productsItem=" + i, quantityToSet);    
                 }, false);
             }
 
@@ -687,6 +689,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
                         
                         
+                        //Update the product quantities.
                         let numberOfProductsShown = document.getElementsByClassName("product-container").length; //Get the number of products shown to the user.
                         let productQuantitiesHiddenArray = Array();
                         for(let i=0; i<numberOfProducts; i++){                              
@@ -694,8 +697,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             document.getElementsByClassName("product-quantities-hidden")[i].innerHTML = productQuantitiesHidden.innerHTML;
                             productQuantitiesHiddenArray[i] = productQuantitiesHidden.innerHTML;
                         }
-                     
-                     
                         for(let i=0; i<numberOfProductsShown; i++){
                             let product = ajaxDocument.getElementsByClassName("product__quantity-container")[i].innerHTML;
                             
@@ -709,48 +710,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 document.getElementsByClassName("product__quantity-container")[i].innerHTML = "";
                                 document.getElementsByClassName("product__quantity-container")[i].classList.remove("show");
                             }
-                        }             
+                        } 
+
+                        
                         //Recreate event listeners for - and + buttons.
                         reAddEventListeners();
                     }
                 };        
                 xhttp.open("GET", "products.php?" + estimateCartItem + "&productsItem" + productsItem + "&setValue=" + setValue, true);
-                xhttp.send();
-            }
-
-            function updateCart(actionString, operatorString, itemID) {
-                let xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState === 4 && this.status === 200) {
-                        let parser = new DOMParser();
-                        let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
-
-                        let estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
-                        let numberOfItems = ajaxDocument.getElementsByClassName("shopping-cart")[0];
-                        let cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
-
-
-                        document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
-                        document.getElementsByClassName("shopping-cart")[0].innerHTML = numberOfItems.innerHTML;
-                        document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
-                        
-                        let numberOfProductsShown = document.getElementsByClassName("product-container").length; //Get the number of products shown to the user.
-                        for(let i=0; i<numberOfProductsShown; i++){
-                            let product = ajaxDocument.getElementsByClassName("estimate-table__item-quantity")[i];
-                            let productCount = parseInt(product.innerHTML);
-                            if (productCount > 0) {
-                                document.getElementsByClassName("product__quantity-container")[i].innerHTML = "<a href='#estimateCartTitle' class='product__quantity'>" + product.innerHTML + "</a>";
-                                document.getElementsByClassName("product__quantity-container")[i].classList.add("show");
-                            } else {
-                                document.getElementsByClassName("product__quantity-container")[i].innerHTML = "";
-                                document.getElementsByClassName("product__quantity-container")[i].classList.remove("show");
-                            }
-                        }                      
-                        //Recreate event listeners for - and + buttons.
-                        reAddEventListeners();
-                    }
-                };
-                xhttp.open("GET", "products.php?" + actionString + operatorString + itemID, true);
                 xhttp.send();
             }
 
@@ -807,15 +774,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 //Estimate cart event listeners.
                 for(let i=0; i<numberOfProducts; i++){    
                     document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {     
-                        let itemQuantity = parseInt(document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML);
-                        itemQuantity = checkQuantityMinAndMax(itemQuantity);
-                        updateCart("remove", "=", i);
+                        let itemNumber = i;
+                        let quantityToSet = document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML;
+                        quantityToSet = checkQuantityMinAndMax(quantityToSet) - 1;
+                        setCart("item=" + itemNumber, "productsItem=" + i, quantityToSet);
                     }, false);
 
-                    document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () { 
-                       let itemQuantity = parseInt(document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML);
-                       itemQuantity = checkQuantityMinAndMax(itemQuantity);
-                       updateCart("item", "=", i);
+                    document.getElementsByClassName("estimate-table__add__item")[i].addEventListener("click", function () {  
+                        let itemNumber = i;
+                        let quantityToSet = document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML;
+                        quantityToSet = checkQuantityMinAndMax(quantityToSet) + 1;
+                        setCart("item=" + itemNumber, "productsItem=" + i, quantityToSet);    
                     }, false);
                 }
             }
