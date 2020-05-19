@@ -269,6 +269,8 @@ footer { background-color: #fbe3b7; }
 .modal__close-button:hover { background-color: #64460e; transition: 0.6s ease-in; }
 .modal__header { margin-right: 50px; padding-bottom: 10px; }
 .modal__body { padding-bottom: 20px; }
+.subscribe__response-message { font-size: 16px; font-weight: bold; }
+.subscribe__response-message p { padding-bottom: 12px; font-size: inherit; font-weight: bold; }
 
 
 /*General site-specific classes*/
@@ -563,6 +565,7 @@ footer { background-color: #fbe3b7; }
 
     .footer__social, .footer__location, .footer__hours { padding-top: 0px; padding-bottom: 0px; } 
     
+    /*Modal styles*/
     .modal__container { width: 500px; padding: 30px; }
     .modal__header { margin-right: 0; }
     .modal__close-button { top: 15px; right: 15px; }
@@ -640,6 +643,8 @@ footer { background-color: #fbe3b7; }
     .main-title { padding-top: 50px; text-align: right; margin-right: 180px; }
     .header__subtitle { text-align: right; margin-right: 220px; }
 
+    /*Modal styles*/
+    .subscribe__response-message { font-size: 18px; }
     
     /*Index*/
     .item-container__background { height: 360px; }
