@@ -313,7 +313,6 @@ Vue.component('modal', {
 var subscribeApp = new Vue({
     el: '.footer__subscribe',
     data: {
-        showModal: false,
         userNameSubscribe: "",
         userEmailSubscribe: "",
         errors: [],
@@ -393,7 +392,6 @@ Flaky and full of flavor!</div></div>',
     methods: {
         zoomIntoImage: function () {
             this.zoomedIn = !this.zoomedIn;
-            // alert("zoomedin" + this.zoomedIn);
             if (this.zoomedIn) {
                 this.recipe__background.opacity = "0.25";
                 this.recipe__backgroundtext.opacity = "1";

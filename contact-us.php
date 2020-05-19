@@ -7,7 +7,7 @@ require('./wordpress/wp-load.php');
 $transmitResponse = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST['contactButton'])) {
+    if (isset($_POST['userFirstName']) && isset($_POST['userLastName']) && isset($_POST['userEmail']) && isset($_POST['userComments'])) {
         if (isset($_POST['userFirstName'])) {
             $UserFirstName = htmlspecialchars(strip_tags(trim($_POST['userFirstName'])));
         }
@@ -113,7 +113,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <meta name="description" content="Delicius baked goods featured including bread, cookies, pastries, pies, cakes, and more." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="bakery, bread, whole wheat, cookies, scones, pastries, cupcakes, cakes, pies, Oregon" />
-        <title>Contact | Tualatin Top Bakery</title>	   
+        <title>Contact | Tualatin Top Bakery</title>
+        <?php wp_head(); ?><!-- Allow WordPress plugins to use CSS and JavaScript. -->
         <?php include 'assets/include/document-head-components.php'; ?>
     </head>
 
@@ -174,9 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     </div>
                                 </form>
                                 <?php
-                                if (!empty($transmitResponse)) {
                                     echo "<div class=\"contact-container__response-message\">$transmitResponse</div>";
-                                }
                                 ?>
                             </div>
                         </div>
@@ -196,8 +195,46 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 document.addEventListener("DOMContentLoaded", function () {
                     setCurrentPage(7);
                 });
+                
+                
+                // Use AJAX to update part of the page without reloading the whole page.
+                document.getElementById("contactOurBakery").addEventListener("submit", function (event) {
+                    updateServerResponse(event); 
+                }, false);
+
+               function updateServerResponse(event){
+                    event.preventDefault();
+                    let xhttp = new XMLHttpRequest();
+        
+                    xhttp.onreadystatechange = function () { 
+                        if (this.readyState === 4 && this.status === 200) {
+                            let parser = new DOMParser();
+                            let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
+
+                            let message = ajaxDocument.getElementsByClassName("contact-container__response-message")[0];    
+
+                            document.getElementsByClassName("contact-container__response-message")[0].innerHTML = "" + message.innerHTML + "";    
+                            document.getElementsByClassName("contact-container__response-message")[0].classList.add("show");
+                        }
+                    };
+
+                    let userFirstName = document.getElementById("userFirstName").value;  
+                    let userLastName = document.getElementById("userLastName").value;  
+                    let userEmail = document.getElementById("userEmail").value; 
+                    let userSubject = document.getElementById("userSubject").value;    
+                    let userComments = document.getElementById("userComments").value;  
+ 
+                    let formInfo = "userFirstName=" + userFirstName + "&userLastName=" + userLastName + "&userEmail=" + userEmail + "&userSubject=" + 
+                            userSubject + "&userComments=" + userComments;
+
+
+                    xhttp.open("POST", "contact-us.php", true);
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhttp.send(formInfo); 
+                }
             </script>
         </div>
+        <?php wp_footer(); ?><!-- Allow WordPress plugins to use CSS and JavaScript. -->
     </body>
 
 </html>

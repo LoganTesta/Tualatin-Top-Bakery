@@ -2,7 +2,7 @@
 $transmitResponseSubscribe = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST['subscribeButton'])) {
+    if (isset($_POST['userNameSubscribe']) && isset($_POST['userEmailSubscribe'])) {
         if (isset($_POST['userNameSubscribe'])) {
             $UserNameSubscribe = htmlspecialchars(strip_tags(trim($_POST['userNameSubscribe'])));
         }
@@ -110,11 +110,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </script>       
 
                 <div class="footer__subscribe">
-                    <div class="footer__subscribe-button" @click="showModal=true">
+                    <div class="footer__subscribe-button">
                         <div class="footer__subscribe-button__extra-bg-layer"></div>
                         <div class="footer__subscribe-button__bg"><span class="footer__subscribe-button__text">Subscribe for Discounts/Cookies!</span></div> 
                     </div>
-                    <modal v-if="showModal" @close="showModal=false">
+                    <modal class="footer__modal">
                         <h3 slot="header">Subscribe for News + Coupons</h3>
                         <div slot="body">
                             <p>Get news on upcoming events and sweet discounts on bakery products!  All new subscribers get a free cookie coupon 
@@ -141,9 +141,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     <button class="input-container__contact-button" id="subscribeButton" name="subscribeButton" type="submit" @click="setClickedSubmitTrue">Subscribe!</button>                          
                                 </div>                              
                             </form>
-                            <?php if (!empty($transmitResponseSubscribe)) {
-                                echo "<div class=\"contact-container__response-message\">$transmitResponseSubscribe</div>";
-                            } ?>
+                            <?php 
+                                echo "<div class=\"subscribe__response-message\">$transmitResponseSubscribe</div>";
+                            ?>
                         </div>
                         <div slot="footer">
                             <span>Enjoy!</span>
