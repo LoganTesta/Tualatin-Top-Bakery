@@ -193,6 +193,7 @@ function resetEstimateCart() {
     $_SESSION["totalCost"] = number_format(0.00, 2);
     for ($i = 0; $i < count($_SESSION["products"]); $i++) {
         $_SESSION["quantity"][$i] = 0;
+        $_SESSION["shownProductsQuantity"] = 0;
         $_SESSION["itemSubtotal"][$i] = number_format(0.00, 2);
     }
 }
@@ -585,50 +586,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
         <script type="text/javascript">
             // Use AJAX to update part of the page without reloading the whole page.
-            document.getElementById("estimateForm").addEventListener("submit", function (event) {
-                updateServerResponse(event); 
-            }, false);
-
-           function updateServerResponse(event){
-                event.preventDefault();
-                let xhttp = new XMLHttpRequest();
-
-                xhttp.onreadystatechange = function () { 
-                    if (this.readyState === 4 && this.status === 200) {
-                        let parser = new DOMParser();
-                        let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
-
-                        let message = ajaxDocument.getElementsByClassName("contact-container__response-message")[0];    
-
-                        document.getElementsByClassName("contact-container__response-message")[0].innerHTML = "" + message.innerHTML + "";    
-                        document.getElementsByClassName("contact-container__response-message")[0].classList.add("show");
-                    }
-                };
-
-                let userName = document.getElementById("userName").value;  
-                let userEmail = document.getElementById("userEmail").value;  
-                let userPhone = document.getElementById("userPhone").value;    
-                let userStreetAddress = document.getElementById("userStreetAddress").value;  
-                let userCity = document.getElementById("userCity").value;  
-                let userState = document.getElementById("userState").value;  
-                let userZipCode = document.getElementById("userZipCode").value;  
-                let additionalNotes = document.getElementById("additionalNotes").value;  
-
-                let formInfo = "userName=" + userName + "&userEmail=" + userEmail + "&userPhone=" + userPhone + "&userStreetAddress=" + userStreetAddress 
-                        + "&userCity=" + userCity + "&userState=" + userState + "&userZipCode=" + userZipCode + "&additionalNotes=" + additionalNotes;
-
-
-                xhttp.open("POST", "products.php", true);
-                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send(formInfo); 
-            }
-        </script>
-        <script type="text/javascript">
-            //Use AJAX to update the cart without reloading the page.
             let numberOfProducts = document.getElementsByClassName("product-container").length;
-
-
-            //Add event listeners.
+            
+            //Add event listeners.         
             //Header, search event listeners.        
             document.getElementById("searchButton").addEventListener("click", function () {
                 let searchByCategory = "" + document.getElementById("searchByCategory").value;
@@ -685,9 +645,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     setCart("item=" + itemNumber, "productsItem=" + i, quantityToSet);    
                 }, false);
             }
-
+            
+            
+            //Reset cart listener.
             document.getElementsByClassName("reset-cart")[0].addEventListener("click", function () {
                 resetCart("resetCart", "=");
+            }, false);
+            
+            
+            //Estimate form listener.
+            document.getElementById("estimateForm").addEventListener("submit", function (event) {
+                updateServerResponse(event); 
             }, false);
             
             
@@ -709,6 +677,78 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     setValue = 100;
                 }
                 return setValue;
+            }
+            
+            function updateServerResponse(event){
+                event.preventDefault();
+                let xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function () { 
+                    if (this.readyState === 4 && this.status === 200) {
+                        let parser = new DOMParser();
+                        let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
+
+                        //Update form message
+                        let message = ajaxDocument.getElementsByClassName("contact-container__response-message")[0];    
+
+                        document.getElementsByClassName("contact-container__response-message")[0].innerHTML = "" + message.innerHTML + "";    
+                        document.getElementsByClassName("contact-container__response-message")[0].classList.add("show");
+                        
+                        
+                        //Update products, cart icon, estimate cart.
+                        let estimateTable = ajaxDocument.getElementsByClassName("estimate-table")[0];
+                        let numberOfItems = ajaxDocument.getElementsByClassName("shopping-cart")[0];
+                        let cartTotal = ajaxDocument.getElementsByClassName("cart-total")[0];
+
+
+                        document.getElementsByClassName("estimate-table")[0].innerHTML = estimateTable.innerHTML;
+                        document.getElementsByClassName("shopping-cart")[0].innerHTML = numberOfItems.innerHTML;
+                        document.getElementsByClassName("cart-total")[0].innerHTML = cartTotal.innerHTML;
+                        
+                        
+                        //Update the product quantities.
+                        let numberOfProductsShown = document.getElementsByClassName("product-container").length; //Get the number of products shown to the user.           
+                        let productQuantitiesHiddenArray = Array();
+                        for(let i=0; i<numberOfProducts; i++){                              
+                            let productQuantitiesHidden = ajaxDocument.getElementsByClassName("product-quantities-hidden")[i];
+                            document.getElementsByClassName("product-quantities-hidden")[i].innerHTML = productQuantitiesHidden.innerHTML;
+                            productQuantitiesHiddenArray[i] = productQuantitiesHidden.innerHTML;
+                        }
+                        for(let i=0; i<numberOfProductsShown; i++){
+                            let product = ajaxDocument.getElementsByClassName("product__quantity-container")[i].innerHTML;
+                            
+                            let productClass = document.getElementsByClassName("product-container")[i].classList.item(2);
+                            let productCount = productQuantitiesHiddenArray[productClass];
+
+                            if (productCount > 0) {
+                                document.getElementsByClassName("product__quantity-container")[i].innerHTML = "<a href='#estimateCartTitle' class='product__quantity'>" + productCount + "</a>";
+                                document.getElementsByClassName("product__quantity-container")[i].classList.add("show");
+                            } else {
+                                document.getElementsByClassName("product__quantity-container")[i].innerHTML = "";
+                                document.getElementsByClassName("product__quantity-container")[i].classList.remove("show");
+                            }
+                        } 
+                        //Recreate event listeners for - and + buttons.
+                        reAddEventListeners();
+                    }
+                };
+
+                let userName = document.getElementById("userName").value;  
+                let userEmail = document.getElementById("userEmail").value;  
+                let userPhone = document.getElementById("userPhone").value;    
+                let userStreetAddress = document.getElementById("userStreetAddress").value;  
+                let userCity = document.getElementById("userCity").value;  
+                let userState = document.getElementById("userState").value;  
+                let userZipCode = document.getElementById("userZipCode").value;  
+                let additionalNotes = document.getElementById("additionalNotes").value;  
+
+                let formInfo = "userName=" + userName + "&userEmail=" + userEmail + "&userPhone=" + userPhone + "&userStreetAddress=" + userStreetAddress 
+                        + "&userCity=" + userCity + "&userState=" + userState + "&userZipCode=" + userZipCode + "&additionalNotes=" + additionalNotes;
+
+
+                xhttp.open("POST", "products.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send(formInfo); 
             }
 
             function setCart(estimateCartItem, productsItem, setValue) {
@@ -749,9 +789,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 document.getElementsByClassName("product__quantity-container")[i].innerHTML = "";
                                 document.getElementsByClassName("product__quantity-container")[i].classList.remove("show");
                             }
-                        } 
-
-                        
+                        }  
                         //Recreate event listeners for - and + buttons.
                         reAddEventListeners();
                     }
