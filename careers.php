@@ -219,44 +219,45 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 document.addEventListener("DOMContentLoaded", function () {
                     setCurrentPage(5);
                 });
-                
-                // Use AJAX to update part of the page without reloading the whole page.
-                document.getElementById("careersForm").addEventListener("submit", function (event) {
-                    updateServerResponse(event); 
-                }, false);
-
-               function updateServerResponse(event){
-                    event.preventDefault();
-                    let xhttp = new XMLHttpRequest();
-        
-                    xhttp.onreadystatechange = function () { 
-                        if (this.readyState === 4 && this.status === 200) {
-                            let parser = new DOMParser();
-                            let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
-
-                            let message = ajaxDocument.getElementsByClassName("contact-container__response-message")[0];    
-                            
-                            document.getElementsByClassName("contact-container__response-message")[0].innerHTML = "" + message.innerHTML + "";    
-                            document.getElementsByClassName("contact-container__response-message")[0].classList.add("show");
-                        }
-                    };
-
-                    let userName = document.getElementById("userName").value;  
-                    let userEmail = document.getElementById("userEmail").value;  
-                    let positionApplyingFor = document.getElementById("positionApplyingFor").value;    
-                    let userResume = document.getElementById("userResume").value;  
-                    let coverLetter = document.getElementById("coverLetter").value;  
-                    
-                    let formInfo = "userName=" + userName + "&userEmail=" + userEmail + "&positionApplyingFor=" + 
-                            positionApplyingFor + "&userResume=" + userResume + "&coverLetter=" + coverLetter;
-
-
-                    xhttp.open("POST", "careers.php", true);
-                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    xhttp.send(formInfo); 
-                }
             </script>
         </div>
+        <script type="text/javascript">
+            // Use AJAX to update part of the page without reloading the whole page.
+            document.getElementById("careersForm").addEventListener("submit", function (event) {
+                updateServerResponse(event); 
+            }, false);
+
+           function updateServerResponse(event){
+                event.preventDefault();
+                let xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function () { 
+                    if (this.readyState === 4 && this.status === 200) {
+                        let parser = new DOMParser();
+                        let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
+
+                        let message = ajaxDocument.getElementsByClassName("contact-container__response-message")[0];    
+
+                        document.getElementsByClassName("contact-container__response-message")[0].innerHTML = "" + message.innerHTML + "";    
+                        document.getElementsByClassName("contact-container__response-message")[0].classList.add("show");
+                    }
+                };
+
+                let userName = document.getElementById("userName").value;  
+                let userEmail = document.getElementById("userEmail").value;  
+                let positionApplyingFor = document.getElementById("positionApplyingFor").value;    
+                let userResume = document.getElementById("userResume").value;  
+                let coverLetter = document.getElementById("coverLetter").value;  
+
+                let formInfo = "userName=" + userName + "&userEmail=" + userEmail + "&positionApplyingFor=" + 
+                        positionApplyingFor + "&userResume=" + userResume + "&coverLetter=" + coverLetter;
+
+
+                xhttp.open("POST", "careers.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send(formInfo); 
+            }
+        </script>
     </body>
 
 </html>

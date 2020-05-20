@@ -201,7 +201,8 @@ function resetEstimateCart() {
 $transmitResponse = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST['estimateButton'])) {
+    if (isset($_POST['userName']) && isset($_POST['userEmail']) && isset($_POST['userPhone']) && isset($_POST['userStreetAddress']) &&
+            isset($_POST['userCity'])&& isset($_POST['userState']) && isset($_POST['userZipCode'])) {
         if (isset($_POST['userName'])) {
             $UserName = htmlspecialchars(strip_tags(trim($_POST['userName'])));
         }
@@ -565,9 +566,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     </div>
                                 </form>
                                 <?php
-                                if (!empty($transmitResponse)) {
                                     echo "<div class=\"contact-container__response-message\">$transmitResponse</div>";
-                                }
                                 ?>
                             </div>
                         </div>
@@ -584,6 +583,46 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 });
             </script>
         </div>
+        <script type="text/javascript">
+            // Use AJAX to update part of the page without reloading the whole page.
+            document.getElementById("estimateForm").addEventListener("submit", function (event) {
+                updateServerResponse(event); 
+            }, false);
+
+           function updateServerResponse(event){
+                event.preventDefault();
+                let xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function () { 
+                    if (this.readyState === 4 && this.status === 200) {
+                        let parser = new DOMParser();
+                        let ajaxDocument = parser.parseFromString(this.responseText, "text/html");
+
+                        let message = ajaxDocument.getElementsByClassName("contact-container__response-message")[0];    
+
+                        document.getElementsByClassName("contact-container__response-message")[0].innerHTML = "" + message.innerHTML + "";    
+                        document.getElementsByClassName("contact-container__response-message")[0].classList.add("show");
+                    }
+                };
+
+                let userName = document.getElementById("userName").value;  
+                let userEmail = document.getElementById("userEmail").value;  
+                let userPhone = document.getElementById("userPhone").value;    
+                let userStreetAddress = document.getElementById("userStreetAddress").value;  
+                let userCity = document.getElementById("userCity").value;  
+                let userState = document.getElementById("userState").value;  
+                let userZipCode = document.getElementById("userZipCode").value;  
+                let additionalNotes = document.getElementById("additionalNotes").value;  
+
+                let formInfo = "userName=" + userName + "&userEmail=" + userEmail + "&userPhone=" + userPhone + "&userStreetAddress=" + userStreetAddress 
+                        + "&userCity=" + userCity + "&userState=" + userState + "&userZipCode=" + userZipCode + "&additionalNotes=" + additionalNotes;
+
+
+                xhttp.open("POST", "products.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send(formInfo); 
+            }
+        </script>
         <script type="text/javascript">
             //Use AJAX to update the cart without reloading the page.
             let numberOfProducts = document.getElementsByClassName("product-container").length;
@@ -830,8 +869,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         setCart("item=" + itemNumber, "productsItem=" + i, quantityToSet);
                     }, false);
                 }
-            }
-            
+            }           
         </script>
     </body>
 
