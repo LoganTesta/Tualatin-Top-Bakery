@@ -13,7 +13,6 @@ require('./wordpress/wp-load.php');
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="bakery, bread, whole wheat, cookies, scones, pastries, cupcakes, cakes, pies, Oregon" />
         <title>About | Tualatin Top Bakery</title>
-        <?php wp_head(); ?><!-- Allow WordPress plugins to use CSS and JavaScript. -->
         <?php include 'assets/include/document-head-components.php'; ?>
     </head>
 
@@ -58,7 +57,6 @@ require('./wordpress/wp-load.php');
                 });
             </script>
         </div>
-        <?php wp_footer(); ?><!-- Allow WordPress plugins to use CSS and JavaScript. -->
     </body>
 
 </html>

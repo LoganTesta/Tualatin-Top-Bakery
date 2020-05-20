@@ -178,3 +178,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
     </div>
 </footer>
+<?php wp_footer(); ?><!-- Allow WordPress plugins to use CSS and JavaScript. -->
