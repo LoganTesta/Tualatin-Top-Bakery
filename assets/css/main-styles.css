@@ -167,6 +167,7 @@ Monochromatic color scheme.
 2:     #64460e   mid dark brown     (100, 74, 14)
 3:     #fbe3b7   light brown        (251, 227, 183)
 
+4:     #785410   mid brown          (120, 84, 16)
 4:     #d0b177   mid-light brown    (208, 177, 119)
 5:     #fff2d9   very light brown   (255, 242, 217)
 */
@@ -497,7 +498,7 @@ footer { background-color: #fbe3b7; }
 .blog-controls__control .input-container:nth-of-type(1) { padding-left: 0; }
 .blog-controls { padding-bottom: 20px; }
 .blog-controls__control { display: inline-block; border-radius: 5px; font-weight: bold; }
-.blog-controls__button { padding: 15px 10px; border-radius: 5px; font-weight: bold; background-color: #ac8949; color: #ffffff; cursor: pointer; }
+.blog-controls__button { padding: 15px 10px; border-radius: 15px; font-weight: bold; background-color: #64460e; color: #ffffff; cursor: pointer; }
 
 .blog-posts__message { width: 270px; color: #64460e; font-size: 20px; font-weight: bold; }
 .blog-posts { padding-top: 20px; }
@@ -522,7 +523,7 @@ footer { background-color: #fbe3b7; }
 .input-container__input { }
 .input-container__contact-button { padding: 15px 10px; color: #fbe3b7; background-color: #64460e; border: 1px solid #64460e; 
                                   border-radius: 15px; text-align: center; cursor: pointer; transition: 0.4s ease-in; }
-.input-container__contact-button:hover { color: #64460e; background-color:#fbe3b7; transition: 0.4s ease-in; }
+.input-container__contact-button:hover { background-color: #8d6313; transition: 0.4s ease-in; }
 
 .contact-us-container__background { height: 240px; background: url('../images/dough-and-roller.jpg') 0% 0%/cover no-repeat; }
 
