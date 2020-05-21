@@ -167,7 +167,7 @@ Monochromatic color scheme.
 2:     #64460e   mid dark brown     (100, 74, 14)
 3:     #fbe3b7   light brown        (251, 227, 183)
 
-4:     #785410   mid brown          (120, 84, 16)
+4:     #785410   mid brown          (141, 99, 19)
 4:     #d0b177   mid-light brown    (208, 177, 119)
 5:     #fff2d9   very light brown   (255, 242, 217)
 */
@@ -249,8 +249,8 @@ footer { background-color: #fbe3b7; }
 .footer__copyright { padding-bottom: 30px; text-align: center; }
 .footer__social { text-align: center; }
 .footer__social-logo { display: inline-block; padding: 0 15px; }
-.footer__social .footer__social-logo__link { color: #64460e; transition: 0.2s ease-in; }
-.footer__social .footer__social-logo__link:hover { color: #ac8949; transition: 0.2s ease-in; }
+.footer__social .footer__social-logo__link { color: #64460e; transition: 0.4s ease-in; }
+.footer__social .footer__social-logo__link:hover { color: #ac8949; transition: 0.4s ease-in; }
 .footer__location { text-align: center; }
 .footer__hours { text-align: center; }
 .footer__hours__day { padding-bottom: 15px; }
@@ -266,8 +266,8 @@ footer { background-color: #fbe3b7; }
 .modal__mask.show { display: table; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; background-color: rgba(0,0,0,0.5); }
 .modal__wrapper { display: table-cell; vertical-align: middle; }
 .modal__container { position: relative; width: 80%; padding: 10px; margin: 0 auto; border-radius: 20px; background-color: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0, 0.6); }
-.modal__close-button { position: absolute; top: 10px; right: 10px; padding: 10px; border-radius: 10px; background-color: #ac8949; color: #fbe3b7; cursor: pointer; transition: 0.6s ease-in; }
-.modal__close-button:hover { background-color: #64460e; transition: 0.6s ease-in; }
+.modal__close-button { position: absolute; top: 10px; right: 10px; padding: 10px; border-radius: 10px; background-color: #64460e; color: #fbe3b7; cursor: pointer; transition: 0.6s ease-in; }
+.modal__close-button:hover { background-color: #785410; transition: 0.6s ease-in; }
 .modal__header { margin-right: 50px; padding-bottom: 10px; }
 .modal__body { padding-bottom: 20px; }
 .subscribe__response-message { font-size: 16px; font-weight: bold; }
@@ -463,7 +463,7 @@ footer { background-color: #fbe3b7; }
 /* (Recipe more info) */
 .recipeShowMoreInfo-enter-active, .recipeShowMoreInfo-leave-active { transition: opacity 0.8s ease-in; }
 .recipeShowMoreInfo-enter, .recipeShowMoreInfo-leave-to { opacity: 0; }
-.recipe-more-info__button { width: 102px; padding: 10px; margin-top: 10px; margin-bottom: 10px; font-size: 18px; font-weight: bold; border-radius: 15px; 
+.recipe-more-info__button { width: 102px; padding: 15px 10px; margin-top: 10px; margin-bottom: 10px; font-size: 18px; font-weight: bold; border-radius: 15px; 
                             color: #ffffff; background-color: #64460e; cursor: pointer; }
 
 
