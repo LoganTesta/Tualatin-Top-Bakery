@@ -64,6 +64,7 @@ $productSearchText = "";
 $searchedProducts = false;
 
 $_SESSION["searchByCategory"] = strtolower("" . $_GET['searchByCategory']);
+$_SESSION["orderByOptions"] = "" . $_GET['orderByOptions'];
 
 
 if ($_SESSION["searchByCategory"] !== "") {
@@ -88,16 +89,49 @@ if ($_SESSION["searchByCategory"] !== "" && $_SESSION["searchByCategory"] !== nu
 }
 
 
+if ($_GET["orderByOptions"] === "Name (Alphabetical)") {
+    usort($_SESSION["products"], "compare_names");
+} else if ($_GET["orderByOptions"] === "Name (Reverse Alphabetical)") {
+    usort($_SESSION["products"], "compare_names_reverse");
+} else if ($_GET["orderByOptions"] === "Price (Ascending)") {
+    usort($_SESSION["products"], "compare_prices");
+} else if ($_GET["orderByOptions"] === "Price (Descending)") {
+    usort($_SESSION["products"], "compare_prices_reverse");
+} else {
+    $_SESSION["orderByOptions"] = "";
+}
+
+reorderProdQuantities();
+
+//Loop through the products, set the class order equal to the products new order.  Then set the product quantity for the product cards equal to the new order.
+function reorderProdQuantities(){
+    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
+        $_SESSION["classOrder"][$i] = $_SESSION["products"][$i]->get_classInt(); 
+    }
+    
+    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
+        $_SESSION["prodQuantity"][$i] = $_SESSION["quantity"][$_SESSION["classOrder"][$i]];
+    }
+}
+
+
 if ($searchedProducts === false) {
     $productSearchText = "Showing all products.";
 } else {
     $categoryProductText = "";
+    $orderByText = "";
     if ($_SESSION["searchByCategory"] === "") {
         $categoryProductText = "products";
     } else {
         $categoryProductText = $_SESSION["searchByCategory"];
     }
-    $productSearchText .= "Showing " . $categoryProductText . ".";
+
+    if ($_SESSION["orderByOptions"] === "") {
+        $orderByText = "";
+    } else {
+        $orderByText = " ordered by " . $_SESSION["orderByOptions"];
+    }
+    $productSearchText = "Showing " . $categoryProductText . $orderByText . ".";
 }
 
 function compare_names($a, $b){
@@ -143,10 +177,14 @@ if (isset($_SESSION["estimateCart"])) {
     //After setting the quantities array, then set the quantities for the shown products.
     $_SESSION["shownProductsQuantity"] = array();
     for ($i = 0; $i < count($_SESSION["products"]); $i++) {
-        if (intval($_SESSION["products"][$i]->get_classInt()) === $i) {
-            $_SESSION["shownProductsQuantity"][$i] = $_SESSION["quantity"][$i];
+        if ($_SESSION["orderByOptions"] === "") {
+            if (intval($_SESSION["products"][$i]->get_classInt()) === $i) {
+                $_SESSION["shownProductsQuantity"][$i] = $_SESSION["quantity"][$i];
+            } else {
+                $_SESSION["shownProductsQuantity"][$i] = 0;
+            }
         } else {
-            $_SESSION["shownProductsQuantity"][$i] = 0;
+            $_SESSION["shownProductsQuantity"][$i] = $_SESSION["quantity"][$_SESSION["products"][$i]->get_classInt()];
         }
     }
 
@@ -424,6 +462,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         </select>
                                     </div>
                                     <div class="input-container product-search-container">
+                                        <label class="input-container__label" for="orderByOptions"><strong>Order By</strong></label>
+                                        <select type="text" class="product-search__select" id="orderByOptions" name="orderByOptions">
+                                            <option value=""></option>                        
+                                            <option value="Name (Alphabetical)" <?php if($_SESSION["orderByOptions"] === "Name (Alphabetical)"){ echo "selected='selected'"; } ?> >Name (Alphabetical)</option>
+                                            <option value="Name (Reverse Alphabetical)" <?php if($_SESSION["orderByOptions"] === "Name (Reverse Alphabetical)"){ echo "selected='selected'"; } ?> >Name (Reverse Alphabetical)</option>                                    
+                                            <option value="Price (Ascending)" <?php if($_SESSION["orderByOptions"] === "Price (Ascending)"){ echo "selected='selected'"; } ?> >Price (Ascending)</option>
+                                            <option value="Price (Descending)" <?php if($_SESSION["orderByOptions"] === "Price (Descending)"){ echo "selected='selected'"; } ?> >Price (Descending)</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-container product-search-container">
                                         <div class="input-container__contact-button" id="searchButton" name="searchButton">Search</div>                          
                                     </div>
                                 </div>
@@ -592,7 +640,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             //Header, search event listeners.        
             document.getElementById("searchButton").addEventListener("click", function () {
                 let searchByCategory = "" + document.getElementById("searchByCategory").value;
-                updateProductsShown("searchByCategory=" + searchByCategory);
+                let orderByOptions = "" + document.getElementById("orderByOptions").value;
+                updateProductsShown("searchByCategory=" + searchByCategory, "orderByOptions=" + orderByOptions);
             }, false);
             
             
@@ -825,7 +874,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 xhttp.send();
             }
             
-            function updateProductsShown(searchByCategoryString){
+            function updateProductsShown(searchByCategoryString, orderByOptionsString){
                 var xhttp = new XMLHttpRequest();   
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
@@ -841,8 +890,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         reAddEventListenersAfterSearching();  
                     }
                 };
-
-                xhttp.open("GET", "products.php?" + searchByCategoryString, true);
+                xhttp.open("GET", "products.php?" + searchByCategoryString + "&" + orderByOptionsString, true);
                 xhttp.send();   
             }
             
@@ -872,7 +920,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 //Header, search event listeners.        
                 document.getElementById("searchButton").addEventListener("click", function () {
                     let searchByCategory = "" + document.getElementById("searchByCategory").value;
-                    updateProductsShown("searchByCategory=" + searchByCategory);
+                    let orderByOptions = "" + document.getElementById("orderByOptions").value;
+                    updateProductsShown("searchByCategory=" + searchByCategory, "orderByOptions=" + orderByOptions);
                 }, false);
 
 
