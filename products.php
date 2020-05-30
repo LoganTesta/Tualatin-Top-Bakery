@@ -28,7 +28,6 @@ $RyeBread = new Product("Rye Bread", "eight", "8", "", 2.95, "breads", "", "Hear
 
 
 $products = array($WholeWheatLoaf, $WhiteBreadLoaf, $BlueberryScone, $ChocolateCake, $CherryPie, $BlueberryPie, $BlueberryMuffin, $ChocolateCupcake, $RyeBread);
-$quantities = array();
 $itemSubtotal = array();
 
 
