@@ -60,14 +60,14 @@ if (isset($_SESSION["estimateCart"]) === false) {
 
 //Product searching.
 $productSearchText = "";
-$searchedProducts = false;
+$emptyForm = false;
 
 $_SESSION["searchByCategory"] = strtolower("" . $_GET['searchByCategory']);
 $_SESSION["orderByOptions"] = "" . $_GET['orderByOptions'];
 
 
-if ($_SESSION["searchByCategory"] !== "") {
-    $searchedProducts = true;
+if ($_SESSION["searchByCategory"] === "" && $_SESSION["orderByOptions"] === "") {
+    $emptyForm = true;
 }
 
 $searchedForProducts = array();
@@ -114,13 +114,13 @@ function reorderProdQuantities(){
 }
 
 
-if ($searchedProducts === false) {
+if ($emptyForm) {
     $productSearchText = "Showing all products.";
 } else {
     $categoryProductText = "";
     $orderByText = "";
     if ($_SESSION["searchByCategory"] === "") {
-        $categoryProductText = "products";
+        $categoryProductText = " all products";
     } else {
         $categoryProductText = $_SESSION["searchByCategory"];
     }
