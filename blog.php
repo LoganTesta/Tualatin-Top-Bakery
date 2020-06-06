@@ -28,9 +28,9 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
 $orderByOutputText = "";
 $orderText = "";
 if($_SESSION["order"] == "asc"){
-    $orderText = ", ascending";
+    $orderText = " (ascending)";
 } else if ($_SESSION["order"] === "desc"){
-    $orderText = ", descending";
+    $orderText = " (descending)";
 } else {
    $orderText = ""; 
 }
