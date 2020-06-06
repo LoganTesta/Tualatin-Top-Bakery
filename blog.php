@@ -24,6 +24,18 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
         $_SESSION["order"] = "desc";
     }
 }
+
+$orderByOutputText = "";
+$orderText = "";
+if($_SESSION["order"] == "asc"){
+    $orderText = ", ascending";
+} else if ($_SESSION["order"] === "desc"){
+    $orderText = ", descending";
+} else {
+   $orderText = ""; 
+}
+$orderByOutputText = "Order by " . $_SESSION["orderBy"] . $orderText . ".";
+        
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +85,7 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
                                         <button class="blog-controls__button" id="blogControlButton1" name="blogControlButton1" type="submit">Order By Title</button>                          
                                     </div>
                                 </form>  
-                                <?php echo "<div class='blog-posts__message'>Order by " . $_SESSION["orderBy"] . ", " . $_SESSION["order"] . "</div>"; ?>
+                                <?php echo "<div class='blog-posts__message'>" . $orderByOutputText . "</div>"; ?>
                             </div>
                             <div class="clear-both"></div>
                         </div>
