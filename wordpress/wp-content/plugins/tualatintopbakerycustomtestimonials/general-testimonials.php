@@ -296,6 +296,7 @@ if ( $_GET[ 'post_type' ] === "general-testimonials" ){
 
 //Register the shortcode so we can show testimonials.
 function gt_load_testimonials( $a ) {
+    $pluginContainer = "";
     $args = array(
         "post_type" => "general-testimonials"
     );
@@ -314,9 +315,9 @@ function gt_load_testimonials( $a ) {
 
     //Get all testimonials.
     $posts = get_posts($args);
-    echo '<div class="testimonials-container">';
-    echo '<h3 class="testimonials-container__heading">' . get_option( 'general-testimonials-leading-text' ) . '</h3>';
-    echo '<div class="testimonials-container__inner-wrapper">';
+    $pluginContainer .= '<div class="testimonials-container">';
+    $pluginContainer .= '<h3 class="testimonials-container__heading">' . get_option( 'general-testimonials-leading-text' ) . '</h3>';
+    $pluginContainer .= '<div class="testimonials-container__inner-wrapper">';
     
     $numberToDisplay = get_option( 'general-testimonials-number-to-display' );
     if( $numberToDisplay === "" ) {
@@ -331,30 +332,31 @@ function gt_load_testimonials( $a ) {
             $providedName = gt_get_testimonialprovidedname( $post );
             $label = gt_get_testimoniallabel( $post );
             $link = gt_get_url( $post );
-            echo '<div class="testimonial">';
+            $pluginContainer .= '<div class="testimonial">';
             if ( !empty( $url_thumb ) ) {
-                echo '<img class="testimonial__image" src="' . $url_thumb . '" alt="' . $url_altText . '" />';
+                $pluginContainer .= '<img class="testimonial__image" src="' . $url_thumb . '" alt="' . $url_altText . '" />';
             }
-            echo '<h4 class="testimonial__title">' . $post->post_title . '</h4>';
+            $pluginContainer .= '<h4 class="testimonial__title">' . $post->post_title . '</h4>';
             if ( !empty( $post->post_content ) ) {
-                echo '<p class="testimonial__content">' . $post->post_content . '</p>';
+                $pluginContainer .= '<p class="testimonial__content">' . $post->post_content . '</p>';
             }
             if ( !empty( $providedName ) ) {
                 if (!empty( $link )) {
-                    echo '<span class="testimonial__provided-name"><a class="testimonial__link" href="' . $link . '" target="__blank">' . $providedName . '</a></span>';
+                    $pluginContainer .= '<span class="testimonial__provided-name"><a class="testimonial__link" href="' . $link . '" target="__blank">' . $providedName . '</a></span>';
                 } else {
-                    echo '<span class="testimonial__provided-name">' . $providedName . '</span>';
+                    $pluginContainer .= '<span class="testimonial__provided-name">' . $providedName . '</span>';
                 }
             }
             if ( !empty( $label ) ) {
-                echo '<span class="testimonial__label">, ' . $label . '</span>';
+                $pluginContainer .= '<span class="testimonial__label">, ' . $label . '</span>';
             }
-            echo '</div>';
+            $pluginContainer .= '</div>';
         }
         $count++;
     }
-    echo '</div>';
-    echo '</div>';
+    $pluginContainer .= '</div>';
+    $pluginContainer .= '</div>';
+    return $pluginContainer;
 }
 add_shortcode( "general_testimonials", "gt_load_testimonials" );
 add_filter( 'widget_text', 'do_shortcode' );
