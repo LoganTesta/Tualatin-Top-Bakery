@@ -59,6 +59,10 @@ if ( $generalTestimonialsFloatImageDirection === "left" ) {
 
 
 @media only screen and (min-width: 700px){
+     /* Clearing variable width columns */
+    .testimonials-container__inner-wrapper .testimonial:nth-child(<?php echo $numberOfTestimonialsPerRow; ?>n+1){ content: ""; display: block; clear: both; }  
+
+    
     .testimonial { float: left; width: <?php echo $testimonialWidth; ?>%; padding: 0 20px 15px 20px; }
     
     .testimonial__image { float: <?php echo $generalTestimonialsFloatImageDirection; ?>; margin-left: <?php echo $generalTestimonialsImageTabletPlusMarginLeft; ?>; margin-right: <?php echo $generalTestimonialsImageTabletPlusMarginRight; ?>; }
