@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Tualatin Top Bakery: General Testimonials
+ * Plugin Name: General Testimonials
  * Plugin URI: https://www.tualatintopbakery.com/general-testimonials
  * Version: 1.0
  * Author: Tualatin Top Bakery
@@ -348,7 +348,11 @@ function gt_load_testimonials( $a ) {
                 }
             }
             if ( !empty( $label ) ) {
-                $pluginContainer .= '<span class="testimonial__label">, ' . $label . '</span>';
+                if ( !empty( $providedName ) ) {
+                    $pluginContainer .= '<span class="testimonial__label">, ' . $label . '</span>';
+                } else {
+                    $pluginContainer .= '<span class="testimonial__label">' . $label . '</span>';
+                }
             }
             $pluginContainer .= '</div>';
         }
