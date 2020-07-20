@@ -58,10 +58,10 @@ var contactUpdatedResponseApp = new Vue({
                 document.forms["contactOurBakery"]["userLastName"].classList.remove("required-field-needed");
             }
 
-            var atPosition = this.userEmail.indexOf("@");
-            var dotPosition = this.userEmail.lastIndexOf(".");
-            var lastEmailCharacter = this.userEmail.length - 1;
-            var validEmail = true;
+            let atPosition = this.userEmail.indexOf("@");
+            let dotPosition = this.userEmail.lastIndexOf(".");
+            let lastEmailCharacter = this.userEmail.length - 1;
+            let validEmail = true;
             if (!this.userEmail) {
                 validEmail = false;
             } else if (atPosition <= 0) {
@@ -97,7 +97,7 @@ var contactUpdatedResponseApp = new Vue({
     },
     computed: {       
         writeResponse: function () {
-            var response = this.userFirstName + " " + this.userLastName;          
+            let response = this.userFirstName + " " + this.userLastName;          
             if (this.clickedSubmit) {
                 this.validateForm(event);
             }         
@@ -134,10 +134,10 @@ var estimateUpdatedResponseApp = new Vue({
                 document.forms["estimateForm"]["userName"].classList.remove("required-field-needed");
             }
 
-            var atPosition = this.userEmail.indexOf("@");
-            var dotPosition = this.userEmail.lastIndexOf(".");
-            var lastEmailCharacter = this.userEmail.length - 1;
-            var validEmail = true;
+            let atPosition = this.userEmail.indexOf("@");
+            let dotPosition = this.userEmail.lastIndexOf(".");
+            let lastEmailCharacter = this.userEmail.length - 1;
+            let validEmail = true;
             if (!this.userEmail) {
                 validEmail = false;
             } else if (atPosition <= 0) {
@@ -214,7 +214,7 @@ var estimateUpdatedResponseApp = new Vue({
     },
     computed: {
         writeResponse: function () {
-            var response = this.userName;     
+            let response = this.userName;     
             if (this.clickedSubmit) {
                 this.validateForm(event);
             }         
@@ -247,10 +247,10 @@ var careersUpdatedResponseApp = new Vue({
                 document.forms["careersForm"]["userName"].classList.remove("required-field-needed");
             }
 
-            var atPosition = this.userEmail.indexOf("@");
-            var dotPosition = this.userEmail.lastIndexOf(".");
-            var lastEmailCharacter = this.userEmail.length - 1;
-            var validEmail = true;
+            let atPosition = this.userEmail.indexOf("@");
+            let dotPosition = this.userEmail.lastIndexOf(".");
+            let lastEmailCharacter = this.userEmail.length - 1;
+            let validEmail = true;
             if (!this.userEmail) {
                 validEmail = false;
             } else if (atPosition <= 0) {
@@ -293,7 +293,7 @@ var careersUpdatedResponseApp = new Vue({
     },
     computed: {
         writeResponse: function () {
-            var response = this.userName;     
+            let response = this.userName;     
             if (this.clickedSubmit) {
                 this.validateForm(event);
             }         
@@ -328,10 +328,10 @@ var subscribeApp = new Vue({
                 document.forms["subscribeForm"]["userNameSubscribe"].classList.remove("required-field-needed");
             }
 
-            var atPosition = this.userEmailSubscribe.indexOf("@");
-            var dotPosition = this.userEmailSubscribe.lastIndexOf(".");
-            var lastEmailCharacter = this.userEmailSubscribe.length - 1;
-            var validEmail = true;
+            let atPosition = this.userEmailSubscribe.indexOf("@");
+            let dotPosition = this.userEmailSubscribe.lastIndexOf(".");
+            let lastEmailCharacter = this.userEmailSubscribe.length - 1;
+            let validEmail = true;
             if (!this.userEmailSubscribe) {
                 validEmail = false;
             } else if (atPosition <= 0) {
@@ -360,7 +360,7 @@ var subscribeApp = new Vue({
     },
     computed: {
         writeResponse: function () {
-            var response = "";     
+            let response = "";     
             if (this.clickedSubmit) {
                 this.validateSubscribeForm(event);
             }         
