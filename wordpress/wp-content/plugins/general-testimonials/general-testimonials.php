@@ -248,7 +248,7 @@ function gt_get_order( $post ) {
 
 
 /*Adjust admin columns for Testimonials*/
-if ( $_GET[ 'post_type' ] === "general-testimonials" ){
+if ( isset($_GET[ 'post_type' ]) && $_GET[ 'post_type' ] === "general-testimonials" ){
     add_filter( 'manage_posts_columns', 'gt_setup_adjust_admin_columns' );
     function gt_setup_adjust_admin_columns( $columns ) {
         $columns = array(
