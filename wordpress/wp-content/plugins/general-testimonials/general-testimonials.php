@@ -28,6 +28,7 @@ function gt_create_testimonial_post_type() {
                     'singular_name' => __( 'General Testimonial' )
                 ),
                 'public' => true,
+                'show_in_menu' => true,
                 'supports' => array( 'title', 'editor', 'thumbnail', 'custom_fields' ),
                 'hierarchical' => false
             )
@@ -36,7 +37,12 @@ function gt_create_testimonial_post_type() {
 add_action( 'init', 'gt_create_testimonial_post_type' );
 
 
-/*Add a settings page for the plugin*/
+/*Set up the settings page*/
+function gt_admin_menu(){
+    add_submenu_page( 'edit.php?post_type=general-testimonials', 'Settings', 'Settings', 'manage_options', 'general-testimonials', 'gt_generate_settings_page' );
+}
+add_action( 'admin_menu', 'gt_admin_menu' );
+
 
 /*Set up the settings page inputs*/
 function gt_register_settings() {
@@ -57,17 +63,11 @@ function gt_register_settings() {
 add_action( 'admin_init', 'gt_register_settings' );
 
 
-/*Set up the settings page*/
-function gt_add_options_page() {
-    add_options_page( 'Page Title', 'General Testimonials Settings', 'manage_options', 'general-testimonials', 'gt_generate_settings_page' );
-}
-add_action( 'admin_menu', 'gt_add_options_page' );
-
-
 function gt_validatetextfield( $input ) {
     $updatedField = sanitize_text_field( $input );
     return $updatedField;
 }
+
 
 function gt_generate_settings_page() {
     ?>
