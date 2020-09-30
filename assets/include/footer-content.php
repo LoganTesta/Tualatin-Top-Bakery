@@ -119,8 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div slot="body">
                             <p>Get news on upcoming events and sweet discounts on bakery products!  All new subscribers get a free cookie coupon 
                                 in their inbox!</p>
-
-
+                            <h4>Note: this is fictional business site for a portfolio. Thanks!</h4>
                             <form class="contact-container__form" id="subscribeForm" @submit="validateSubscribeForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                 {{writeResponse}} 
                                 <div v-if="errors.length">

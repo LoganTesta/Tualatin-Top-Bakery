@@ -570,6 +570,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         <p>We appreciate your business <strong>{{writeResponse}}</strong> at Tualatin Top Bakery! 
                                             We will look over your estimate, and respond 
                                             back within 2 business days with a quote including shipping costs.  We ship anywhere in the continental U.S.</p>
+                                        <p>&nbsp;</p>
+                                        <h4>Note: this is fictional business site for a portfolio. Thanks!</h4>
                                         <div v-if="errors.length">
                                             <strong>Review the following fields:</strong>
                                             <ul>

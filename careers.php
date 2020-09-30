@@ -171,7 +171,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <form class="contact-container__form" id="careersForm" @submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                     <div class="contact-container__response">
                                         <p>Thank you <strong>{{writeResponse}}</strong> for applying, we look forward to reviewing you application!</p>
-                                        <p><strong>We are an Equal Opportunity Employer!</strong></p>     
+                                        <p><strong>We are an Equal Opportunity Employer!</strong></p>  
+                                        <p>&nbsp;</p>
+                                        <h4>Note: this is fictional business site for a portfolio. Thanks!</h4>
                                         <div v-if="errors.length">
                                             <strong>Review the following fields:</strong>
                                             <ul>

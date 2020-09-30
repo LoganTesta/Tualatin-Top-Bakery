@@ -35,7 +35,9 @@ require('./wordpress/wp-load.php');
                         <div class="col-sma-7">
                             <div class="location-container">
                                 <h3 class="location-container__header">Location</h3>
-                                <p>4422 SW Tualatin-Sherwood Road, Tualatin, Oregon 97062</p>
+                                <p>1111 SW Tualatin-Sherwood Road, Tualatin, Oregon 97062</p>
+                                <p>&nbsp;</p>
+                                <h4>Note: this is fictional business site for a portfolio. Thanks!</h4>
                                 <div class="location-container__background"></div>
                             </div>
                         </div>
