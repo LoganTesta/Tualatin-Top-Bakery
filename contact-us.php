@@ -195,7 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <script type="text/javascript" src="assets/javascript/vue-functions.js"></script>
             <script type="text/javascript">
                 document.addEventListener("DOMContentLoaded", function () {
-                    setCurrentPage(7);
+                    setCurrentPage(8);
                 });
             </script>
         </div>

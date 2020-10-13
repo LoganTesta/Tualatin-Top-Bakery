@@ -142,7 +142,7 @@ $orderByOutputText = "Order by " . $_SESSION["orderBy"] . $orderText . ".";
             <script type="text/javascript" src="assets/javascript/vue-functions.js"></script>
             <script>
                 document.addEventListener("DOMContentLoaded", function () {
-                    setCurrentPage(6);
+                    setCurrentPage(7);
                 });
             </script>
             <script type="text/javascript">

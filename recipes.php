@@ -217,7 +217,7 @@ require('./wordpress/wp-load.php');
             <script type="text/javascript" src="assets/javascript/vue-functions.js"></script>
             <script>
                 document.addEventListener("DOMContentLoaded", function () {
-                    setCurrentPage(3);
+                    setCurrentPage(4);
                 });
             </script>
         </div>

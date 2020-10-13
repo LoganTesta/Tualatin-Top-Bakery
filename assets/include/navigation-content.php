@@ -1,6 +1,7 @@
 <nav class="nav desktop-nav" id="desktop-nav">
     <div class="inner-wrapper">
         <ul class="nav__list">
+            <li class="nav__nav-item"><a class="nav__nav-link" href="index.php">Home</a></li>
             <li class="nav__nav-item"><a class="nav__nav-link" href="about.php">About</a></li>
             <li class="nav__nav-item"><a class="nav__nav-link" href="location.php">Location</a></li>
             <li class="nav__nav-item"><a class="nav__nav-link" href="products.php">Products</a></li>
@@ -16,6 +17,7 @@
     <div id="dropdownButton"></div>
     <div id="dropdownContent">
         <ul class="nav__list">
+            <li class="nav__nav-item"><a class="nav__nav-link" href="index.php">Home</a></li>
             <li class="nav__nav-item"><a class="nav__nav-link" href="about.php">About</a></li>
             <li class="nav__nav-item"><a class="nav__nav-link" href="location.php">Location</a></li>
             <li class="nav__nav-item"><a class="nav__nav-link" href="products.php">Products</a></li>
