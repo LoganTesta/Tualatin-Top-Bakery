@@ -91,7 +91,7 @@ var contactUpdatedResponseApp = new Vue({
                 return false;
             }       
         },
-        setClickedSubmitTrue: function (){
+        setClickedSubmitTrue: function () {
             this.clickedSubmit = true;
         }
     },
@@ -208,7 +208,7 @@ var estimateUpdatedResponseApp = new Vue({
             }
             
         },
-        setClickedSubmitTrue: function (){
+        setClickedSubmitTrue: function () {
             this.clickedSubmit = true;
         }
     },
@@ -287,7 +287,7 @@ var careersUpdatedResponseApp = new Vue({
                 return false;
             }
         },
-        setClickedSubmitTrue: function (){
+        setClickedSubmitTrue: function () {
             this.clickedSubmit = true;
         }
     },
@@ -354,7 +354,7 @@ var subscribeApp = new Vue({
                 return false;
             }
         },
-        setClickedSubmitTrue: function (){
+        setClickedSubmitTrue: function () {
             this.clickedSubmit = true;
         }
     },

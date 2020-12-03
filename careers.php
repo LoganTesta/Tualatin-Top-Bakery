@@ -229,7 +229,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 updateServerResponse(event); 
             }, false);
 
-           function updateServerResponse(event){
+           function updateServerResponse(event) {
                 event.preventDefault();
                 let xhttp = new XMLHttpRequest();
 

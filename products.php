@@ -647,7 +647,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
             
             //Product item event listeners.
-            for(let i=0; i<numberOfProducts; i++){ 
+            for(let i = 0; i < numberOfProducts; i++){ 
                 document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function (event) {           
                     event.preventDefault();
                     document.getElementsByClassName("product__minus-quantity")[i].classList.remove("change-color");
@@ -680,7 +680,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
             
             //Estimate cart event listeners.
-            for(let i=0; i<numberOfProducts; i++){    
+            for(let i = 0; i < numberOfProducts; i++){    
                 document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {     
                     let itemNumber = i;
                     let quantityToSet = document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML;
@@ -719,7 +719,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 }     
             }
             
-            function checkQuantityMinAndMax(setValue){
+            function checkQuantityMinAndMax(setValue) {
                 setValue = parseInt(setValue);
                 if (setValue < 0){
                     setValue = 0;
@@ -729,7 +729,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 return setValue;
             }
             
-            function updateServerResponse(event){
+            function updateServerResponse(event) {
                 event.preventDefault();
                 let xhttp = new XMLHttpRequest();
 
@@ -759,12 +759,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         //Update the product quantities.
                         let numberOfProductsShown = document.getElementsByClassName("product-container").length; //Get the number of products shown to the user.           
                         let productQuantitiesHiddenArray = Array();
-                        for(let i=0; i<numberOfProducts; i++){                              
+                        for(let i = 0; i < numberOfProducts; i++){                              
                             let productQuantitiesHidden = ajaxDocument.getElementsByClassName("product-quantities-hidden")[i];
                             document.getElementsByClassName("product-quantities-hidden")[i].innerHTML = productQuantitiesHidden.innerHTML;
                             productQuantitiesHiddenArray[i] = productQuantitiesHidden.innerHTML;
                         }
-                        for(let i=0; i<numberOfProductsShown; i++){
+                        for(let i = 0; i < numberOfProductsShown; i++){
                             let product = ajaxDocument.getElementsByClassName("product__quantity-container")[i].innerHTML;
                             
                             let productClass = document.getElementsByClassName("product-container")[i].classList.item(2);
@@ -821,12 +821,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         //Update the product quantities.
                         let numberOfProductsShown = document.getElementsByClassName("product-container").length; //Get the number of products shown to the user.
                         let productQuantitiesHiddenArray = Array();
-                        for(let i=0; i<numberOfProducts; i++){                              
+                        for(let i = 0; i < numberOfProducts; i++){                              
                             let productQuantitiesHidden = ajaxDocument.getElementsByClassName("product-quantities-hidden")[i];
                             document.getElementsByClassName("product-quantities-hidden")[i].innerHTML = productQuantitiesHidden.innerHTML;
                             productQuantitiesHiddenArray[i] = productQuantitiesHidden.innerHTML;
                         }
-                        for(let i=0; i<numberOfProductsShown; i++){
+                        for(let i = 0; i < numberOfProductsShown; i++){
                             let product = ajaxDocument.getElementsByClassName("product__quantity-container")[i].innerHTML;
                             
                             let productClass = document.getElementsByClassName("product-container")[i].classList.item(2);
@@ -875,7 +875,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 xhttp.send();
             }
             
-            function updateProductsShown(searchByCategoryString, orderByOptionsString){
+            function updateProductsShown(searchByCategoryString, orderByOptionsString) {
                 var xhttp = new XMLHttpRequest();   
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
@@ -896,9 +896,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
             
            
-            function reAddEventListeners () {               
+            function reAddEventListeners() {               
                 //Estimate cart event listeners.
-                for(let i=0; i<numberOfProducts; i++){    
+                for(let i = 0; i < numberOfProducts; i++){    
                     document.getElementsByClassName("estimate-table__minus__item")[i].addEventListener("click", function () {     
                         let itemNumber = i;
                         let quantityToSet = document.getElementsByClassName("estimate-table__item-quantity")[i].innerHTML;
@@ -915,7 +915,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 }
             }
             
-            function reAddEventListenersAfterSearching(){    
+            function reAddEventListenersAfterSearching() {    
                 let numberOfProductsShown = document.getElementsByClassName("product-container").length; //Get the number of products shown to the user.
                 
                 //Header, search event listeners.        
@@ -927,7 +927,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
                 //Product item event listeners.
-                for(let i=0; i<numberOfProductsShown; i++){ 
+                for(let i = 0; i < numberOfProductsShown; i++){ 
                     document.getElementsByClassName("product__minus-quantity")[i].addEventListener("click", function (event) {           
                         event.preventDefault();
                         document.getElementsByClassName("product__minus-quantity")[i].classList.remove("change-color");
