@@ -76,10 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="inner-wrapper">
         <div class="footer__additional-wrapper">     
             <div class="content-row">
-                <div class="footer__copyright">
-                    <p>&copy; <?php echo date("Y"); ?> Tualatin Top Bakery. All Rights Reserved.</p>
-                </div>
-
+                <div class="footer__copyright">Copyright &copy; <?php echo date("Y"); ?> Tualatin Top Bakery. All Rights Reserved.</div>
                 <script type="text/x-template" id="modal-template">
                     <transition name="modal">
                     <div class="modal__mask subscribe-modal">
