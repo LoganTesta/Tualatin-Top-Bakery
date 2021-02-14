@@ -282,6 +282,7 @@ footer { background-color: #fbe3b7; }
 
 /*Customized plugin styles*/
 .testimonial__provided-name { color: #64460e; }
+.testimonial__comma  { color: #64460e; }
 .testimonial__link { color: #64460e; }
 .testimonial__label { color: #64460e; }
 
