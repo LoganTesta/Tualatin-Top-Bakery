@@ -45,9 +45,9 @@ if ( $generalTestimonialsFloatImageDirection === "left" ) {
 .testimonials-container__heading { padding-bottom: 0; text-align: center; }
 .testimonials-container__inner-wrapper { padding-top: 30px; }
 
-.testimonial { padding-bottom: 40px; }
-.testimonial__image { display: block; width: <?php echo $testimonialImageWidthHeight; ?>px; height: <?php echo $testimonialImageWidthHeight; ?>px; margin-bottom: 15px; margin-left: auto; margin-right: auto; border-radius: <?php echo get_option( 'general-testimonials-border-radius' ); ?>px; }
-.testimonial__title { }
+.testimonial { padding-bottom: 50px; }
+.testimonial__image { display: block; width: <?php echo $testimonialImageWidthHeight; ?>px; height: <?php echo $testimonialImageWidthHeight; ?>px; margin-bottom: 8px; margin-left: auto; margin-right: auto; border-radius: <?php echo get_option( 'general-testimonials-border-radius' ); ?>px; }
+.testimonial__title { padding-bottom: 12px; }
 .testimonial__content { padding-bottom: 5px; }
 .testimonial__provided-name { font-size: 17px; font-weight: bold; }
 .testimonial__comma { font-size: 17px; }
@@ -65,7 +65,7 @@ if ( $generalTestimonialsFloatImageDirection === "left" ) {
   
     .testimonial { float: left; width: 50%; padding: 0 20px 15px 20px; }
     
-    .testimonial__image { float: <?php echo $generalTestimonialsFloatImageDirection; ?>; margin-left: <?php echo $generalTestimonialsImageTabletPlusMarginLeft; ?>; margin-right: <?php echo $generalTestimonialsImageTabletPlusMarginRight; ?>; }
+    .testimonial__image { float: <?php echo $generalTestimonialsFloatImageDirection; ?>; margin-bottom: 15px; margin-left: <?php echo $generalTestimonialsImageTabletPlusMarginLeft; ?>; margin-right: <?php echo $generalTestimonialsImageTabletPlusMarginRight; ?>; }
     
     .testimonial:nth-of-type(<?php echo $numberOfTestimonialsPerRow; ?>n+1) { padding-left: 0; }
     .testimonial:nth-of-type(<?php echo $numberOfTestimonialsPerRow; ?>n+<?php echo $numberOfTestimonialsPerRow; ?>) { padding-right: 0; }
