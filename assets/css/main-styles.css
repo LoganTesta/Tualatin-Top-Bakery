@@ -281,6 +281,9 @@ footer { background-color: #fbe3b7; }
 
 
 /*Customized plugin styles*/
+/*General Testimonials*/
+.testimonial { }
+.testimonial:last-of-type { padding-bottom: 0; }
 .testimonial__provided-name { color: #64460e; }
 .testimonial__comma  { color: #64460e; }
 .testimonial__link { color: #64460e; }
@@ -746,5 +749,11 @@ footer { background-color: #fbe3b7; }
     /*Contact Us*/
     .contact-us-container__background { height: 400px; }
     .contact-container__response-message { font-size: 18px; }
-  
+    
+    
+    /*Customized plugin styles*/
+    /*General Testimonials*/
+    .testimonial { padding-bottom: 15px; }
+    .testimonial:last-of-type { padding-bottom: 15px; }
+    
 }
