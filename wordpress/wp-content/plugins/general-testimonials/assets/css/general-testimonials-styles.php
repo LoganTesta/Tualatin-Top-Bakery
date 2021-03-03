@@ -8,8 +8,13 @@ include ( plugin_dir_path(__FILE__) . "/general-testimonials.php" );
 
 
 $numberOfTestimonialsPerRow = (int)( get_option( 'general-testimonials-testimonials-per-row' ) );
+$testimonialWidthTablet = 50;
+$testimonialWidth;
 if ( $numberOfTestimonialsPerRow <= 0 ) {
     $numberOfTestimonialsPerRow = 2;
+}
+if ( $numberOfTestimonialsPerRow < 2) {
+    $testimonialWidthTablet = 100;
 }
 $testimonialWidth = 100/$numberOfTestimonialsPerRow;
 
@@ -53,7 +58,6 @@ if ( $generalTestimonialsFloatImageDirection === "left" ) {
 .testimonial__comma { font-size: 17px; }
 .testimonial__label { font-size: 17px; font-style: italic; }
 
-.testimonial:last-of-type { padding-bottom: 0; }
 .testimonials-container__inner-wrapper::after { content: ""; display: block; clear: both; }
 .testimonial__link { font-size: 17px; font-weight: bold; }
 
@@ -63,13 +67,12 @@ if ( $generalTestimonialsFloatImageDirection === "left" ) {
      /* Clearing variable width columns */
     .testimonials-container__inner-wrapper .testimonial:nth-child(<?php echo $numberOfTestimonialsPerRow; ?>n+1){ content: ""; display: block; clear: both; }  
   
-    .testimonial { float: left; width: 50%; padding: 0 20px 15px 20px; }
+    .testimonial { float: left; width: <?php echo $testimonialWidthTablet; ?>%; padding: 0 20px 15px 20px; }
     
     .testimonial__image { float: <?php echo $generalTestimonialsFloatImageDirection; ?>; margin-bottom: 15px; margin-left: <?php echo $generalTestimonialsImageTabletPlusMarginLeft; ?>; margin-right: <?php echo $generalTestimonialsImageTabletPlusMarginRight; ?>; }
     
     .testimonial:nth-of-type(<?php echo $numberOfTestimonialsPerRow; ?>n+1) { padding-left: 0; }
     .testimonial:nth-of-type(<?php echo $numberOfTestimonialsPerRow; ?>n+<?php echo $numberOfTestimonialsPerRow; ?>) { padding-right: 0; }
-    .testimonial:last-of-type { padding-bottom: 15px; }
 }
 
 
