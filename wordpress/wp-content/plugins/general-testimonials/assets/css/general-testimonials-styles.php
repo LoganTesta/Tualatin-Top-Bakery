@@ -67,7 +67,7 @@ if ( $generalTestimonialsFloatImageDirection === "left" ) {
      /* Clearing variable width columns */
     .testimonials-container__inner-wrapper .testimonial:nth-child(<?php echo $numberOfTestimonialsPerRow; ?>n+1){ content: ""; display: block; clear: both; }  
   
-    .testimonial { float: left; width: <?php echo $testimonialWidthTablet; ?>%; padding: 0 20px 15px 20px; }
+    .testimonial { float: left; width: <?php echo $testimonialWidthTablet; ?>%; padding: 0 20px 50px 20px; }
     
     .testimonial__image { float: <?php echo $generalTestimonialsFloatImageDirection; ?>; margin-bottom: 15px; margin-left: <?php echo $generalTestimonialsImageTabletPlusMarginLeft; ?>; margin-right: <?php echo $generalTestimonialsImageTabletPlusMarginRight; ?>; }
     
