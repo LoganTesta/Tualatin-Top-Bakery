@@ -195,11 +195,11 @@ input::placeholder, textarea::placeholder, select::placeholder { color: #64460e;
 
 
 /* Header styles */
-header { min-height: 200px; background: linear-gradient(#fbe3b7, #f3f3f3); }
-.main-title { padding-top: 20px; text-align: center; }
+header { min-height: 130px; background: linear-gradient(#fbe3b7, #f3f3f3); }
+.main-title { position: absolute; top: 10px; left: 15%; width: 70%; text-align: center; font-size: 22px; }
 .main-title .main-title__title { font-size: inherit; font-weight: inherit; color: #ac8949; font-family: 'Pacifico', cursive; }
-.header__subtitle { text-align: center; color: #64460e; font-family: 'Noto Serif', serif; }
-.logo { position: relative; width: 40px; top: 20px; left: 15px; }
+.header__subtitle { padding-top: 15px; text-align: center; color: #64460e; font-family: 'Noto Serif', serif; font-size: 18px; }
+.logo { position: relative; width: 40px; height: 40px; top: 10px; left: 10px; }
 
 
 /* Nav styles */
@@ -211,7 +211,7 @@ header { min-height: 200px; background: linear-gradient(#fbe3b7, #f3f3f3); }
 .nav .nav__nav-link { color: #f9f9f9; transition: 0.1s ease-in; }
 .nav .nav__nav-link:hover { color: #fbe3b7; transition: 0.1s ease-in; }
 
-#dropdownButton { position: absolute; top: 25px; right: 20px; width: 30px; height: 30px;
+#dropdownButton { position: absolute; top: 15px; right: 10px; width: 30px; height: 30px;
                   background: url('../images/hamburger-nav.png') 50% 0%/cover no-repeat; cursor: pointer; }
 #dropdownContent { padding: 0; background: none; transition: 0.8s all ease-in; }    
 #dropdownContent li { display: block; height: 0; padding-bottom: 0px; opacity: 0; transition: 0.8s all ease-in; }
@@ -567,6 +567,12 @@ footer { background-color: #fbe3b7; }
 
 @media only screen and (min-width: 700px){ 
 
+    /* Header styles */
+    header { min-height: 200px; }
+    .main-title { position: static; width: auto; padding-top: 20px; font-size: 30px; }
+    .header__subtitle { padding-top: 0; font-size: 24px; }
+    
+    /*Footer Styles*/
     .footer__social, .footer__location, .footer__hours { padding-top: 0px; padding-bottom: 0px; } 
     
     /*Modal styles*/
@@ -645,8 +651,8 @@ footer { background-color: #fbe3b7; }
     .nav__list { font-size: 0; }
     .nav__nav-item { display: inline-block; padding: 15px 30px 15px 15px; text-align: left; }
 
-    .main-title { padding-top: 50px; text-align: right; margin-right: 180px; }
-    .header__subtitle { text-align: right; margin-right: 220px; }
+    .main-title { padding-top: 50px; margin-right: 180px; text-align: right; font-size: 48px; }
+    .header__subtitle { margin-right: 220px; text-align: right; font-size: 28px; }
 
     /*Modal styles*/
     .subscribe__response-message { font-size: 18px; }
