@@ -1,4 +1,4 @@
-<nav id="desktop-nav" class="nav desktop-nav">
+<nav id="desktopNav" class="nav desktop-nav">
     <div class="inner-wrapper">
         <ul class="nav__list">
             <li class="nav__nav-item"><a class="nav__nav-link" href="index.php">Home</a></li>

@@ -1,7 +1,7 @@
 
 
 function setCurrentPage(linkNumber) {
-    let navBarDesktop = document.getElementById("desktop-nav");
+    let navBarDesktop = document.getElementById("desktopNav");
     let navBarDesktopItems = navBarDesktop.getElementsByClassName("nav__nav-link");
     for (let i = 0; i < navBarDesktopItems.length; i++) {
         navBarDesktopItems[i].className.replace(" current-page", "");
