@@ -1,4 +1,4 @@
-<nav class="nav desktop-nav" id="desktop-nav">
+<nav id="desktop-nav" class="nav desktop-nav">
     <div class="inner-wrapper">
         <ul class="nav__list">
             <li class="nav__nav-item"><a class="nav__nav-link" href="index.php">Home</a></li>
@@ -13,8 +13,12 @@
         </ul>
     </div>
 </nav>
-<nav class="nav mobile-nav">
-    <div id="dropdownButton"></div>
+<nav id="mobileNav" class="nav mobile-nav">
+    <div id="dropdownButton">
+        <div class="dropdown-part-1"></div>
+        <div class="dropdown-part-2"></div>
+        <div class="dropdown-part-3"></div>
+    </div>
     <div id="dropdownContent">
         <ul class="nav__list">
             <li class="nav__nav-item"><a class="nav__nav-link" href="index.php">Home</a></li>
