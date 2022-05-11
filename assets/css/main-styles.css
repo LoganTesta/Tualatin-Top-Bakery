@@ -204,8 +204,8 @@ header { min-height: 100px; background: linear-gradient(#fbe3b7, #f3f3f3); }
 
 
 /* Nav styles */
-.mobile-nav { display: block; }
-.desktop-nav { display: none; }
+#mobileNav { display: block; transition: 0.4s ease-in; }
+#desktopNav { display: none; }
 .nav { background-color: #64460e; }
 .nav__list { }
 .nav__nav-item { display: block; text-align: center; }
@@ -652,8 +652,8 @@ footer { background-color: #fbe3b7; }
 
     .logo { position: absolute; top: 40px; left: 20px; width: 80px; }
     header { min-height: 200px; }
-    .mobile-nav { display: none; }
-    .desktop-nav { display: block; }
+    #mobileNav { display: none; }
+    #desktopNav { display: block; }
 
     .nav__list { font-size: 0; }
     .nav__nav-item { display: inline-block; padding: 15px 30px 15px 15px; text-align: left; }
