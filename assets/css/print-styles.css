@@ -9,3 +9,28 @@
 
 
 /***############### Website Specific Styles. ***/
+
+@media only print and (max-width: 700px){
+    .col-vsm-1, .col-vsm-2, .col-vsm-3, .col-vsm-4, .col-vsm-5, .col-vsm-6, .col-vsm-7, .col-vsm-8, .col-vsm-9, .col-vsm-10, .col-vsm-11, .col-vsm-12 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+/* Prevent mid-item splitting onto two pages if possible*/
+.index-blog__image,
+.index-product-container__background, 
+.testimonial__image { break-inside: avoid; page-break-inside: avoid; /*Older version*/ }
+
+/* Clearing variable width columns */
+@media only print and (max-width: 699px) {
+    .products .product-outer:nth-child(2n+1){ content: ""; display: block; clear: both; }
+}
+
+
+
+@media only print and (min-width: 500px){   
+    .product__background { height: 150px; }
+
+    .recipe__background { height: 360px; } 
+}
