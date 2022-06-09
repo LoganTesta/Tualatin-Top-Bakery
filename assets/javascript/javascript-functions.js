@@ -1,6 +1,15 @@
 
 
 function setCurrentPage(linkNumber) {
+    let navBarMobile = document.getElementById("mobileNav");
+    let navBarMobileItems = navBarMobile.getElementsByClassName("nav__nav-link");
+ 
+    for (let i = 0; i < navBarMobileItems.length; i++) {
+        navBarMobileItems[i].className.replace(" current-page", "");
+    }
+    navBarMobileItems[linkNumber].className += " current-page";
+    
+    
     let navBarDesktop = document.getElementById("desktopNav");
     let navBarDesktopItems = navBarDesktop.getElementsByClassName("nav__nav-link");
     for (let i = 0; i < navBarDesktopItems.length; i++) {
