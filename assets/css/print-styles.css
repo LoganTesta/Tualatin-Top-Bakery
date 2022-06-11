@@ -20,7 +20,9 @@
 /* Prevent mid-item splitting onto two pages if possible*/
 .index-blog__image,
 .index-product-container__background, 
-.testimonial__image { break-inside: avoid; page-break-inside: avoid; /*Older version*/ }
+.testimonial__image,
+.product-container,
+.recipe-container { break-inside: avoid; page-break-inside: avoid; /*Older version*/ }
 
 /* Clearing variable width columns */
 @media only print and (max-width: 699px) {
@@ -32,5 +34,5 @@
 @media only print and (min-width: 500px){   
     .product__background { height: 150px; }
 
-    .recipe__background { height: 360px; } 
+    .recipe__background { height: 260px; } 
 }
