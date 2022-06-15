@@ -22,7 +22,11 @@
 .index-product-container__background, 
 .testimonial__image,
 .product-container,
-.recipe-container { break-inside: avoid; page-break-inside: avoid; /*Older version*/ }
+.recipe-container,
+.event-container,
+.careers-container__background,
+.blog__image,
+.contact-us-container__background { break-inside: avoid; page-break-inside: avoid; /*Older version*/ }
 
 /* Clearing variable width columns */
 @media only print and (max-width: 699px) {
