@@ -36,14 +36,13 @@ require('./wordpress/wp-load.php');
                                 cakes and pies!</p>
                             <h4>Products Include:</h4>
                             <ul class="index-content__baked-items-list">
-                                <li class="index-content__baked-items-list__list-item">House made whole wheat and white bread</li>
-                                <li class="index-content__baked-items-list__list-item">Variety of Excellent Cakes
-                                <li class="index-content__baked-items-list__list-item">Assorted Delicious Pies</li>
-                                <li class="index-content__baked-items-list__list-item">Scones</li>
-                                <li class="index-content__baked-items-list__list-item">Muffins</li>
+                                <li class="index-content__baked-items-list__list-item">Fresh bread daily</li>
+                                <li class="index-content__baked-items-list__list-item">Excellent Cakes</li>
+                                <li class="index-content__baked-items-list__list-item">Delicious Pies</li>
+                                <li class="index-content__baked-items-list__list-item">Scones, Muffins, and more!</li>
                             </ul>
                             <p>Got a special order?  Need catering for an event?  Fill out our <a href="contact-us.php">contact form here</a> or give us a 
-                                call at 503-224-4444.  Note: we need 3+ days advance notice for catering events to ensure customer satisfaction.</p>
+                                call at 503-224-4444.</p>
                         </div>
                         <div class="col-sma-7">
                             <div class="item-container">

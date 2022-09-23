@@ -665,7 +665,8 @@ footer { background-color: #fbe3b7; }
     .subscribe__response-message { font-size: 18px; }
     
     /*Index*/
-    .item-container__background { height: 360px; }
+    .item-container__background { height: 320px; }
+    .item-container__background.zero { background: url('../images/bakery-shelf-cakes.jpg') 0% 30%/cover no-repeat; }
     
     .index-blog__title { }
     .index-blog__image { float: right; height: auto; padding-left: 15px; padding-bottom: 5px; }
