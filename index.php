@@ -34,11 +34,9 @@ require('./wordpress/wp-load.php');
                             <h3>Welcome to Tualatin Top Bakery!</h3>
                             <p>We specialize in fresh healthy and tasty baked goods!  You can find everything from house-made bread to delicious 
                                 cakes and pies!</p>
-                            <h4>Products Include:</h4>
                             <ul class="index-content__baked-items-list">
                                 <li class="index-content__baked-items-list__list-item">Fresh bread daily</li>
-                                <li class="index-content__baked-items-list__list-item">Excellent Cakes</li>
-                                <li class="index-content__baked-items-list__list-item">Delicious Pies</li>
+                                <li class="index-content__baked-items-list__list-item">Delicious Cakes and Pies</li>
                                 <li class="index-content__baked-items-list__list-item">Scones, Muffins, and more!</li>
                             </ul>
                             <p>Got a special order?  Need catering for an event?  Fill out our <a href="contact-us.php">contact form here</a> or give us a 

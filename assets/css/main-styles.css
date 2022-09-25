@@ -564,6 +564,7 @@ footer { background-color: #fbe3b7; }
 }
 
 
+
 @media only screen and (min-width: 500px){   
     .product__background { height: 150px; }
 
@@ -643,6 +644,8 @@ footer { background-color: #fbe3b7; }
     .contact-us-container__background { height: 300px; }
 }
 
+
+
 @media only screen and (min-width: 1200px){ 
     h1 { font-size: 48px; }
     h2 { font-size: 28px; }
@@ -650,10 +653,11 @@ footer { background-color: #fbe3b7; }
 
     .inner-wrapper { width: 1200px; }
 
-    .logo { position: absolute; top: 40px; left: 20px; width: 80px; }
-    header { min-height: 200px; }
+    header { min-height: 180px; }
+    .header__subtitle { top: 0; }
     #mobileNav { display: none; }
     #desktopNav { display: block; }
+    .logo { position: absolute; top: 40px; left: 20px; width: 80px; }
 
     .nav__list { font-size: 0; }
     .nav__nav-item { display: inline-block; padding: 15px 30px 15px 15px; text-align: left; }
@@ -664,9 +668,10 @@ footer { background-color: #fbe3b7; }
     /*Modal styles*/
     .subscribe__response-message { font-size: 18px; }
     
+    
     /*Index*/
-    .item-container__background { height: 320px; }
-    .item-container__background.zero { background: url('../images/bakery-shelf-cakes.jpg') 0% 30%/cover no-repeat; }
+    .item-container__background { height: 255px; }
+    .item-container__background.zero { background: url('../images/bakery-shelf-cakes.jpg') 0% 45%/cover no-repeat; }
     
     .index-blog__title { }
     .index-blog__image { float: right; height: auto; padding-left: 15px; padding-bottom: 5px; }
@@ -769,5 +774,19 @@ footer { background-color: #fbe3b7; }
     /*General Testimonials*/
     .testimonial { padding-bottom: 15px; }
     .testimonial:last-of-type { padding-bottom: 15px; }
+    
+}
+
+
+
+@media only screen and (min-width: 1600px){ 
+    
+    /* Header styles */
+    header { min-height: 200px; }
+    .header__subtitle { position: relative; top: 8px; }
+    
+    /*Index*/
+    .item-container__background { height: 320px; }
+    .item-container__background.zero { background: url('../images/bakery-shelf-cakes.jpg') 0% 30%/cover no-repeat; }
     
 }
