@@ -185,6 +185,7 @@ html, body, div, span, p, img, a, br, ul, li, ol, header, nav, footer, table, bu
 
 h1, h2, h3, h4 { font-weight: bold; }
 input, select, textarea { width: 100%; padding: 10px; border: 1px solid #000000; border-radius: 15px; }
+select { background-color: rgba(100, 74, 14, 0.12); }
 a:link, a:visited { color: #64460e; }
 a:hover { color: #ac8949; }
 h1 { font-size: 30px; }
