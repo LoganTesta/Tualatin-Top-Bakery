@@ -27,14 +27,27 @@ if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
 
 $orderByOutputText = "";
 $orderText = "";
-if($_SESSION["order"] == "asc"){
-    $orderText = " (ascending)";
+if ( $_SESSION["order"] === "asc" ){
+    if ( $_SESSION["orderBy"] === "date" ) {
+        $orderText = ": oldest to newest";
+    } else if ( $_SESSION["orderBy"] === "title" ) {
+        $orderText = ": A - Z";
+    }
+    else {
+        $orderText = " (ascending)";
+    }
 } else if ($_SESSION["order"] === "desc"){
-    $orderText = " (descending)";
+    if ( $_SESSION["orderBy"] === "date" ) {
+        $orderText = ": newest to oldest";
+    } else if ( $_SESSION["orderBy"] === "title" ) {
+        $orderText = ": Z - A";
+    } else {
+        $orderText = " (descending)";
+    }
 } else {
    $orderText = ""; 
 }
-$orderByOutputText = "Order by " . $_SESSION["orderBy"] . $orderText . ".";
+$orderByOutputText = "Order by " . $_SESSION["orderBy"] . $orderText . "";
         
 ?>
 

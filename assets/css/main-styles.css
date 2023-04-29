@@ -511,7 +511,7 @@ footer { background-color: #fbe3b7; }
 .blog-controls__control { display: inline-block; border-radius: 5px; font-weight: bold; }
 .blog-controls__button { padding: 15px 12px; border-radius: 15px; font-weight: bold; background-color: #64460e; color: #ffffff; cursor: pointer; }
 
-.blog-posts__message { width: 270px; color: #64460e; font-size: 20px; font-weight: bold; }
+.blog-posts__message { color: #64460e; font-size: 20px; font-weight: bold; }
 .blog-posts { padding-top: 20px; }
 
 .blog-post { padding-bottom: 60px; }
@@ -761,7 +761,7 @@ footer { background-color: #fbe3b7; }
     /*Blog*/
     .blog-page__content-text { float: left; }
     .blog-controls { float: right;  padding-bottom: 0px; }
-    .blog-posts__message { margin-left: auto; margin-right: 10px; }
+    .blog-posts__message { text-align: right; }
     
     .blog-post { padding-bottom: 50px; }
     
