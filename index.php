@@ -1,7 +1,7 @@
 <?php
-declare(strict_types=1);
-define('WP_USE_THEMES', false);
-require('./wordpress/wp-load.php');
+declare( strict_types = 1 );
+define( 'WP_USE_THEMES', false );
+require( './wordpress/wp-load.php' );
 ?>
 
 
@@ -53,9 +53,9 @@ require('./wordpress/wp-load.php');
                         <div class="content-row index-blog-posts" id="indexBlogPosts">
                             <?php
                             global $post;
-                            $args = array('posts_per_page' => 3);
-                            $postsToDisplay = get_posts($args);
-                            foreach ($postsToDisplay as $post) : setup_postdata($post);
+                            $args = array( 'posts_per_page' => 3 );
+                            $postsToDisplay = get_posts( $args );
+                            foreach ( $postsToDisplay as $post ) : setup_postdata( $post );
                                 ?>      
                                 <div class="col-sma-4">
                                     <div class="index-blog-post">
@@ -63,15 +63,15 @@ require('./wordpress/wp-load.php');
                                         <div class="index-blog__categories"><?php
                                             $categories = get_the_category();
                                             $h = 0;
-                                            foreach ($categories as $category) {
+                                            foreach ( $categories as $category ) {
                                                 $h++;
                                             }
                                             $h = $h - 1;
 
                                             $i = 0;
-                                            foreach ($categories as $category) {
+                                            foreach ( $categories as $category ) {
                                                 $result = "";
-                                                if ($i < $h) {
+                                                if ( $i < $h ) {
                                                     $result .= $category->name . ", ";
                                                 } else {
                                                     $result .= $category->name;
@@ -148,8 +148,8 @@ require('./wordpress/wp-load.php');
                         <div class="col-sma-12">
                             <?php
                             $id = 29;
-                            $page = get_post($id);
-                            $content = "" . apply_filters('the_content', $page->post_content);
+                            $page = get_post( $id );
+                            $content = "" . apply_filters( 'the_content', $page->post_content );
                             echo $content;
                             ?>
                         </div>
@@ -161,9 +161,9 @@ require('./wordpress/wp-load.php');
             <script type="text/javascript" src="assets/javascript/javascript-functions.js"></script>
             <script type="text/javascript" src="assets/javascript/vue-functions.js"></script>
             <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    setCurrentPage(0);
-                });
+                document.addEventListener( "DOMContentLoaded", function () {
+                    setCurrentPage( 0 );
+                } );
             </script>
         </div>
     </body>
