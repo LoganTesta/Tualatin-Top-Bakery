@@ -10,7 +10,7 @@ require( './wordpress/wp-load.php' );
 
     <head>
         <meta charset="utf-8">
-        <meta name="description" content="Delicius baked goods featured including bread, cookies, pastries, pies, cakes, and more." />
+        <meta name="description" content="Delicious baked goods featured including bread, cookies, pastries, pies, cakes, and more." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="bakery, bread, whole wheat, cookies, scones, pastries, cupcakes, cakes, pies, Oregon" />
         <title>Tualatin Top Bakery</title>
