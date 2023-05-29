@@ -1,27 +1,27 @@
 <?php
-declare(strict_types=1);
+declare( strict_types = 1 );
 
-define('WP_USE_THEMES', false);
-require('./wordpress/wp-load.php');
+define( 'WP_USE_THEMES', false );
+require( './wordpress/wp-load.php' );
 
 $transmitResponse = "";
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST['userName']) && isset($_POST['userEmail']) && isset($_POST['positionApplyingFor']) && isset($_POST['userResume'])) {
-        if (isset($_POST['userName'])) {
-            $UserName = htmlspecialchars(strip_tags(trim($_POST['userName'])));
+if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
+    if ( isset( $_POST['userName'] ) && isset( $_POST['userEmail'] ) && isset( $_POST['positionApplyingFor'] ) && isset( $_POST['userResume'] ) ) {
+        if ( isset( $_POST['userName'] ) ) {
+            $UserName = htmlspecialchars( strip_tags( trim( $_POST['userName'] ) ) );
         }
-        if (isset($_POST['userEmail'])) {
-            $UserEmail = htmlspecialchars(strip_tags(trim($_POST['userEmail'])));
+        if ( isset( $_POST['userEmail'] ) ) {
+            $UserEmail = htmlspecialchars( strip_tags( trim( $_POST['userEmail'] ) ) );
         }
-        if (isset($_POST['positionApplyingFor'])) {
-            $PositionApplyingFor = htmlspecialchars(strip_tags(trim($_POST['positionApplyingFor'])));
+        if ( isset( $_POST['positionApplyingFor'] ) ) {
+            $PositionApplyingFor = htmlspecialchars( strip_tags( trim( $_POST['positionApplyingFor'] ) ) );
         }
-        if (isset($_POST['userResume'])) {
-            $UserResume = htmlspecialchars(strip_tags(trim($_POST['userResume'])));
+        if ( isset( $_POST['userResume'] ) ) {
+            $UserResume = htmlspecialchars( strip_tags( trim( $_POST['userResume'] ) ) );
         }
-        if (isset($_POST['coverLetter'])) {
-            $CoverLetter = htmlspecialchars(strip_tags(trim($_POST['coverLetter'])));
+        if ( isset( $_POST['coverLetter'] ) ) {
+            $CoverLetter = htmlspecialchars( strip_tags( trim( $_POST['coverLetter'] ) ) );
         }
         $SendEmailTo = "logan.testa@outlook.com";
 
@@ -32,54 +32,54 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
         $ValidUserName = true;
-        if (Trim($UserName) === "") {
+        if ( Trim( $UserName ) === "" ) {
             $ValidUserName = false;
         }
-        if ($ValidUserName === false) {
+        if ( $ValidUserName === false ) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter a name.</p>";
         }
 
 
         $ValidPositionApplyingFor = true;
-        if (Trim($PositionApplyingFor) === "") {
+        if ( Trim( $PositionApplyingFor ) === "" ) {
             $ValidPositionApplyingFor = false;
         }
-        if ($ValidPositionApplyingFor === false) {
+        if ( $ValidPositionApplyingFor === false ) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter the position you are applying for.</p>";
         }
 
 
         $ValidUserEmail = true;
-        if (Trim($UserEmail) === "") {
+        if ( Trim( $UserEmail ) === "" ) {
             $ValidUserEmail = false;
         }
         /* More advanced e-mail validation */
-        if (!filter_var($UserEmail, FILTER_VALIDATE_EMAIL)) {
+        if ( ! filter_var( $UserEmail, FILTER_VALIDATE_EMAIL ) ) {
             $ValidUserEmail = false;
         }
-        if ($ValidUserEmail === false) {
+        if ( $ValidUserEmail === false ) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter a valid email.</p>";
         }
 
 
         $ValidUserResume = true;
-        if (Trim($UserResume) === "") {
+        if ( Trim( $UserResume ) === "" ) {
             $ValidUserResume = false;
         }
-        if ($ValidUserResume === false) {
+        if ( $ValidUserResume === false ) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please paste your resume in the resume textarea.</p>";
         }
 
 
-        if ($PassedValidation === false) {
+        if ( $PassedValidation === false ) {
             $transmitResponse .= "<p>Sorry, validation failed.  Please check all fields again.</p>";
         }
 
-        if ($PassedValidation) {
+        if ( $PassedValidation ) {
             /* Set the headers */
             $Headers = "";
             $Headers .= "From: <$UserEmail>\r\n";
@@ -97,11 +97,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $Body .= "<strong>Cover Letter:</strong> " . $CoverLetter . "<br />";
 
             /* Send the e-mail. */
-            $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: Application for " . $PositionApplyingFor, $Body, $Headers);
-            if ($SuccessfulSubmission) {
+            $SuccessfulSubmission = mail( $SendEmailTo, "Tualatin Top Bakery: Application for " . $PositionApplyingFor, $Body, $Headers );
+            if ( $SuccessfulSubmission ) {
                 $transmitResponse .= "<p>" . $UserName . ", your application was successfully submitted for the " . $PositionApplyingFor . " position.  "
                         . "Thanks for applying, we look forward to reviewing your application!</p>";
-            } else if ($SuccessfulSubmission === false) {
+            } else if ( $SuccessfulSubmission === false ) {
                 $transmitResponse .= "<p>Submission failed. Please try again.</p>";
             }
         }
@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <head>
         <meta charset="utf-8">
-        <meta name="description" content="Delicius baked goods featured including bread, cookies, pastries, pies, cakes, and more." />
+        <meta name="description" content="Delicious baked goods featured including bread, cookies, pastries, pies, cakes, and more." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="bakery, bread, whole wheat, cookies, scones, pastries, cupcakes, cakes, pies, Oregon" />
         <title>Careers | Tualatin Top Bakery</title>	   
@@ -127,7 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <div class="inner-wrapper">
                     <?php include 'assets/include/logo.php'; ?>
                     <?php include 'assets/include/header-content.php'; ?>
-                    <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(41)->post_title); ?></h2>
+                    <h2 class="header__subtitle"><?php echo apply_filters( '<p>', get_post( 41 )->post_title ); ?></h2>
                 </div>
             </header>
 
@@ -139,8 +139,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div class="col-sma-5">
                             <?php
                             $id = 41;
-                            $page = get_post($id);
-                            $content = "" . apply_filters('the_content', $page->post_content);
+                            $page = get_post( $id );
+                            $content = "" . apply_filters( 'the_content', $page->post_content );
                             echo $content;
                             ?>
                             <div class="careers-container">
@@ -168,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             </div>
                             <div class="careers-container" id="careersContainer">
                                 <h4 class="contact-container__title">Send Your Application Here!</h4>
-                                <form class="contact-container__form" id="careersForm" @submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                <form class="contact-container__form" id="careersForm" @submit="validateForm" method="post" action="<?php echo htmlspecialchars( $_SERVER["PHP_SELF"] ); ?>">
                                     <div class="contact-container__response">
                                         <p>Thank you <strong>{{writeResponse}}</strong> for applying, we look forward to reviewing you application!</p>
                                         <p><strong>We are an Equal Opportunity Employer!</strong></p>  

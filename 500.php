@@ -1,7 +1,7 @@
 <?php
-declare(strict_types=1);
-define('WP_USE_THEMES', false);
-require('./wordpress/wp-load.php');
+declare( strict_types = 1 );
+define( 'WP_USE_THEMES', false );
+require( './wordpress/wp-load.php' );
 ?>
 
 
@@ -11,7 +11,7 @@ require('./wordpress/wp-load.php');
 
     <head>
         <meta charset="utf-8">
-        <meta name="description" content="Delicius baked goods featured including bread, cookies, pastries, pies, cakes, and more." />
+        <meta name="description" content="Delicious baked goods featured including bread, cookies, pastries, pies, cakes, and more." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="bakery, bread, whole wheat, cookies, scones, pastries, cupcakes, cakes, pies, Oregon" />
         <title>500 | Tualatin Top Bakery</title>	   
@@ -24,7 +24,7 @@ require('./wordpress/wp-load.php');
                 <div class="inner-wrapper">
                     <?php include 'assets/include/logo.php'; ?>
                     <?php include 'assets/include/header-content.php'; ?>
-                    <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(51)->post_title); ?></h2>
+                    <h2 class="header__subtitle"><?php echo apply_filters( '<p>', get_post( 51 )->post_title ); ?></h2>
                 </div>
             </header>
 
@@ -36,8 +36,8 @@ require('./wordpress/wp-load.php');
                         <div class="col-sma-5">
                             <?php
                             $id = 51;
-                            $page = get_post($id);
-                            $content = "" . apply_filters('the_content', $page->post_content);
+                            $page = get_post( $id );
+                            $content = "" . apply_filters( 'the_content', $page->post_content );
                             echo $content;
                             ?>
                         </div>
