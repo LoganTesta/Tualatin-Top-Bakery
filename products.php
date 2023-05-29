@@ -1,13 +1,12 @@
 <?php
-declare(strict_types=1);
+declare( strict_types = 1 );
 session_start();
-
-define('WP_USE_THEMES', false);
-require('./wordpress/wp-load.php');
+define( 'WP_USE_THEMES', false );
+require( './wordpress/wp-load.php' );
 
 
 //Estimate cart code.
-include("assets/include/product.php");
+include( "assets/include/product.php" );
 
 $WholeWheatLoaf = new Product("Whole Wheat Loaf", "zero", "0", "", 2.95, "breads", "", "<p>Our delicious and wholesome house-made whole wheat bread, baked fresh daily.  "
         . "One of our staples and customer favorites!</p>");
@@ -27,31 +26,31 @@ $ChocolateCupcake = new Product("Chocolate Cupcake", "seven", "7","", 2.50, "cak
 $RyeBread = new Product("Rye Bread", "eight", "8", "", 2.95, "breads", "", "Hearty rye bread rich with flavor, baked fresh daily.");
 
 
-$products = array($WholeWheatLoaf, $WhiteBreadLoaf, $BlueberryScone, $ChocolateCake, $CherryPie, $BlueberryPie, $BlueberryMuffin, $ChocolateCupcake, $RyeBread);
+$products = array( $WholeWheatLoaf, $WhiteBreadLoaf, $BlueberryScone, $ChocolateCake, $CherryPie, $BlueberryPie, $BlueberryMuffin, $ChocolateCupcake, $RyeBread );
 $itemSubtotal = array();
 
 
 $_SESSION["products"] = array();
-array_push($_SESSION["products"], $WholeWheatLoaf);
-array_push($_SESSION["products"], $WhiteBreadLoaf);
-array_push($_SESSION["products"], $BlueberryScone);
-array_push($_SESSION["products"], $ChocolateCake);
-array_push($_SESSION["products"], $CherryPie);
-array_push($_SESSION["products"], $BlueberryPie);
-array_push($_SESSION["products"], $BlueberryMuffin);
-array_push($_SESSION["products"], $ChocolateCupcake);
-array_push($_SESSION["products"], $RyeBread);
+array_push( $_SESSION["products"], $WholeWheatLoaf );
+array_push( $_SESSION["products"], $WhiteBreadLoaf );
+array_push( $_SESSION["products"], $BlueberryScone );
+array_push( $_SESSION["products"], $ChocolateCake );
+array_push( $_SESSION["products"], $CherryPie );
+array_push( $_SESSION["products"], $BlueberryPie );
+array_push( $_SESSION["products"], $BlueberryMuffin );
+array_push( $_SESSION["products"], $ChocolateCupcake );
+array_push( $_SESSION["products"], $RyeBread );
 
 
 //Initialize the cart.
-if (isset($_SESSION["estimateCart"]) === false) {
+if ( isset( $_SESSION["estimateCart"] ) === false) {
     $_SESSION["estimateCart"] = "not empty";
-    for ($i = 0; $i < count($products); $i++) {
+    for ( $i = 0; $i < count( $products ); $i++ ) {
         $_SESSION["products"][$i] = $products[$i];   //We need to store this for the reset function since that logic is in a separate function.
         $_SESSION["quantity"][$i] = 0;
-        $_SESSION["itemSubtotal"][$i] = number_format(0.00, 2);
+        $_SESSION["itemSubtotal"][$i] = number_format( 0.00, 2 );
         $_SESSION["numberOfItems"] = 0;
-        $_SESSION["totalCost"] = number_format(0.00, 2);
+        $_SESSION["totalCost"] = number_format( 0.00, 2 );
     }
 }
 
@@ -62,40 +61,40 @@ if (isset($_SESSION["estimateCart"]) === false) {
 $productSearchText = "";
 $emptyForm = false;
 
-$_SESSION["searchByCategory"] = strtolower("" . $_GET['searchByCategory']);
+$_SESSION["searchByCategory"] = strtolower( "" . $_GET['searchByCategory'] );
 $_SESSION["orderByOptions"] = "" . $_GET['orderByOptions'];
 
 
-if ($_SESSION["searchByCategory"] === "" && $_SESSION["orderByOptions"] === "") {
+if ( $_SESSION["searchByCategory"] === "" && $_SESSION["orderByOptions"] === "" ) {
     $emptyForm = true;
 }
 
 $searchedForProducts = array();
-if ($_SESSION["searchByCategory"] !== "" && $_SESSION["searchByCategory"] !== null) {
-    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
-        array_push($searchedForProducts, $_SESSION["products"][$i]);
-        $productCount = count($_SESSION["products"]);
-        if ($_SESSION["products"][$i]->get_category() === $_SESSION["searchByCategory"]) {
-            $_SESSION["products"][$i]->set_displayCSS("");
+if ( $_SESSION["searchByCategory"] !== "" && $_SESSION["searchByCategory"] !== null ) {
+    for ( $i = 0; $i < count( $_SESSION["products"] ); $i++ ) {
+        array_push( $searchedForProducts, $_SESSION["products"][$i] );
+        $productCount = count( $_SESSION["products"] );
+        if ( $_SESSION["products"][$i]->get_category() === $_SESSION["searchByCategory"] ) {
+            $_SESSION["products"][$i]->set_displayCSS( "" );
         } else {
-             $_SESSION["products"][$i]->set_displayCSS("hide");
+            $_SESSION["products"][$i]->set_displayCSS( "hide" );
         }
     }
 } else {
-    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
-        $_SESSION["products"][$i]->set_displayCSS("");
+    for ( $i = 0; $i < count( $_SESSION["products"] ); $i++ ) {
+        $_SESSION["products"][$i]->set_displayCSS( "" );
     }
 }
 
 
-if ($_GET["orderByOptions"] === "Name (Alphabetical)") {
-    usort($_SESSION["products"], "compare_names");
-} else if ($_GET["orderByOptions"] === "Name (Reverse Alphabetical)") {
-    usort($_SESSION["products"], "compare_names_reverse");
-} else if ($_GET["orderByOptions"] === "Price (Ascending)") {
-    usort($_SESSION["products"], "compare_prices");
-} else if ($_GET["orderByOptions"] === "Price (Descending)") {
-    usort($_SESSION["products"], "compare_prices_reverse");
+if ( $_GET["orderByOptions"] === "Name (Alphabetical)" ) {
+    usort( $_SESSION["products"], "compare_names" );
+} else if ( $_GET["orderByOptions"] === "Name (Reverse Alphabetical)" ) {
+    usort( $_SESSION["products"], "compare_names_reverse" );
+} else if ( $_GET["orderByOptions"] === "Price (Ascending)" ) {
+    usort( $_SESSION["products"], "compare_prices" );
+} else if ( $_GET["orderByOptions"] === "Price (Descending)" ) {
+    usort( $_SESSION["products"], "compare_prices_reverse" );
 } else {
     $_SESSION["orderByOptions"] = "";
 }
@@ -104,28 +103,28 @@ reorderProdQuantities();
 
 //Loop through the products, set the class order equal to the products new order.  Then set the product quantity for the product cards equal to the new order.
 function reorderProdQuantities(){
-    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
+    for ( $i = 0; $i < count( $_SESSION["products"] ); $i++ ) {
         $_SESSION["classOrder"][$i] = $_SESSION["products"][$i]->get_classInt(); 
     }
     
-    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
+    for ( $i = 0; $i < count( $_SESSION["products"] ); $i++ ) {
         $_SESSION["prodQuantity"][$i] = $_SESSION["quantity"][$_SESSION["classOrder"][$i]];
     }
 }
 
 
-if ($emptyForm) {
+if ( $emptyForm ) {
     $productSearchText = "Showing all products.";
 } else {
     $categoryProductText = "";
     $orderByText = "";
-    if ($_SESSION["searchByCategory"] === "") {
+    if ( $_SESSION["searchByCategory"] === "" ) {
         $categoryProductText = " all products";
     } else {
         $categoryProductText = $_SESSION["searchByCategory"];
     }
 
-    if ($_SESSION["orderByOptions"] === "") {
+    if ( $_SESSION["orderByOptions"] === "" ) {
         $orderByText = "";
     } else {
         $orderByText = " ordered by " . $_SESSION["orderByOptions"];
@@ -133,51 +132,51 @@ if ($emptyForm) {
     $productSearchText = "Showing " . $categoryProductText . $orderByText . ".";
 }
 
-function compare_names($a, $b){
-    return strcmp($a->name, $b->name);
+function compare_names( $a, $b ){
+    return strcmp( $a->name, $b->name );
 }
 
-function compare_names_reverse($b, $a){
-    return strcmp($a->name, $b->name);
+function compare_names_reverse( $b, $a ){
+    return strcmp( $a->name, $b->name );
 }
 
-function compare_prices($a, $b){
-    return strnatcmp($a->price, strval($b->price));
+function compare_prices( $a, $b ){
+    return strnatcmp( $a->price, strval( $b->price ) );
 }
 
-function compare_prices_reverse($b, $a){
-    return strnatcmp($a->price, strval($b->price));
+function compare_prices_reverse( $b, $a ){
+    return strnatcmp( $a->price, strval( $b->price ) );
 }
 //End of product searching
 
 
 
 //Set cart value quantity
-if (isset($_SESSION["estimateCart"])) {
+if ( isset( $_SESSION["estimateCart"] ) ) {
     $_SESSION["numberOfItems"] = 0;
-    if (isset($_GET["item"])) {
+    if ( isset( $_GET["item"] ) ) {
         $itemNumber = $_GET["item"];    
-        if (isset($_GET["setValue"])){
+        if ( isset( $_GET["setValue"] ) ){
             $_SESSION["quantity"][$itemNumber] = $_GET["setValue"];
         } else {
             $_SESSION["quantity"][$itemNumber] = $_SESSION["quantity"][$itemNumber] + 1;
         }
         
-        if( $_SESSION["quantity"][$itemNumber] < 0 ){
+        if ( $_SESSION["quantity"][$itemNumber] < 0 ) {
             $_SESSION["quantity"][$itemNumber] = 0;
         }
-        if( $_SESSION["quantity"][$itemNumber] > 100){
+        if ( $_SESSION["quantity"][$itemNumber] > 100) {
             $_SESSION["quantity"][$itemNumber] = 100;
         }
            
-        $_SESSION["itemSubtotal"][$itemNumber] = number_format($products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
+        $_SESSION["itemSubtotal"][$itemNumber] = number_format( $products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2 );
     }
 
     //After setting the quantities array, then set the quantities for the shown products.
     $_SESSION["shownProductsQuantity"] = array();
-    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
-        if ($_SESSION["orderByOptions"] === "") {
-            if (intval($_SESSION["products"][$i]->get_classInt()) === $i) {
+    for ( $i = 0; $i < count( $_SESSION["products"] ); $i++ ) {
+        if ( $_SESSION["orderByOptions"] === "" ) {
+            if ( intval( $_SESSION["products"][$i]->get_classInt() ) === $i ) {
                 $_SESSION["shownProductsQuantity"][$i] = $_SESSION["quantity"][$i];
             } else {
                 $_SESSION["shownProductsQuantity"][$i] = 0;
@@ -188,82 +187,82 @@ if (isset($_SESSION["estimateCart"])) {
     }
 
 
-    $_SESSION["totalCost"] = number_format(0.00, 2);
-    for ($i = 0; $i < count($products); $i++) {
+    $_SESSION["totalCost"] = number_format( 0.00, 2 );
+    for ( $i = 0; $i < count($products); $i++ ) {
         $_SESSION["numberOfItems"] = $_SESSION["numberOfItems"] + $_SESSION["quantity"][$i];
-        $_SESSION["totalCost"] = number_format($_SESSION["totalCost"] + $_SESSION["itemSubtotal"][$i], 2);
+        $_SESSION["totalCost"] = number_format( $_SESSION["totalCost"] + $_SESSION["itemSubtotal"][$i], 2 );
     }
 }
 
 
 //Remove one item from cart.
-if (isset($_SESSION["estimateCart"])) {
-    if (isset($_GET["remove"])) {
+if ( isset( $_SESSION["estimateCart"] ) ) {
+    if ( isset( $_GET["remove"] ) ) {
         $_SESSION["numberOfItems"] = 0;
            
         $itemNumber = $_GET["remove"];
         $newQuantity = $_SESSION["quantity"][$itemNumber] - 1;
 
-        if ($newQuantity >= 0) {
+        if ( $newQuantity >= 0 ) {
             $_SESSION["quantity"][$itemNumber] = $newQuantity;
-            $_SESSION["itemSubtotal"][$itemNumber] = number_format($products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2);
+            $_SESSION["itemSubtotal"][$itemNumber] = number_format( $products[$itemNumber]->get_price() * $_SESSION["quantity"][$itemNumber], 2 );
 
-            $_SESSION["totalCost"] = number_format(0.00, 2);
-            for ($i = 0; $i < count($products); $i++) {
+            $_SESSION["totalCost"] = number_format( 0.00, 2 );
+            for ( $i = 0; $i < count( $products ); $i++ ) {
                 $_SESSION["numberOfItems"] = $_SESSION["numberOfItems"] + $_SESSION["quantity"][$i];
-                $_SESSION["totalCost"] = number_format($_SESSION["totalCost"] + $_SESSION["itemSubtotal"][$i], 2);
+                $_SESSION["totalCost"] = number_format( $_SESSION["totalCost"] + $_SESSION["itemSubtotal"][$i], 2 );
             }
         }
     }
 }
 
 //Reset cart.
-if (isset($_SESSION["estimateCart"])) {
-    if (isset($_GET["resetCart"])) {
+if ( isset( $_SESSION["estimateCart"] ) ) {
+    if ( isset( $_GET["resetCart"] ) ) {
         resetEstimateCart();
     }
 }
 
 function resetEstimateCart() {
-    unset($_SESSION["estimateCart"]);
+    unset( $_SESSION["estimateCart"] );
     $_SESSION["numberOfItems"] = 0;
-    $_SESSION["totalCost"] = number_format(0.00, 2);
-    for ($i = 0; $i < count($_SESSION["products"]); $i++) {
+    $_SESSION["totalCost"] = number_format( 0.00, 2 );
+    for ( $i = 0; $i < count( $_SESSION["products"] ); $i++ ) {
         $_SESSION["quantity"][$i] = 0;
         $_SESSION["shownProductsQuantity"] = 0;
-        $_SESSION["itemSubtotal"][$i] = number_format(0.00, 2);
+        $_SESSION["itemSubtotal"][$i] = number_format( 0.00, 2 );
     }
 }
 
 //Process the estimate request and validate the user input.
 $transmitResponse = "";
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST['userName']) && isset($_POST['userEmail']) && isset($_POST['userPhone']) && isset($_POST['userStreetAddress']) &&
-            isset($_POST['userCity'])&& isset($_POST['userState']) && isset($_POST['userZipCode'])) {
-        if (isset($_POST['userName'])) {
-            $UserName = htmlspecialchars(strip_tags(trim($_POST['userName'])));
+if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
+    if ( isset( $_POST['userName'] ) && isset( $_POST['userEmail'] ) && isset( $_POST['userPhone'] ) && isset( $_POST['userStreetAddress'] ) &&
+            isset( $_POST['userCity'] ) && isset( $_POST['userState'] ) && isset( $_POST['userZipCode'] ) ) {
+        if ( isset( $_POST['userName'] ) ) {
+            $UserName = htmlspecialchars( strip_tags( trim( $_POST['userName'] ) ) );
         }
-        if (isset($_POST['userEmail'])) {
-            $UserEmail = htmlspecialchars(strip_tags(trim($_POST['userEmail'])));
+        if ( isset( $_POST['userEmail'] ) ) {
+            $UserEmail = htmlspecialchars( strip_tags( trim( $_POST['userEmail'] ) ) );
         }
-        if (isset($_POST['userPhone'])) {
-            $UserPhone = htmlspecialchars(strip_tags(trim($_POST['userPhone'])));
+        if ( isset( $_POST['userPhone'] ) ) {
+            $UserPhone = htmlspecialchars( strip_tags( trim( $_POST['userPhone'] ) ) );
         }
-        if (isset($_POST['userStreetAddress'])) {
-            $UserStreetAddress = htmlspecialchars(strip_tags(trim($_POST['userStreetAddress'])));
+        if ( isset( $_POST['userStreetAddress'] ) ) {
+            $UserStreetAddress = htmlspecialchars( strip_tags( trim( $_POST['userStreetAddress'] ) ) );
         }
-        if (isset($_POST['userCity'])) {
-            $UserCity = htmlspecialchars(strip_tags(trim($_POST['userCity'])));
+        if ( isset( $_POST['userCity'] ) ) {
+            $UserCity = htmlspecialchars( strip_tags( trim( $_POST['userCity'] ) ) );
         }
-        if (isset($_POST['userState'])) {
-            $UserState = htmlspecialchars(strip_tags(trim($_POST['userState'])));
+        if ( isset( $_POST['userState'] ) ) {
+            $UserState = htmlspecialchars( strip_tags( trim( $_POST['userState'] ) ) );
         }
-        if (isset($_POST['userZipCode'])) {
-            $UserZipCode = htmlspecialchars(strip_tags(trim($_POST['userZipCode'])));
+        if ( isset( $_POST['userZipCode'] ) ) {
+            $UserZipCode = htmlspecialchars( strip_tags( trim( $_POST['userZipCode'] ) ) );
         }
-        if (isset($_POST['additionalNotes'])) {
-            $AdditionalNotes = htmlspecialchars(strip_tags(trim($_POST['additionalNotes'])));
+        if ( isset( $_POST['additionalNotes'] ) ) {
+            $AdditionalNotes = htmlspecialchars( strip_tags( trim( $_POST['additionalNotes'] ) ) );
         }
         $SendEmailTo = "logan.testa@outlook.com";
 
@@ -273,86 +272,86 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
         $ValidUserName = true;
-        if (Trim($UserName) === "") {
+        if ( Trim( $UserName ) === "" ) {
             $ValidUserName = false;
         }
-        if ($ValidUserName === false) {
+        if ( $ValidUserName === false ) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter a name.</p>";
         }
 
 
         $ValidUserEmail = true;
-        if (Trim($UserEmail) === "") {
+        if ( Trim( $UserEmail ) === "" ) {
             $ValidUserEmail = false;
         }
         /* More advanced e-mail validation */
-        if (!filter_var($UserEmail, FILTER_VALIDATE_EMAIL)) {
+        if ( ! filter_var( $UserEmail, FILTER_VALIDATE_EMAIL ) ) {
             $ValidUserEmail = false;
         }
-        if ($ValidUserEmail === false) {
+        if ( $ValidUserEmail === false ) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter a valid email.</p>";
         }
 
 
         $ValidUserPhone = true;
-        if (Trim($UserPhone) === "") {
+        if ( Trim( $UserPhone ) === "" ) {
             $ValidUserPhone = false;
         }
-        if (strlen($UserPhone) !== 10) {
+        if ( strlen( $UserPhone ) !== 10 ) {
             $ValidUserPhone = false;
         }
-        if (ctype_digit($UserPhone) === false) {
+        if ( ctype_digit( $UserPhone ) === false ) {
             $ValidUserPhone = false;
         }
-        if ($ValidUserPhone === false) {
+        if ( $ValidUserPhone === false ) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter a 10 digit phone number, no dashes.</p>";
         }
 
 
         $ValidUserState = true;
-        if (Trim($UserState) === "") {
+        if ( Trim( $UserState ) === "" ) {
             $ValidUserState = false;
         }
-        if ($ValidUserState === false) {
+        if ( $ValidUserState === false ) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter a state.</p>";
         }
 
 
         $ValidUserCity = true;
-        if (Trim($UserCity) === "") {
+        if ( Trim( $UserCity ) === "" ) {
             $ValidUserCity = false;
         }
-        if ($ValidUserCity === false) {
+        if ( $ValidUserCity === false ) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter a city.</p>";
         }
 
 
         $ValidUserZipCode = true;
-        if (Trim($UserZipCode) === "") {
+        if ( Trim( $UserZipCode ) === "" ) {
             $ValidUserZipCode = false;
         }
-        if (strlen($UserZipCode) !== 5) {
+        if ( strlen( $UserZipCode ) !== 5 ) {
             $ValidUserZipCode = false;
         }
-        if (ctype_digit($UserZipCode) === false) {
+        if ( ctype_digit( $UserZipCode ) === false ) {
             $ValidUserZipCode = false;
         }
-        if ($ValidUserZipCode === false) {
+        if ( $ValidUserZipCode === false ) {
             $PassedValidation = false;
             $transmitResponse .= "<p>ZIP Code must be exactly 5 digits.</p>";
         }
 
 
-        if ($PassedValidation === false) {
+        if ( $PassedValidation === false ) {
             $transmitResponse .= "<p>Sorry, validation failed.  Please check all fields again.</p>";
         }
 
-        if ($PassedValidation) {
+        if ( $PassedValidation ) {
             /* Set the headers */
             $Headers = "";
             $Headers .= "From: <$UserEmail>\r\n";
@@ -368,8 +367,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $Body .= "" . $UserCity . ", " . $UserState . " " . $UserZipCode . " " . "<br />";
             $Body .= "<br />";
             $Body .= "<strong>Estimate Items:</strong><br />";
-            for ($i = 0; $i < count($products); $i++) {
-                if ($_SESSION["itemSubtotal"][$i] > 0) {
+            for ( $i = 0; $i < count( $products ); $i++ ) {
+                if ( $_SESSION["itemSubtotal"][$i] > 0 ) {
                     $Body .= "" . $products[$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . "<br />";
                 }
             }
@@ -380,13 +379,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $Body .= "<br />";
 
             /* Send the e-mail. */
-            $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: Estimate Order Request for " . $UserName, $Body, $Headers);
+            $SuccessfulSubmission = mail( $SendEmailTo, "Tualatin Top Bakery: Estimate Order Request for " . $UserName, $Body, $Headers );
 
-            if ($SuccessfulSubmission) {
+            if ( $SuccessfulSubmission ) {
                 $transmitResponse .= "<p>" . $UserName . ", your estimate request was successfully submitted.</p>";
                 $transmitResponse .= "<p>Estimate Items:</p>";
-                for ($i = 0; $i < count($products); $i++) {
-                    if ($_SESSION["itemSubtotal"][$i] > 0) {
+                for ( $i = 0; $i < count( $products ); $i++ ) {
+                    if ( $_SESSION["itemSubtotal"][$i] > 0 ) {
                         $transmitResponse .= "" . $products[$i]->get_name() . ": Qty: " . $_SESSION["quantity"][$i] . ", Sub: $" . $_SESSION["itemSubtotal"][$i] . "<br />";
                     }
                 }
@@ -394,7 +393,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $transmitResponse .= "<p>We will respond back within 2 business days!</p>";
                 $transmitResponse .= "<p>Thank you for shopping with Tualatin Top Bakery!</p>";
                 resetEstimateCart();
-            } else if ($SuccessfulSubmission === false) {
+            } else if ( $SuccessfulSubmission === false ) {
                 $transmitResponse .= "<p>Submission failed. Please try again.</p>";
             }
         }
@@ -407,7 +406,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <head>
         <meta charset="utf-8">
-        <meta name="description" content="Delicius baked goods featured including bread, cookies, pastries, pies, cakes, and more." />
+        <meta name="description" content="Delicious baked goods featured including bread, cookies, pastries, pies, cakes, and more." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="bakery, bread, whole wheat, cookies, scones, pastries, cupcakes, cakes, pies, Oregon" />
         <title>Products | Tualatin Top Bakery</title>	   
@@ -420,9 +419,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <div class="inner-wrapper">
                     <?php include 'assets/include/logo.php'; ?>
                     <?php include 'assets/include/header-content.php'; ?>
-                    <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(35)->post_title); ?></h2>
+                    <h2 class="header__subtitle"><?php echo apply_filters( '<p>', get_post( 35 )->post_title ); ?></h2>
                     <div class="shopping-cart">
-                        <div class="shopping-cart__image <?php if ($_SESSION['numberOfItems'] > 0) { echo 'show'; } ?>">
+                        <div class="shopping-cart__image <?php if ( $_SESSION['numberOfItems'] > 0 ) { echo 'show'; } ?>">
                             <a class="shopping-cart__link" href="#estimateCartTitle">
                                 <div class="shopping-cart__number-of-items"><?php echo $_SESSION["numberOfItems"]; ?></div>
                             </a>
@@ -439,8 +438,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div class="col-lar-6">
                             <?php
                             $id = 35;
-                            $page = get_post($id);
-                            $content = "" . apply_filters('the_content', $page->post_content);
+                            $page = get_post( $id );
+                            $content = "" . apply_filters( 'the_content', $page->post_content );
                             echo $content;
                             ?>
                         </div>
@@ -452,22 +451,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         <label class="input-container__label" for="searchByCategory"><strong>Category</strong></label>
                                         <select type="text" class="product-search__select" id="searchByCategory" name="searchByCategory">
                                             <option value=""></option>                        
-                                            <option value="Breads" <?php if($_SESSION["searchByCategory"] === "breads"){ echo "selected='selected'"; } ?> >Breads</option>
-                                            <option value="Pastries" <?php if($_SESSION["searchByCategory"] === "pastries"){ echo "selected='selected'"; } ?> >Pastries</option>                                    
-                                            <option value="Muffins" <?php if($_SESSION["searchByCategory"] === "muffins"){ echo "selected='selected'"; } ?> >Muffins</option>
-                                            <option value="Cakes" <?php if($_SESSION["searchByCategory"] === "cakes"){ echo "selected='selected'"; } ?> >Cakes</option>
-                                            <option value="Pies" <?php if($_SESSION["searchByCategory"] === "pies"){ echo "selected='selected'"; } ?> >Pies</option>
-                                            <option value="Other" <?php if($_SESSION["searchByCategory"] === "other"){ echo "selected='selected'"; } ?> >Other</option>
+                                            <option value="Breads" <?php if ( $_SESSION["searchByCategory"] === "breads" ){ echo "selected='selected'"; } ?> >Breads</option>
+                                            <option value="Pastries" <?php if ( $_SESSION["searchByCategory"] === "pastries" ){ echo "selected='selected'"; } ?> >Pastries</option>                                    
+                                            <option value="Muffins" <?php if ( $_SESSION["searchByCategory"] === "muffins" ){ echo "selected='selected'"; } ?> >Muffins</option>
+                                            <option value="Cakes" <?php if ( $_SESSION["searchByCategory"] === "cakes" ){ echo "selected='selected'"; } ?> >Cakes</option>
+                                            <option value="Pies" <?php if ( $_SESSION["searchByCategory"] === "pies" ){ echo "selected='selected'"; } ?> >Pies</option>
+                                            <option value="Other" <?php if ( $_SESSION["searchByCategory"] === "other" ){ echo "selected='selected'"; } ?> >Other</option>
                                         </select>
                                     </div>
                                     <div class="input-container product-search-container">
                                         <label class="input-container__label" for="orderByOptions"><strong>Order By</strong></label>
                                         <select type="text" class="product-search__select" id="orderByOptions" name="orderByOptions">
                                             <option value=""></option>                        
-                                            <option value="Name (Alphabetical)" <?php if($_SESSION["orderByOptions"] === "Name (Alphabetical)"){ echo "selected='selected'"; } ?> >Name (Alphabetical)</option>
-                                            <option value="Name (Reverse Alphabetical)" <?php if($_SESSION["orderByOptions"] === "Name (Reverse Alphabetical)"){ echo "selected='selected'"; } ?> >Name (Reverse Alphabetical)</option>                                    
-                                            <option value="Price (Ascending)" <?php if($_SESSION["orderByOptions"] === "Price (Ascending)"){ echo "selected='selected'"; } ?> >Price (Ascending)</option>
-                                            <option value="Price (Descending)" <?php if($_SESSION["orderByOptions"] === "Price (Descending)"){ echo "selected='selected'"; } ?> >Price (Descending)</option>
+                                            <option value="Name (Alphabetical)" <?php if ( $_SESSION["orderByOptions"] === "Name (Alphabetical)" ){ echo "selected='selected'"; } ?> >Name (Alphabetical)</option>
+                                            <option value="Name (Reverse Alphabetical)" <?php if ( $_SESSION["orderByOptions"] === "Name (Reverse Alphabetical)" ){ echo "selected='selected'"; } ?> >Name (Reverse Alphabetical)</option>                                    
+                                            <option value="Price (Ascending)" <?php if ( $_SESSION["orderByOptions"] === "Price (Ascending)" ){ echo "selected='selected'"; } ?> >Price (Ascending)</option>
+                                            <option value="Price (Descending)" <?php if ( $_SESSION["orderByOptions"] === "Price (Descending)" ){ echo "selected='selected'"; } ?> >Price (Descending)</option>
                                         </select>
                                     </div>
                                     <div class="input-container product-search-container">
@@ -482,15 +481,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </div>
                     <div class="content-row product-quantities">
                         <div class="col-sma-12">
-                            <?php for ($i = 0; $i < count($_SESSION["products"]); $i++) { ?>
+                            <?php for ( $i = 0; $i < count( $_SESSION["products"] ); $i++ ) { ?>
                                 <div class="product-quantities-hidden"><?php echo $_SESSION["shownProductsQuantity"][$i]; ?></div>
                             <?php } ?>
                         </div>
                     </div>
                     <div class="content-row products">
                         <?php
-                        for ($i = 0; $i < count($_SESSION["products"]); $i++) {
-                            if ($_SESSION["products"][$i]->get_displayCSS() === "hide") {              
+                        for ( $i = 0; $i < count( $_SESSION["products"] ); $i++ ) {
+                            if ( $_SESSION["products"][$i]->get_displayCSS() === "hide" ) {              
                             } else {
                                 ?>
                                 <div class="col-vsm-6 col-sma-4 col-lar-3 product-outer">
@@ -510,7 +509,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                 <div class="product__increase-quantity">+</div>
                                             </div>
                                             <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
-                                            <div class="product__quantity-container <?php if ($_SESSION["shownProductsQuantity"][$i] > 0) { echo 'show'; }?>">
+                                            <div class="product__quantity-container <?php if ( $_SESSION["shownProductsQuantity"][$i] > 0 ) { echo 'show'; }?>">
                                                 <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["shownProductsQuantity"][$i] . "</a>" ?>                                                
                                             </div>
                                             <div class="clear-both"></div>
@@ -538,8 +537,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php for($i = 0; $i < count($products); $i++) { ?>
-                                            <tr class="estimate-table__item <?php echo $products[$i]->get_classCSS(); ?> <?php if($_SESSION["quantity"][$i] <= 0){ echo "hide"; } ?>">
+                                        <?php for ( $i = 0; $i < count( $products ); $i++ ) { ?>
+                                            <tr class="estimate-table__item <?php echo $products[$i]->get_classCSS(); ?> <?php if ( $_SESSION["quantity"][$i] <= 0 ){ echo "hide"; } ?>">
                                                 <td class="estimate-table__item-title"><?php echo $products[$i]->get_name(); ?></td>
                                                 <td class="estimate-table__item-image"><div class="estimate-table__item-image__photo"></div></td>
                                                 <td class="estimate-table__item-cost">$<?php echo $products[$i]->get_price(); ?></td>
@@ -565,7 +564,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div class="col-sma-5">
                             <div class="estimate-container" id="estimateContainer">
                                 <h3 class="estimate-container__title">Request Estimate</h3>
-                                <form class="contact-container__form" id="estimateForm" v-on:submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                <form class="contact-container__form" id="estimateForm" v-on:submit="validateForm" method="post" action="<?php echo htmlspecialchars( $_SERVER["PHP_SELF"] ); ?>">
                                     <div class="contact-container__response">
                                         <p>We appreciate your business <strong>{{writeResponse}}</strong> at Tualatin Top Bakery! 
                                             We will look over your estimate, and respond 
