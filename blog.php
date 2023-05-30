@@ -1,26 +1,26 @@
 <?php
-declare(strict_types=1);
-define('WP_USE_THEMES', false);
-require('./wordpress/wp-load.php');
+declare( strict_types = 1 );
+define( 'WP_USE_THEMES', false );
+require( './wordpress/wp-load.php' );
 session_start();
 
 
-if (isset($_SESSION["orderBy"]) === false) {
+if ( isset( $_SESSION["orderBy"]) === false ) {
     $_SESSION["orderBy"] = "date";
 }
-if (isset($_SESSION["order"]) === false) {
+if ( isset( $_SESSION["order"] ) === false ) {
     $_SESSION["order"] = "desc";
 }
 
 
-if (isset($_GET["orderby"])) {
-    $_SESSION["orderBy"] = htmlspecialchars($_GET["orderby"]);
+if ( isset( $_GET["orderby"] ) ) {
+    $_SESSION["orderBy"] = htmlspecialchars( $_GET["orderby"] );
 }
 
-if (isset($_GET["order"]) && htmlspecialchars($_GET["order"]) === "toggle") {
-    if ($_SESSION["order"] === "desc") {
+if ( isset( $_GET["order"] ) && htmlspecialchars( $_GET["order"] ) === "toggle" ) {
+    if ( $_SESSION["order"] === "desc" ) {
         $_SESSION["order"] = "asc";
-    } else if ($_SESSION["order"] === "asc") {
+    } else if ( $_SESSION["order"] === "asc" ) {
         $_SESSION["order"] = "desc";
     }
 }
@@ -36,7 +36,7 @@ if ( $_SESSION["order"] === "asc" ){
     else {
         $orderText = " (ascending)";
     }
-} else if ($_SESSION["order"] === "desc"){
+} else if ( $_SESSION["order"] === "desc" ){
     if ( $_SESSION["orderBy"] === "date" ) {
         $orderText = ": newest to oldest";
     } else if ( $_SESSION["orderBy"] === "title" ) {
@@ -56,7 +56,7 @@ $orderByOutputText = "Order by " . $_SESSION["orderBy"] . $orderText . "";
 
     <head>
         <meta charset="utf-8">
-        <meta name="description" content="Delicius baked goods featured including bread, cookies, pastries, pies, cakes, and more." />
+        <meta name="description" content="Delicious baked goods featured including bread, cookies, pastries, pies, cakes, and more." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="bakery, bread, whole wheat, cookies, scones, pastries, cupcakes, cakes, pies, Oregon" />
         <title>Blog | Tualatin Top Bakery</title>	
@@ -69,7 +69,7 @@ $orderByOutputText = "Order by " . $_SESSION["orderBy"] . $orderText . "";
                 <div class="inner-wrapper">
                     <?php include 'assets/include/logo.php'; ?>
                     <?php include 'assets/include/header-content.php'; ?>
-                    <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(43)->post_title); ?></h2>
+                    <h2 class="header__subtitle"><?php echo apply_filters( '<p>', get_post( 43 )->post_title ); ?></h2>
                 </div>
             </header>
 
@@ -82,18 +82,18 @@ $orderByOutputText = "Order by " . $_SESSION["orderBy"] . $orderText . "";
                             <div class="blog-page__content-text">
                                 <?php
                                 $id = 43;
-                                $page = get_post($id);
-                                $content = "" . apply_filters('the_content', $page->post_content);
+                                $page = get_post( $id );
+                                $content = "" . apply_filters( 'the_content', $page->post_content );
                                 echo $content;
                                 ?>
                             </div>
                             <div id="blogControls" class="blog-controls">
-                                <form class="blog-controls__control" id="blogControlForm0" method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                <form class="blog-controls__control" id="blogControlForm0" method="get" action="<?php echo htmlspecialchars( $_SERVER["PHP_SELF"] ); ?>">
                                     <div class="input-container">
                                         <button class="blog-controls__button" id="blogControlButton0" name="blogControlButton0" type="submit">Order By Date</button>                          
                                     </div>
                                 </form>
-                                <form class="blog-controls__control" id="blogControlForm1" method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                <form class="blog-controls__control" id="blogControlForm1" method="get" action="<?php echo htmlspecialchars( $_SERVER["PHP_SELF"] ); ?>">
                                     <div class="input-container">
                                         <button class="blog-controls__button" id="blogControlButton1" name="blogControlButton1" type="submit">Order By Title</button>                          
                                     </div>
@@ -108,25 +108,25 @@ $orderByOutputText = "Order by " . $_SESSION["orderBy"] . $orderText . "";
                             <div class="blog-posts-container" id="blogPostsContainer">
                                 <div class="blog-posts" id="blogPosts">
                                     <?php
-                                    $args = array('posts_per_page' => -1, 'orderby' => $_SESSION["orderBy"], 'order' => $_SESSION["order"]);
-                                    $postsToDisplay = get_posts($args);
-                                    foreach ($postsToDisplay as $post) : setup_postdata($post);
+                                    $args = array( 'posts_per_page' => -1, 'orderby' => $_SESSION["orderBy"], 'order' => $_SESSION["order"] );
+                                    $postsToDisplay = get_posts( $args );
+                                    foreach ( $postsToDisplay as $post ) : setup_postdata( $post );
                                         ?>                                                       
                                         <div  id="<?php the_title(); ?>" class="blog-post">
                                             <h4 class="blog__title"><?php the_title(); ?></h4>
-                                            <div class="blog__image"><?php the_post_thumbnail('medium_rect_crop'); ?></div>
+                                            <div class="blog__image"><?php the_post_thumbnail( 'medium_rect_crop' ); ?></div>
                                             <div class="blog__categories"><?php
                                                 $categories = get_the_category();
                                                 $h = 0;
-                                                foreach ($categories as $category) {
+                                                foreach ( $categories as $category ) {
                                                     $h++;
                                                 }
                                                 $h = $h - 1;
 
                                                 $i = 0;
-                                                foreach ($categories as $category) {
+                                                foreach ( $categories as $category ) {
                                                     $result = "";
-                                                    if ($i < $h) {
+                                                    if ( $i < $h ) {
                                                         $result .= $category->name . ", ";
                                                     } else {
                                                         $result .= $category->name;
