@@ -1,13 +1,13 @@
 <?php
 $transmitResponseSubscribe = "";
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST['userNameSubscribe']) && isset($_POST['userEmailSubscribe'])) {
-        if (isset($_POST['userNameSubscribe'])) {
-            $UserNameSubscribe = htmlspecialchars(strip_tags(trim($_POST['userNameSubscribe'])));
+if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
+    if ( isset( $_POST['userNameSubscribe'] ) && isset( $_POST['userEmailSubscribe'] ) ) {
+        if ( isset( $_POST['userNameSubscribe'] ) ) {
+            $UserNameSubscribe = htmlspecialchars( strip_tags( trim( $_POST['userNameSubscribe'] ) ) );
         }
-        if (isset($_POST['userEmailSubscribe'])) {
-            $UserEmailSubscribe = htmlspecialchars(strip_tags(trim($_POST['userEmailSubscribe'])));
+        if ( isset( $_POST['userEmailSubscribe'] ) ) {
+            $UserEmailSubscribe = htmlspecialchars( strip_tags( trim( $_POST['userEmailSubscribe'] ) ) );
         }
         $UserSubjectSubscribe = "Tualatin Top Bakery: Subscribe";
         $SendEmailToSubscribe = "logan.testa@outlook.com";
@@ -19,34 +19,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
         $ValidUserNameSubscribe = true;
-        if (Trim($UserNameSubscribe) === "") {
+        if ( Trim( $UserNameSubscribe) === "" ) {
             $ValidUserNameSubscribe = false;
         }
-        if ($ValidUserNameSubscribe === false) {
+        if ( $ValidUserNameSubscribe === false ) {
             $PassedValidation = false;
             $transmitResponseSubscribe .= "<p>Please enter a name.</p>";
         }
 
 
         $ValidUserEmailSubscribe = true;
-        if (Trim($UserEmailSubscribe) === "") {
+        if ( Trim( $UserEmailSubscribe ) === "" ) {
             $ValidUserEmailSubscribe = false;
         }
         /* More advanced e-mail validation */
-        if (!filter_var($UserEmailSubscribe, FILTER_VALIDATE_EMAIL)) {
+        if ( ! filter_var( $UserEmailSubscribe, FILTER_VALIDATE_EMAIL ) ) {
             $ValidUserEmailSubscribe = false;
         }
-        if ($ValidUserEmailSubscribe === false) {
+        if ( $ValidUserEmailSubscribe === false ) {
             $PassedValidation = false;
             $transmitResponseSubscribe .= "<p>Please enter a valid email.</p>";
         }
 
 
-        if ($PassedValidation === false) {
+        if ( $PassedValidation === false ) {
             $transmitResponseSubscribe .= "<p>Sorry, validation failed.  Please check all fields again.</p>";
         }
 
-        if ($PassedValidation) {
+        if ( $PassedValidation ) {
             /* Set the headers */
             $Headers = "";
             $Headers .= "From: <$UserEmailSubscribe>\r\n";
@@ -59,11 +59,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $BodySubscribe .= "<strong>User Email:</strong> " . $UserEmailSubscribe . "<br />";
 
             /* Send the e-mail. */
-            $SuccessfulSubmission = mail($SendEmailToSubscribe, $UserSubjectSubscribe, $BodySubscribe, $Headers);
-            if ($SuccessfulSubmission) {
+            $SuccessfulSubmission = mail( $SendEmailToSubscribe, $UserSubjectSubscribe, $BodySubscribe, $Headers );
+            if ( $SuccessfulSubmission ) {
                 $transmitResponseSubscribe .= "<p>" . $UserNameSubscribe . ", your form was successfully submitted.  You are "
                         . "now subscribed to our specials and updates!</p>";
-            } else if ($SuccessfulSubmission === false) {
+            } else if ( $SuccessfulSubmission === false ) {
                 $transmitResponseSubscribe .= "<p>Submission failed. Please try again.</p>";
             }
         }
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="inner-wrapper">
         <div class="footer__additional-wrapper">     
             <div class="content-row">
-                <div class="footer__copyright">Copyright &copy; <?php echo date("Y"); ?> Tualatin Top Bakery. All Rights Reserved.</div>
+                <div class="footer__copyright">Copyright &copy; <?php echo date( "Y" ); ?> Tualatin Top Bakery. All Rights Reserved.</div>
                 <script type="text/x-template" id="modal-template">
                     <transition name="modal">
                     <div class="modal__mask subscribe-modal">
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <slot name="footer">
                     Footer text here.
                     </slot>
-                    <div class="modal__close-button" @click="$emit('close')">
+                    <div class="modal__close-button" @click = "$emit( 'close' )">
                     X
                     </div>
                     </div>
@@ -117,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <p>Get news on upcoming events and sweet discounts on bakery products!  All new subscribers get a free cookie coupon 
                                 in their inbox!</p>
                             <h4>Note: this is fictional business site for a portfolio. Thanks!</h4>
-                            <form class="contact-container__form" id="subscribeForm" @submit="validateSubscribeForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                            <form class="contact-container__form" id="subscribeForm" @submit="validateSubscribeForm" method="post" action="<?php echo htmlspecialchars( $_SERVER["PHP_SELF"] ); ?>">
                                 {{writeResponse}} 
                                 <div v-if="errors.length">
                                     <strong>Review the following fields:</strong>
