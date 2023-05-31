@@ -1,27 +1,27 @@
 <?php
-declare(strict_types=1);
+declare( strict_types = 1 );
 
-define('WP_USE_THEMES', false);
-require('./wordpress/wp-load.php');
+define( 'WP_USE_THEMES', false );
+require( './wordpress/wp-load.php' );
 
 $transmitResponse = "";
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST['userFirstName']) && isset($_POST['userLastName']) && isset($_POST['userEmail']) && isset($_POST['userComments'])) {
-        if (isset($_POST['userFirstName'])) {
-            $UserFirstName = htmlspecialchars(strip_tags(trim($_POST['userFirstName'])));
+if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
+    if ( isset( $_POST['userFirstName'] ) && isset( $_POST['userLastName'] ) && isset( $_POST['userEmail'] ) && isset( $_POST['userComments'] ) ) {
+        if ( isset( $_POST['userFirstName'] ) ) {
+            $UserFirstName = htmlspecialchars( strip_tags( trim( $_POST['userFirstName'] ) ) );
         }
-        if (isset($_POST['userLastName'])) {
-            $UserLastName = htmlspecialchars(strip_tags(trim($_POST['userLastName'])));
+        if ( isset( $_POST['userLastName'] ) ) {
+            $UserLastName = htmlspecialchars( strip_tags( trim( $_POST['userLastName'] ) ) );
         }
-        if (isset($_POST['userEmail'])) {
-            $UserEmail = htmlspecialchars(strip_tags(trim($_POST['userEmail'])));
+        if ( isset( $_POST['userEmail'] ) ) {
+            $UserEmail = htmlspecialchars( strip_tags( trim( $_POST['userEmail'] ) ) );
         }
-        if (isset($_POST['userSubject'])) {
-            $UserSubject = htmlspecialchars(strip_tags(trim($_POST['userSubject'])));
+        if ( isset( $_POST['userSubject'] ) ) {
+            $UserSubject = htmlspecialchars( strip_tags( trim( $_POST['userSubject'] ) ) );
         }
-        if (isset($_POST['userComments'])) {
-            $UserComments = htmlspecialchars(strip_tags(trim($_POST['userComments'])));
+        if ( isset( $_POST['userComments'] ) ) {
+            $UserComments = htmlspecialchars( strip_tags( trim( $_POST['userComments'] ) ) );
         }
         $SendEmailTo = "logan.testa@outlook.com";
 
@@ -31,54 +31,54 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
         $ValidUserFirstName = true;
-        if (Trim($UserFirstName) === "") {
+        if ( Trim( $UserFirstName ) === "" ) {
             $ValidUserFirstName = false;
         }
-        if ($ValidUserFirstName === false) {
+        if ( $ValidUserFirstName === false ) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter a first name.</p>";
         }
 
 
         $ValidUserLastName = true;
-        if (Trim($UserLastName) === "") {
+        if ( Trim( $UserLastName ) === "" ) {
             $ValidUserLastName = false;
         }
-        if ($ValidUserLastName === false) {
+        if ( $ValidUserLastName === false ) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter a last name.</p>";
         }
 
 
         $ValidUserEmail = true;
-        if (Trim($UserEmail) === "") {
+        if ( Trim( $UserEmail ) === "" ) {
             $ValidUserEmail = false;
         }
         /* More advanced e-mail validation */
-        if (!filter_var($UserEmail, FILTER_VALIDATE_EMAIL)) {
+        if ( ! filter_var( $UserEmail, FILTER_VALIDATE_EMAIL ) ) {
             $ValidUserEmail = false;
         }
-        if ($ValidUserEmail === false) {
+        if ( $ValidUserEmail === false ) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please enter a valid email.</p>";
         }
 
 
         $ValidUserComments = true;
-        if (Trim($UserComments) === "") {
+        if ( Trim( $UserComments ) === "" ) {
             $ValidUserComments = false;
         }
-        if ($ValidUserComments === false) {
+        if ( $ValidUserComments === false ) {
             $PassedValidation = false;
             $transmitResponse .= "<p>Please provide your message in the textarea.</p>";
         }
 
 
-        if ($PassedValidation === false) {
+        if ( $PassedValidation === false ) {
             $transmitResponse .= "<p>Sorry, validation failed.  Please check all fields again.</p>";
         }
 
-        if ($PassedValidation) {
+        if ( $PassedValidation ) {
             /* Set the headers */
             $Headers = "";
             $Headers .= "From: <$UserEmail>\r\n";
@@ -93,10 +93,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $Body .= "<strong>User Comments:</strong> " . $UserComments . "<br />";
 
             /* Send the e-mail. */
-            $SuccessfulSubmission = mail($SendEmailTo, "Tualatin Top Bakery: " . $UserSubject, $Body, $Headers);
-            if ($SuccessfulSubmission) {
+            $SuccessfulSubmission = mail( $SendEmailTo, "Tualatin Top Bakery: " . $UserSubject, $Body, $Headers );
+            if ( $SuccessfulSubmission ) {
                 $transmitResponse .= "<p>" . $UserFirstName . ", your form was successfully submitted.  Thanks for contacting us!</p>";
-            } else if ($SuccessfulSubmission === false) {
+            } else if ( $SuccessfulSubmission === false ) {
                 $transmitResponse .= "<p>Submission failed. Please try again.</p>";
             }
         }
@@ -110,10 +110,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <head>
         <meta charset="utf-8">
-        <meta name="description" content="Delicius baked goods featured including bread, cookies, pastries, pies, cakes, and more." />
+        <meta name="description" content="Delicious baked goods featured including bread, cookies, pastries, pies, cakes, and more." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="bakery, bread, whole wheat, cookies, scones, pastries, cupcakes, cakes, pies, Oregon" />
-        <title>Contact | Tualatin Top Bakery</title>
+        <title>Contact Us | Tualatin Top Bakery</title>
         <?php include 'assets/include/document-head-components.php'; ?>
     </head>
 
@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <div class="inner-wrapper">
                     <?php include 'assets/include/logo.php'; ?>
                     <?php include 'assets/include/header-content.php'; ?>
-                    <h2 class="header__subtitle"><?php echo apply_filters('<p>', get_post(45)->post_title); ?></h2>
+                    <h2 class="header__subtitle"><?php echo apply_filters( '<p>', get_post( 45 )->post_title ); ?></h2>
                 </div>
             </header>
             <?php include 'assets/include/navigation-content.php'; ?>
@@ -133,13 +133,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div class="col-sma-5">
                             <?php
                             $id = 45;
-                            $page = get_post($id);
-                            $content = "" . apply_filters('the_content', $page->post_content);
+                            $page = get_post( $id );
+                            $content = "" . apply_filters( 'the_content', $page->post_content );
                             echo $content;
                             ?>
                             <div class="contact-container" id="contactContainer">
                                 <h4 class="contact-container__title">Write Us Here</h4>
-                                <form class="contact-container__form" id="contactOurBakery" v-on:submit="validateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                <form class="contact-container__form" id="contactOurBakery" v-on:submit="validateForm" method="post" action="<?php echo htmlspecialchars( $_SERVER["PHP_SELF"] ); ?>">
                                     <div class="contact-container__response">
                                         <p>&nbsp;</p>
                                         <h4>Note: this is fictional business site for a portfolio. Thanks!</h4>
