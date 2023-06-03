@@ -117,16 +117,15 @@ $orderByOutputText = "Order by " . $_SESSION["orderBy"] . $orderText . "";
                                             <div class="blog__image"><?php the_post_thumbnail( 'medium_rect_crop' ); ?></div>
                                             <div class="blog__categories"><?php
                                                 $categories = get_the_category();
-                                                $h = 0;
+                                                $numberOfCategories = 0;
                                                 foreach ( $categories as $category ) {
-                                                    $h++;
+                                                    $numberOfCategories++;
                                                 }
-                                                $h = $h - 1;
 
                                                 $i = 0;
                                                 foreach ( $categories as $category ) {
                                                     $result = "";
-                                                    if ( $i < $h ) {
+                                                    if ( $i < $numberOfCategories - 1 ) {
                                                         $result .= $category->name . ", ";
                                                     } else {
                                                         $result .= $category->name;

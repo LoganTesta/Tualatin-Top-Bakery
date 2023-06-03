@@ -62,16 +62,15 @@ require( './wordpress/wp-load.php' );
                                         <a href="blog.php#<?php the_title(); ?>"><h4 class="index-blog__title"><?php the_title(); ?></h4></a>
                                         <div class="index-blog__categories"><?php
                                             $categories = get_the_category();
-                                            $h = 0;
+                                            $numberOfCategories = 0;
                                             foreach ( $categories as $category ) {
-                                                $h++;
+                                                $numberOfCategories++;
                                             }
-                                            $h = $h - 1;
 
                                             $i = 0;
                                             foreach ( $categories as $category ) {
                                                 $result = "";
-                                                if ( $i < $h ) {
+                                                if ( $i < $numberOfCategories - 1 ) {
                                                     $result .= $category->name . ", ";
                                                 } else {
                                                     $result .= $category->name;
