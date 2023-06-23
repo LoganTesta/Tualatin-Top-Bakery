@@ -146,6 +146,8 @@ function gt_url_custom_metabox() {
     update_post_meta( $post->ID, 'testimoniallabel', $testimoniallabel );
     $testimonialurl = sanitize_text_field( get_post_meta( $post->ID, 'testimonialurl', true ) );
     update_post_meta( $post->ID, 'testimonialurl', $testimonialurl );
+    $testimonialdate = sanitize_text_field( get_post_meta( $post->ID, 'testimonialdate', true ) );
+    update_post_meta( $post->ID, 'testimonialdate', $testimonialdate );   
     $testimonialorder = sanitize_text_field( get_post_meta( $post->ID, 'testimonialorder', true ) );
     if( isset( $testimonialorder ) === false || $testimonialorder === "" ) {
         $testimonialorder = "n/a";
@@ -194,7 +196,12 @@ function gt_url_custom_metabox() {
             <input id="testimonialurl" size="37" name="testimonialurl" value="<?php if( isset( $testimonialurl ) ) { echo $testimonialurl; } ?>" />
         </label>
     </p>
-        <p>
+    <p>
+        <label for="testimonialdate">Date<br />
+            <input id="testimonialdate" size="37" name="testimonialdate" type="date" value="<?php if( isset( $testimonialdate ) ) { echo $testimonialdate; } ?>" />
+        </label>
+    </p>
+    <p>
         <label for="testimonialorder">Testimonial Order:<br />
             <input id="testimonialorder" size="37" type="number" min="1" name="testimonialorder" value="<?php if( isset( $testimonialorder ) ) { echo $testimonialorder; } ?>" />
         </label>
@@ -249,6 +256,21 @@ function gt_get_url( $post ) {
 }
 
 
+function gt_save_testimonialdate( $post_id ) {
+    global $post;
+    
+    if( isset( $_POST['testimonialdate'] ) ) {
+        update_post_meta( $post->ID, 'testimonialdate', $_POST['testimonialdate'] );
+    }
+}
+add_action( 'save_post', 'gt_save_testimonialdate' );
+
+function gt_get_testimonialdate( $post ) {
+    $testimonialdate = get_post_meta( $post->ID, 'testimonialdate', true );
+    return $testimonialdate;
+}
+
+
 function gt_save_custom_order( $post_id ) {
     global $post;
     
@@ -290,6 +312,7 @@ if ( isset( $_GET['post_type'] ) && $_GET['post_type'] === "general-testimonials
             'testimonialprovidedname' => __( 'Provided Name', 'gt' ),
             'order' => __( 'Order' ),
             'date' => __( 'Date' ),
+            'testimonialdate' => __( 'Testimonial Date', 'gt' ),
         );   
         return $columns;
     }
@@ -309,6 +332,9 @@ if ( isset( $_GET['post_type'] ) && $_GET['post_type'] === "general-testimonials
         }
         if( 'order' === $column ) {
             echo get_post_meta( $post_id, 'testimonialorder', true );
+        }
+        if ( 'testimonialdate' === $column ) {
+            echo get_post_meta( $post_id, 'testimonialdate', true );
         }
     }
 
@@ -363,6 +389,10 @@ function gt_load_testimonials( $a ) {
             $providedName = gt_get_testimonialprovidedname( $post );
             $label = gt_get_testimoniallabel( $post );
             $link = gt_get_url( $post );
+            $testimonialDate = strtotime( gt_get_testimonialdate( $post ) );
+            if ( !empty( gt_get_testimonialdate( $post ) ) ) {
+                $testimonialDate = date( 'F j, Y', $testimonialDate );
+            }
             $pluginContainer .= '<div class="testimonial">';
             if ( !empty( $url_thumb ) ) {
                 $pluginContainer .= '<img class="testimonial__image" src="' . $url_thumb . '" alt="' . $url_altText . '" />';
@@ -383,6 +413,13 @@ function gt_load_testimonials( $a ) {
                     $pluginContainer .= '<span class="testimonial__comma">,</span><span class="testimonial__label"> ' . $label . '</span>';
                 } else {
                     $pluginContainer .= '<span class="testimonial__label">' . $label . '</span>';
+                }
+            }
+            if ( !empty( $testimonialDate ) ) { 
+                if ( !empty( $providedName ) && !empty( $label ) ) {
+                    $pluginContainer .= '<span class="testimonial__comma">,</span><span class="testimonial__date"> ' . $testimonialDate . '</span>';
+                } else {
+                    $pluginContainer .= '<span class="testimonial__date">' . $testimonialDate . '</span>';
                 }
             }
             $pluginContainer .= '</div>';
