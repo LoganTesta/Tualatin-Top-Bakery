@@ -116,7 +116,7 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                         <div slot="body">
                             <p>Get news on upcoming events and sweet discounts on bakery products!  All new subscribers get a free cookie coupon 
                                 in their inbox!</p>
-                            <h4>Note: this is fictional business site for a portfolio. Thanks!</h4>
+                            <h4>Note: this is a fictional business site for a portfolio. Thanks!</h4>
                             <form class="contact-container__form" id="subscribeForm" @submit="validateSubscribeForm" method="post" action="<?php echo htmlspecialchars( $_SERVER["PHP_SELF"] ); ?>">
                                 {{writeResponse}} 
                                 <div v-if="errors.length">
@@ -162,7 +162,7 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                 </div>
                 <div class="footer__location col-sma-4">
                     <h4 class="footer__subheader">Location</h4>
-                    <div>4422 SW Tualatin-Sherwood Road, Tualatin, Oregon 97062</div>
+                    <div>44444 SW Tualatin-Sherwood Road, Tualatin, Oregon 97062</div>
                 </div>
                 <div class="footer__hours col-sma-4">
                     <h4 class="footer__subheader">Hours</h4>

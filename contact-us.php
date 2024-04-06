@@ -142,7 +142,7 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                                 <form class="contact-container__form" id="contactOurBakery" v-on:submit="validateForm" method="post" action="<?php echo htmlspecialchars( $_SERVER["PHP_SELF"] ); ?>">
                                     <div class="contact-container__response">
                                         <p>&nbsp;</p>
-                                        <h4>Note: this is fictional business site for a portfolio. Thanks!</h4>
+                                        <h4>Note: this is a fictional business site for a portfolio. Thanks!</h4>
                                         <p>&nbsp;</p>
                                         <p>Thank you <strong>{{writeResponse}}</strong> for writing to us!</p>
                                         <div v-if="errors.length">

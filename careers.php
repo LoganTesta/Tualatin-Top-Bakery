@@ -173,7 +173,7 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                                         <p>Thank you <strong>{{writeResponse}}</strong> for applying, we look forward to reviewing you application!</p>
                                         <p><strong>We are an Equal Opportunity Employer!</strong></p>  
                                         <p>&nbsp;</p>
-                                        <h4>Note: this is fictional business site for a portfolio. Thanks!</h4>
+                                        <h4>Note: this is a fictional business site for a portfolio. Thanks!</h4>
                                         <div v-if="errors.length">
                                             <strong>Review the following fields:</strong>
                                             <ul>
