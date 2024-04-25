@@ -53,6 +53,8 @@ function gt_register_settings() {
     add_option( 'general-testimonials-float-image-direction', "left" );
     add_option( 'general-testimonials-testimonials-per-row', "2" );
     add_option( 'general-testimonials-number-to-display', "" );
+    add_option( 'general-testimonials-rating-scale', "0-5" );
+    add_option( 'general-testimonials-date-layout', "1" );
 
     register_setting( 'general-testimonials-settings-group', 'general-testimonials-leading-text', 'gt_validatetextfield' );
     register_setting( 'general-testimonials-settings-group', 'general-testimonials-leading-text-position', 'gt_validatetextfield' );
@@ -61,6 +63,8 @@ function gt_register_settings() {
     register_setting( 'general-testimonials-settings-group', 'general-testimonials-float-image-direction', 'gt_validatetextfield' );
     register_setting( 'general-testimonials-settings-group', 'general-testimonials-testimonials-per-row', 'gt_validatetextfield' );  
     register_setting( 'general-testimonials-settings-group', 'general-testimonials-number-to-display', 'gt_validatetextfield' );  
+    register_setting( 'general-testimonials-settings-group', 'general-testimonials-rating-scale', 'gt_validatetextfield' );  
+    register_setting( 'general-testimonials-settings-group', 'general-testimonials-date-layout', 'gt_validatetextfield' );
 }
 add_action( 'admin_init', 'gt_register_settings' );
 
@@ -72,6 +76,26 @@ function gt_validatetextfield( $input ) {
 
 
 function gt_generate_settings_page() {
+    global $post;
+    
+    $ratingScale = get_option( 'general-testimonials-rating-scale' );
+    $maxRating = substr( $ratingScale, 2 );
+        
+    $args = array(
+        "post_type" => "general-testimonials"
+    );
+    $posts = get_posts( $args );
+    $numberOfPosts = count( $posts );
+   
+    foreach ( $posts as $aPost ) {
+        $testimonialrating =  gt_get_testimonialrating( $aPost );
+        if ( $testimonialrating > $maxRating ) {
+            $testimonialrating = "";
+        }
+        update_post_meta( $aPost->ID, 'testimonialrating', $testimonialrating );
+    }
+    
+    
     ?>
     <h1 class="general-testimonials__plugin-title">General Testimonials Settings</h1>
     <form class="testimonials-settings-form" method="post" action="options.php">
@@ -123,6 +147,24 @@ function gt_generate_settings_page() {
                 <label class="admin-input-container__label" for="general-testimonials-number-to-display">Testimonials to Display (Empty: display all)</label>
                 <input id="generalTestimonialsNumberToDisplay" class="admin-input-container__input smaller general-testimonials-number-to-display" name="general-testimonials-number-to-display" type="number" value="<?php echo get_option( 'general-testimonials-number-to-display' ); ?>" />
             </div>
+            <div class="admin-input-container">
+                <span class="admin-input-container__label">Testimonials Rating Scale. Note: reducing the max rating will set any ratings above the new max value to empty.</span>         
+                <input id="generalTestimonialsRatingScale0" class="general-testimonials-rating-scale" name="general-testimonials-rating-scale" type="radio" value="0-4" <?php if ( get_option( 'general-testimonials-rating-scale' ) === "0-4" ) { echo 'checked="checked"'; } ?> />
+                <label class="admin-input-container__label--right" for="generalTestimonialsRatingScale0">0-4</label>
+                <input id="generalTestimonialsRatingScale1" class="general-testimonials-rating-scale" name="general-testimonials-rating-scale" type="radio" value="0-5" <?php if ( get_option( 'general-testimonials-rating-scale' ) === "0-5" ) { echo 'checked="checked"'; } ?> />
+                <label class="admin-input-container__label--right" for="generalTestimonialsRatingScale1">0-5</label>
+                <input id="generalTestimonialsRatingScale2" class="general-testimonials-rating-scale" name="general-testimonials-rating-scale" type="radio" value="0-10" <?php if ( get_option( 'general-testimonials-rating-scale' ) === "0-10" ) { echo 'checked="checked"'; } ?> />
+                <label class="admin-input-container__label--right" for="generalTestimonialsRatingScale2">0-10</label>
+            </div>
+            <div class="admin-input-container">
+                <span class="admin-input-container__label">Date Layout</span>         
+                <input id="generalTestimonialsDateLayout0" class="general-testimonials-date-layout" name="general-testimonials-date-layout" type="radio" value="1" <?php if ( get_option( 'general-testimonials-date-layout' ) === "1" ) { echo 'checked="checked"'; } ?> />
+                <label class="admin-input-container__label--right" for="generalTestimonialsDateLayout0">May 14, 2023 (default)</label>
+                <input id="generalTestimonialsDateLayout1" class="general-testimonials-date-layout" name="general-testimonials-date-layout" type="radio" value="2" <?php if ( get_option( 'general-testimonials-date-layout' ) === "2" ) { echo 'checked="checked"'; } ?> />
+                <label class="admin-input-container__label--right" for="generalTestimonialsDateLayout1">May 2023</label>
+                <input id="generalTestimonialsDateLayout2" class="general-testimonials-date-layout" name="general-testimonials-date-layout" type="radio" value="3" <?php if ( get_option( 'general-testimonials-date-layout' ) === "3" ) { echo 'checked="checked"'; } ?> />
+                <label class="admin-input-container__label--right" for="generalTestimonialsDateLayout2">14 May 2023</label>
+            </div>
             <?php submit_button(); ?>
         </form>
     <?php
@@ -138,6 +180,13 @@ add_action( 'admin_init', 'gt_add_custom_metabox_info' );
 //Admin area HTML and logic 
 function gt_url_custom_metabox() {
     global $post;
+    
+    wp_nonce_field( 'settings_group_nonce_save', 'settings_group_nonce' );
+    
+    $ratingScale = get_option( 'general-testimonials-rating-scale' );
+    $maxRating = substr( $ratingScale, 2 );
+    
+
     
     /*Gather the input data, sanitize it, and update the database.*/
     $testimonialprovidedname = sanitize_text_field( get_post_meta( $post->ID, 'testimonialprovidedname', true ) );
@@ -211,8 +260,8 @@ function gt_url_custom_metabox() {
         </label>
     </p>
     <p>
-        <label for="testimonialrating">Rating<br />
-            <input id="testimonialrating" size="37" name="testimonialrating" type="number" min="0" max="5" value="<?php if ( isset( $testimonialrating ) ) { echo $testimonialrating; } ?>" />
+        <label for="testimonialrating">Rating (<?php echo $ratingScale; ?>)<br />
+            <input id="testimonialrating" size="37" name="testimonialrating" type="number" min="0" max="<?php echo $maxRating?>" value="<?php if ( isset( $testimonialrating ) ) { echo $testimonialrating; } ?>" />
         </label>
     </p>
     <p>
@@ -227,9 +276,14 @@ function gt_url_custom_metabox() {
 //Save user provided field data.
 function gt_save_custom_testimonialprovidedname( $post_id ) {
     global $post;
+    $nonceToVerify = check_admin_referer( 'settings_group_nonce_save', 'settings_group_nonce' );
     
     if ( isset( $_POST['testimonialprovidedname'] ) ) {
-        update_post_meta( $post->ID, 'testimonialprovidedname', $_POST['testimonialprovidedname'] );
+        if ( $nonceToVerify ) {
+            update_post_meta( $post->ID, 'testimonialprovidedname', $_POST['testimonialprovidedname'] );
+        } else {
+            wp_die( "Invalid wp nonce provided", array( 'response' => 403, ) );
+        }
     }
 }
 add_action( 'save_post', 'gt_save_custom_testimonialprovidedname' );
@@ -242,9 +296,14 @@ function gt_get_testimonialprovidedname( $post ) {
 
 function gt_save_custom_testimoniallabel( $post_id ) {
     global $post;
+    $nonceToVerify = check_admin_referer( 'settings_group_nonce_save', 'settings_group_nonce' );
     
     if ( isset( $_POST['testimoniallabel'] ) ) {
-        update_post_meta( $post->ID, 'testimoniallabel', $_POST['testimoniallabel'] );
+        if ( $nonceToVerify ) {
+            update_post_meta( $post->ID, 'testimoniallabel', $_POST['testimoniallabel'] );
+        }  else {
+            wp_die( "Invalid wp nonce provided", array( 'response' => 403, ) );
+        }
     }
 }
 add_action( 'save_post', 'gt_save_custom_testimoniallabel' );
@@ -257,9 +316,14 @@ function gt_get_testimoniallabel( $post ) {
 
 function gt_save_custom_testimoniallocation( $post_id ) {
     global $post;
+    $nonceToVerify = check_admin_referer( 'settings_group_nonce_save', 'settings_group_nonce' );
     
     if ( isset( $_POST['testimoniallocation'] ) ) {
-        update_post_meta( $post->ID, 'testimoniallocation', $_POST['testimoniallocation'] );
+        if ( $nonceToVerify ) {
+            update_post_meta( $post->ID, 'testimoniallocation', $_POST['testimoniallocation'] );
+        } else {
+            wp_die( "Invalid wp nonce provided", array( 'response' => 403, ) );
+        }
     }
 }
 add_action( 'save_post', 'gt_save_custom_testimoniallocation' );
@@ -272,9 +336,14 @@ function gt_get_testimoniallocation( $post ) {
 
 function gt_save_custom_url( $post_id ) {
     global $post;
+    $nonceToVerify = check_admin_referer( 'settings_group_nonce_save', 'settings_group_nonce' );
     
     if ( isset( $_POST['testimonialurl'] ) ) {
-        update_post_meta( $post->ID, 'testimonialurl', $_POST['testimonialurl'] );
+        if ( $nonceToVerify ) {
+            update_post_meta( $post->ID, 'testimonialurl', $_POST['testimonialurl'] );
+        } else {
+            wp_die( "Invalid wp nonce provided", array( 'response' => 403, ) );
+        }
     }
 }
 add_action( 'save_post', 'gt_save_custom_url' );
@@ -287,9 +356,14 @@ function gt_get_url( $post ) {
 
 function gt_save_testimonialdate( $post_id ) {
     global $post;
+    $nonceToVerify = check_admin_referer( 'settings_group_nonce_save', 'settings_group_nonce' );
     
     if ( isset( $_POST['testimonialdate'] ) ) {
-        update_post_meta( $post->ID, 'testimonialdate', $_POST['testimonialdate'] );
+        if ( $nonceToVerify ) {
+            update_post_meta( $post->ID, 'testimonialdate', $_POST['testimonialdate'] );
+        } else {
+            wp_die( "Invalid wp nonce provided", array( 'response' => 403, ) );
+        }
     }
 }
 add_action( 'save_post', 'gt_save_testimonialdate' );
@@ -302,9 +376,14 @@ function gt_get_testimonialdate( $post ) {
 
 function gt_save_testimonialrating( $post_id ) {
     global $post;
+    $nonceToVerify = check_admin_referer( 'settings_group_nonce_save', 'settings_group_nonce' );
     
     if ( isset( $_POST['testimonialrating'] ) ) {
-        update_post_meta( $post->ID, 'testimonialrating', $_POST['testimonialrating'] );
+        if ( $nonceToVerify ) {
+            update_post_meta( $post->ID, 'testimonialrating', $_POST['testimonialrating'] );
+        } else {
+            wp_die( "Invalid wp nonce provided", array( 'response' => 403, ) );
+        }
     }
 }
 add_action( 'save_post', 'gt_save_testimonialrating' );
@@ -317,9 +396,14 @@ function gt_get_testimonialrating( $post ) {
 
 function gt_save_custom_order( $post_id ) {
     global $post;
+    $nonceToVerify = check_admin_referer( 'settings_group_nonce_save', 'settings_group_nonce' );
     
     if ( isset( $_POST['testimonialorder'] ) ) {
-        update_post_meta( $post->ID, 'testimonialorder', $_POST['testimonialorder'] );
+        if ( $nonceToVerify ) {
+            update_post_meta( $post->ID, 'testimonialorder', $_POST['testimonialorder'] );
+        } else {
+            wp_die( "Invalid wp nonce provided", array( 'response' => 403, ) );
+        }
     }
 }
 add_action( 'save_post', 'gt_save_custom_order' );
@@ -413,7 +497,17 @@ function gt_load_testimonials( $postQuery ) {
     if ( isset( $postQuery['max'] ) ) {
         $args['posts_per_page'] = ( int ) $postQuery['max'];
     }
-
+    
+    $dateLayout = intval( get_option( 'general-testimonials-date-layout' ) );
+    $dateLayoutFormat = "";
+    if ( $dateLayout === 1 ) {
+        $dateLayoutFormat = 'F j, Y';
+    } else if ( $dateLayout === 2 ) {
+        $dateLayoutFormat = 'F Y';
+    } else if ( $dateLayout === 3 ) {
+         $dateLayoutFormat = 'd M Y';
+    } 
+    
     //Get all testimonials.
     $posts = get_posts( $args );
     $pluginContainer .= '<div class="testimonials-container">';
@@ -436,23 +530,64 @@ function gt_load_testimonials( $postQuery ) {
             $testimonialLocation = gt_get_testimoniallocation( $post );
             $testimonialDate = strtotime( gt_get_testimonialdate( $post ) );
             if ( ! empty( gt_get_testimonialdate( $post ) ) ) {
-                $testimonialDate = date( 'F j, Y', $testimonialDate );
+                $testimonialDate = date( $dateLayoutFormat, $testimonialDate );
             }
             $testimonialRating = gt_get_testimonialrating( $post );
-            if ( $testimonialRating === "0" ) {
-                $testimonialRating = "&#9734; &#9734; &#9734; &#9734; &#9734;";
-            } else if ( $testimonialRating === "1" ) {
-                $testimonialRating = "&#9733; &#9734; &#9734; &#9734; &#9734;";
-            } else if ( $testimonialRating === "2" ) {
-                $testimonialRating = "&#9733; &#9733; &#9734; &#9734; &#9734;";
-            } else if ( $testimonialRating === "3" ) {
-                $testimonialRating = "&#9733; &#9733; &#9733; &#9734; &#9734;";
-            } else if ( $testimonialRating === "4" ) {
-                $testimonialRating = "&#9733; &#9733; &#9733; &#9733; &#9734;";
-            } else if ( $testimonialRating === "5" ) {
-                $testimonialRating = "&#9733; &#9733; &#9733; &#9733; &#9733;";
-            }
-             
+            $ratingScale = get_option( 'general-testimonials-rating-scale' );
+            
+            if ( $ratingScale === "0-4") {
+                if ( $testimonialRating === "0" ) {
+                    $testimonialRating = "&#9734; &#9734; &#9734; &#9734;";
+                } else if ( $testimonialRating === "1" ) {
+                    $testimonialRating = "&#9733; &#9734; &#9734; &#9734;";
+                } else if ( $testimonialRating === "2" ) {
+                    $testimonialRating = "&#9733; &#9733; &#9734; &#9734;";
+                } else if ( $testimonialRating === "3" ) {
+                    $testimonialRating = "&#9733; &#9733; &#9733; &#9734;";
+                } else if ( $testimonialRating === "4" ) {
+                    $testimonialRating = "&#9733; &#9733; &#9733; &#9733;";
+                } 
+            } else if ( $ratingScale === "0-10") {
+                if ( $testimonialRating === "0" ) {
+                    $testimonialRating = "&#9734; &#9734; &#9734; &#9734; &#9734; &#9734; &#9734; &#9734; &#9734;";
+                } else if ( $testimonialRating === "1" ) {
+                    $testimonialRating = "&#9733; &#9734; &#9734; &#9734; &#9734; &#9734; &#9734; &#9734; &#9734;";
+                } else if ( $testimonialRating === "2" ) {
+                    $testimonialRating = "&#9733; &#9733; &#9734; &#9734; &#9734; &#9734; &#9734; &#9734; &#9734;";
+                } else if ( $testimonialRating === "3" ) {
+                    $testimonialRating = "&#9733; &#9733; &#9733; &#9734; &#9734; &#9734; &#9734; &#9734; &#9734;";
+                } else if ( $testimonialRating === "4" ) {
+                    $testimonialRating = "&#9733; &#9733; &#9733; &#9733; &#9734; &#9734; &#9734; &#9734; &#9734;";
+                } else if ( $testimonialRating === "5" ) {
+                    $testimonialRating = "&#9733; &#9733; &#9733; &#9733; &#9733; &#9734; &#9734; &#9734; &#9734;";
+                } else if ( $testimonialRating === "6" ) {
+                    $testimonialRating = "&#9733; &#9733; &#9733; &#9733; &#9733; &#9733; &#9734; &#9734; &#9734;";
+                } else if ( $testimonialRating === "7" ) {
+                    $testimonialRating = "&#9733; &#9733; &#9733; &#9733; &#9733; &#9733; &#9734; &#9734; &#9734;";
+                } else if ( $testimonialRating === "8" ) {
+                    $testimonialRating = "&#9733; &#9733; &#9733; &#9733; &#9733; &#9733; &#9733; &#9734; &#9734;";
+                } else if ( $testimonialRating === "9" ) {
+                    $testimonialRating = "&#9733; &#9733; &#9733; &#9733; &#9733; &#9733; &#9733; &#9733; &#9734;";
+                } else if ( $testimonialRating === "10" ) {
+                    $testimonialRating = "&#9733; &#9733; &#9733; &#9733; &#9733; &#9733; &#9733; &#9733; &#9733;";
+                } 
+            } else if ( $ratingScale === "0-5" || $ratingScale === "" ) {
+                if ( $testimonialRating === "0" ) {
+                    $testimonialRating = "&#9734; &#9734; &#9734; &#9734; &#9734;";
+                } else if ( $testimonialRating === "1" ) {
+                    $testimonialRating = "&#9733; &#9734; &#9734; &#9734; &#9734;";
+                } else if ( $testimonialRating === "2" ) {
+                    $testimonialRating = "&#9733; &#9733; &#9734; &#9734; &#9734;";
+                } else if ( $testimonialRating === "3" ) {
+                    $testimonialRating = "&#9733; &#9733; &#9733; &#9734; &#9734;";
+                } else if ( $testimonialRating === "4" ) {
+                    $testimonialRating = "&#9733; &#9733; &#9733; &#9733; &#9734;";
+                } else if ( $testimonialRating === "5" ) {
+                    $testimonialRating = "&#9733; &#9733; &#9733; &#9733; &#9733;";
+                }
+            } 
+            
+            
             $pluginContainer .= '<div class="testimonial">';
             if ( ! empty( $url_thumb ) ) {
                 $pluginContainer .= '<img class="testimonial__image" src="' . $url_thumb . '" alt="' . $url_altText . '" />';
