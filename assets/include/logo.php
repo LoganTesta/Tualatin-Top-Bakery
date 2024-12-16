@@ -1,3 +1,5 @@
 <div class="logo">
-    <a href="index.php"><img src="assets/images/logo.png" alt="Tualatin Top Bakery Logo."></a>
+    <a class="logo__link" href="index.php">
+        <img src="assets/images/logo.png" alt="Tualatin Top Bakery Logo.">
+    </a>
 </div>

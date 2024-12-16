@@ -202,6 +202,7 @@ header { min-height: 100px; background: linear-gradient(#fbe3b7, #f3f3f3); }
 .main-title .main-title__title { font-size: inherit; font-weight: inherit; color: #ac8949; font-family: 'Pacifico', cursive; }
 .header__subtitle { position: relative; top: 15px; text-align: center; color: #64460e; font-family: 'Noto Serif', serif; font-size: 18px; }
 .logo { position: relative; width: 40px; height: 40px; top: 10px; left: 10px; }
+.logo__link { display: block; }
 
 
 /* Nav styles */
