@@ -96,50 +96,50 @@ require( './wordpress/wp-load.php' );
                         <h3 class="index-content__h3">Wholesome Breads, Rich Cakes and Pies, and More!</h3>
                         <div class="col-vsm-6 col-sma-3">
                             <div class="index-product-container zero">
-                                <div class="index-product-container__background-wrapper">
-                                    <div class="index-product-container__background">
-                                        <a class="index-product-container__link" href="products.php"><span class="sr-only">Whole Wheat Loaf</span></a>
+                                <a class="index-product-container__link" href="products.php">
+                                    <div class="index-product-container__background-wrapper">
+                                        <div class="index-product-container__background">
+                                            <span class="sr-only">Whole Wheat Loaf</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="index-product-container__background-layer">
-                                    <a class="index-product-container__link" href="products.php"><span class="sr-only">Whole Wheat Loaf</span></a>
-                                </div>
+                                    <div class="index-product-container__background-layer"></div>
+                                </a>
                             </div>
                         </div>
                         <div class="col-vsm-6 col-sma-3">
                             <div class="index-product-container one">
-                                <div class="index-product-container__background-wrapper">
-                                    <div class="index-product-container__background">
-                                        <a class="index-product-container__link" href="products.php"><span class="sr-only">Cherry Pie</span></a>
+                                <a class="index-product-container__link" href="products.php">
+                                    <div class="index-product-container__background-wrapper">
+                                        <div class="index-product-container__background">
+                                            <span class="sr-only">Cherry Pie</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="index-product-container__background-layer">
-                                    <a class="index-product-container__link" href="products.php"><span class="sr-only">Cherry Pie</span></a>
-                                </div>
+                                    <div class="index-product-container__background-layer"></div>
+                                </a>
                             </div>
                         </div>
                         <div class="col-vsm-6 col-sma-3">
                             <div class="index-product-container two">
-                                <div class="index-product-container__background-wrapper">
-                                    <div class="index-product-container__background">
-                                        <a class="index-product-container__link" href="products.php"><span class="sr-only">Scones</span></a>
+                                <a class="index-product-container__link" href="products.php">
+                                    <div class="index-product-container__background-wrapper">
+                                        <div class="index-product-container__background">
+                                            <span class="sr-only">Scones</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="index-product-container__background-layer">
-                                    <a class="index-product-container__link" href="products.php"><span class="sr-only">Scones</span></a>
-                                </div>
+                                    <div class="index-product-container__background-layer"></div>
+                                </a>
                             </div>
                         </div>
                         <div class="col-vsm-6 col-sma-3">
                             <div class="index-product-container three">
-                                <div class="index-product-container__background-wrapper">
-                                    <div class="index-product-container__background">
-                                        <a class="index-product-container__link" href="products.php"><span class="sr-only">Blueberry Pie</span></a>
+                                <a class="index-product-container__link" href="products.php">
+                                    <div class="index-product-container__background-wrapper">
+                                        <div class="index-product-container__background">
+                                            <span class="sr-only">Blueberry Pie</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="index-product-container__background-layer">
-                                    <a class="index-product-container__link" href="products.php"><span class="sr-only">Blueberry Pie</span></a>
-                                </div>
+                                    <div class="index-product-container__background-layer"></div>
+                                </a>
                             </div>
                         </div>
                     </div>
