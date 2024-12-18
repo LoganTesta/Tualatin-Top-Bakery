@@ -107,12 +107,12 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                 </script>       
 
                 <div class="footer__subscribe">
-                    <div class="footer__subscribe-button">
+                    <button type="button" class="footer__subscribe-button">
                         <div class="footer__subscribe-button__extra-bg-layer"></div>
                         <div class="footer__subscribe-button__bg"><span class="footer__subscribe-button__text">Subscribe for Discounts/Cookies!</span></div> 
-                    </div>
-                    <modal class="footer__modal">
-                        <h3 slot="header">Subscribe for News + Coupons</h3>
+                    </button>
+                    <modal class="footer__modal" role="dialog" aria-modal="true" aria-labelledby="footerSubscribeHeader">
+                        <h3 id="footerSubscribeHeader" slot="header">Subscribe for News + Coupons</h3>
                         <div slot="body">
                             <p>Get news on upcoming events and sweet discounts on bakery products!  All new subscribers get a free cookie coupon 
                                 in their inbox!</p>

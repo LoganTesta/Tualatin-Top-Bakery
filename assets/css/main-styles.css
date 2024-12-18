@@ -247,7 +247,8 @@ footer { background-color: #fbe3b7; }
 
 /*Footer Subscribe button*/
 .footer__subscribe { padding-bottom: 40px; }
-.footer__subscribe-button { position: relative; width: 280px; height: 84px; margin-left: auto; margin-right: auto; border-radius: 15px; text-align: center; cursor: pointer; transition: 0.4s ease-in; }
+.footer__subscribe-button { display: block; position: relative; width: 280px; height: 84px; margin-left: auto; margin-right: auto; border-radius: 15px; text-align: center; cursor: pointer; transition: 0.4s ease-in; }
+.footer__subscribe-button:focus-visible { outline: 2px solid #ffffff; }
 .footer__subscribe-button__extra-bg-layer { position: absolute; top: 0; left: 0; width: 280px; height: 84px; border-radius: 15px; 
                                            background: radial-gradient(rgba(172, 137, 73, 1), rgba(100, 74, 14, 1)); transition: 0.4s ease-in; }
 .footer__subscribe-button__bg { position: absolute; top: 0; left: 0; width: 280px; padding: 15px 12px; margin-left: auto; margin-right: auto; border-radius: 15px; 
