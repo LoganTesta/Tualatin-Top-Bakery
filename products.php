@@ -470,7 +470,7 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                                         </select>
                                     </div>
                                     <div class="input-container product-search-container">
-                                        <div class="input-container__contact-button" id="searchButton" name="searchButton">Search</div>                          
+                                        <button class="input-container__contact-button" id="searchButton" name="searchButton">Search</button>                          
                                     </div>
                                 </div>
                                 <div class="product-search__text">
