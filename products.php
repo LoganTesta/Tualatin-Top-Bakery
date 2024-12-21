@@ -556,7 +556,7 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                                         <div class="cart-total">Today's Total: $<?php echo $_SESSION["totalCost"]; ?></div>
                                     </div>
                                     <div class="col-sma-6">
-                                        <div class="reset-cart">Empty Cart</div>
+                                        <button class="reset-cart">Empty Cart</button>
                                     </div>
                                 </div>
                             </div>
