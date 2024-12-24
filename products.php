@@ -501,14 +501,16 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                                         <div class="product__price-and-request">
                                             <div class="product__price">$<?php echo $_SESSION["products"][$i]->get_price(); ?></div>   
                                             <div class="product__adjust-quantity">
-                                                <div class="product__minus-quantity">-</div>
+                                                <button class="product__minus-quantity">-</button>
                                                 <div class="product__quantity-input">
                                                     <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
                                                     <input type="number" min="0" max="100" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["shownProductsQuantity"][$i]; ?>" />
                                                 </div>
-                                                <div class="product__increase-quantity">+</div>
+                                                <button class="product__increase-quantity">+</button>
                                             </div>
-                                            <div class="product__request-item"><div class="product__request-item__add">Add to Cart</div></div>
+                                            <div class="product__request-item">
+                                                <button class="product__request-item__add">Add to Cart</button>
+                                            </div>
                                             <div class="product__quantity-container <?php if ( $_SESSION["shownProductsQuantity"][$i] > 0 ) { echo 'show'; }?>">
                                                 <a href='#estimateCartTitle' class='product__quantity'><?php echo "" . $_SESSION["shownProductsQuantity"][$i] . "</a>" ?>                                                
                                             </div>
