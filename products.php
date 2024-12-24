@@ -546,8 +546,8 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                                                 <td class="estimate-table__item-cost">$<?php echo $products[$i]->get_price(); ?></td>
                                                 <td class="estimate-table__item-quantity"><?php echo $_SESSION["quantity"][$i]; ?></td>
                                                 <td class="estimate-table__item-subtotal">$<?php echo $_SESSION["itemSubtotal"][$i]; ?></td>
-                                                <td class="estimate-table__minus"><div class="estimate-table__minus__item">-</div></td>  
-                                                <td class="estimate-table__add"><div class="estimate-table__add__item">+</div></td>                       
+                                                <td class="estimate-table__minus"><button class="estimate-table__minus__item">-</button></td>  
+                                                <td class="estimate-table__add"><button class="estimate-table__add__item">+</button></td>                       
                                             </tr>
                                         <?php } ?>
                                         <tr class="clear-both"></div>
