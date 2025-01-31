@@ -50,7 +50,7 @@ require( './wordpress/wp-load.php' );
                                 </div>
                                 <div class="recipe__description">Every one loves a good cupcake!
                                     <div class="recipe-more-info--one">
-                                        <div class="recipe-more-info__button" v-on:click="show=!show">More Info</div>
+                                        <button class="recipe-more-info__button" v-on:click="show=!show">More Info</button>
                                         <transition name="recipeShowMoreInfo">
                                             <div class="recipe-more-info-text" v-if="show">
                                                 <h3 class="recipe__subheading">Ingredients</h3>
@@ -91,7 +91,7 @@ require( './wordpress/wp-load.php' );
                                 </div>
                                 <div class="recipe__description">Time for some brownies!
                                     <div class="recipe-more-info--two">
-                                        <div class="recipe-more-info__button" v-on:click="show=!show">More Info</div>
+                                        <button class="recipe-more-info__button" v-on:click="show=!show">More Info</button>
                                         <transition name="recipeShowMoreInfo">
                                             <div class="recipe-more-info-text" v-if="show">     
                                                 <h3 class="recipe__subheading">Ingredients</h3>
@@ -134,7 +134,7 @@ require( './wordpress/wp-load.php' );
                                 </div>
                                 <div class="recipe__description">Perfect on a cool fall day.                                  
                                     <div class="recipe-more-info--three">
-                                        <div class="recipe-more-info__button" v-on:click="show=!show">More Info</div>
+                                        <button class="recipe-more-info__button" v-on:click="show=!show">More Info</button>
                                         <transition name="recipeShowMoreInfo">
                                             <div class="recipe-more-info-text" v-if="show">
                                                 <h3 class="recipe__subheading">Ingredients</h3>
@@ -176,7 +176,7 @@ require( './wordpress/wp-load.php' );
                                 </div>
                                 <div class="recipe__description">Light and fluffy.  Goes well with strawberries.
                                     <div class="recipe-more-info--four">
-                                        <div class="recipe-more-info__button" v-on:click="show=!show">More Info</div>
+                                        <button class="recipe-more-info__button" v-on:click="show=!show">More Info</button>
                                         <transition name="recipeShowMoreInfo">
                                             <div class="recipe-more-info-text" v-if="show">                                                                                      
                                                 <h3 class="recipe__subheading">Ingredients</h3>
