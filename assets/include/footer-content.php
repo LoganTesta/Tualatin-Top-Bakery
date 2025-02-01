@@ -79,7 +79,7 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                 <div class="footer__copyright">Copyright &copy; <?php echo date( "Y" ); ?> Tualatin Top Bakery. All Rights Reserved.</div>
                 <script type="text/x-template" id="modal-template">
                     <transition name="modal">
-                    <div class="modal__mask subscribe-modal">
+                    <div id="modalMask" class="modal__mask subscribe-modal">
                     <div class="modal__wrapper">
                     <div class="modal__container">
                     <div class="modal__header">

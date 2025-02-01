@@ -25,3 +25,11 @@ dropdownButton.addEventListener("click", toggleHamburgerMenu, "false");
 function toggleHamburgerMenu() {
     document.getElementById("mobileNav").classList.toggle("show");
 }
+
+
+function closeModal(e) {
+    if (!e.keyCode || e.keyCode === 27){
+        document.getElementById("modalMask").classList.remove("show");
+    }
+}
+document.addEventListener( "keydown", closeModal );
