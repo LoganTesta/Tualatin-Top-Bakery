@@ -27,6 +27,19 @@ function toggleHamburgerMenu() {
 }
 
 
+function openModal(e) {
+    let footerSubscribeButton = document.getElementById("footerSubscribeButton");
+    let modalMask = document.getElementById("modalMask");
+    
+    if (document.activeElement === footerSubscribeButton){
+        if (!e.keyCode || e.keyCode === 13){
+            modalMask.classList.add("show");
+        }
+    }
+}
+document.addEventListener( "keydown", openModal );
+
+
 function closeModal(e) {
     if (!e.keyCode || e.keyCode === 27){
         document.getElementById("modalMask").classList.remove("show");
