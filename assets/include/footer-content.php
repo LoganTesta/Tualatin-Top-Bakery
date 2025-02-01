@@ -96,9 +96,9 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                     <slot name="footer">
                     Footer text here.
                     </slot>
-                    <div class="modal__close-button" @click = "$emit( 'close' )">
+                    <button class="modal__close-button" @click = "$emit( 'close' )" aria-label="close">
                     X
-                    </div>
+                    </button>
                     </div>
                     </div>
                     </div>
