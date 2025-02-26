@@ -4,12 +4,12 @@ window.addEventListener("load", function () {
     let blogControls = document.getElementById("blogControls");
     let numberOfControls = document.getElementsByClassName("blog-controls__control").length - 1;
     let blogPostsDiv = document.getElementsByClassName("blog-controls__control")[numberOfControls];
-    let orderBlogsDiv = document.createElement('div');
-    orderBlogsDiv.innerHTML = "Show/hide blogs' body text";
-    orderBlogsDiv.className = "order-blogs";
+    let orderBlogsButton = document.createElement("button");
+    orderBlogsButton.innerHTML = "Show/hide blogs' body text";
+    orderBlogsButton.className = "order-blogs";
 
     if (blogControls !== null) {
-        blogControls.insertBefore(orderBlogsDiv, blogPostsDiv.nextSibling);
+        blogControls.insertBefore(orderBlogsButton, blogPostsDiv.nextSibling);
 
         document.getElementsByClassName("order-blogs")[0].className += " show";
 
