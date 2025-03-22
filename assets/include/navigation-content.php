@@ -14,11 +14,11 @@
     </div>
 </nav>
 <nav id="mobileNav" class="nav mobile-nav">
-    <div id="dropdownButton">
+    <button id="dropdownButton">
         <div class="dropdown-part-1"></div>
         <div class="dropdown-part-2"></div>
         <div class="dropdown-part-3"></div>
-    </div>
+    </button>
     <div id="dropdownContent">
         <ul class="nav__list">
             <li class="nav__nav-item"><a class="nav__nav-link" href="index.php">Home</a></li>
