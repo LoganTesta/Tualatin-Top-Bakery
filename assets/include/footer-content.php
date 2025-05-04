@@ -162,7 +162,7 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                 </div>
                 <div class="footer__location col-sma-4">
                     <h4 class="footer__subheader">Location</h4>
-                    <div>44444 SW Tualatin-Sherwood Road, Tualatin, Oregon 97062</div>
+                    <div>1111 SW Some Road, Tualatin, Oregon 97062</div>
                 </div>
                 <div class="footer__hours col-sma-4">
                     <h4 class="footer__subheader">Hours</h4>
