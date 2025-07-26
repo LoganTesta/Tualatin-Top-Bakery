@@ -114,8 +114,7 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                     <modal class="footer__modal" role="dialog" aria-modal="true" aria-labelledby="footerSubscribeHeader">
                         <h3 id="footerSubscribeHeader" slot="header">Subscribe for News + Coupons</h3>
                         <div slot="body">
-                            <p>Get news on upcoming events and sweet discounts on bakery products!  All new subscribers get a free cookie coupon 
-                                in their inbox!</p>
+                            <p>Get news on upcoming events and sweet discounts on bakery products!</p>
                             <h4>Note: this is a fictional business site for a portfolio. Thanks!</h4>
                             <form class="contact-container__form" id="subscribeForm" @submit="validateSubscribeForm" method="post" action="<?php echo htmlspecialchars( $_SERVER["PHP_SELF"] ); ?>">
                                 {{writeResponse}} 
@@ -142,7 +141,7 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                             ?>
                         </div>
                         <div slot="footer">
-                            <span>Enjoy!</span>
+                            <span></span>
                         </div>
                     </modal>
                 </div>
