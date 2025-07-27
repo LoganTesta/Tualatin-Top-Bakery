@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet"> 
 <link href="https://fonts.googleapis.com/css?family=Noto+Serif&display=swap" rel="stylesheet"> 
 <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet"> 
-<link rel="stylesheet" type="text/css" href="assets/css/main-styles.css?mod=07262025" />
-<link rel="stylesheet" type="text/css" href="assets/css/print-styles.css?mod=07262025" media="print" />
+<link rel="stylesheet" type="text/css" href="assets/css/main-styles.css?mod=07272025" />
+<link rel="stylesheet" type="text/css" href="assets/css/print-styles.css?mod=07272025" media="print" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>  <!--Vuejs -->
 <script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script> <!-- Vue.js router capabilities. -->
