@@ -189,7 +189,8 @@ select { background-color: rgba(100, 74, 14, 0.12); }
 address { font-style: normal; }
 a:link, a:visited { color: #64460e; }
 a:hover { color: #ac8949; }
-a:focus-visible { outline: 2px solid #64460e; }
+a:focus-visible { outline: 2px solid #64460e; outline-offset: 2px; }
+button:focus-visible { outline-offset: 2px; }
 h1 { font-size: 30px; }
 h2 { font-size: 24px; }
 h3 { padding: 0 0 15px 0; color: #64460e; text-align: center; }
