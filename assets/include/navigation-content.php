@@ -14,7 +14,7 @@
     </div>
 </nav>
 <nav id="mobileNav" class="nav mobile-nav">
-    <button id="dropdownButton">
+    <button id="dropdownButton" aria-label="dropdown button">
         <div class="dropdown-part-1"></div>
         <div class="dropdown-part-2"></div>
         <div class="dropdown-part-3"></div>
