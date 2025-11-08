@@ -503,8 +503,8 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                                             <div class="product__adjust-quantity">
                                                 <button class="product__minus-quantity">-</button>
                                                 <div class="product__quantity-input">
-                                                    <label for="productSetQuantity" class="sr-only">Product Set Quantity</label>
-                                                    <input type="number" min="0" max="100" class="product__set-quantity" name="productSetQuantity" placeholder="" value="<?php echo $_SESSION["shownProductsQuantity"][$i]; ?>" />
+                                                    <label for="productSetQuantity<?php echo $i; ?>" class="sr-only">Product Set Quantity</label>
+                                                    <input type="number" min="0" max="100" id="productSetQuantity<?php echo $i; ?>" class="product__set-quantity" name="productSetQuantity<?php echo $i; ?>" placeholder="" value="<?php echo $_SESSION["shownProductsQuantity"][$i]; ?>" />
                                                 </div>
                                                 <button class="product__increase-quantity">+</button>
                                             </div>
