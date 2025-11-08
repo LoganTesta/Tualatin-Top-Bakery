@@ -401,7 +401,7 @@ footer { background-color: #fbe3b7; }
 .product-container input::-webkit-outer-spin-button,.product-container input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .product__increase-quantity { display: inline-block; width: 30px; height: 30px; border: 2px solid #64460e; border-radius: 8px; font-size: 20px; font-weight: bold; text-align: center; background-color: #d0b177; color: #64460e; cursor: pointer; user-select: none; }
 .product__request-item { padding: 10px 0; }
-.product__request-item__add { width: 107px; padding: 10px; border: 2px solid #64460e; margin-left: auto; margin-right: auto; border-radius: 5px; text-align: center; font-weight: bold; background-color: #008800; color: #f9f9f9; cursor: pointer; transition: 0.4s ease-in; }
+.product__request-item__add { width: 107px; padding: 10px; border: 2px solid #64460e; margin-left: auto; margin-right: auto; border-radius: 5px; text-align: center; font-weight: bold; background-color: #106210; color: #f9f9f9; cursor: pointer; transition: 0.4s ease-in; }
 .product__quantity-container { display: none; position: absolute; top: 5px; right: 5px; text-align: center; }
 .product__quantity-container.show { display: block; }
 .product__quantity { font-weight: bold; }
@@ -413,7 +413,7 @@ footer { background-color: #fbe3b7; }
     40% { background-color: #ac8949; }
     100% { background-color: #d0b177; }
 }
-.product__request-item__add:hover { background-color: #22aa22; color: #ffffff; border: 2px solid #64460e; transition: 0.4s ease-in; }
+.product__request-item__add:hover { background-color: #257d25; color: #ffffff; border: 2px solid #64460e; transition: 0.4s ease-in; }
 
 .product-container.hide { display: none; }
 
@@ -446,7 +446,7 @@ footer { background-color: #fbe3b7; }
 .estimate-table .estimate-table__minus__item { width: 32px; height: 32px; padding: 4px; margin-left: auto; margin-right: auto; border-radius: 10px; 
                               background-color: #cc0000; color: #ffffff; font-size: 20px; font-weight: bold; text-align: center; cursor: pointer; user-select: none; }
 .estimate-table .estimate-table__add__item { width: 32px; height: 32px; padding: 4px; margin-left: auto; margin-right: auto; border-radius: 10px; 
-                            background-color: #008800; color: #ffffff; font-size: 20px; font-weight: bold; text-align: center; cursor: pointer; user-select: none; }
+                            background-color: #106210; color: #ffffff; font-size: 20px; font-weight: bold; text-align: center; cursor: pointer; user-select: none; }
 
 .estimate-table__cart-summary { margin-top: 0px; }
 .cart-total { padding-bottom: 15px; font-size: 18px; font-weight: bold; text-align: center; }
