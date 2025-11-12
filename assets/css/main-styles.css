@@ -472,7 +472,8 @@ footer { background-color: #fbe3b7; }
 .recipies-header { padding-bottom: 20px; }
 .recipe-container { margin-bottom: 40px; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0, 0.6);}
 .recipe__title, .recipe__image, .recipe__description {  padding: 15px; }
-.recipe__title { border-radius: 15px 15px 0 0; background: radial-gradient(#64460e, #64460e, #ac8949); color: #fbe3b7; font-size: 20px; font-weight: bold; text-align: center; }
+.recipe__title { border-radius: 15px 15px 0 0; background: radial-gradient(#64460e, #64460e, #ac8949); background-color: #64460e; color: #fbe3b7; 
+                font-size: 20px; font-weight: bold; text-align: center; }
 .recipe__description { border-radius: 0 0 15px 15px; background-color: #eeeeee; }
 .recipe__section { padding-bottom: 15px; }
 .recipe__background-container { position: relative; }
