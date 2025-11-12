@@ -79,6 +79,7 @@ $orderByOutputText = "Order by " . $_SESSION["orderBy"] . $orderText . "";
                 <div class="content">
                     <div class="content-row no-content-row-padding">
                         <div class="col-sma-12">
+                            <h3 class="">Our Blog Posts</h3>
                             <div class="blog-page__content-text">
                                 <?php
                                 $id = 43;
