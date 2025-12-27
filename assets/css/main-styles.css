@@ -225,12 +225,12 @@ header { min-height: 100px; background: linear-gradient(#fbe3b7, #f3f3f3); }
 .nav .nav__nav-link:hover { color: #fbe3b7; transition: 0.1s ease-in; }
 .nav .nav__nav-link:focus-visible { outline: 2px solid #ffffff; }
 
-#dropdownButton { position: absolute; top: 15px; right: 10px; width: 30px; height: 30px; background-color: transparent; cursor: pointer; transition: none; }
+#dropdownButton { display: block; position: absolute; top: 15px; right: 10px; width: 30px; height: 30px; background-color: transparent; cursor: pointer; transition: none; }
 #dropdownButton:focus { box-shadow: none; }
 #dropdownButton:focus-visible { outline: 2px solid #64460e; outline-offset: 3px; transition: none; }
-.dropdown-part-1 { border-bottom: 6px solid #ac8949; margin-bottom: 6px; transition: 0.4s ease-in; }
-.dropdown-part-2 { border-bottom: 6px solid #ac8949; margin-bottom: 6px; transition: 0.4s ease-in; }
-.dropdown-part-3 { border-bottom: 6px solid #ac8949; transition: 0.4s ease-in; }
+.dropdown-part-1 { display: block; border-bottom: 6px solid #ac8949; margin-bottom: 6px; transition: 0.4s ease-in; }
+.dropdown-part-2 { display: block; border-bottom: 6px solid #ac8949; margin-bottom: 6px; transition: 0.4s ease-in; }
+.dropdown-part-3 { display: block; border-bottom: 6px solid #ac8949; transition: 0.4s ease-in; }
 #mobileNav.show .dropdown-part-1 { transform: translateY(13px) rotate(45deg); transition: 0.4s ease-in; } 
 #mobileNav.show .dropdown-part-2 { transform: translateY(1px) rotate(-45deg); transition: 0.4s ease-in; } 
 #mobileNav.show .dropdown-part-3 { opacity: 0; transition: 0.4s ease-in; } 
