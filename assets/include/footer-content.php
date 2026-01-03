@@ -108,8 +108,8 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
 
                 <div class="footer__subscribe">
                     <button type="button" id="footerSubscribeButton" class="footer__subscribe-button">
-                        <div class="footer__subscribe-button__extra-bg-layer"></div>
-                        <div class="footer__subscribe-button__bg"><span class="footer__subscribe-button__text">Subscribe for Discounts/Cookies!</span></div> 
+                        <span class="footer__subscribe-button__extra-bg-layer"></span>
+                        <span class="footer__subscribe-button__bg"><span class="footer__subscribe-button__text">Subscribe for Discounts/Cookies!</span></span> 
                     </button>
                     <modal class="footer__modal" role="dialog" aria-modal="true" aria-labelledby="footerSubscribeHeader">
                         <h3 id="footerSubscribeHeader" slot="header">Subscribe for News + Coupons</h3>
