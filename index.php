@@ -56,11 +56,16 @@ require( './wordpress/wp-load.php' );
                             $args = array( 'posts_per_page' => 3 );
                             $postsToDisplay = get_posts( $args );
                             foreach ( $postsToDisplay as $post ) : setup_postdata( $post );
+                                $postNameInitial = str_replace( " ", "", get_the_title() );
+                                $minusFirstChar = substr( $postNameInitial, 1 );
+                                $firstChar = strtolower(substr($postNameInitial, 0, 1));
+                                $postName = $firstChar . $minusFirstChar;
+                            
                                 ?>      
                                 <div class="col-sma-4">
                                     <div class="index-blog-post">
                                         <h4 class="index-blog__title">
-                                            <a class="index-blog__title-link" href="blog.php#<?php the_title(); ?>"><?php the_title(); ?></a>
+                                            <a class="index-blog__title-link" href="blog.php#<?php echo $postName; ?>"><?php the_title(); ?></a>
                                         </h4>
                                         <div class="index-blog__categories"><?php
                                             $categories = get_the_category();

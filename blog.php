@@ -112,8 +112,13 @@ $orderByOutputText = "Order by " . $_SESSION["orderBy"] . $orderText . "";
                                     $args = array( 'posts_per_page' => -1, 'orderby' => $_SESSION["orderBy"], 'order' => $_SESSION["order"] );
                                     $postsToDisplay = get_posts( $args );
                                     foreach ( $postsToDisplay as $post ) : setup_postdata( $post );
+                                        $postNameInitial = str_replace( " ", "", get_the_title() );
+                                        $minusFirstChar = substr( $postNameInitial, 1 );
+                                        $firstChar = strtolower(substr($postNameInitial, 0, 1));
+                                        $postName = $firstChar . $minusFirstChar;
+                                        
                                         ?>                                                       
-                                        <div  id="<?php the_title(); ?>" class="blog-post">
+                                        <div id="<?php echo $postName; ?>" class="blog-post">
                                             <h4 class="blog__title"><?php the_title(); ?></h4>
                                             <div class="blog__image"><?php the_post_thumbnail( 'medium_rect_crop' ); ?></div>
                                             <div class="blog__categories"><?php
