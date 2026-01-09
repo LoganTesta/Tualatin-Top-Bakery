@@ -450,7 +450,7 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                                     <div class="input-container product-search-container">
                                         <label class="input-container__label" for="searchByCategory"><strong>Category</strong></label>
                                         <select class="product-search__select" id="searchByCategory" name="searchByCategory">
-                                            <option value=""></option>                        
+                                            <option value="">&nbsp;</option>                        
                                             <option value="Breads" <?php if ( $_SESSION["searchByCategory"] === "breads" ){ echo "selected='selected'"; } ?> >Breads</option>
                                             <option value="Pastries" <?php if ( $_SESSION["searchByCategory"] === "pastries" ){ echo "selected='selected'"; } ?> >Pastries</option>                                    
                                             <option value="Muffins" <?php if ( $_SESSION["searchByCategory"] === "muffins" ){ echo "selected='selected'"; } ?> >Muffins</option>
@@ -462,7 +462,7 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                                     <div class="input-container product-search-container">
                                         <label class="input-container__label" for="orderByOptions"><strong>Order By</strong></label>
                                         <select class="product-search__select" id="orderByOptions" name="orderByOptions">
-                                            <option value=""></option>                        
+                                            <option value="">&nbsp;</option>                        
                                             <option value="Name (Alphabetical)" <?php if ( $_SESSION["orderByOptions"] === "Name (Alphabetical)" ){ echo "selected='selected'"; } ?> >Name (Alphabetical)</option>
                                             <option value="Name (Reverse Alphabetical)" <?php if ( $_SESSION["orderByOptions"] === "Name (Reverse Alphabetical)" ){ echo "selected='selected'"; } ?> >Name (Reverse Alphabetical)</option>                                    
                                             <option value="Price (Ascending)" <?php if ( $_SESSION["orderByOptions"] === "Price (Ascending)" ){ echo "selected='selected'"; } ?> >Price (Ascending)</option>
