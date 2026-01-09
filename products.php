@@ -550,7 +550,6 @@ if ( $_SERVER["REQUEST_METHOD"] === "POST" ) {
                                                 <td class="estimate-table__add"><button class="estimate-table__add__item">+</button></td>                       
                                             </tr>
                                         <?php } ?>
-                                        <tr class="clear-both"></div>
                                     </tbody>
                                 </table>
                                 <div class="content-row estimate-table__cart-summary">
