@@ -61,8 +61,11 @@ if ( isset( $_SESSION["estimateCart"] ) === false) {
 $productSearchText = "";
 $emptyForm = false;
 
-$_SESSION["searchByCategory"] = strtolower( "" . $_GET['searchByCategory'] );
-$_SESSION["orderByOptions"] = "" . $_GET['orderByOptions'];
+$searchByCategory = isset( $_GET['searchByCategory'] ) ? $_GET['searchByCategory'] : "";
+$orderByOptions = isset( $_SESSION["orderByOptions"] ) ? $_SESSION["orderByOptions"] : "";
+
+$_SESSION["searchByCategory"] = strtolower( "" . $searchByCategory );
+$_SESSION["orderByOptions"] = "" . $orderByOptions;
 
 
 if ( $_SESSION["searchByCategory"] === "" && $_SESSION["orderByOptions"] === "" ) {
