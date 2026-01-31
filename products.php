@@ -90,13 +90,13 @@ if ( $_SESSION["searchByCategory"] !== "" && $_SESSION["searchByCategory"] !== n
 }
 
 
-if ( $_GET["orderByOptions"] === "Name (Alphabetical)" ) {
+if ( $orderByOptions === "Name (Alphabetical)" ) {
     usort( $_SESSION["products"], "compare_names" );
-} else if ( $_GET["orderByOptions"] === "Name (Reverse Alphabetical)" ) {
+} else if ( $orderByOptions === "Name (Reverse Alphabetical)" ) {
     usort( $_SESSION["products"], "compare_names_reverse" );
-} else if ( $_GET["orderByOptions"] === "Price (Ascending)" ) {
+} else if ( $orderByOptions === "Price (Ascending)" ) {
     usort( $_SESSION["products"], "compare_prices" );
-} else if ( $_GET["orderByOptions"] === "Price (Descending)" ) {
+} else if ( $orderByOptions === "Price (Descending)" ) {
     usort( $_SESSION["products"], "compare_prices_reverse" );
 } else {
     $_SESSION["orderByOptions"] = "";
