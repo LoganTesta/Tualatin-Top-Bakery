@@ -62,7 +62,7 @@ $productSearchText = "";
 $emptyForm = false;
 
 $searchByCategory = isset( $_GET['searchByCategory'] ) ? $_GET['searchByCategory'] : "";
-$orderByOptions = isset( $_SESSION["orderByOptions"] ) ? $_SESSION["orderByOptions"] : "";
+$orderByOptions = isset( $_GET["orderByOptions"] ) ? $_GET["orderByOptions"] : "";
 
 $_SESSION["searchByCategory"] = strtolower( "" . $searchByCategory );
 $_SESSION["orderByOptions"] = "" . $orderByOptions;
